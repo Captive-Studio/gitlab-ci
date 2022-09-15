@@ -1,0 +1,53 @@
+.docker_dind: &docker_dind
+  services:
+    - name: docker:20.10.16-dind-alpine3.15
+      command: ["--registry-mirror", "https://docker.mirror.captive.fr"]
+  tags:
+    - docker-dind
+  before_script:
+    - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CONTAINER_REGISTRY
+    - export TEST_IMAGE=$REGISTRY_PROJECT_URL/$BUILD_SUBPATH:${BUILD_ID}-test
+
+.pass: &pass
+  # ssh
+  - eval $(ssh-agent -s)
+  - mkdir -p $HOME/.ssh
+
+  # pass
+  - echo "$PASS_SSH_PRIVATE_KEY_GZ64" | base64 -d | gunzip | ssh-add -
+  - (ssh -o StrictHostKeyChecking=no git@git.captive.fr true 2> /dev/null || true)
+  - git clone "$PASS_REPOSITORY" ~/.password-store
+  # - export PASSWORD_STORE_DIR=$(pwd)/pass-system
+
+  # gpg
+  - eval $(gpg-agent --daemon --default-cache-ttl 600 --max-cache-ttl 600)
+  - export GPG_AGENT_INFO
+  - echo "$GPG_KEYS_GZ64" | base64 -d | gunzip > keys.asc
+  - echo "$GPG_PRIVATE_KEY_PASSPHRASE" | gpg --pinentry-mode loopback --passphrase-fd 0 --import keys.asc
+  - echo "$GPG_PRIVATE_KEY_PASSPHRASE" | gpg --pinentry-mode loopback --passphrase-fd 0 --decrypt ~/.password-store/test.gpg > /dev/null
+  - pass show test
+
+  # deploy
+  - echo "$DEPLOY_SSH_KNOWN_HOSTS_BASE64" | base64 -d >> $HOME/.ssh/known_hosts
+  - cat $HOME/.ssh/known_hosts
+  - echo "$DEPLOY_SSH_PRIVATE_KEY_GZ64" | base64 -d | gunzip | ssh-add -
+
+.deployment_docker: &deployment_docker
+  <<: *docker_dind
+  script:
+    - set -eu; echo "DEPLOY_STAGE = $DEPLOY_STAGE"
+    - export APP_IMAGE=$REGISTRY_PROJECT_URL/$BUILD_SUBPATH:$BUILD_ID
+    - echo $APP_IMAGE
+    - *pass
+    - make -e stage=$DEPLOY_STAGE generate-env
+    - make -e stage=$DEPLOY_STAGE ssh-check-fingerprint
+    - make -e stage=$DEPLOY_STAGE traefik-deploy
+
+review:
+  <<: *deployment_docker
+
+deploy:staging:
+  <<: *deployment_docker
+
+deploy:production:
+  <<: *deployment_docker

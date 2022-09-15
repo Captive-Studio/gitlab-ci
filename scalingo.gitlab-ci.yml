@@ -1,0 +1,16 @@
+.deployment_scalingo: &deployment_scalingo
+  script:
+    - set -eu; echo "DEPLOY_STAGE = $DEPLOY_STAGE"
+    - eval $(ssh-agent -s)
+    - echo "$SSH_PRIVATE_KEY" | ssh-add -
+    - make -e stage=$DEPLOY_STAGE generate-env
+    - make -e stage=$DEPLOY_STAGE deploy-scalingo
+
+review:
+  <<: *deployment_scalingo
+
+deploy:staging:
+  <<: *deployment_scalingo
+
+deploy:production:
+  <<: *deployment_scalingo
