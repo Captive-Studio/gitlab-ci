@@ -2,7 +2,7 @@
   script:
     - set -eu; echo "DEPLOY_STAGE = $DEPLOY_STAGE"
     - eval $(ssh-agent -s)
-    - echo "$SSH_PRIVATE_KEY" | ssh-add -
+    - echo "$DEPLOY_SSH_PRIVATE_KEY_GZ64" | base64 -d | gunzip | ssh-add -
     - make -e stage=$DEPLOY_STAGE generate-env
     - make -e stage=$DEPLOY_STAGE deploy-scalingo
 
