@@ -1,0 +1,23 @@
+{
+  "name": "@captive/gitlab-ci",
+  "version": "1.0.0-alpha.0",
+  "private": true,
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "format": "npx eslint . --ext=mjs,cjs,js,jsx,ts,tsx,json,jsonc,json5,yml,yaml --fix",
+    "lint": "npx eslint . --ext=mjs,cjs,js,jsx,ts,tsx,json,jsonc,json5,yml,yaml"
+  },
+  "eslintConfig": {
+    "extends": [
+      "@captive/eslint-config"
+    ],
+    "root": true
+  },
+  "eslintIgnore": [],
+  "devDependencies": {
+    "@captive/eslint-config": "^1.7.11",
+    "eslint": "^8.31.0",
+    "prettier": "^2.8.2"
+  }
+}
