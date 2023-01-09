@@ -1,10 +1,8 @@
 {
-    "version": "0.2",
-    "language": "en",
-    "ignorePaths": [],
-    "words": [
-        "dast"
-    ],
-    "ignoreWords": [],
-    "import": []
+  "version": "0.2",
+  "language": "en",
+  "ignorePaths": [],
+  "words": ["dast"],
+  "ignoreWords": [],
+  "import": []
 }
