@@ -1,0 +1,37 @@
+# Standard pipeline stages
+#
+# Other standards
+# Gitlab
+# @see https://gitlab.com/gitlab-org/gitlab-foss/-/blob/master/lib/gitlab/ci/templates/Auto-DevOps.gitlab-ci.yml#L70
+# @see https://github.com/SocialGouv/gitlab-ci-yml/blob/master/base_autodevops.yml#L30
+#
+# Guidelines
+#
+# ✓ Stages should be `lower_underscore_case`
+# ✓ Each stages are optional, the order is important
+stages:
+  # Prepare installation, Fail early stage
+  - prepare
+  # Build image, resources, etc
+  - build
+  # Code quality tools, Linters, Unit tests, End-to-End tests
+  - test
+  - deploy # dummy stage to follow the template guidelines
+  # Review step
+  - review
+  # Dynamic Application Security Testing
+  - dast
+  # Deploy on staging environment
+  - staging
+  # Deploy on canary environment (i.e. nightly builds)
+  - canary
+  # Deploy on production environment
+  - production
+  - incremental rollout 10%
+  - incremental rollout 25%
+  - incremental rollout 50%
+  - incremental rollout 100%
+  # Monitor performance
+  - performance
+  # Cleanup step (removing images, etc)
+  - cleanup
