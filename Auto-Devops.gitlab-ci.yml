@@ -1,2 +1,3 @@
 include:
   - /Auto-Devops/stages.gitlab-ci.yml
+  - /Auto-Devops/variables.gitlab-ci.yml

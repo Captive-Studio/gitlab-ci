@@ -1,0 +1,15 @@
+variables:
+  # Docker image registry, where image are pushed
+  CONTAINER_REGISTRY: registry.git.captive.fr
+
+  # Required variables for docker.mk
+  REGISTRY_PROJECT_URL: $CONTAINER_REGISTRY/$CI_PROJECT_PATH
+  BUILD_SUBPATH: dev
+  BUILD_ID: $CI_COMMIT_SHORT_SHA
+  REF_ID: $CI_COMMIT_REF_SLUG
+
+  # docker-dind
+  DOCKER_DRIVER: overlay2
+  DOCKER_TLS_CERTDIR: ''
+  APP_IMAGE: ''
+  DEPLOY_SSH_KNOWN_HOSTS_BASE64: ''
