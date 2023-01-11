@@ -1,5 +1,8 @@
 image: registry.git.captive.fr/captive/systeme/docker-maker:20.10.16-1
 
+include:
+  - /Auto-Devops.gitlab-ci.yml
+
 stages:
   - pre-test
   - build
@@ -26,20 +29,6 @@ stages:
     - lightweight-job
   except:
     - /^backup\//
-
-# Common jobs variables
-variables:
-  CONTAINER_REGISTRY: registry.git.captive.fr
-  # Required variables for docker.mk
-  REGISTRY_PROJECT_URL: $CONTAINER_REGISTRY/$CI_PROJECT_PATH
-  BUILD_SUBPATH: dev
-  BUILD_ID: $CI_COMMIT_SHORT_SHA
-  REF_ID: $CI_COMMIT_REF_SLUG
-  # docker-dind
-  DOCKER_DRIVER: overlay2
-  DOCKER_TLS_CERTDIR: ''
-  APP_IMAGE: ''
-  DEPLOY_SSH_KNOWN_HOSTS_BASE64: ''
 
 before_script:
   - git checkout -B "$CI_BUILD_REF_NAME"
