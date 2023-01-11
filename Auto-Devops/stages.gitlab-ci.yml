@@ -17,6 +17,8 @@ stages:
   # Code quality tools, Linters, Unit tests, End-to-End tests
   - test
   - deploy # dummy stage to follow the template guidelines
+  # Publish on NPM, DockerHub, etc
+  - release
   # Review step
   - review
   # Dynamic Application Security Testing
