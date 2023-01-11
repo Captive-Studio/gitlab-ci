@@ -1,7 +1,8 @@
 .docker_dind: &docker_dind
   services:
     - name: docker:20.10.16-dind-alpine3.15
-      command: ["--registry-mirror", "https://docker.mirror.captive.fr", "--tls=false"]
+      command:
+        [--registry-mirror, 'https://docker.mirror.captive.fr', --tls=false]
   tags:
     - docker-dind
   before_script:
