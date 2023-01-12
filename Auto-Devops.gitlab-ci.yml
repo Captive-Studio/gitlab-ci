@@ -7,3 +7,4 @@ include:
   #   rules:
   #     - exists:
   #         - Gemfile
+  - remote: 'https://raw.githubusercontent.com/Captive-Studio/gitlab-ci/main/Auto-Devops/Deploy-scalingo.gitlab-ci.yml'

@@ -1,0 +1,57 @@
+# @see https://gitlab.com/gitlab-org/gitlab-foss/-/blob/master/lib/gitlab/ci/templates/Jobs/Deploy/EC2.gitlab-ci.yml
+
+.deploy_scalingo:
+  script:
+    - set -eu; echo "DEPLOY_STAGE = $DEPLOY_STAGE"
+    - eval $(ssh-agent -s)
+    - echo "$DEPLOY_SSH_PRIVATE_KEY_GZ64" | base64 -d | gunzip | ssh-add -
+    - make -e stage=$DEPLOY_STAGE generate-env
+    - make -e stage=$DEPLOY_STAGE deploy-scalingo
+
+review_scalingo:
+  extends: .deploy_scalingo
+  stage: review
+  when: manual
+  # environment:
+  #   name: review/$CI_COMMIT_REF_NAME
+  rules:
+    - if: '$AUTO_DEVOPS_PLATFORM_TARGET != "SCALINGO"'
+      when: never
+    - if: '$CI_KUBERNETES_ACTIVE || $KUBECONFIG'
+      when: never
+    - if: '$REVIEW_DISABLED'
+      when: never
+    - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
+      when: never
+    - if: '$CI_COMMIT_TAG || $CI_COMMIT_BRANCH'
+
+staging_scalingo:
+  extends: .deploy_scalingo
+  variables:
+    DEPLOY_STAGE: staging
+  # environment:
+  #   name: staging
+  rules:
+    - if: '$AUTO_DEVOPS_PLATFORM_TARGET != "SCALINGO"'
+      when: never
+    - if: '$CI_KUBERNETES_ACTIVE || $KUBECONFIG'
+      when: never
+    - if: '$CI_COMMIT_BRANCH != $CI_DEFAULT_BRANCH'
+      when: never
+    - if: '$CI_COMMIT_TAG || $CI_COMMIT_BRANCH'
+
+production_scalingo:
+  extends: .deploy_scalingo
+  variables:
+    DEPLOY_STAGE: production
+  # environment:
+  #   name: production
+  rules:
+    - if: '$AUTO_DEVOPS_PLATFORM_TARGET != "SCALINGO"'
+      when: never
+    - if: '$CI_KUBERNETES_ACTIVE || $KUBECONFIG'
+      when: never
+    - if: '$CI_COMMIT_BRANCH != $CI_DEFAULT_BRANCH'
+      when: never
+    - if: '$CI_COMMIT_TAG || $CI_COMMIT_BRANCH'
+

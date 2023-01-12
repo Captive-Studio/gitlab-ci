@@ -5,6 +5,11 @@
 # ✓ Variables should be `UPPER_UNDERSCORE_CASE`
 # ✓ Each Variables should be documented
 variables:
+  # Disable Review step
+  REVIEW_DISABLED: ''
+  # Deployment Platform Target : "SCALINGO" | "SCALEWAY"
+  AUTO_DEVOPS_PLATFORM_TARGET: ''
+
   # Docker image registry, where image are pushed
   CONTAINER_REGISTRY: registry.git.captive.fr
 
