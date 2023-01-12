@@ -3,6 +3,7 @@
 # Guidelines
 #
 # ✓ All jobs should starts with `.`
+# ✓ Anchor should not be used (not preserved between files)
 # ✓ Including this file should not change pipeline behavior
 
 ##
@@ -10,10 +11,11 @@
 #
 # @example
 # my_step:
-#   <<: *docker_dind
+#   extends
+#     - .docker_dind
 #   stage: ...
 #
-.docker_dind: &docker_dind
+.docker_dind:
   services:
     - name: docker:20.10.16-dind-alpine3.15
       command:
@@ -30,10 +32,11 @@
 #
 # @example
 # my_step:
-#   <<: *code_quality
+#   extends
+#     - .code_quality
 #   stage: ...
 #
-.code_quality: &code_quality
+.code_quality:
   image: registry.git.captive.fr/captive/systeme/docker/controle-qualite:latest
   stage: prepare
   tags:

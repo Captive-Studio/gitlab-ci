@@ -1,6 +1,7 @@
 
 prepare:rubocop:
-  <<: *code_quality
+  extends:
+    - .code_quality
   script:
     - controle-qualite.mk rubocop
   rules:
@@ -8,13 +9,15 @@ prepare:rubocop:
       - .rubocop.yml
 
 prepare:bundle-audit:
-  <<: *code_quality
+  extends:
+    - .code_quality
   script:
     - controle-qualite.mk bundle-audit
   allow_failure: true
 
 prepare:brakeman:
-  <<: *code_quality
+  extends:
+    - .code_quality
   script:
     - controle-qualite.mk brakeman
   allow_failure: true

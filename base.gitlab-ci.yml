@@ -7,7 +7,7 @@ before_script:
   - git checkout -B "$CI_BUILD_REF_NAME"
 
 pre-test:check-changelog:
-  stage: pre-test
+  stage: prepare
   script:
     - make changelog-check
   allow_failure: true
@@ -17,32 +17,36 @@ pre-test:check-changelog:
     - main
 
 pre-test:check-tools:
-  <<: *code_quality
+  extends:
+    - .code_quality
   script:
     - controle-qualite.mk self-check-ruby
   allow_failure: true
 
-
 # pre-test:lint:eslint:
-#   <<: *code_quality
+#   extends:
+#   - .code_quality
 #   script:
 #     - controle-qualite.mk eslint
 #   allow_failure: true
 #
 # pre-test:lint:prettier:
-#   <<: *code_quality
+#   extends:
+#   - .code_quality
 #   script:
 #     - controle-qualite.mk prettier
 #   allow_failure: true
 #
 # pre-test:lint:stylelint:
-#   <<: *code_quality
+#   extends:
+#   - .code_quality
 #   script:
 #     - controle-qualite.mk stylelint
 #   allow_failure: true
 
 build:
-  <<: *docker_dind
+  extends:
+    - .docker_dind
   stage: build
   script:
     - make ci-build ci-push
@@ -53,7 +57,8 @@ build:
     - heavy-job
 
 test:most:
-  <<: *docker_dind
+  extends:
+    - .docker_dind
   stage: test
   script:
     - make -e stage=test generate-env
@@ -65,7 +70,8 @@ test:most:
     - heavy-job
 
 test:system:
-  <<: *docker_dind
+  extends:
+    - .docker_dind
   stage: test
   script:
     - make -e stage=test generate-env
@@ -79,7 +85,8 @@ test:system:
   when: manual
 
 release:image:
-  <<: *docker_dind
+  extends:
+    - .docker_dind
   stage: release
   script:
     - make ci-push-release
