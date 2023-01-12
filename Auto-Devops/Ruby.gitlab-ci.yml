@@ -16,6 +16,9 @@ prepare:bundle-audit:
     - .code_quality
   script:
     - controle-qualite.mk bundle-audit
+  rules:
+    - exists:
+        - Gemfile
   allow_failure: true
 
 prepare:brakeman:
@@ -23,4 +26,7 @@ prepare:brakeman:
     - .code_quality
   script:
     - controle-qualite.mk brakeman
+  rules:
+    - exists:
+        - Gemfile
   allow_failure: true
