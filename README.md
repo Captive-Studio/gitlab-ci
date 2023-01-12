@@ -14,9 +14,8 @@
 
 ### GitlabCI Configuration
 
-`.gitlab-ci.yml`
-
 ```yml
+# .gitlab-ci.yml
 include:
   - remote: https://raw.githubusercontent.com/Captive-Studio/gitlab-ci/main/Auto-Devops.gitlab-ci.yml
 
@@ -30,7 +29,28 @@ include:
   - NodeJS
   - Docker
 
-> [Read the documentation](https://docs.renovatebot.com/configuration-options/) to improve your configuration.
+## Recipes
+
+<details>
+<summary>Disable Review</summary>
+
+```yml
+# .gitlab-ci.yml
+variables:
+    REVIEW_DISABLED: 'true' # Disable Review
+```
+
+</details>
+<details>
+<summary>Deploy on Scalingo</summary>
+
+```yml
+# .gitlab-ci.yml
+variables:
+    AUTO_DEVOPS_PLATFORM_TARGET: 'SCALINGO'
+```
+
+</details>
 
 ## License
 <!-- AUTO-GENERATED-CONTENT:START (PKGJSON:template=[${license}][license-url] © ${author}) -->
