@@ -1,5 +1,8 @@
 image: registry.git.captive.fr/captive/systeme/docker-maker:20.10.16-1
 
+include:
+  - remote: "https://raw.githubusercontent.com/Captive-Studio/gitlab-ci/main/Auto-Devops.gitlab-ci.yml"
+
 stages:
   - pre-test
   - build
@@ -8,17 +11,6 @@ stages:
   - release
   - deploy
 
-.docker_dind: &docker_dind
-  services:
-    - name: docker:20.10.16-dind-alpine3.15
-      command:
-        [--registry-mirror, 'https://docker.mirror.captive.fr', --tls=false]
-  tags:
-    - docker-dind
-  before_script:
-    - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CONTAINER_REGISTRY
-    - export TEST_IMAGE=$REGISTRY_PROJECT_URL/$BUILD_SUBPATH:${BUILD_ID}-test
-
 .pre_test: &pre_test
   image: registry.git.captive.fr/captive/systeme/docker/controle-qualite:latest
   stage: pre-test
@@ -26,20 +18,6 @@ stages:
     - lightweight-job
   except:
     - /^backup\//
-
-# Common jobs variables
-variables:
-  CONTAINER_REGISTRY: registry.git.captive.fr
-  # Required variables for docker.mk
-  REGISTRY_PROJECT_URL: $CONTAINER_REGISTRY/$CI_PROJECT_PATH
-  BUILD_SUBPATH: dev
-  BUILD_ID: $CI_COMMIT_SHORT_SHA
-  REF_ID: $CI_COMMIT_REF_SLUG
-  # docker-dind
-  DOCKER_DRIVER: overlay2
-  DOCKER_TLS_CERTDIR: ''
-  APP_IMAGE: ''
-  DEPLOY_SSH_KNOWN_HOSTS_BASE64: ''
 
 before_script:
   - git checkout -B "$CI_BUILD_REF_NAME"
