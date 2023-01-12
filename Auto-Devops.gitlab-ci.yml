@@ -1,6 +1,4 @@
-variables:
-  GITLAB_CI_PROJECT: https://raw.githubusercontent.com/Captive-Studio/gitlab-ci/main
 include:
-  - remote: "$GITLAB_CI_PROJECT/Auto-Devops/stages.gitlab-ci.yml"
-  - remote: "$GITLAB_CI_PROJECT/Auto-Devops/variables.gitlab-ci.yml"
+  - remote: "https://raw.githubusercontent.com/Captive-Studio/gitlab-ci/main/Auto-Devops/stages.gitlab-ci.yml"
+  - remote: "https://raw.githubusercontent.com/Captive-Studio/gitlab-ci/main/Auto-Devops/variables.gitlab-ci.yml"
 
