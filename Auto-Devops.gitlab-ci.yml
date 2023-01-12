@@ -1,3 +1,5 @@
+variables:
+  GITLAB_CI_PROJECT: https://raw.githubusercontent.com/Captive-Studio/gitlab-ci/master
 include:
-  - /Auto-Devops/stages.gitlab-ci.yml
-  - /Auto-Devops/variables.gitlab-ci.yml
+  - "$GITLAB_CI_PROJECT/Auto-Devops/stages.gitlab-ci.yml"
+  - "$GITLAB_CI_PROJECT/Auto-Devops/variables.gitlab-ci.yml"
