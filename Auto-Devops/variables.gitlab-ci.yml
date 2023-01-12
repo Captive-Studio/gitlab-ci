@@ -8,8 +8,14 @@ variables:
   BUILD_ID: $CI_COMMIT_SHORT_SHA
   REF_ID: $CI_COMMIT_REF_SLUG
 
+  #
   # docker-dind
+  #
+
+  # Use driver overlay2 for performances
   DOCKER_DRIVER: overlay2
+  # Disable TLS
   DOCKER_TLS_CERTDIR: ''
+
   APP_IMAGE: ''
   DEPLOY_SSH_KNOWN_HOSTS_BASE64: ''
