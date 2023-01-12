@@ -1,7 +1,6 @@
-
 # FIXME: .code_quality "except" conflicts with "rules"
-  # except:
-  #   - /^backup\//
+# except:
+#   - /^backup\//
 
 prepare:rubocop:
   extends:
@@ -10,7 +9,7 @@ prepare:rubocop:
     - controle-qualite.mk rubocop
   rules:
     - exists:
-      - .rubocop.yml
+        - .rubocop.yml
 
 prepare:bundle-audit:
   extends:

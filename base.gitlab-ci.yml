@@ -1,7 +1,7 @@
 image: registry.git.captive.fr/captive/systeme/docker-maker:20.10.16-1
 
 include:
-  - remote: "https://raw.githubusercontent.com/Captive-Studio/gitlab-ci/main/Auto-Devops.gitlab-ci.yml"
+  - remote: 'https://raw.githubusercontent.com/Captive-Studio/gitlab-ci/main/Auto-Devops.gitlab-ci.yml'
 
 before_script:
   - git checkout -B "$CI_BUILD_REF_NAME"

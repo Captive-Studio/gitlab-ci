@@ -9,8 +9,7 @@
     - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CONTAINER_REGISTRY
     - export TEST_IMAGE=$REGISTRY_PROJECT_URL/$BUILD_SUBPATH:${BUILD_ID}-test
 
-.pass: &pass
-  # ssh
+.pass: &pass # ssh
   - eval $(ssh-agent -s)
   - mkdir -p $HOME/.ssh
 

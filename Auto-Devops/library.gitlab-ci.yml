@@ -6,7 +6,6 @@
 # ✓ Anchor should not be used (not preserved between files)
 # ✓ Including this file should not change pipeline behavior
 
-##
 # Docker in Docker mixin
 #
 # @example
@@ -26,7 +25,6 @@
     - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CONTAINER_REGISTRY
     - export TEST_IMAGE=$REGISTRY_PROJECT_URL/$BUILD_SUBPATH:${BUILD_ID}-test
 
-##
 # Use controle-qualite image and a lightweight machine
 # By default use `prepare` step to fail early and fast
 #
@@ -41,4 +39,3 @@
   stage: prepare
   tags:
     - lightweight-job
-
