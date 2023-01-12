@@ -2,6 +2,16 @@
 # except:
 #   - /^backup\//
 
+prepare:check-tools:
+  extends:
+    - .code_quality
+  script:
+    - controle-qualite.mk self-check-ruby
+  rules:
+    - exists:
+        - Gemfile
+  allow_failure: true
+
 prepare:rubocop:
   extends:
     - .code_quality

@@ -16,13 +16,6 @@ pre-test:check-changelog:
     - master
     - main
 
-pre-test:check-tools:
-  extends:
-    - .code_quality
-  script:
-    - controle-qualite.mk self-check-ruby
-  allow_failure: true
-
 # pre-test:lint:eslint:
 #   extends:
 #   - .code_quality
