@@ -1,4 +1,8 @@
 
+# FIXME: .code_quality "except" conflicts with "rules"
+  # except:
+  #   - /^backup\//
+
 prepare:rubocop:
   extends:
     - .code_quality
