@@ -3,22 +3,6 @@ image: registry.git.captive.fr/captive/systeme/docker-maker:20.10.16-1
 include:
   - remote: "https://raw.githubusercontent.com/Captive-Studio/gitlab-ci/main/Auto-Devops.gitlab-ci.yml"
 
-stages:
-  - pre-test
-  - build
-  - review
-  - test
-  - release
-  - deploy
-
-.pre_test: &pre_test
-  image: registry.git.captive.fr/captive/systeme/docker/controle-qualite:latest
-  stage: pre-test
-  tags:
-    - lightweight-job
-  except:
-    - /^backup\//
-
 before_script:
   - git checkout -B "$CI_BUILD_REF_NAME"
 
@@ -33,42 +17,42 @@ pre-test:check-changelog:
     - main
 
 pre-test:check-tools:
-  <<: *pre_test
+  <<: *code_quality
   script:
     - controle-qualite.mk self-check-ruby
   allow_failure: true
 
 pre-test:lint:rubocop:
-  <<: *pre_test
+  <<: *code_quality
   script:
     - controle-qualite.mk rubocop
 
 pre-test:audit:bundle-audit:
-  <<: *pre_test
+  <<: *code_quality
   script:
     - controle-qualite.mk bundle-audit
   allow_failure: true
 
 pre-test:audit:brakeman:
-  <<: *pre_test
+  <<: *code_quality
   script:
     - controle-qualite.mk brakeman
   allow_failure: true
 
 # pre-test:lint:eslint:
-#   <<: *pre_test
+#   <<: *code_quality
 #   script:
 #     - controle-qualite.mk eslint
 #   allow_failure: true
 #
 # pre-test:lint:prettier:
-#   <<: *pre_test
+#   <<: *code_quality
 #   script:
 #     - controle-qualite.mk prettier
 #   allow_failure: true
 #
 # pre-test:lint:stylelint:
-#   <<: *pre_test
+#   <<: *code_quality
 #   script:
 #     - controle-qualite.mk stylelint
 #   allow_failure: true
