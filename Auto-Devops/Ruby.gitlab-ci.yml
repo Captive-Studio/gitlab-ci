@@ -6,3 +6,15 @@ prepare:rubocop:
   rules:
     - exists:
       - .rubocop.yml
+
+prepare:bundle-audit:
+  <<: *code_quality
+  script:
+    - controle-qualite.mk bundle-audit
+  allow_failure: true
+
+prepare:brakeman:
+  <<: *code_quality
+  script:
+    - controle-qualite.mk brakeman
+  allow_failure: true

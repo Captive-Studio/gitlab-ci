@@ -22,22 +22,6 @@ pre-test:check-tools:
     - controle-qualite.mk self-check-ruby
   allow_failure: true
 
-pre-test:lint:rubocop:
-  <<: *code_quality
-  script:
-    - controle-qualite.mk rubocop
-
-pre-test:audit:bundle-audit:
-  <<: *code_quality
-  script:
-    - controle-qualite.mk bundle-audit
-  allow_failure: true
-
-pre-test:audit:brakeman:
-  <<: *code_quality
-  script:
-    - controle-qualite.mk brakeman
-  allow_failure: true
 
 # pre-test:lint:eslint:
 #   <<: *code_quality
