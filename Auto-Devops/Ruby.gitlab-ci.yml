@@ -1,0 +1,8 @@
+
+prepare:rubocop:
+  <<: *code_quality
+  script:
+    - controle-qualite.mk rubocop
+  rules:
+    - exists:
+      - .rubocop.yml
