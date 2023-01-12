@@ -1,4 +1,5 @@
 include:
   - remote: "https://raw.githubusercontent.com/Captive-Studio/gitlab-ci/main/Auto-Devops/stages.gitlab-ci.yml"
   - remote: "https://raw.githubusercontent.com/Captive-Studio/gitlab-ci/main/Auto-Devops/variables.gitlab-ci.yml"
+  - remote: "https://raw.githubusercontent.com/Captive-Studio/gitlab-ci/main/Auto-Devops/library.gitlab-ci.yml"
 

@@ -1,0 +1,25 @@
+# Common mixins and anchors
+#
+# Guidelines
+#
+# ✓ All jobs should starts with `.`
+# ✓ Including this file should not change pipeline behavior
+
+##
+# Docker in Docker mixin
+#
+# @example
+# my_step:
+#   <<: *docker_dind
+#   stage: ...
+#
+.docker_dind: &docker_dind
+  services:
+    - name: docker:20.10.16-dind-alpine3.15
+      command:
+        [--registry-mirror, 'https://docker.mirror.captive.fr', --tls=false]
+  tags:
+    - docker-dind
+  before_script:
+    - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CONTAINER_REGISTRY
+    - export TEST_IMAGE=$REGISTRY_PROJECT_URL/$BUILD_SUBPATH:${BUILD_ID}-test

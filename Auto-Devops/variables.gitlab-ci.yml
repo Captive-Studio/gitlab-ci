@@ -1,3 +1,9 @@
+# Common pipelines variables
+#
+# Guidelines
+#
+# ✓ Variables should be `UPPER_UNDERSCORE_CASE`
+# ✓ Each Variables should be documented
 variables:
   # Docker image registry, where image are pushed
   CONTAINER_REGISTRY: registry.git.captive.fr
