@@ -1,0 +1,18 @@
+# TODO: Delete this file and fix Auto-Devops/Deploy-scalingo.gitlab-ci.yml
+
+.deployment_scalingo: &deployment_scalingo
+  script:
+    - set -eu; echo "DEPLOY_STAGE = $DEPLOY_STAGE"
+    - eval $(ssh-agent -s)
+    - echo "$DEPLOY_SSH_PRIVATE_KEY_GZ64" | base64 -d | gunzip | ssh-add -
+    - make -e stage=$DEPLOY_STAGE generate-env
+    - make -e stage=$DEPLOY_STAGE deploy-scalingo
+
+review:
+  <<: *deployment_scalingo
+
+deploy:staging:
+  <<: *deployment_scalingo
+
+deploy:production:
+  <<: *deployment_scalingo
