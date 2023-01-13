@@ -9,6 +9,10 @@ variables:
   REVIEW_ENABLED: ''
   # Deploy to staging step
   STAGING_ENABLED: 'true'
+  # Deploy canary release
+  CANARY_ENABLED: ''
+  # Incremental rollout release (10%, 20%, etc)
+  INCREMENTAL_ROLLOUT_ENABLED: ''
 
   # Deployment Platform Target : "SCALINGO" | "SCALEWAY"
   AUTO_DEVOPS_PLATFORM_TARGET: ''

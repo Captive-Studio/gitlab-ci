@@ -108,8 +108,37 @@
     - <<: *skip_kubernetes
     - <<: *skip_non_default_branch
     # Only if $STAGING_ENABLED and on a tag or branch
-    - if: '$STAGING_ENABLED && ($CI_COMMIT_TAG || $CI_COMMIT_BRANCH)'
+    - if: '$STAGING_ENABLED'
 
+.auto-devops_production_auto:
+  stage: production
+  variables:
+    # Optional: define if needed to filter
+    IF_AUTO_DEVOPS_PLATFORM_TARGET: null
+  rules:
+    - <<: *skip_deploy_freeze
+    - <<: *filter_platform_target
+    - <<: *skip_kubernetes
+    - <<: *skip_non_default_branch
+    - <<: *skip_if_staging_enabled
+    - <<: *skip_if_canary_enabled
+    - <<: *skip_if_incremental_rollout_enabled
+    # Default
+    - when: always
+
+.auto-devops_production_manual:
+  stage: production
+  variables:
+    # Optional: define if needed to filter
+    IF_AUTO_DEVOPS_PLATFORM_TARGET: null
+  rules:
+    - <<: *skip_deploy_freeze
+    - <<: *filter_platform_target
+    - <<: *skip_kubernetes
+    - <<: *skip_non_default_branch
+    - <<: *skip_if_incremental_rollout_enabled
+    - if: '$STAGING_ENABLED || $CANARY_ENABLED'
+      when: manual
 
 .auto-devops_rules:
   rules:
@@ -125,3 +154,16 @@
     - &skip_non_default_branch
       if: '$CI_COMMIT_BRANCH != $CI_DEFAULT_BRANCH'
       when: never
+    - &skip_deploy_freeze
+      if: '$CI_DEPLOY_FREEZE'
+      when: never
+    - &skip_if_staging_enabled
+      if: '$STAGING_ENABLED'
+      when: never
+    - &skip_if_canary_enabled
+      if: '$CANARY_ENABLED'
+      when: never
+    - &skip_if_incremental_rollout_enabled
+      if: '$INCREMENTAL_ROLLOUT_ENABLED || $INCREMENTAL_ROLLOUT_MODE'
+      when: never
+
