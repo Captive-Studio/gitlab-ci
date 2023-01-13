@@ -89,9 +89,15 @@ release:image:
     - master
     - main
 
-review:
+review:staging:
   variables:
     DEPLOY_STAGE: staging
+  stage: review
+  when: manual
+
+review:review:
+  variables:
+    DEPLOY_STAGE: review
   stage: review
   when: manual
 
