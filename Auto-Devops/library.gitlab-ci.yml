@@ -6,6 +6,37 @@
 # ✓ Anchor should not be used (not preserved between files)
 # ✓ Including this file should not change pipeline behavior
 
+# Only used for anchors
+# ⚠️ Must be declared before use
+.auto-devops_rules:
+  rules:
+    - &filter_platform_target
+      if: '$IF_AUTO_DEVOPS_PLATFORM_TARGET && $AUTO_DEVOPS_PLATFORM_TARGET != $IF_AUTO_DEVOPS_PLATFORM_TARGET'
+      when: never
+    - &skip_kubernetes
+      if: '$CI_KUBERNETES_ACTIVE || $KUBECONFIG'
+      when: never
+    - &skip_default_branch
+      if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
+      when: never
+    - &skip_non_default_branch
+      if: '$CI_COMMIT_BRANCH != $CI_DEFAULT_BRANCH'
+      when: never
+    - &skip_deploy_freeze
+      if: '$CI_DEPLOY_FREEZE'
+      when: never
+    - &skip_if_staging_enabled
+      if: '$STAGING_ENABLED'
+      when: never
+    - &skip_if_canary_enabled
+      if: '$CANARY_ENABLED'
+      when: never
+    - &skip_if_incremental_rollout_enabled
+      if: '$INCREMENTAL_ROLLOUT_ENABLED || $INCREMENTAL_ROLLOUT_MODE'
+      when: never
+
+
+
 # Docker in Docker mixin
 #
 # @example
@@ -139,31 +170,3 @@
     - <<: *skip_if_incremental_rollout_enabled
     - if: '$STAGING_ENABLED || $CANARY_ENABLED'
       when: manual
-
-.auto-devops_rules:
-  rules:
-    - &filter_platform_target
-      if: '$IF_AUTO_DEVOPS_PLATFORM_TARGET && $AUTO_DEVOPS_PLATFORM_TARGET != $IF_AUTO_DEVOPS_PLATFORM_TARGET'
-      when: never
-    - &skip_kubernetes
-      if: '$CI_KUBERNETES_ACTIVE || $KUBECONFIG'
-      when: never
-    - &skip_default_branch
-      if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
-      when: never
-    - &skip_non_default_branch
-      if: '$CI_COMMIT_BRANCH != $CI_DEFAULT_BRANCH'
-      when: never
-    - &skip_deploy_freeze
-      if: '$CI_DEPLOY_FREEZE'
-      when: never
-    - &skip_if_staging_enabled
-      if: '$STAGING_ENABLED'
-      when: never
-    - &skip_if_canary_enabled
-      if: '$CANARY_ENABLED'
-      when: never
-    - &skip_if_incremental_rollout_enabled
-      if: '$INCREMENTAL_ROLLOUT_ENABLED || $INCREMENTAL_ROLLOUT_MODE'
-      when: never
-
