@@ -55,6 +55,42 @@
     ARTIFACT_COMPRESSION_LEVEL: "fast"
     CACHE_COMPRESSION_LEVEL: "fast"
 
+# Mixin to trigger at staging step only when `$REVIEW_ENABLED` is truthy
+#
+# @example
+#
+# variables:
+#   REVIEW_ENABLED: 'true'
+#
+# my_step:
+#   extends
+#     - .auto-devops_review
+#   variables:
+#     IF_AUTO_DEVOPS_PLATFORM_TARGET: 'AZURE' # Ex: will trigger only if AUTO_DEVOPS_PLATFORM_TARGET == 'AZURE'
+#   script:
+#     # TODO !
+#
+.auto-devops_review:
+  stage: review
+  when: manual
+  variables:
+    # Optional: define if needed to filter
+    IF_AUTO_DEVOPS_PLATFORM_TARGET: null
+  # environment:
+  #   name: review/$CI_COMMIT_REF_NAME
+  rules:
+    # Never if IF_AUTO_DEVOPS_PLATFORM_TARGET is defined and AUTO_DEVOPS_PLATFORM_TARGET == IF_AUTO_DEVOPS_PLATFORM_TARGET
+    - if: '$IF_AUTO_DEVOPS_PLATFORM_TARGET && $AUTO_DEVOPS_PLATFORM_TARGET != $IF_AUTO_DEVOPS_PLATFORM_TARGET'
+      when: never
+    # Never if Kubernetes, $CI_KUBERNETES_ACTIVE or $KUBECONFIG
+    - if: '$CI_KUBERNETES_ACTIVE || $KUBECONFIG'
+      when: never
+    # Never if on default branch (i.e. main)
+    - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
+      when: never
+    # Only if $REVIEW_ENABLED and on a tag or branch
+    - if: '$REVIEW_ENABLED && ($CI_COMMIT_TAG || $CI_COMMIT_BRANCH)'
+
 # Mixin to trigger at staging step only when `$STAGING_ENABLED` is truthy
 #
 # @example
@@ -65,6 +101,8 @@
 # my_step:
 #   extends
 #     - .auto-devops_staging
+#   variables:
+#     IF_AUTO_DEVOPS_PLATFORM_TARGET: 'AZURE' # Ex: will trigger only if AUTO_DEVOPS_PLATFORM_TARGET == 'AZURE'
 #   script:
 #     # TODO !
 #
@@ -72,18 +110,15 @@
   stage: staging
   variables:
     # Optional: define if needed to filter
-    AUTO_DEVOPS_PLATFORM_FILTER: null
+    IF_AUTO_DEVOPS_PLATFORM_TARGET: null
   rules:
-    # Never if AUTO_DEVOPS_PLATFORM_FILTER is defined and AUTO_DEVOPS_PLATFORM_TARGET == AUTO_DEVOPS_PLATFORM_FILTER
-    - if: '$AUTO_DEVOPS_PLATFORM_FILTER != null && $AUTO_DEVOPS_PLATFORM_FILTER != "" && $AUTO_DEVOPS_PLATFORM_TARGET != $AUTO_DEVOPS_PLATFORM_FILTER'
+    # Never if IF_AUTO_DEVOPS_PLATFORM_TARGET is defined and AUTO_DEVOPS_PLATFORM_TARGET == IF_AUTO_DEVOPS_PLATFORM_TARGET
+    - if: '$IF_AUTO_DEVOPS_PLATFORM_TARGET && $AUTO_DEVOPS_PLATFORM_TARGET != $IF_AUTO_DEVOPS_PLATFORM_TARGET'
       when: never
-    # Never if $CI_KUBERNETES_ACTIVE is defined
-    - if: '$CI_KUBERNETES_ACTIVE == null || $CI_KUBERNETES_ACTIVE == ""'
+    # Never if Kubernetes, $CI_KUBERNETES_ACTIVE or $KUBECONFIG
+    - if: '$CI_KUBERNETES_ACTIVE || $KUBECONFIG'
       when: never
-    # Never if $KUBECONFIG is defined
-    - if: '$KUBECONFIG == null || $KUBECONFIG == ""'
-      when: never
-    # Never if on default branch (i.e. main)
+    # Never if not on default branch (i.e. main)
     - if: '$CI_COMMIT_BRANCH != $CI_DEFAULT_BRANCH'
       when: never
     # Only if $STAGING_ENABLED and on a tag or branch
