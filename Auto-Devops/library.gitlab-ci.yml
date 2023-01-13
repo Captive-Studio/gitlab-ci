@@ -6,6 +6,8 @@
 # ✓ Anchor should not be used (not preserved between files)
 # ✓ Including this file should not change pipeline behavior
 
+
+
 # Docker in Docker mixin
 #
 # @example
@@ -82,9 +84,7 @@
     # Never if IF_AUTO_DEVOPS_PLATFORM_TARGET is defined and AUTO_DEVOPS_PLATFORM_TARGET == IF_AUTO_DEVOPS_PLATFORM_TARGET
     - if: '$IF_AUTO_DEVOPS_PLATFORM_TARGET && $AUTO_DEVOPS_PLATFORM_TARGET != $IF_AUTO_DEVOPS_PLATFORM_TARGET'
       when: never
-    # Never if Kubernetes, $CI_KUBERNETES_ACTIVE or $KUBECONFIG
-    - if: '$CI_KUBERNETES_ACTIVE || $KUBECONFIG'
-      when: never
+    - <<: *skip_kubernetes
     # Never if on default branch (i.e. main)
     - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
       when: never
@@ -115,12 +115,16 @@
     # Never if IF_AUTO_DEVOPS_PLATFORM_TARGET is defined and AUTO_DEVOPS_PLATFORM_TARGET == IF_AUTO_DEVOPS_PLATFORM_TARGET
     - if: '$IF_AUTO_DEVOPS_PLATFORM_TARGET && $AUTO_DEVOPS_PLATFORM_TARGET != $IF_AUTO_DEVOPS_PLATFORM_TARGET'
       when: never
-    # Never if Kubernetes, $CI_KUBERNETES_ACTIVE or $KUBECONFIG
-    - if: '$CI_KUBERNETES_ACTIVE || $KUBECONFIG'
-      when: never
+    - <<: *skip_kubernetes
     # Never if not on default branch (i.e. main)
     - if: '$CI_COMMIT_BRANCH != $CI_DEFAULT_BRANCH'
       when: never
     # Only if $STAGING_ENABLED and on a tag or branch
     - if: '$STAGING_ENABLED && ($CI_COMMIT_TAG || $CI_COMMIT_BRANCH)'
 
+
+.auto-devops_rules:
+  rules:
+    - &skip_kubernetes
+      if: '$CI_KUBERNETES_ACTIVE || $KUBECONFIG'
+      when: never
