@@ -5,7 +5,7 @@
 # ✓ Variables should be `UPPER_UNDERSCORE_CASE`
 # ✓ Each Variables should be documented
 variables:
-  # Disable Review step
+  # Enable Review step
   REVIEW_ENABLED: ''
   # Deploy to staging step
   STAGING_ENABLED: 'true'
