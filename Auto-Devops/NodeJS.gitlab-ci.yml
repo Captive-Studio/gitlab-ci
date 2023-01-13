@@ -30,6 +30,8 @@ lint_nodejs:
   needs:
     - job: build_nodejs
       artifacts: true
+  tags:
+    - lightweight-job
   script:
     - npm run lint --if-present
   rules:
@@ -40,6 +42,8 @@ test_nodejs:
   needs:
     - job: build_nodejs
       artifacts: true
+  tags:
+    - lightweight-job
   script:
     - npm test --if-present
   rules:
