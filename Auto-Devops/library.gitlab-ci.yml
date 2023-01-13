@@ -76,12 +76,8 @@
   variables:
     # Optional: define if needed to filter
     IF_AUTO_DEVOPS_PLATFORM_TARGET: null
-  # environment:
-  #   name: review/$CI_COMMIT_REF_NAME
   rules:
-    # Never if IF_AUTO_DEVOPS_PLATFORM_TARGET is defined and AUTO_DEVOPS_PLATFORM_TARGET == IF_AUTO_DEVOPS_PLATFORM_TARGET
-    - if: '$IF_AUTO_DEVOPS_PLATFORM_TARGET && $AUTO_DEVOPS_PLATFORM_TARGET != $IF_AUTO_DEVOPS_PLATFORM_TARGET'
-      when: never
+    - <<: *filter_platform_target
     - <<: *skip_kubernetes
     - <<: *skip_default_branch
     # Only if $REVIEW_ENABLED and on a tag or branch
@@ -108,9 +104,7 @@
     # Optional: define if needed to filter
     IF_AUTO_DEVOPS_PLATFORM_TARGET: null
   rules:
-    # Never if IF_AUTO_DEVOPS_PLATFORM_TARGET is defined and AUTO_DEVOPS_PLATFORM_TARGET == IF_AUTO_DEVOPS_PLATFORM_TARGET
-    - if: '$IF_AUTO_DEVOPS_PLATFORM_TARGET && $AUTO_DEVOPS_PLATFORM_TARGET != $IF_AUTO_DEVOPS_PLATFORM_TARGET'
-      when: never
+    - <<: *filter_platform_target
     - <<: *skip_kubernetes
     - <<: *skip_non_default_branch
     # Only if $STAGING_ENABLED and on a tag or branch
@@ -119,6 +113,9 @@
 
 .auto-devops_rules:
   rules:
+    - &filter_platform_target
+      if: '$IF_AUTO_DEVOPS_PLATFORM_TARGET && $AUTO_DEVOPS_PLATFORM_TARGET != $IF_AUTO_DEVOPS_PLATFORM_TARGET'
+      when: never
     - &skip_kubernetes
       if: '$CI_KUBERNETES_ACTIVE || $KUBECONFIG'
       when: never
