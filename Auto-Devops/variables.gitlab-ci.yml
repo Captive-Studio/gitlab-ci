@@ -7,6 +7,9 @@
 variables:
   # Disable Review step
   REVIEW_DISABLED: ''
+  # Deploy to staging step
+  STAGING_ENABLED: 'true'
+
   # Deployment Platform Target : "SCALINGO" | "SCALEWAY"
   AUTO_DEVOPS_PLATFORM_TARGET: ''
 
