@@ -1,0 +1,58 @@
+
+
+.nodejs_present_rule: &nodejs_present_rule
+  exists:
+    - package.json
+
+install_nodejs:
+  stage: prepare
+  rules:
+    - <<: *nodejs_present_rule
+
+build_nodejs:
+  stage: build
+  script:
+    - npm run build --if-present
+  needs:
+    - job: install_nodejs
+      artifacts: true
+  artifacts:
+    paths:
+      - dist/
+      - lib/
+      - packages/*/lib/
+      - packages/*/dist/
+  rules:
+    - <<: *nodejs_present_rule
+
+lint_nodejs:
+  stage: test
+  needs:
+    - job: build_nodejs
+      artifacts: true
+  script:
+    - npm run lint --if-present
+  rules:
+    - <<: *nodejs_present_rule
+
+test_nodejs:
+  stage: test
+  needs:
+    - job: build_nodejs
+      artifacts: true
+  script:
+    - npm test --if-present
+  rules:
+    - <<: *nodejs_present_rule
+
+test_e2e_nodejs:
+  stage: test
+  needs:
+    - job: build_nodejs
+      artifacts: true
+  tags:
+    - heavy-job
+  script:
+    - npm test:e2e --if-present
+  rules:
+    - <<: *nodejs_present_rule
