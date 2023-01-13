@@ -6,7 +6,7 @@
 # ✓ Each Variables should be documented
 variables:
   # Disable Review step
-  REVIEW_DISABLED: ''
+  REVIEW_ENABLED: ''
   # Deploy to staging step
   STAGING_ENABLED: 'true'
 
