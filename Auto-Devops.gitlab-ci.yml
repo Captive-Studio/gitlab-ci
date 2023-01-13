@@ -4,7 +4,7 @@ include:
   - remote: 'https://raw.githubusercontent.com/Captive-Studio/gitlab-ci/main/Auto-Devops/variables.gitlab-ci.yml'
   - remote: 'https://raw.githubusercontent.com/Captive-Studio/gitlab-ci/main/Auto-Devops/library.gitlab-ci.yml'
   - remote: 'https://raw.githubusercontent.com/Captive-Studio/gitlab-ci/main/Auto-Devops/Ruby.gitlab-ci.yml'
-  - remote: 'https://raw.githubusercontent.com/Captive-Studio/gitlab-ci/main/Auto-Devops/NodeJS.gitlab-ci.yml'
+  # - remote: 'https://raw.githubusercontent.com/Captive-Studio/gitlab-ci/main/Auto-Devops/NodeJS.gitlab-ci.yml'
   # FIXME: https://gitlab.com/gitlab-org/gitlab/-/issues/386040
   #   rules:
   #     - exists:
