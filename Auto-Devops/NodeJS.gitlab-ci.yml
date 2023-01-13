@@ -53,6 +53,6 @@ test_e2e_nodejs:
   tags:
     - heavy-job
   script:
-    - npm test:e2e --if-present
+    - npm run test:e2e --if-present
   rules:
     - <<: *nodejs_present_rule
