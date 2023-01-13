@@ -1,7 +1,7 @@
 
 .ruby_present_rule: &ruby_present_rule
   exists:
-    - package.json
+    - Gemfile
 
 # FIXME: .code_quality "except" conflicts with "rules"
 # except:
