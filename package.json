@@ -20,8 +20,8 @@
   },
   "eslintIgnore": [],
   "devDependencies": {
-    "@captive/eslint-config": "^1.7.11",
-    "eslint": "^8.31.0",
-    "prettier": "^2.8.2"
+    "@captive/eslint-config": "1.7.11",
+    "eslint": "8.31.0",
+    "prettier": "2.8.2"
   }
 }
