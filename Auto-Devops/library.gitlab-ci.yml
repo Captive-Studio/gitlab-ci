@@ -35,8 +35,6 @@
       if: '$INCREMENTAL_ROLLOUT_ENABLED || $INCREMENTAL_ROLLOUT_MODE'
       when: never
 
-
-
 # Docker in Docker mixin
 #
 # @example
@@ -55,6 +53,17 @@
   before_script:
     - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CONTAINER_REGISTRY
     - export TEST_IMAGE=$REGISTRY_PROJECT_URL/$BUILD_SUBPATH:${BUILD_ID}-test
+
+# Docker make image mixin.
+#
+# @example
+# my_step:
+#   extends
+#     - .docker_make_image
+#   stage: ...
+#
+.docker_maker_image:
+  image: registry.git.captive.fr/captive/systeme/docker-maker:20.10.16-1
 
 # Use controle-qualite image and a lightweight machine
 # By default use `prepare` step to fail early and fast
