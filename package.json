@@ -11,7 +11,7 @@
     "format": "npx eslint . --ext=mjs,cjs,js,jsx,ts,tsx,json,jsonc,json5,yml,yaml --fix",
     "lint": "npx eslint . --ext=mjs,cjs,js,jsx,ts,tsx,json,jsonc,json5,yml,yaml",
     "release": "scripts/release",
-    "test": "exit 0"
+    "test": "npx gitlab-ci-lint Auto-Devops.gitlab-ci.yml --url https://git.captive.fr --token=$GITLAB_TOKEN"
   },
   "eslintConfig": {
     "extends": [
@@ -23,6 +23,7 @@
   "devDependencies": {
     "@captive/eslint-config": "1.7.11",
     "eslint": "8.31.0",
+    "gitlab-ci-lint": "^1.1.0",
     "prettier": "2.8.2"
   }
 }
