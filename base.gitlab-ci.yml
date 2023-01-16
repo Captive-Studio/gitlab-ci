@@ -6,57 +6,6 @@ include:
 before_script:
   - git checkout -B "$CI_BUILD_REF_NAME"
 
-build:
-  extends:
-    - .docker_dind
-  stage: build
-  script:
-    - make ci-build ci-push
-  except:
-    - /^backup\//
-  tags:
-    - docker-dind
-    - heavy-job
-
-test:most:
-  extends:
-    - .docker_dind
-  stage: test
-  script:
-    - make -e stage=test generate-env
-    - make test-most
-  except:
-    - /^backup\//
-  tags:
-    - docker-dind
-    - heavy-job
-
-test:system:
-  extends:
-    - .docker_dind
-  stage: test
-  script:
-    - make -e stage=test generate-env
-    - make test-system
-  except:
-    - /^backup\//
-  tags:
-    - docker-dind
-    - heavy-job
-  allow_failure: true
-  when: manual
-
-release:image:
-  extends:
-    - .docker_dind
-  stage: release
-  script:
-    - make ci-push-release
-    - make -e REF_ID=latest ci-push-release
-  only:
-    - tags
-    - master
-    - main
 
 review:
   variables:
