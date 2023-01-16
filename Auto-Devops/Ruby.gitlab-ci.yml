@@ -7,7 +7,7 @@
 # except:
 #   - /^backup\//
 
-prepare:check-tools:
+ruby:check-tools:
   extends:
     - .code_quality
   script:
@@ -16,7 +16,7 @@ prepare:check-tools:
     - <<: *ruby_present_rule
   allow_failure: true
 
-prepare:rubocop:
+ruby:rubocop:
   extends:
     - .code_quality
   script:
@@ -25,7 +25,7 @@ prepare:rubocop:
     - exists:
         - .rubocop.yml
 
-prepare:bundle-audit:
+ruby:bundle-audit:
   extends:
     - .code_quality
   script:
@@ -34,7 +34,7 @@ prepare:bundle-audit:
     - <<: *ruby_present_rule
   allow_failure: true
 
-prepare:brakeman:
+ruby:brakeman:
   extends:
     - .code_quality
   script:

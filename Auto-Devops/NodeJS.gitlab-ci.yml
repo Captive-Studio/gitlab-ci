@@ -16,19 +16,19 @@ variables:
   # Cypress cache environment variable
   CYPRESS_CACHE_FOLDER: "$CI_PROJECT_DIR/$CI_CYPRESS_CACHE_FOLDER"
 
-install_nodejs:
+nodejs:install:
   stage: prepare
   rules:
     - <<: *nodejs_present_rule
   script:
     - exit 0
 
-build_nodejs:
+nodejs:build:
   stage: build
   script:
     - npm run build --if-present
   needs:
-    - job: install_nodejs
+    - job: nodejs:install
       artifacts: true
   artifacts:
     paths:
@@ -39,10 +39,10 @@ build_nodejs:
   rules:
     - <<: *nodejs_present_rule
 
-lint_nodejs:
+nodejs:lint:
   stage: test
   needs:
-    - job: build_nodejs
+    - job: nodejs:build
       artifacts: true
   tags:
     - lightweight-job
@@ -51,10 +51,10 @@ lint_nodejs:
   rules:
     - <<: *nodejs_present_rule
 
-test_nodejs:
+nodejs:test:
   stage: test
   needs:
-    - job: build_nodejs
+    - job: nodejs:build
       artifacts: true
   tags:
     - lightweight-job
@@ -63,10 +63,10 @@ test_nodejs:
   rules:
     - <<: *nodejs_present_rule
 
-test_e2e_nodejs:
+nodejs:test:e2e:
   stage: test
   needs:
-    - job: build_nodejs
+    - job: nodejs:build
       artifacts: true
   tags:
     - heavy-job
