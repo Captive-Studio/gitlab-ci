@@ -1,0 +1,50 @@
+
+.makefile_present_rule: &makefile_present_rule
+  exists:
+    - Makefile
+
+# Docker make image mixin.
+#
+# @example
+# my_step:
+#   extends
+#     - .docker_make_image
+#   stage: ...
+#
+.docker_maker_image:
+  image: registry.git.captive.fr/captive/systeme/docker-maker:20.10.16-1
+
+prepare:check-changelog:
+  extends:
+    - .docker_maker_image
+  stage: prepare
+  script:
+    - make changelog-check
+  allow_failure: true
+  rules:
+    - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
+      when: never
+    - if: '$CI_COMMIT_TAG'
+      when: never
+    - <<: *makefile_present_rule
+
+# prepare:lint:eslint:
+#   extends:
+#   - .code_quality
+#   script:
+#     - controle-qualite.mk eslint
+#   allow_failure: true
+#
+# prepare:lint:prettier:
+#   extends:
+#   - .code_quality
+#   script:
+#     - controle-qualite.mk prettier
+#   allow_failure: true
+#
+# prepare:lint:stylelint:
+#   extends:
+#   - .code_quality
+#   script:
+#     - controle-qualite.mk stylelint
+#   allow_failure: true

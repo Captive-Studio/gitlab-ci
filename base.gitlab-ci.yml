@@ -6,37 +6,6 @@ include:
 before_script:
   - git checkout -B "$CI_BUILD_REF_NAME"
 
-prepare:check-changelog:
-  stage: prepare
-  script:
-    - make changelog-check
-  allow_failure: true
-  except:
-    - tags
-    - master
-    - main
-
-# prepare:lint:eslint:
-#   extends:
-#   - .code_quality
-#   script:
-#     - controle-qualite.mk eslint
-#   allow_failure: true
-#
-# prepare:lint:prettier:
-#   extends:
-#   - .code_quality
-#   script:
-#     - controle-qualite.mk prettier
-#   allow_failure: true
-#
-# prepare:lint:stylelint:
-#   extends:
-#   - .code_quality
-#   script:
-#     - controle-qualite.mk stylelint
-#   allow_failure: true
-
 build:
   extends:
     - .docker_dind
