@@ -10,6 +10,7 @@
     "docs": ":",
     "format": "npx eslint . --ext=mjs,cjs,js,jsx,ts,tsx,json,jsonc,json5,yml,yaml --fix",
     "lint": "npx eslint . --ext=mjs,cjs,js,jsx,ts,tsx,json,jsonc,json5,yml,yaml",
+    "release": "scripts/release",
     "test": "exit 0"
   },
   "eslintConfig": {
