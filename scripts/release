@@ -7,6 +7,11 @@ if [[ "$BRANCH" != "main" ]]; then
   exit 1;
 fi
 
+if [ ! -z "$(git status --porcelain)" ]; then
+  echo 'Git repository should be clean, changes are detected';
+  exit 1;
+fi
+
 # Default directories
 SCRIPT_DIR="$(dirname "$0")"
 cd "$SCRIPT_DIR/.."
