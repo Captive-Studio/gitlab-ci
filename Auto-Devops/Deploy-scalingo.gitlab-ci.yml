@@ -10,21 +10,12 @@
 
 review_scalingo:
   extends:
+    - .auto-devops_review
     - .deploy_scalingo
   stage: review
   when: manual
-  # environment:
-  #   name: review/$CI_COMMIT_REF_NAME
-  rules:
-    - if: '$AUTO_DEVOPS_PLATFORM_TARGET != "SCALINGO"'
-      when: never
-    - if: '$CI_KUBERNETES_ACTIVE || $KUBECONFIG'
-      when: never
-    - if: '$REVIEW_ENABLED == null || $REVIEW_ENABLED == ""'
-      when: never
-    - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
-      when: never
-    - if: '$CI_COMMIT_TAG || $CI_COMMIT_BRANCH'
+  variables:
+    IF_AUTO_DEVOPS_PLATFORM_TARGET: 'SCALINGO'
 
 staging_scalingo:
   extends:
@@ -33,21 +24,19 @@ staging_scalingo:
   variables:
     IF_AUTO_DEVOPS_PLATFORM_TARGET: 'SCALINGO'
     DEPLOY_STAGE: staging
-  # environment:
-  #   name: staging
 
 production_scalingo:
-  extends: .deploy_scalingo
+  extends:
+  - .auto-devops_production_auto
+  - .deploy_scalingo
   variables:
+    IF_AUTO_DEVOPS_PLATFORM_TARGET: 'SCALINGO'
     DEPLOY_STAGE: production
-  # environment:
-  #   name: production
-  rules:
-    - if: '$AUTO_DEVOPS_PLATFORM_TARGET != "SCALINGO"'
-      when: never
-    - if: '$CI_KUBERNETES_ACTIVE || $KUBECONFIG'
-      when: never
-    - if: '$CI_COMMIT_BRANCH != $CI_DEFAULT_BRANCH'
-      when: never
-    - if: '$CI_COMMIT_TAG || $CI_COMMIT_BRANCH'
 
+production_manual_scalingo:
+  extends:
+  - .auto-devops_production_manual
+  - .deploy_scalingo
+  variables:
+    IF_AUTO_DEVOPS_PLATFORM_TARGET: 'SCALINGO'
+    DEPLOY_STAGE: production
