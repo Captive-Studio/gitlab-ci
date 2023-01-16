@@ -12,8 +12,7 @@ scalingo:review:
   extends:
     - .auto-devops_review
     - .deploy_scalingo
-  stage: review
-  when: manual
+  # when: manual
   variables:
     IF_AUTO_DEVOPS_PLATFORM_TARGET: 'SCALINGO'
 
