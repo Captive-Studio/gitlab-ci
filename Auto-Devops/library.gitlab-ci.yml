@@ -179,3 +179,4 @@
     - <<: *skip_if_incremental_rollout_enabled
     - if: '$STAGING_ENABLED || $CANARY_ENABLED'
       when: manual
+# - if: '$CI_COMMIT_TAG =~ /^v([0-9]|[1-9][0-9]+)\.([0-9]|[1-9][0-9]+)\.([0-9]|[1-9][0-9]+)$/'

@@ -14,7 +14,7 @@ variables:
   # Incremental rollout release (10%, 20%, etc)
   INCREMENTAL_ROLLOUT_ENABLED: ''
 
-  # Deployment Platform Target : "SCALINGO" | "SCALEWAY"
+  # Deployment Platform Target : "SCALINGO" | "SCALEWAY" | "MAKEFILE"
   AUTO_DEVOPS_PLATFORM_TARGET: ''
 
   # Docker image registry, where image are pushed
