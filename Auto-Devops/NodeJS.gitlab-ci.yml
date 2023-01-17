@@ -36,8 +36,6 @@ nodejs:install:
     - .nodejs_image
     - .gitlab_fast_zip
   stage: prepare
-  rules:
-    - <<: *nodejs_present_rule
   cache:
     - key: ${CI_COMMIT_REF_SLUG}
       # must be inside $CI_PROJECT_DIR for gitlab-runner caching (#3)
@@ -49,6 +47,8 @@ nodejs:install:
       policy: push
   script:
     - npm ci --prefer-offline --no-audit --no-optional
+  rules:
+    - <<: *nodejs_present_rule
 
 nodejs:build:
   extends:
