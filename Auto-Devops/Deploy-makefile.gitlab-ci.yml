@@ -27,14 +27,12 @@
     - .docker_dind
   script:
     - set -eu; echo "DEPLOY_STAGE = $DEPLOY_STAGE"
-    - export APP_IMAGE=$REGISTRY_PROJECT_URL/$BUILD_SUBPATH:$BUILD_ID
-    - echo $APP_IMAGE
     - *pass
     - make -e stage=$DEPLOY_STAGE generate-env
     - make -e stage=$DEPLOY_STAGE ssh-check-fingerprint
     - make -e stage=$DEPLOY_STAGE traefik-deploy
 
-makefile:review:
+makefile:review:staging:
   extends:
     - .auto-devops_review
     - .deploy_makefile
@@ -43,6 +41,16 @@ makefile:review:
   variables:
     IF_AUTO_DEVOPS_PLATFORM_TARGET: 'MAKEFILE'
     DEPLOY_STAGE: staging
+
+makefile:review:review:
+  extends:
+    - .auto-devops_review
+    - .deploy_makefile
+  stage: review
+  when: manual
+  variables:
+    IF_AUTO_DEVOPS_PLATFORM_TARGET: 'MAKEFILE'
+    DEPLOY_STAGE: review
 
 makefile:staging:
   extends:
