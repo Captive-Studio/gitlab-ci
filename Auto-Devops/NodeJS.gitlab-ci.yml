@@ -4,6 +4,9 @@
   exists:
     - package.json
 
+.nodejs_image:
+  image: cypress/browsers:latest
+
 .nodejs_cache:
   cache:
   - &nodejs_cache
@@ -30,6 +33,7 @@ variables:
 
 nodejs:install:
   extends:
+    - .nodejs_image
     - .gitlab_fast_zip
   stage: prepare
   rules:
@@ -48,6 +52,7 @@ nodejs:install:
 
 nodejs:build:
   extends:
+    - .nodejs_image
     - .nodejs_cache
   stage: build
   script:
@@ -66,6 +71,7 @@ nodejs:build:
 
 nodejs:lint:
   extends:
+    - .nodejs_image
     - .nodejs_cache
   stage: test
   needs:
@@ -80,6 +86,7 @@ nodejs:lint:
 
 nodejs:test:
   extends:
+    - .nodejs_image
     - .nodejs_cache
   stage: test
   needs:
@@ -94,6 +101,7 @@ nodejs:test:
 
 nodejs:test:e2e:
   extends:
+    - .nodejs_image
     - .nodejs_cache
   stage: test
   needs:
