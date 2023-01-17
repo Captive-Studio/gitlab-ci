@@ -8,11 +8,18 @@
     - make -e stage=$DEPLOY_STAGE generate-env
     - make -e stage=$DEPLOY_STAGE deploy-scalingo
 
-scalingo:review:
+# scalingo:review:review:
+#   extends:
+#     - .auto-devops_review
+#     - .deploy_scalingo
+#   variables:
+#     IF_AUTO_DEVOPS_PLATFORM_TARGET: 'SCALINGO'
+#     DEPLOY_STAGE: review
+
+scalingo:review:staging:
   extends:
     - .auto-devops_review
     - .deploy_scalingo
-  # when: manual
   variables:
     IF_AUTO_DEVOPS_PLATFORM_TARGET: 'SCALINGO'
     DEPLOY_STAGE: staging
