@@ -16,18 +16,32 @@
 
 ```yml
 # .gitlab-ci.yml
+
+# 1️⃣ Include remote common configuration
 include:
   - remote: https://raw.githubusercontent.com/Captive-Studio/gitlab-ci/main/Auto-Devops.gitlab-ci.yml
+  # OR Next version for development / testing
+  # - remote: https://raw.githubusercontent.com/Captive-Studio/gitlab-ci/next/Auto-Devops.gitlab-ci.yml
 
+# 2️⃣ Customize configuration (Optional)
+variables:
+  # @see https://github.com/Captive-Studio/gitlab-ci/blob/main/Auto-Devops/variables.gitlab-ci.yml
+  REVIEW_ENABLED: 'true'
+  AUTO_DEVOPS_PLATFORM_TARGET: 'SCALINGO'
+  # ...
 ```
 
 ## Features
 
-- Simple configuration for developer
-- Technologies supported
+- 🚀 Simple configuration for developer
+- ✓ Supported Technologies
   - Ruby
   - NodeJS
   - Docker
+- ⛙ Merge request workflow :
+  - Pipelines enabled for `main`, `develop` branch
+  - Pipelines enabled for merge requests
+  - ⚠️ No pipeline for detached branches (to avoid duplication with branch)
 
 ## Recipes
 
@@ -41,6 +55,7 @@ variables:
 ```
 
 </details>
+
 <details>
 <summary>Deploy on Scalingo</summary>
 
@@ -48,6 +63,17 @@ variables:
 # .gitlab-ci.yml
 variables:
     AUTO_DEVOPS_PLATFORM_TARGET: 'SCALINGO'
+```
+
+</details>
+
+<details>
+<summary>Deploy with Makefile</summary>
+
+```yml
+# .gitlab-ci.yml
+variables:
+    AUTO_DEVOPS_PLATFORM_TARGET: 'MAKEFILE'
 ```
 
 </details>
