@@ -6,7 +6,7 @@
 # ✓ Each Variables should be documented
 variables:
   # Enable Review step
-  REVIEW_ENABLED: ''
+  REVIEW_ENABLED: 'true'
   # Deploy to staging step
   STAGING_ENABLED: 'true'
   # Deploy canary release
