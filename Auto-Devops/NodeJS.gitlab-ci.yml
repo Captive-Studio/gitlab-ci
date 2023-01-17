@@ -51,9 +51,9 @@ nodejs:install:
       policy: push
   script:
     # Case Yarn Berry
-    - '[[ -f yarn.lock && -d .yarn/releases ]] && yarn install --immutable --prefer-offline'
+    - '[[ -f yarn.lock && -d .yarn/releases ]] && yarn install --immutable'
     # Case Yarn Classic
-    - '[[ -f yarn.lock && ! -d .yarn/releases ]] && yarn install --frozen-file  --prefer-offline'
+    - '[[ -f yarn.lock && ! -d .yarn/releases ]] && yarn install --frozen-file --prefer-offline'
     # Case NPM
     - '[[ -f package-lock.json ]] && npm ci --prefer-offline --no-audit --no-optional'
   rules:
