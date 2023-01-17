@@ -94,12 +94,16 @@ review:staging:
     DEPLOY_STAGE: staging
   stage: review
   when: manual
+  script:
+    - exit 0
 
 review:review:
   variables:
     DEPLOY_STAGE: review
   stage: review
   when: manual
+  script:
+    - exit 0
 
 deploy:staging:
   variables:
