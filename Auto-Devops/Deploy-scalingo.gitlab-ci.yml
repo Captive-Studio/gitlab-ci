@@ -15,6 +15,7 @@ scalingo:review:
   # when: manual
   variables:
     IF_AUTO_DEVOPS_PLATFORM_TARGET: 'SCALINGO'
+    DEPLOY_STAGE: staging
 
 scalingo:staging:
   extends:
