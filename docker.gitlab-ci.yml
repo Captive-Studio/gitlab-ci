@@ -34,16 +34,17 @@
 
 .deployment_docker: &deployment_docker
   <<: *docker_dind
-  script:
+  script: &deployment_docker_script
     - set -eu; echo "DEPLOY_STAGE = $DEPLOY_STAGE"
-    - export APP_IMAGE=$REGISTRY_PROJECT_URL/$BUILD_SUBPATH:$BUILD_ID
-    - echo $APP_IMAGE
     - *pass
     - make -e stage=$DEPLOY_STAGE generate-env
     - make -e stage=$DEPLOY_STAGE ssh-check-fingerprint
     - make -e stage=$DEPLOY_STAGE traefik-deploy
 
-review:
+review:staging:
+  <<: *deployment_docker
+
+review:review:
   <<: *deployment_docker
 
 deploy:staging:

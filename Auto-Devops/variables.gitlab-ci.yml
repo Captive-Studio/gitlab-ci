@@ -35,5 +35,4 @@ variables:
   # Disable TLS
   DOCKER_TLS_CERTDIR: ''
 
-  APP_IMAGE: ''
   DEPLOY_SSH_KNOWN_HOSTS_BASE64: ''
