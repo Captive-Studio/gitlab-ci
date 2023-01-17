@@ -3,6 +3,11 @@
   exists:
     - Makefile
 
+# TODO: use $CI_BUILD_REF_NAME in makefile
+.makefile_checkout:
+  before_script:
+  - git checkout -B "$CI_BUILD_REF_NAME"
+
 makefile:prepare:check-changelog:
   extends:
     - .docker_maker_image
@@ -42,6 +47,7 @@ makefile:build:
   extends:
     - .docker_maker_image
     - .docker_dind
+    - .makefile_checkout
   stage: build
   script:
     - make ci-build ci-push
@@ -57,6 +63,7 @@ makefile:test:most:
   extends:
     - .docker_maker_image
     - .docker_dind
+    - .makefile_checkout
   stage: test
   script:
     - make -e stage=test generate-env
@@ -73,6 +80,7 @@ makefile:test:system:
   extends:
     - .docker_maker_image
     - .docker_dind
+    - .makefile_checkout
   stage: test
   script:
     - make -e stage=test generate-env
@@ -91,6 +99,7 @@ makefile:release:image:
   extends:
     - .docker_maker_image
     - .docker_dind
+    - .makefile_checkout
   stage: release
   script:
     - make ci-push-release
