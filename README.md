@@ -24,11 +24,15 @@ include:
 
 ## Features
 
-- Simple configuration for developer
-- Technologies supported
+- 🚀 Simple configuration for developer
+- ✓ Supported Technologies
   - Ruby
   - NodeJS
   - Docker
+- ⛙ Merge request workflow :
+  - Pipelines enabled for `main`, `develop` branch
+  - Pipelines enabled for merge requests
+  - ⚠️ No pipeline for detached branches (to avoid duplication with branch)
 
 ## Recipes
 
