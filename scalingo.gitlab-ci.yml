@@ -8,7 +8,7 @@
     - make -e stage=$DEPLOY_STAGE generate-env
     - make -e stage=$DEPLOY_STAGE deploy-scalingo
 
-review:
+review:staging:
   <<: *deployment_scalingo
 
 deploy:staging:
