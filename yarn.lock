@@ -73,7 +73,7 @@ __metadata:
   dependencies:
     "@captive/eslint-config": 1.7.11
     eslint: 8.31.0
-    gitlab-ci-lint: ^1.1.0
+    gitlab-ci-lint: 1.1.0
     prettier: 2.8.2
   languageName: unknown
   linkType: soft
@@ -1526,7 +1526,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"gitlab-ci-lint@npm:^1.1.0":
+"gitlab-ci-lint@npm:1.1.0":
   version: 1.1.0
   resolution: "gitlab-ci-lint@npm:1.1.0"
   dependencies:
