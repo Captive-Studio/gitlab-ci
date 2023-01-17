@@ -18,7 +18,8 @@
 # .gitlab-ci.yml
 include:
   - remote: https://raw.githubusercontent.com/Captive-Studio/gitlab-ci/main/Auto-Devops.gitlab-ci.yml
-
+  # OR Next version for development / testing
+  # - remote: https://raw.githubusercontent.com/Captive-Studio/gitlab-ci/next/Auto-Devops.gitlab-ci.yml
 ```
 
 ## Features
