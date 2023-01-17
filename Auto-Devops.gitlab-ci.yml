@@ -7,3 +7,4 @@ include:
   - remote: 'https://raw.githubusercontent.com/Captive-Studio/gitlab-ci/next/Auto-Devops/Makefile.gitlab-ci.yml'
   - remote: 'https://raw.githubusercontent.com/Captive-Studio/gitlab-ci/next/Auto-Devops/NodeJS.gitlab-ci.yml'
   - remote: 'https://raw.githubusercontent.com/Captive-Studio/gitlab-ci/next/Auto-Devops/Deploy-scalingo.gitlab-ci.yml'
+  - remote: 'https://raw.githubusercontent.com/Captive-Studio/gitlab-ci/next/Auto-Devops/Deploy-makefile.gitlab-ci.yml'
