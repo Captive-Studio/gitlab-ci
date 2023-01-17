@@ -1,8 +1,15 @@
 
 
-.nodejs_present_rule: &nodejs_present_rule
-  exists:
-    - package.json
+
+.nodejs_rules:
+  rules:
+    - &skip_if_makefile
+      exists:
+        - Makefile
+      when: never
+    - &nodejs_present_rule
+      exists:
+        - package.json
 
 .nodejs_image:
   image: cypress/browsers:latest
@@ -57,6 +64,7 @@ nodejs:install:
     # Case NPM
     - '[[ -f package-lock.json ]] && npm ci --prefer-offline --no-audit --no-optional'
   rules:
+    - <<: *skip_if_makefile
     - <<: *nodejs_present_rule
 
 nodejs:build:
@@ -76,6 +84,7 @@ nodejs:build:
       - packages/*/lib/
       - packages/*/dist/
   rules:
+    - <<: *skip_if_makefile
     - <<: *nodejs_present_rule
 
 nodejs:lint:
@@ -91,6 +100,7 @@ nodejs:lint:
   script:
     - npm run lint --if-present
   rules:
+    - <<: *skip_if_makefile
     - <<: *nodejs_present_rule
 
 nodejs:test:
@@ -106,6 +116,7 @@ nodejs:test:
   script:
     - npm test --if-present
   rules:
+    - <<: *skip_if_makefile
     - <<: *nodejs_present_rule
 
 nodejs:test:e2e:
@@ -121,4 +132,5 @@ nodejs:test:e2e:
   script:
     - npm run test:e2e --if-present
   rules:
+    - <<: *skip_if_makefile
     - <<: *nodejs_present_rule
