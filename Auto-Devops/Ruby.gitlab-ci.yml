@@ -103,34 +103,31 @@ ruby:bundle-rubocop:
     - <<: *skip_if_makefile
     - <<: *only_gemfile
 
-ruby:rails:test:
+.rails_test:
   extends:
     - .ruby_image
     - .ruby_cache
   stage: test
+  services:
+    - postgres:latest
+    - redis:latest
   variables:
     RAILS_ENV: test
   needs:
     - job: ruby:install
       artifacts: true
-  script:
-    - bin/rails test
   rules:
     - <<: *skip_if_makefile
     - <<: *only_rails
 
+ruby:rails:test:
+  extends:
+    - .rails_test
+  script:
+    - bin/rails test
+
 ruby:rails:test-system:
   extends:
-    - .ruby_image
-    - .ruby_cache
-  stage: test
-  variables:
-    RAILS_ENV: test
-  needs:
-    - job: ruby:install
-      artifacts: true
+    - .rails_test
   script:
     - bin/rails test:system
-  rules:
-    - <<: *skip_if_makefile
-    - <<: *only_rails
