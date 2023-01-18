@@ -127,6 +127,11 @@ ruby:rails:test:
     - .rails_test
   script:
     - bin/rails test
+  artifacts:
+    reports:
+      coverage_report:
+        coverage_format: cobertura
+        path: coverage/coverage.xml
 
 ruby:rails:test-system:
   extends:
