@@ -1,7 +1,35 @@
 
-.ruby_present_rule: &ruby_present_rule
-  exists:
-    - Gemfile
+# @see https://gitlab.com/gitlab-org/gitlab-foss/-/blob/master/lib/gitlab/ci/templates/Ruby.gitlab-ci.yml
+
+.ruby_rules:
+  rules:
+    - &skip_if_makefile
+      exists:
+        - Makefile
+      when: never
+    - &only_rubocop_conf
+      exists:
+        - .rubocop.yml
+    - &only_gemfile
+      exists:
+        - Gemfile
+
+.ruby_image:
+  image: ruby:3.0.5
+
+.ruby_cache:
+  - &ruby_cache
+    key:
+      files:
+        - Gemfile.lock
+    paths:
+      - ${BUNDLE_PATH}
+    policy: pull
+
+variables:
+  BUNDLE_PATH: "vendor/bundle"
+  BUNDLE_JOBS: "$(nproc)"
+  BUNDLE_FROZEN: "true"
 
 # FIXME: .code_quality "except" conflicts with "rules"
 # except:
@@ -13,7 +41,7 @@ ruby:check-tools:
   script:
     - controle-qualite.mk self-check-ruby
   rules:
-    - <<: *ruby_present_rule
+    - <<: *only_gemfile
   allow_failure: true
 
 ruby:rubocop:
@@ -22,8 +50,7 @@ ruby:rubocop:
   script:
     - controle-qualite.mk rubocop
   rules:
-    - exists:
-        - .rubocop.yml
+    - <<: *only_rubocop_conf
 
 ruby:bundle-audit:
   extends:
@@ -31,7 +58,7 @@ ruby:bundle-audit:
   script:
     - controle-qualite.mk bundle-audit
   rules:
-    - <<: *ruby_present_rule
+    - <<: *only_gemfile
   allow_failure: true
 
 ruby:brakeman:
@@ -40,5 +67,48 @@ ruby:brakeman:
   script:
     - controle-qualite.mk brakeman
   rules:
-    - <<: *ruby_present_rule
+    - <<: *only_gemfile
   allow_failure: true
+
+ruby:install:
+  extends:
+    - .ruby_image
+  stage: prepare
+  cache:
+    - <<: *ruby_cache
+      policy: pull-push
+  script:
+    - ruby --version  # Print out ruby version for debugging
+    - bundle install "${FLAGS[@]}"
+    # - bundle check || bundle install --jobs $(nproc) "${FLAGS[@]}" --path=vendor --without development
+  rules:
+    - <<: *skip_if_makefile
+    - <<: *only_rubocop_conf
+
+ruby:bundle-rubocop:
+  extends:
+    - .ruby_image
+    - .ruby_cache
+  stage: test
+  script:
+    - bundle exec rubocop
+  needs:
+    - job: ruby:install
+      artifacts: true
+  rules:
+    - <<: *skip_if_makefile
+    - <<: *only_gemfile
+
+ruby:rspec:
+  extends:
+    - .ruby_image
+    - .ruby_cache
+  stage: test
+  needs:
+    - job: ruby:install
+      artifacts: true
+  script:
+    - SPEC_OPTS="--tag ~focus" bundle exec rspec spec
+  rules:
+    - <<: *skip_if_makefile
+    - <<: *only_gemfile
