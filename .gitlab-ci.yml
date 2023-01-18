@@ -1,2 +1,2 @@
 include:
-    - /Auto-Devops.gitlab-ci.yml
+  - /Auto-Devops.gitlab-ci.yml
