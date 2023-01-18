@@ -54,18 +54,18 @@ nodejs:install:
     - <<: *nodejs_cache
       policy: push
   script:
-    - >
+    - |
       # Case Yarn Berry
       if [[ -f yarn.lock && -d .yarn/releases ]]; then
-        yarn install --immutable
+        yarn install --immutable;
 
       # Case Yarn Classic
       elif [[ -f yarn.lock && ! -d .yarn/releases ]]; then
-        yarn install --frozen-file --prefer-offline
+        yarn install --frozen-file --prefer-offline;
 
       # Case NPM
       else
-        npm ci --prefer-offline --no-audit --no-optional
+        npm ci --prefer-offline --no-audit --no-optional;
       fi;
   rules:
     - <<: *skip_if_makefile
