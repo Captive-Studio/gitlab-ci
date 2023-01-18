@@ -7,7 +7,7 @@
   before_script:
     - git checkout -B "$CI_BUILD_REF_NAME"
 
-makefile:prepare:check-changelog:
+makefile:check-changelog:
   extends:
     - .docker_maker_image
   stage: prepare
