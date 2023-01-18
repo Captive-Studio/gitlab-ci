@@ -34,6 +34,7 @@ variables:
   BUNDLE_PATH: "vendor/bundle"
   BUNDLE_JOBS: "$(nproc)"
   BUNDLE_FROZEN: "true"
+  DISABLE_SPRING: "true"
 
 # FIXME: .code_quality "except" conflicts with "rules"
 # except:
