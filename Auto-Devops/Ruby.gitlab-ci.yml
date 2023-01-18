@@ -84,7 +84,6 @@ ruby:install:
   script:
     - ruby --version # Print out ruby version for debugging
     - bundle install "${FLAGS[@]}"
-    # - bundle check || bundle install --jobs $(nproc) "${FLAGS[@]}" --path=vendor --without development
   rules:
     - <<: *skip_if_makefile
     - <<: *only_rubocop_conf
