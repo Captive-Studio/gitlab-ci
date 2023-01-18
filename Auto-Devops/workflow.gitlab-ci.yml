@@ -1,4 +1,3 @@
-
 # Merge Request workflow
 # @see https://gitlab.com/gitlab-org/gitlab-foss/-/blob/master/lib/gitlab/ci/templates/Workflows/MergeRequest-Pipelines.gitlab-ci.yml
 workflow:

@@ -1,4 +1,3 @@
-
 .makefile_pass: &pass # ssh
   - eval $(ssh-agent -s)
   - mkdir -p $HOME/.ssh
@@ -39,7 +38,7 @@ makefile:review:staging:
   stage: review
   when: manual
   variables:
-    IF_AUTO_DEVOPS_PLATFORM_TARGET: 'MAKEFILE'
+    IF_AUTO_DEVOPS_PLATFORM_TARGET: MAKEFILE
     DEPLOY_STAGE: staging
 
 makefile:review:review:
@@ -49,29 +48,29 @@ makefile:review:review:
   stage: review
   when: manual
   variables:
-    IF_AUTO_DEVOPS_PLATFORM_TARGET: 'MAKEFILE'
+    IF_AUTO_DEVOPS_PLATFORM_TARGET: MAKEFILE
     DEPLOY_STAGE: review
 
 makefile:staging:
   extends:
-  - .auto-devops_staging
-  - .deploy_makefile
+    - .auto-devops_staging
+    - .deploy_makefile
   variables:
-    IF_AUTO_DEVOPS_PLATFORM_TARGET: 'MAKEFILE'
+    IF_AUTO_DEVOPS_PLATFORM_TARGET: MAKEFILE
     DEPLOY_STAGE: staging
 
 makefile:production:
   extends:
-  - .auto-devops_production_auto
-  - .deploy_makefile
+    - .auto-devops_production_auto
+    - .deploy_makefile
   variables:
-    IF_AUTO_DEVOPS_PLATFORM_TARGET: 'MAKEFILE'
+    IF_AUTO_DEVOPS_PLATFORM_TARGET: MAKEFILE
     DEPLOY_STAGE: production
 
 makefile:production_manual:
   extends:
-  - .auto-devops_production_manual
-  - .deploy_makefile
+    - .auto-devops_production_manual
+    - .deploy_makefile
   variables:
-    IF_AUTO_DEVOPS_PLATFORM_TARGET: 'MAKEFILE'
+    IF_AUTO_DEVOPS_PLATFORM_TARGET: MAKEFILE
     DEPLOY_STAGE: production

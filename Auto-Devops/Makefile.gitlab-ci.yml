@@ -1,4 +1,3 @@
-
 .makefile_present_rule: &makefile_present_rule
   exists:
     - Makefile
@@ -6,7 +5,7 @@
 # TODO: use $CI_BUILD_REF_NAME in makefile
 .makefile_checkout:
   before_script:
-  - git checkout -B "$CI_BUILD_REF_NAME"
+    - git checkout -B "$CI_BUILD_REF_NAME"
 
 makefile:prepare:check-changelog:
   extends:
@@ -16,9 +15,9 @@ makefile:prepare:check-changelog:
     - make changelog-check
   allow_failure: true
   rules:
-    - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
       when: never
-    - if: '$CI_COMMIT_TAG'
+    - if: $CI_COMMIT_TAG
       when: never
     - <<: *makefile_present_rule
 
@@ -105,6 +104,6 @@ makefile:release:image:
     - make ci-push-release
     - make -e REF_ID=latest ci-push-release
   rules:
-    - if: '$CI_COMMIT_BRANCH != $CI_DEFAULT_BRANCH'
+    - if: $CI_COMMIT_BRANCH != $CI_DEFAULT_BRANCH
       when: never
     - <<: *makefile_present_rule

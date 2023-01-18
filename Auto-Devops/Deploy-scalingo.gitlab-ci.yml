@@ -21,29 +21,29 @@ scalingo:review:staging:
     - .auto-devops_review
     - .deploy_scalingo
   variables:
-    IF_AUTO_DEVOPS_PLATFORM_TARGET: 'SCALINGO'
+    IF_AUTO_DEVOPS_PLATFORM_TARGET: SCALINGO
     DEPLOY_STAGE: staging
 
 scalingo:staging:
   extends:
-  - .auto-devops_staging
-  - .deploy_scalingo
+    - .auto-devops_staging
+    - .deploy_scalingo
   variables:
-    IF_AUTO_DEVOPS_PLATFORM_TARGET: 'SCALINGO'
+    IF_AUTO_DEVOPS_PLATFORM_TARGET: SCALINGO
     DEPLOY_STAGE: staging
 
 scalingo:production:
   extends:
-  - .auto-devops_production_auto
-  - .deploy_scalingo
+    - .auto-devops_production_auto
+    - .deploy_scalingo
   variables:
-    IF_AUTO_DEVOPS_PLATFORM_TARGET: 'SCALINGO'
+    IF_AUTO_DEVOPS_PLATFORM_TARGET: SCALINGO
     DEPLOY_STAGE: production
 
 scalingo:production_manual:
   extends:
-  - .auto-devops_production_manual
-  - .deploy_scalingo
+    - .auto-devops_production_manual
+    - .deploy_scalingo
   variables:
-    IF_AUTO_DEVOPS_PLATFORM_TARGET: 'SCALINGO'
+    IF_AUTO_DEVOPS_PLATFORM_TARGET: SCALINGO
     DEPLOY_STAGE: production

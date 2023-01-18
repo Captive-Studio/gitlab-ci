@@ -1,6 +1,3 @@
-
-
-
 .nodejs_rules:
   rules:
     - &skip_if_makefile
@@ -16,31 +13,31 @@
 
 .nodejs_cache:
   cache:
-  - &nodejs_cache
-    key:
-      files:
-        - package-lock.json
-        - yarn.lock
-    paths:
-      - ${CI_CYPRESS_CACHE_FOLDER}
-      - "**/node_modules/"
-    policy: pull
+    - &nodejs_cache
+      key:
+        files:
+          - package-lock.json
+          - yarn.lock
+      paths:
+        - ${CI_CYPRESS_CACHE_FOLDER}
+        - '**/node_modules/'
+      policy: pull
 
 variables:
   # Relative NPM cache path
-  CI_NPM_CACHE_FOLDER: '.cache/npm'
+  CI_NPM_CACHE_FOLDER: .cache/npm
   # Relative NPM cache path
-  CI_YARN_CACHE_FOLDER: '.yarn/cache'
+  CI_YARN_CACHE_FOLDER: .yarn/cache
   # Relative Cypress cache path
-  CI_CYPRESS_CACHE_FOLDER: '.cache/cypress'
+  CI_CYPRESS_CACHE_FOLDER: .cache/cypress
   # Display less npm message
   npm_config_loglevel: warn
   # NPM cache environment variable
-  npm_config_cache: "$CI_PROJECT_DIR/$CI_NPM_CACHE_FOLDER"
+  npm_config_cache: $CI_PROJECT_DIR/$CI_NPM_CACHE_FOLDER
   # Cypress cache environment variable
-  CYPRESS_CACHE_FOLDER: "$CI_PROJECT_DIR/$CI_CYPRESS_CACHE_FOLDER"
+  CYPRESS_CACHE_FOLDER: $CI_PROJECT_DIR/$CI_CYPRESS_CACHE_FOLDER
   # Cypress cache environment variable
-  YARN_CACHE_FOLDER: "$CI_PROJECT_DIR/$CI_YARN_CACHE_FOLDER"
+  YARN_CACHE_FOLDER: $CI_PROJECT_DIR/$CI_YARN_CACHE_FOLDER
 
 nodejs:install:
   extends:
