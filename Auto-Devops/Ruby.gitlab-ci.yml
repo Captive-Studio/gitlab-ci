@@ -101,7 +101,7 @@ ruby:bundle-rubocop:
       artifacts: true
   rules:
     - <<: *skip_if_makefile
-    - <<: *only_gemfile
+    - <<: *only_rubocop_conf
 
 .rails_test:
   extends:
