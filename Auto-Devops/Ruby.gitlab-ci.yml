@@ -10,6 +10,9 @@
     - &only_rubocop_conf
       exists:
         - .rubocop.yml
+    - &only_rails
+      exists:
+        - bin/rails
     - &only_gemfile
       exists:
         - Gemfile
@@ -100,16 +103,34 @@ ruby:bundle-rubocop:
     - <<: *skip_if_makefile
     - <<: *only_gemfile
 
-ruby:rspec:
+ruby:rails:test:
   extends:
     - .ruby_image
     - .ruby_cache
   stage: test
+  variables:
+    RAILS_ENV: test
   needs:
     - job: ruby:install
       artifacts: true
   script:
-    - SPEC_OPTS="--tag ~focus" bundle exec rspec spec
+    - bin/rails test
   rules:
     - <<: *skip_if_makefile
-    - <<: *only_gemfile
+    - <<: *only_rails
+
+ruby:rails:test-system:
+  extends:
+    - .ruby_image
+    - .ruby_cache
+  stage: test
+  variables:
+    RAILS_ENV: test
+  needs:
+    - job: ruby:install
+      artifacts: true
+  script:
+    - bin/rails test:system
+  rules:
+    - <<: *skip_if_makefile
+    - <<: *only_rails
