@@ -36,3 +36,16 @@ variables:
   DOCKER_TLS_CERTDIR: ''
 
   DEPLOY_SSH_KNOWN_HOSTS_BASE64: ''
+
+  #
+  # Postgres
+  #
+  POSTGRES_DB: ci_test
+  POSTGRES_USER: ci_db_user
+  POSTGRES_PASSWORD: ci_db_password
+  DATABASE_URL: 'postgresql://$POSTGRES_USER:$POSTGRES_PASSWORD@postgres:5432/$POSTGRES_DB'
+
+  #
+  # Redis
+  #
+  REDIS_URL: redis://redis:6379
