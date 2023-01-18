@@ -4,8 +4,9 @@
 
 # TODO: use $CI_BUILD_REF_NAME in makefile
 .makefile_checkout:
-  before_script:
-    - git checkout -B "$CI_BUILD_REF_NAME"
+  variables:
+    GIT_STRATEGY: fetch
+    GIT_CHECKOUT: 'true'
 
 makefile:check-changelog:
   extends:
