@@ -113,6 +113,9 @@ ruby:bundle-rubocop:
     - redis:latest
   variables:
     RAILS_ENV: test
+  before_script:
+    - bin/rails db:create db:migrate
+    - bin/rails db:seed
   needs:
     - job: ruby:install
       artifacts: true
