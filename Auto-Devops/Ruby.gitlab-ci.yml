@@ -18,6 +18,7 @@
   image: ruby:3.0.5
 
 .ruby_cache:
+  cache:
   - &ruby_cache
     key:
       files:
