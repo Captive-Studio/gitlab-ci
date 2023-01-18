@@ -9,9 +9,9 @@
     - &only_rubocop_conf
       exists:
         - .rubocop.yml
-    - &only_rails
+    - &only_rakefile
       exists:
-        - bin/rails
+        - Rakefile
     - &only_gemfile
       exists:
         - Gemfile
@@ -120,13 +120,13 @@ ruby:bundle-rubocop:
       artifacts: true
   rules:
     - <<: *skip_if_makefile
-    - <<: *only_rails
+    - <<: *only_rakefile
 
 ruby:rails:test:
   extends:
     - .rails_test
   script:
-    - bin/rails test
+    - bundle exec rake test
   artifacts:
     reports:
       coverage_report:
@@ -137,4 +137,4 @@ ruby:rails:test-system:
   extends:
     - .rails_test
   script:
-    - bin/rails test:system
+    - bundle exec rake test:system
