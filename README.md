@@ -19,9 +19,11 @@
 
 # 1️⃣ Include remote common configuration
 include:
-  - remote: https://raw.githubusercontent.com/Captive-Studio/gitlab-ci/main/Auto-Devops.gitlab-ci.yml
-  # OR Next version for development / testing
-  # - remote: https://raw.githubusercontent.com/Captive-Studio/gitlab-ci/next/Auto-Devops.gitlab-ci.yml
+  - project: captive/gitlab-ci
+    file: '/Auto-Devops.gitlab-ci.yml'
+    ref: main
+    # OR Next version for development / testing
+    # ref: next
 
 # 2️⃣ Customize configuration (Optional)
 variables:
