@@ -86,7 +86,7 @@ ruby:install:
     - bundle install "${FLAGS[@]}"
   rules:
     - <<: *skip_if_makefile
-    - <<: *only_rubocop_conf
+    - <<: *only_gemfile
 
 ruby:bundle-rubocop:
   extends:
@@ -126,7 +126,19 @@ ruby:rails:test:
   extends:
     - .rails_test
   script:
-    - bundle exec rake test
+    - |
+      RAKE_TEST_FOUND=0
+      if [[ ! -z $(bundle exec rake --tasks '^test$')  ]];then
+        RAKE_TEST_FOUND=1
+        bundle exec rake test
+      fi
+      if [[ ! -z $(bundle exec rake --tasks '^spec$')  ]];then
+        RAKE_TEST_FOUND=1
+        bundle exec rake spec
+      fi
+      if [[ "$RAKE_TEST_FOUND" == "0" ]];then
+        echo 'Warning: No rake test command found'
+      fi
   artifacts:
     reports:
       coverage_report:
@@ -137,4 +149,12 @@ ruby:rails:test-system:
   extends:
     - .rails_test
   script:
-    - bundle exec rake test:system
+    - |
+      RAKE_TEST_FOUND=0
+      if [[ ! -z $(bundle exec rake --tasks '^test:system$')  ]];then
+        RAKE_TEST_FOUND=1
+        bundle exec rake test:system
+      fi
+      if [[ "$RAKE_TEST_FOUND" == "0" ]];then
+        echo 'Warning: No rake test:system command found'
+      fi
