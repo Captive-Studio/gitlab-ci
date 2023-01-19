@@ -44,6 +44,9 @@ variables:
   - Pipelines enabled for `main`, `develop` branch
   - Pipelines enabled for merge requests
   - ⚠️ No pipeline for detached branches (to avoid duplication with branch)
+- 📦 Deploy platform :
+  - ✓ Scalingo `AUTO_DEVOPS_PLATFORM_TARGET: 'SCALINGO'`
+  - ✓ Makefile `AUTO_DEVOPS_PLATFORM_TARGET: 'MAKEFILE'` (custom deploy script)
 
 ## Recipes
 
