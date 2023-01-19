@@ -6,7 +6,7 @@
 # ✓ Each Variables should be documented
 variables:
   # Enable Review step
-  REVIEW_ENABLED: ''
+  REVIEW_ENABLED: 'true'
   # Deploy to staging step
   STAGING_ENABLED: 'true'
   # Deploy canary release
@@ -14,7 +14,7 @@ variables:
   # Incremental rollout release (10%, 20%, etc)
   INCREMENTAL_ROLLOUT_ENABLED: ''
 
-  # Deployment Platform Target : "SCALINGO" | "SCALEWAY"
+  # Deployment Platform Target : "SCALINGO" | "SCALEWAY" | "MAKEFILE"
   AUTO_DEVOPS_PLATFORM_TARGET: ''
 
   # Docker image registry, where image are pushed
@@ -36,3 +36,16 @@ variables:
   DOCKER_TLS_CERTDIR: ''
 
   DEPLOY_SSH_KNOWN_HOSTS_BASE64: ''
+
+  #
+  # Postgres
+  #
+  POSTGRES_DB: ci_test
+  POSTGRES_USER: ci_db_user
+  POSTGRES_PASSWORD: ci_db_password
+  DATABASE_URL: 'postgresql://$POSTGRES_USER:$POSTGRES_PASSWORD@postgres:5432/$POSTGRES_DB'
+
+  #
+  # Redis
+  #
+  REDIS_URL: redis://redis:6379

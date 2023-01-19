@@ -1,15 +1,4 @@
-.docker_dind: &docker_dind
-  services:
-    - name: docker:20.10.16-dind-alpine3.15
-      command:
-        [--registry-mirror, 'https://docker.mirror.captive.fr', --tls=false]
-  tags:
-    - docker-dind
-  before_script:
-    - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CONTAINER_REGISTRY
-    - export TEST_IMAGE=$REGISTRY_PROJECT_URL/$BUILD_SUBPATH:${BUILD_ID}-test
-
-.pass: &pass # ssh
+.makefile_pass: &pass # ssh
   - eval $(ssh-agent -s)
   - mkdir -p $HOME/.ssh
 
@@ -32,23 +21,56 @@
   - cat $HOME/.ssh/known_hosts
   - echo "$DEPLOY_SSH_PRIVATE_KEY_GZ64" | base64 -d | gunzip | ssh-add -
 
-.deployment_docker: &deployment_docker
-  <<: *docker_dind
-  script: &deployment_docker_script
+.deploy_makefile:
+  extends:
+    - .docker_dind
+  script:
     - set -eu; echo "DEPLOY_STAGE = $DEPLOY_STAGE"
     - *pass
     - make -e stage=$DEPLOY_STAGE generate-env
     - make -e stage=$DEPLOY_STAGE ssh-check-fingerprint
     - make -e stage=$DEPLOY_STAGE traefik-deploy
 
-review:staging:
-  <<: *deployment_docker
+makefile:review:staging:
+  extends:
+    - .auto-devops_review
+    - .deploy_makefile
+  stage: review
+  when: manual
+  variables:
+    IF_AUTO_DEVOPS_PLATFORM_TARGET: MAKEFILE
+    DEPLOY_STAGE: staging
 
-review:review:
-  <<: *deployment_docker
+makefile:review:review:
+  extends:
+    - .auto-devops_review
+    - .deploy_makefile
+  stage: review
+  when: manual
+  variables:
+    IF_AUTO_DEVOPS_PLATFORM_TARGET: MAKEFILE
+    DEPLOY_STAGE: review
 
-deploy:staging:
-  <<: *deployment_docker
+makefile:staging:
+  extends:
+    - .auto-devops_staging
+    - .deploy_makefile
+  variables:
+    IF_AUTO_DEVOPS_PLATFORM_TARGET: MAKEFILE
+    DEPLOY_STAGE: staging
 
-deploy:production:
-  <<: *deployment_docker
+makefile:production:
+  extends:
+    - .auto-devops_production_auto
+    - .deploy_makefile
+  variables:
+    IF_AUTO_DEVOPS_PLATFORM_TARGET: MAKEFILE
+    DEPLOY_STAGE: production
+
+makefile:production_manual:
+  extends:
+    - .auto-devops_production_manual
+    - .deploy_makefile
+  variables:
+    IF_AUTO_DEVOPS_PLATFORM_TARGET: MAKEFILE
+    DEPLOY_STAGE: production

@@ -1,8 +1,10 @@
 include:
-  - remote: 'https://raw.githubusercontent.com/Captive-Studio/gitlab-ci/main/Auto-Devops/workflow.gitlab-ci.yml'
-  - remote: 'https://raw.githubusercontent.com/Captive-Studio/gitlab-ci/main/Auto-Devops/stages.gitlab-ci.yml'
-  - remote: 'https://raw.githubusercontent.com/Captive-Studio/gitlab-ci/main/Auto-Devops/variables.gitlab-ci.yml'
-  - remote: 'https://raw.githubusercontent.com/Captive-Studio/gitlab-ci/main/Auto-Devops/library.gitlab-ci.yml'
-  - remote: 'https://raw.githubusercontent.com/Captive-Studio/gitlab-ci/main/Auto-Devops/Ruby.gitlab-ci.yml'
-  # - remote: 'https://raw.githubusercontent.com/Captive-Studio/gitlab-ci/main/Auto-Devops/NodeJS.gitlab-ci.yml'
-  - remote: 'https://raw.githubusercontent.com/Captive-Studio/gitlab-ci/main/Auto-Devops/Deploy-scalingo.gitlab-ci.yml'
+  - /Auto-Devops/workflow.gitlab-ci.yml
+  - /Auto-Devops/stages.gitlab-ci.yml
+  - /Auto-Devops/variables.gitlab-ci.yml
+  - /Auto-Devops/library.gitlab-ci.yml
+  - /Auto-Devops/Ruby.gitlab-ci.yml
+  - /Auto-Devops/Makefile.gitlab-ci.yml
+  - /Auto-Devops/NodeJS.gitlab-ci.yml
+  - /Auto-Devops/Deploy-scalingo.gitlab-ci.yml
+  - /Auto-Devops/Deploy-makefile.gitlab-ci.yml

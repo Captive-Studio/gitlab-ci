@@ -19,9 +19,11 @@
 
 # 1️⃣ Include remote common configuration
 include:
-  - remote: https://raw.githubusercontent.com/Captive-Studio/gitlab-ci/main/Auto-Devops.gitlab-ci.yml
-  # OR Next version for development / testing
-  # - remote: https://raw.githubusercontent.com/Captive-Studio/gitlab-ci/next/Auto-Devops.gitlab-ci.yml
+  - project: captive/gitlab-ci
+    file: '/Auto-Devops.gitlab-ci.yml'
+    ref: main
+    # OR Next version for development / testing
+    # ref: next
 
 # 2️⃣ Customize configuration (Optional)
 variables:
@@ -42,6 +44,9 @@ variables:
   - Pipelines enabled for `main`, `develop` branch
   - Pipelines enabled for merge requests
   - ⚠️ No pipeline for detached branches (to avoid duplication with branch)
+- 📦 Deploy platform :
+  - ✓ Scalingo `AUTO_DEVOPS_PLATFORM_TARGET: 'SCALINGO'`
+  - ✓ Makefile `AUTO_DEVOPS_PLATFORM_TARGET: 'MAKEFILE'` (custom deploy script)
 
 ## Recipes
 

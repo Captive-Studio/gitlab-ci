@@ -1,44 +1,163 @@
+# @see https://gitlab.com/gitlab-org/gitlab-foss/-/blob/master/lib/gitlab/ci/templates/Ruby.gitlab-ci.yml
 
-.ruby_present_rule: &ruby_present_rule
-  exists:
-    - Gemfile
+.ruby_rules:
+  rules:
+    - &skip_if_makefile
+      exists:
+        - Makefile
+      when: never
+    - &only_rubocop_conf
+      exists:
+        - .rubocop.yml
+    - &only_rakefile
+      exists:
+        - Rakefile
+    - &only_gemfile
+      exists:
+        - Gemfile
+
+.ruby_image:
+  image: ruby:3.0.5
+
+.ruby_cache:
+  cache:
+    - &ruby_cache
+      key:
+        files:
+          - Gemfile.lock
+      paths:
+        - ${BUNDLE_PATH}
+      policy: pull
+
+variables:
+  BUNDLE_PATH: vendor/bundle
+  BUNDLE_JOBS: $(nproc)
+  BUNDLE_FROZEN: 'true'
+  DISABLE_SPRING: 'true'
 
 # FIXME: .code_quality "except" conflicts with "rules"
 # except:
 #   - /^backup\//
 
-prepare:check-tools:
+ruby:check-tools:
   extends:
     - .code_quality
   script:
     - controle-qualite.mk self-check-ruby
   rules:
-    - <<: *ruby_present_rule
+    - <<: *only_gemfile
   allow_failure: true
 
-prepare:rubocop:
+ruby:rubocop:
   extends:
     - .code_quality
   script:
     - controle-qualite.mk rubocop
   rules:
-    - exists:
-        - .rubocop.yml
+    - <<: *only_rubocop_conf
 
-prepare:bundle-audit:
+ruby:bundle-audit:
   extends:
     - .code_quality
   script:
     - controle-qualite.mk bundle-audit
   rules:
-    - <<: *ruby_present_rule
+    - <<: *only_gemfile
   allow_failure: true
 
-prepare:brakeman:
+ruby:brakeman:
   extends:
     - .code_quality
   script:
     - controle-qualite.mk brakeman
   rules:
-    - <<: *ruby_present_rule
+    - <<: *only_gemfile
   allow_failure: true
+
+ruby:install:
+  extends:
+    - .ruby_image
+  stage: prepare
+  cache:
+    - <<: *ruby_cache
+      policy: pull-push
+  script:
+    - ruby --version # Print out ruby version for debugging
+    - bundle install "${FLAGS[@]}"
+  rules:
+    - <<: *skip_if_makefile
+    - <<: *only_gemfile
+
+ruby:bundle-rubocop:
+  extends:
+    - .ruby_image
+    - .ruby_cache
+  stage: test
+  script:
+    - bundle exec rubocop
+  needs:
+    - job: ruby:install
+      artifacts: true
+  rules:
+    - <<: *skip_if_makefile
+    - <<: *only_rubocop_conf
+
+.rails_test:
+  extends:
+    - .ruby_image
+    - .ruby_cache
+  stage: test
+  services:
+    - postgres:latest
+    - redis:latest
+  variables:
+    RAILS_ENV: test
+  before_script:
+    - |
+      if [[ ! -z $(bundle exec rake --tasks 'db')  ]];then
+        bundle exec rake db:create db:migrate
+        bundle exec rake db:seed
+      fi
+  needs:
+    - job: ruby:install
+      artifacts: true
+  rules:
+    - <<: *skip_if_makefile
+    - <<: *only_rakefile
+
+ruby:rails:test:
+  extends:
+    - .rails_test
+  script:
+    - |
+      RAKE_TEST_FOUND=0
+      if [[ ! -z $(bundle exec rake --tasks '^test$')  ]];then
+        RAKE_TEST_FOUND=1
+        bundle exec rake test
+      fi
+      if [[ ! -z $(bundle exec rake --tasks '^spec$')  ]];then
+        RAKE_TEST_FOUND=1
+        bundle exec rake spec
+      fi
+      if [[ "$RAKE_TEST_FOUND" == "0" ]];then
+        echo 'Warning: No rake test command found'
+      fi
+  artifacts:
+    reports:
+      coverage_report:
+        coverage_format: cobertura
+        path: coverage/coverage.xml
+
+ruby:rails:test-system:
+  extends:
+    - .rails_test
+  script:
+    - |
+      RAKE_TEST_FOUND=0
+      if [[ ! -z $(bundle exec rake --tasks '^test:system$')  ]];then
+        RAKE_TEST_FOUND=1
+        bundle exec rake test:system
+      fi
+      if [[ "$RAKE_TEST_FOUND" == "0" ]];then
+        echo 'Warning: No rake test:system command found'
+      fi

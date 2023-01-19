@@ -1,20 +1,26 @@
-image: registry.git.captive.fr/captive/systeme/docker-maker:20.10.16-1
+.makefile_present_rule: &makefile_present_rule
+  exists:
+    - Makefile
 
-include:
-  - remote: 'https://raw.githubusercontent.com/Captive-Studio/gitlab-ci/main/Auto-Devops.gitlab-ci.yml'
+# TODO: use $CI_BUILD_REF_NAME in makefile
+.makefile_checkout:
+  variables:
+    GIT_STRATEGY: fetch
+    GIT_CHECKOUT: 'true'
 
-before_script:
-  - git checkout -B "$CI_BUILD_REF_NAME"
-
-prepare:check-changelog:
+makefile:check-changelog:
+  extends:
+    - .docker_maker_image
   stage: prepare
   script:
     - make changelog-check
   allow_failure: true
-  except:
-    - tags
-    - master
-    - main
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+      when: never
+    - if: $CI_COMMIT_TAG
+      when: never
+    - <<: *makefile_present_rule
 
 # prepare:lint:eslint:
 #   extends:
@@ -37,85 +43,68 @@ prepare:check-changelog:
 #     - controle-qualite.mk stylelint
 #   allow_failure: true
 
-build:
+makefile:build:
   extends:
+    - .docker_maker_image
     - .docker_dind
+    - .makefile_checkout
   stage: build
   script:
     - make ci-build ci-push
-  except:
-    - /^backup\//
+  rules:
+    - <<: *makefile_present_rule
+  # FIXME: except:
+  #   - /^backup\//
   tags:
     - docker-dind
     - heavy-job
 
-test:most:
+makefile:test:most:
   extends:
+    - .docker_maker_image
     - .docker_dind
+    - .makefile_checkout
   stage: test
   script:
     - make -e stage=test generate-env
     - make test-most
-  except:
-    - /^backup\//
+  # FIXME: except:
+  #   - /^backup\//
   tags:
     - docker-dind
     - heavy-job
+  rules:
+    - <<: *makefile_present_rule
 
-test:system:
+makefile:test:system:
   extends:
+    - .docker_maker_image
     - .docker_dind
+    - .makefile_checkout
   stage: test
   script:
     - make -e stage=test generate-env
     - make test-system
-  except:
-    - /^backup\//
+  # FIXME: except:
+  #   - /^backup\//
+  rules:
+    - <<: *makefile_present_rule
+      when: manual
   tags:
     - docker-dind
     - heavy-job
   allow_failure: true
-  when: manual
 
-release:image:
+makefile:release:image:
   extends:
+    - .docker_maker_image
     - .docker_dind
+    - .makefile_checkout
   stage: release
   script:
     - make ci-push-release
     - make -e REF_ID=latest ci-push-release
-  only:
-    - tags
-    - master
-    - main
-
-review:staging:
-  variables:
-    DEPLOY_STAGE: staging
-  stage: review
-  when: manual
-  script:
-    - exit 0
-
-review:review:
-  variables:
-    DEPLOY_STAGE: review
-  stage: review
-  when: manual
-  script:
-    - exit 0
-
-deploy:staging:
-  variables:
-    DEPLOY_STAGE: staging
-  stage: deploy
-  only:
-    - master
-    - main
-
-deploy:production:
-  variables:
-    DEPLOY_STAGE: production
-  stage: deploy
   rules:
-    - if: '$CI_COMMIT_TAG =~ /^v([0-9]|[1-9][0-9]+)\.([0-9]|[1-9][0-9]+)\.([0-9]|[1-9][0-9]+)$/'
+    - if: $CI_COMMIT_BRANCH != $CI_DEFAULT_BRANCH
+      when: never
+    - <<: *makefile_present_rule

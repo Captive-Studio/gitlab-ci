@@ -1,0 +1,2 @@
+include:
+  - /Auto-Devops.gitlab-ci.yml

@@ -8,46 +8,42 @@
     - make -e stage=$DEPLOY_STAGE generate-env
     - make -e stage=$DEPLOY_STAGE deploy-scalingo
 
-review_scalingo:
+# scalingo:review:review:
+#   extends:
+#     - .auto-devops_review
+#     - .deploy_scalingo
+#   variables:
+#     IF_AUTO_DEVOPS_PLATFORM_TARGET: 'SCALINGO'
+#     DEPLOY_STAGE: review
+
+scalingo:review:staging:
   extends:
+    - .auto-devops_review
     - .deploy_scalingo
-  stage: review
-  when: manual
-  # environment:
-  #   name: review/$CI_COMMIT_REF_NAME
-  rules:
-    - if: '$AUTO_DEVOPS_PLATFORM_TARGET != "SCALINGO"'
-      when: never
-    - if: '$CI_KUBERNETES_ACTIVE || $KUBECONFIG'
-      when: never
-    - if: '$REVIEW_ENABLED == null || $REVIEW_ENABLED == ""'
-      when: never
-    - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
-      when: never
-    - if: '$CI_COMMIT_TAG || $CI_COMMIT_BRANCH'
-
-staging_scalingo:
-  extends:
-  - .auto-devops_staging
-  - .deploy_scalingo
   variables:
-    IF_AUTO_DEVOPS_PLATFORM_TARGET: 'SCALINGO'
+    IF_AUTO_DEVOPS_PLATFORM_TARGET: SCALINGO
     DEPLOY_STAGE: staging
-  # environment:
-  #   name: staging
 
-production_scalingo:
-  extends: .deploy_scalingo
+scalingo:staging:
+  extends:
+    - .auto-devops_staging
+    - .deploy_scalingo
   variables:
-    DEPLOY_STAGE: production
-  # environment:
-  #   name: production
-  rules:
-    - if: '$AUTO_DEVOPS_PLATFORM_TARGET != "SCALINGO"'
-      when: never
-    - if: '$CI_KUBERNETES_ACTIVE || $KUBECONFIG'
-      when: never
-    - if: '$CI_COMMIT_BRANCH != $CI_DEFAULT_BRANCH'
-      when: never
-    - if: '$CI_COMMIT_TAG || $CI_COMMIT_BRANCH'
+    IF_AUTO_DEVOPS_PLATFORM_TARGET: SCALINGO
+    DEPLOY_STAGE: staging
 
+scalingo:production:
+  extends:
+    - .auto-devops_production_auto
+    - .deploy_scalingo
+  variables:
+    IF_AUTO_DEVOPS_PLATFORM_TARGET: SCALINGO
+    DEPLOY_STAGE: production
+
+scalingo:production_manual:
+  extends:
+    - .auto-devops_production_manual
+    - .deploy_scalingo
+  variables:
+    IF_AUTO_DEVOPS_PLATFORM_TARGET: SCALINGO
+    DEPLOY_STAGE: production

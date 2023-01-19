@@ -1,34 +1,85 @@
+.nodejs_rules:
+  rules:
+    - &skip_if_makefile
+      exists:
+        - Makefile
+      when: never
+    - &nodejs_present_rule
+      exists:
+        - package.json
 
+.nodejs_image:
+  image: cypress/browsers:latest
 
-.nodejs_present_rule: &nodejs_present_rule
-  exists:
-    - package.json
+.nodejs_cache:
+  cache:
+    - &nodejs_cache
+      key:
+        files:
+          - package-lock.json
+          - yarn.lock
+      paths:
+        - ${CI_CYPRESS_CACHE_FOLDER}
+        - '**/node_modules/'
+      policy: pull
 
 variables:
   # Relative NPM cache path
-  CI_NPM_CACHE_FOLDER: '.cache/npm'
+  CI_NPM_CACHE_FOLDER: .cache/npm
+  # Relative NPM cache path
+  CI_YARN_CACHE_FOLDER: .yarn/cache
   # Relative Cypress cache path
-  CI_CYPRESS_CACHE_FOLDER: '.cache/cypress'
+  CI_CYPRESS_CACHE_FOLDER: .cache/cypress
   # Display less npm message
   npm_config_loglevel: warn
   # NPM cache environment variable
-  npm_config_cache: "$CI_PROJECT_DIR/$CI_NPM_CACHE_FOLDER"
+  npm_config_cache: $CI_PROJECT_DIR/$CI_NPM_CACHE_FOLDER
   # Cypress cache environment variable
-  CYPRESS_CACHE_FOLDER: "$CI_PROJECT_DIR/$CI_CYPRESS_CACHE_FOLDER"
+  CYPRESS_CACHE_FOLDER: $CI_PROJECT_DIR/$CI_CYPRESS_CACHE_FOLDER
+  # Cypress cache environment variable
+  YARN_CACHE_FOLDER: $CI_PROJECT_DIR/$CI_YARN_CACHE_FOLDER
 
-install_nodejs:
+nodejs:install:
+  extends:
+    - .nodejs_image
+    - .gitlab_fast_zip
   stage: prepare
-  rules:
-    - <<: *nodejs_present_rule
+  cache:
+    - key: ${CI_COMMIT_REF_SLUG}
+      # must be inside $CI_PROJECT_DIR for gitlab-runner caching (#3)
+      paths:
+        - ${CI_YARN_CACHE_FOLDER}
+      when: on_success
+      policy: pull-push
+    - <<: *nodejs_cache
+      policy: push
   script:
-    - exit 0
+    - |
+      # Case Yarn Berry
+      if [[ -f yarn.lock && -d .yarn/releases ]]; then
+        yarn install --immutable;
 
-build_nodejs:
+      # Case Yarn Classic
+      elif [[ -f yarn.lock && ! -d .yarn/releases ]]; then
+        yarn install --frozen-file --prefer-offline;
+
+      # Case NPM
+      else
+        npm ci --prefer-offline --no-audit --no-optional;
+      fi;
+  rules:
+    - <<: *skip_if_makefile
+    - <<: *nodejs_present_rule
+
+nodejs:build:
+  extends:
+    - .nodejs_image
+    - .nodejs_cache
   stage: build
   script:
     - npm run build --if-present
   needs:
-    - job: install_nodejs
+    - job: nodejs:install
       artifacts: true
   artifacts:
     paths:
@@ -37,40 +88,53 @@ build_nodejs:
       - packages/*/lib/
       - packages/*/dist/
   rules:
+    - <<: *skip_if_makefile
     - <<: *nodejs_present_rule
 
-lint_nodejs:
+nodejs:lint:
+  extends:
+    - .nodejs_image
+    - .nodejs_cache
   stage: test
   needs:
-    - job: build_nodejs
+    - job: nodejs:build
       artifacts: true
   tags:
     - lightweight-job
   script:
     - npm run lint --if-present
   rules:
+    - <<: *skip_if_makefile
     - <<: *nodejs_present_rule
 
-test_nodejs:
+nodejs:test:
+  extends:
+    - .nodejs_image
+    - .nodejs_cache
   stage: test
   needs:
-    - job: build_nodejs
+    - job: nodejs:build
       artifacts: true
   tags:
     - lightweight-job
   script:
     - npm test --if-present
   rules:
+    - <<: *skip_if_makefile
     - <<: *nodejs_present_rule
 
-test_e2e_nodejs:
+nodejs:test:e2e:
+  extends:
+    - .nodejs_image
+    - .nodejs_cache
   stage: test
   needs:
-    - job: build_nodejs
+    - job: nodejs:build
       artifacts: true
   tags:
     - heavy-job
   script:
     - npm run test:e2e --if-present
   rules:
+    - <<: *skip_if_makefile
     - <<: *nodejs_present_rule
