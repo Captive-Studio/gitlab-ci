@@ -21,9 +21,9 @@
 include:
   - project: captive/gitlab-ci
     file: '/Auto-Devops.gitlab-ci.yml'
-    ref: main
-    # OR Next version for development / testing
-    # ref: next
+    ref: vX.X.X
+    # OR Unstable / latest version
+    # ref: main
 
 # 2️⃣ Customize configuration (Optional)
 variables:
