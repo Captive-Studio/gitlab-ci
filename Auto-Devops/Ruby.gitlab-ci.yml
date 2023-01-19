@@ -113,8 +113,11 @@ ruby:bundle-rubocop:
   variables:
     RAILS_ENV: test
   before_script:
-    - bin/rails db:create db:migrate
-    - bin/rails db:seed
+    - |
+      if [[ ! -z $(bundle exec rake --tasks 'db')  ]];then
+        bundle exec rake db:create db:migrate
+        bundle exec rake db:seed
+      fi
   needs:
     - job: ruby:install
       artifacts: true
