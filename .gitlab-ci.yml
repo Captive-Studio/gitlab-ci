@@ -14,7 +14,6 @@ variables:
 
 .semantic_release_stage:
   stage: release
-  image: node:16.13-stretch
   extends:
     - .nodejs_image
   #  - .nodejs_cache
