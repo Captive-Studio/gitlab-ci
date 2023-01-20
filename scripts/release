@@ -2,30 +2,20 @@
 set -e
 
 BRANCH="$(git rev-parse --abbrev-ref HEAD)"
-if [[ "$BRANCH" != "main" ]]; then
-  echo 'Git branch should be "main"';
-  exit 1;
-fi
+# if [[ "$BRANCH" != "main" ]]; then
+#   echo 'Git branch should be "main"';
+#   exit 1;
+# fi
 
-if [ ! -z "$(git status --porcelain)" ]; then
-  echo 'Git repository should be clean, changes are detected';
-  exit 1;
-fi
+# if [ ! -z "$(git status --porcelain)" ]; then
+#   echo 'Git repository should be clean, changes are detected';
+#   exit 1;
+# fi
 
 # Default directories
 SCRIPT_DIR="$(dirname "$0")"
 cd "$SCRIPT_DIR/.."
 ROOT_DIR=$(pwd)
 
-# Merge next into main
-git merge --squash --no-commit next
-
-# set app name
-AUTODEVOPS_CONFIG="$ROOT_DIR/Auto-Devops.gitlab-ci.yml"
-sed -i '' -e "s/gitlab-ci\/next/gitlab-ci\/main/" "$AUTODEVOPS_CONFIG"
-
-npm version minor --git-tag-version false
-
-git add "$AUTODEVOPS_CONFIG"
-git add "$ROOT_DIR/package.json"
-git commit --message "🔖 Publish"
+npm install --no-save @semantic-release/exec @semantic-release/git @semantic-release/gitlab semantic-release semantic-release-gitmoji @wavevision/semantic-release --legacy-peer-deps
+npx semantic-release

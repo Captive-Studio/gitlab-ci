@@ -21,9 +21,9 @@
 include:
   - project: captive/gitlab-ci
     file: '/Auto-Devops.gitlab-ci.yml'
-    ref: main
-    # OR Next version for development / testing
-    # ref: next
+    ref: vX.X.X
+    # OR Unstable / latest version
+    # ref: main
 
 # 2️⃣ Customize configuration (Optional)
 variables:
@@ -82,6 +82,13 @@ variables:
 ```
 
 </details>
+
+## Contributing
+
+Here are good `gitlab-ci.yml` used as base / inspiration :
+
+- [Gitlab templates](https://gitlab.com/gitlab-org/gitlab-foss/-/blob/master/lib/gitlab/ci/templates)
+- [La fabrique du gouvernement français](https://gitlab.fabrique.social.gouv.fr/socialgouv/gitlab-ci-yml)
 
 ## License
 <!-- AUTO-GENERATED-CONTENT:START (PKGJSON:template=[${license}][license-url] © ${author}) -->

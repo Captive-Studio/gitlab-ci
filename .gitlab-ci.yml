@@ -1,2 +1,35 @@
 include:
   - /Auto-Devops.gitlab-ci.yml
+
+variables:
+  # GIT_AUTHOR_EMAIL: 45039513+SocialGroovyBot@users.noreply.github.com
+  # GIT_AUTHOR_NAME: Captive Bot
+  # GIT_COMMITTER_EMAIL: $GIT_AUTHOR_EMAIL
+  # GIT_COMMITTER_NAME: $GIT_AUTHOR_NAME
+  #
+
+  # Additional plugins
+  SEMANTIC_RELEASE_PLUGINS: '@semantic-release/changelog @semantic-release/git'
+  SEMANTIC_RELEASE_ARGS: ''
+
+.semantic_release_stage:
+  stage: release
+  image: node:16.13-stretch
+  extends:
+    - .nodejs_image
+  #  - .nodejs_cache
+  # needs:
+  #   - job: nodejs:install
+  #     artifacts: true
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+      when: manual
+  script:
+    # Set git to a branch
+    - git checkout ${CI_COMMIT_REF_NAME}
+    # Use local yarn cache
+    - npm run release --if-present -- $SEMANTIC_RELEASE_ARGS
+  allow_failure: true
+
+nodejs:release:
+  extends: .semantic_release_stage
