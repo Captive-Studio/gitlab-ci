@@ -2,15 +2,15 @@
 set -e
 
 BRANCH="$(git rev-parse --abbrev-ref HEAD)"
-# if [[ "$BRANCH" != "main" ]]; then
-#   echo 'Git branch should be "main"';
-#   exit 1;
-# fi
+if [[ "$BRANCH" != "main" ]]; then
+  echo 'Git branch should be "main"';
+  exit 1;
+fi
 
-# if [ ! -z "$(git status --porcelain)" ]; then
-#   echo 'Git repository should be clean, changes are detected';
-#   exit 1;
-# fi
+if [ ! -z "$(git status --porcelain)" ]; then
+  echo 'Git repository should be clean, changes are detected';
+  exit 1;
+fi
 
 # Default directories
 SCRIPT_DIR="$(dirname "$0")"
