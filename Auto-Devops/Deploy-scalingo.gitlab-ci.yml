@@ -2,11 +2,11 @@
 
 .deploy_scalingo:
   script:
-    - set -eu; echo "DEPLOY_STAGE = $DEPLOY_STAGE"
+    - set -eu; echo "CI_ENVIRONMENT_NAME = $CI_ENVIRONMENT_NAME"
     - eval $(ssh-agent -s)
     - echo "$DEPLOY_SSH_PRIVATE_KEY_GZ64" | base64 -d | gunzip | ssh-add -
-    - make -e stage=$DEPLOY_STAGE generate-env
-    - make -e stage=$DEPLOY_STAGE deploy-scalingo
+    - make -e stage=$CI_ENVIRONMENT_NAME generate-env
+    - make -e stage=$CI_ENVIRONMENT_NAME deploy-scalingo
 
 # scalingo:review:review:
 #   extends:
@@ -14,15 +14,15 @@
 #     - .deploy_scalingo
 #   variables:
 #     IF_AUTO_DEVOPS_PLATFORM_TARGET: 'SCALINGO'
-#     DEPLOY_STAGE: review
 
 scalingo:review:staging:
   extends:
     - .auto-devops_review
     - .deploy_scalingo
+  environment:
+    name: staging
   variables:
     IF_AUTO_DEVOPS_PLATFORM_TARGET: SCALINGO
-    DEPLOY_STAGE: staging
 
 scalingo:staging:
   extends:
@@ -30,7 +30,6 @@ scalingo:staging:
     - .deploy_scalingo
   variables:
     IF_AUTO_DEVOPS_PLATFORM_TARGET: SCALINGO
-    DEPLOY_STAGE: staging
 
 scalingo:production:
   extends:
@@ -38,7 +37,6 @@ scalingo:production:
     - .deploy_scalingo
   variables:
     IF_AUTO_DEVOPS_PLATFORM_TARGET: SCALINGO
-    DEPLOY_STAGE: production
 
 scalingo:production_manual:
   extends:
@@ -46,4 +44,3 @@ scalingo:production_manual:
     - .deploy_scalingo
   variables:
     IF_AUTO_DEVOPS_PLATFORM_TARGET: SCALINGO
-    DEPLOY_STAGE: production

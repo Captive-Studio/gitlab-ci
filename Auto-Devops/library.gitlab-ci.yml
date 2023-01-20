@@ -116,6 +116,8 @@
   variables:
     # Optional: define if needed to filter
     IF_AUTO_DEVOPS_PLATFORM_TARGET: null
+  environment:
+    name: review/$CI_COMMIT_REF_SLUG
   rules:
     - <<: *filter_platform_target
     - <<: *skip_kubernetes
@@ -143,6 +145,8 @@
   variables:
     # Optional: define if needed to filter
     IF_AUTO_DEVOPS_PLATFORM_TARGET: null
+  environment:
+    name: staging
   rules:
     - <<: *filter_platform_target
     - <<: *skip_kubernetes
@@ -155,6 +159,8 @@
   variables:
     # Optional: define if needed to filter
     IF_AUTO_DEVOPS_PLATFORM_TARGET: null
+  environment:
+    name: production
   rules:
     - <<: *skip_deploy_freeze
     - <<: *filter_platform_target
@@ -171,6 +177,8 @@
   variables:
     # Optional: define if needed to filter
     IF_AUTO_DEVOPS_PLATFORM_TARGET: null
+  environment:
+    name: production
   rules:
     - <<: *skip_deploy_freeze
     - <<: *filter_platform_target

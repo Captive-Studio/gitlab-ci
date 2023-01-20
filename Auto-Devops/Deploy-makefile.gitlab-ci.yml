@@ -25,11 +25,11 @@
   extends:
     - .docker_dind
   script:
-    - set -eu; echo "DEPLOY_STAGE = $DEPLOY_STAGE"
+    - set -eu; echo "CI_ENVIRONMENT_NAME = $CI_ENVIRONMENT_NAME"
     - *pass
-    - make -e stage=$DEPLOY_STAGE generate-env
-    - make -e stage=$DEPLOY_STAGE ssh-check-fingerprint
-    - make -e stage=$DEPLOY_STAGE traefik-deploy
+    - make -e stage=$CI_ENVIRONMENT_NAME generate-env
+    - make -e stage=$CI_ENVIRONMENT_NAME ssh-check-fingerprint
+    - make -e stage=$CI_ENVIRONMENT_NAME traefik-deploy
 
 makefile:review:staging:
   extends:
@@ -39,7 +39,6 @@ makefile:review:staging:
   when: manual
   variables:
     IF_AUTO_DEVOPS_PLATFORM_TARGET: MAKEFILE
-    DEPLOY_STAGE: staging
 
 makefile:review:review:
   extends:
@@ -47,9 +46,10 @@ makefile:review:review:
     - .deploy_makefile
   stage: review
   when: manual
+  environment:
+    name: review
   variables:
     IF_AUTO_DEVOPS_PLATFORM_TARGET: MAKEFILE
-    DEPLOY_STAGE: review
 
 makefile:staging:
   extends:
@@ -57,7 +57,6 @@ makefile:staging:
     - .deploy_makefile
   variables:
     IF_AUTO_DEVOPS_PLATFORM_TARGET: MAKEFILE
-    DEPLOY_STAGE: staging
 
 makefile:production:
   extends:
@@ -65,7 +64,6 @@ makefile:production:
     - .deploy_makefile
   variables:
     IF_AUTO_DEVOPS_PLATFORM_TARGET: MAKEFILE
-    DEPLOY_STAGE: production
 
 makefile:production_manual:
   extends:
@@ -73,4 +71,3 @@ makefile:production_manual:
     - .deploy_makefile
   variables:
     IF_AUTO_DEVOPS_PLATFORM_TARGET: MAKEFILE
-    DEPLOY_STAGE: production
