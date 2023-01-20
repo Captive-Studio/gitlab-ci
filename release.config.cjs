@@ -1,6 +1,6 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
+/* eslint-disable import/no-unresolved */
+/* eslint-disable import/no-extraneous-dependencies */
 const makeConfig = require('@wavevision/semantic-release/config');
-// eslint-disable-next-line import/no-extraneous-dependencies
 const { CONFIG_GITLAB } = require('@wavevision/semantic-release/config/constants');
 
 const semanticConfig = makeConfig({
