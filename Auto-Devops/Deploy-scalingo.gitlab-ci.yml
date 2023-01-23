@@ -17,10 +17,8 @@
 
 scalingo:review:staging:
   extends:
-    - .auto-devops_review
+    - .auto-devops_review_staging
     - .deploy_scalingo
-  environment:
-    name: staging
   variables:
     IF_AUTO_DEVOPS_PLATFORM_TARGET: SCALINGO
 

@@ -125,6 +125,27 @@
     # Only if $REVIEW_ENABLED and on a tag or branch
     - if: '$REVIEW_ENABLED && ($CI_COMMIT_TAG || $CI_COMMIT_BRANCH)'
 
+# Mixin to trigger review on staging environment
+#
+# @example
+#
+# variables:
+#   REVIEW_ENABLED: 'true'
+#
+# my_step:
+#   extends
+#     - .auto-devops_review_staging
+#   variables:
+#     IF_AUTO_DEVOPS_PLATFORM_TARGET: 'AZURE' # Ex: will trigger only if AUTO_DEVOPS_PLATFORM_TARGET == 'AZURE'
+#   script:
+#     # TODO !
+#
+.auto-devops_review_staging:
+  extends:
+    - .auto-devops_review
+  environment:
+    name: staging
+
 # Mixin to trigger at staging step only when `$STAGING_ENABLED` is truthy
 #
 # @example
