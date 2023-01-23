@@ -6,7 +6,7 @@ const { CONFIG_GITLAB } = require('@wavevision/semantic-release/config/constants
 const semanticConfig = makeConfig({
   config: CONFIG_GITLAB,
   branches: ['main', 'next'],
-  git: { enabled: true, assets: ['package.json'] },
+  git: { enabled: true, assets: ['package.json', 'README.md', 'CHANGELOG.md'] },
 });
 semanticConfig.plugins.splice(1, 0, [
   '@semantic-release/exec',
