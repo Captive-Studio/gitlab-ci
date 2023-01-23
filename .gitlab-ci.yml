@@ -2,11 +2,10 @@ include:
   - /Auto-Devops.gitlab-ci.yml
 
 variables:
-  # GIT_AUTHOR_EMAIL: 45039513+SocialGroovyBot@users.noreply.github.com
-  # GIT_AUTHOR_NAME: Captive Bot
-  # GIT_COMMITTER_EMAIL: $GIT_AUTHOR_EMAIL
-  # GIT_COMMITTER_NAME: $GIT_AUTHOR_NAME
-  #
+  GIT_AUTHOR_EMAIL: captivator@captive.fr
+  GIT_AUTHOR_NAME: Captive Bot
+  GIT_COMMITTER_EMAIL: $GIT_AUTHOR_EMAIL
+  GIT_COMMITTER_NAME: $GIT_AUTHOR_NAME
 
   # Additional plugins
   SEMANTIC_RELEASE_PLUGINS: '@semantic-release/changelog @semantic-release/git'
