@@ -1,4 +1,4 @@
-# !/bin/sh
+#!/usr/bin/env bash
 set -e
 
 BRANCH="$(git rev-parse --abbrev-ref HEAD)"
@@ -17,5 +17,5 @@ SCRIPT_DIR="$(dirname "$0")"
 cd "$SCRIPT_DIR/.."
 ROOT_DIR=$(pwd)
 
-npm install --no-save @semantic-release/exec @semantic-release/git @semantic-release/gitlab semantic-release semantic-release-gitmoji @wavevision/semantic-release --legacy-peer-deps
+npm install --no-save @semantic-release/exec @semantic-release/git @semantic-release/gitlab @semantic-release/release-notes-generator @semantic-release/changelog semantic-release semantic-release-gitmoji @wavevision/semantic-release --legacy-peer-deps
 npx semantic-release

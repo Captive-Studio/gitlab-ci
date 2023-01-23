@@ -125,6 +125,27 @@
     # Only if $REVIEW_ENABLED and on a tag or branch
     - if: '$REVIEW_ENABLED && ($CI_COMMIT_TAG || $CI_COMMIT_BRANCH)'
 
+# Mixin to trigger review on staging environment
+#
+# @example
+#
+# variables:
+#   REVIEW_ENABLED: 'true'
+#
+# my_step:
+#   extends
+#     - .auto-devops_review_staging
+#   variables:
+#     IF_AUTO_DEVOPS_PLATFORM_TARGET: 'AZURE' # Ex: will trigger only if AUTO_DEVOPS_PLATFORM_TARGET == 'AZURE'
+#   script:
+#     # TODO !
+#
+.auto-devops_review_staging:
+  extends:
+    - .auto-devops_review
+  environment:
+    name: staging
+
 # Mixin to trigger at staging step only when `$STAGING_ENABLED` is truthy
 #
 # @example
@@ -154,13 +175,22 @@
     # Only if $STAGING_ENABLED and on a tag or branch
     - if: $STAGING_ENABLED
 
-.auto-devops_production_auto:
+# Common mixin for production environment
+#
+# @example
+# .auto-devops_production:
+#   ...override any parameter
+.auto-devops_production:
   stage: production
   variables:
     # Optional: define if needed to filter
     IF_AUTO_DEVOPS_PLATFORM_TARGET: null
   environment:
     name: production
+
+.auto-devops_production_auto:
+  extends:
+    - .auto-devops_production
   rules:
     - <<: *skip_deploy_freeze
     - <<: *filter_platform_target
@@ -173,12 +203,8 @@
     - when: always
 
 .auto-devops_production_manual:
-  stage: production
-  variables:
-    # Optional: define if needed to filter
-    IF_AUTO_DEVOPS_PLATFORM_TARGET: null
-  environment:
-    name: production
+  extends:
+    - .auto-devops_production
   rules:
     - <<: *skip_deploy_freeze
     - <<: *filter_platform_target
