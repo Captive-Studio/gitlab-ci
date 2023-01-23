@@ -1,0 +1,75 @@
+# @see https://gitlab.com/gitlab-org/gitlab-foss/-/blob/master/lib/gitlab/ci/templates/Jobs/Deploy/EC2.gitlab-ci.yml
+
+variables:
+  # DPL heroku strategy
+  HEROKU_STRATEGY: git
+
+  # DPL git repository url
+  HEROKU_GIT: $CI_REPOSITORY_URL
+
+  # Required: the name of the app
+  HEROKU_APP: ''
+  # Optional key to override only for staging environment
+  HEROKU_APP_STAGING: ''
+  # Optional key to override only for production environment
+  HEROKU_APP_PRODUCTION: ''
+
+  # Required the api key used to deploy
+  HEROKU_API_KEY: ''
+  # Optional key to override only for staging environment
+  HEROKU_API_KEY_STAGING: ''
+  # Optional key to override only for production environment
+  HEROKU_API_KEY_PRODUCTION: ''
+
+.deploy_heroku:
+  script:
+    - gem install dpl
+    - HEROKU_API_KEY=${HEROKU_API_KEY_OVERRIDE:-$HEROKU_API_KEY}
+    - HEROKU_APP=${HEROKU_APP_OVERRIDE:-"$HEROKU_APP-$CI_ENVIRONMENT_NAME"}
+    - echo "HEROKU_APP = $HEROKU_APP"
+    - dpl --provider=heroku
+
+.auto-devops_staging:
+  variables:
+    HEROKU_API_KEY_OVERRIDE: $HEROKU_API_KEY_STAGING
+    HEROKU_APP_OVERRIDE: $HEROKU_APP_STAGING
+
+.auto-devops_production:
+  variables:
+    HEROKU_API_KEY_OVERRIDE: $HEROKU_API_KEY_PRODUCTION
+    HEROKU_APP_OVERRIDE: $HEROKU_APP_PRODUCTION
+
+# heroku:review:review:
+#   extends:
+#     - .auto-devops_review
+#     - .deploy_heroku
+#   variables:
+#     IF_AUTO_DEVOPS_PLATFORM_TARGET: HEROKU
+
+heroku:review:staging:
+  extends:
+    - .auto-devops_review_staging
+    - .deploy_heroku
+  variables:
+    IF_AUTO_DEVOPS_PLATFORM_TARGET: HEROKU
+
+heroku:staging:
+  extends:
+    - .auto-devops_staging
+    - .deploy_heroku
+  variables:
+    IF_AUTO_DEVOPS_PLATFORM_TARGET: HEROKU
+
+heroku:production:
+  extends:
+    - .auto-devops_production_auto
+    - .deploy_heroku
+  variables:
+    IF_AUTO_DEVOPS_PLATFORM_TARGET: HEROKU
+
+heroku:production_manual:
+  extends:
+    - .auto-devops_production_manual
+    - .deploy_heroku
+  variables:
+    IF_AUTO_DEVOPS_PLATFORM_TARGET: HEROKU
