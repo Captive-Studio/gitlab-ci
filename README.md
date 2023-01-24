@@ -23,7 +23,7 @@ include:
     file: '/Auto-Devops.gitlab-ci.yml'
     ref: v1.1.0
     # OR Unstable / latest version
-    # ref: v1.1.0
+    # ref: main
 
 # 2️⃣ Customize configuration (Optional)
 variables:
