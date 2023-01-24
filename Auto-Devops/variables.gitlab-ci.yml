@@ -6,22 +6,40 @@
 # ✓ Each Variables should be documented
 variables:
   # Enable Review step
+  #
+  # @type {'true'|''}
   REVIEW_ENABLED: 'true'
+
   # Deploy to staging step
+  #
+  # @type {'true'|''}
   STAGING_ENABLED: 'true'
+
   # Deploy canary release
+  #
+  # @type {'true'|''}
   CANARY_ENABLED: ''
+
   # Incremental rollout release (10%, 20%, etc)
+  #
+  # @type {'true'|''}
   INCREMENTAL_ROLLOUT_ENABLED: ''
 
-  # Deployment Platform Target : "SCALINGO" | "SCALEWAY" | "MAKEFILE"
+  # Deployment Platform Target
+  #
+  # @type {''| 'HEROKU' | 'SCALINGO' | 'SCALEWAY' | 'MAKEFILE'}
   AUTO_DEVOPS_PLATFORM_TARGET: ''
 
-  # Docker image registry, where image are pushed
+  # Docker image registry URL, where image are pushed
+  #
+  # @type {string}
   CONTAINER_REGISTRY: registry.git.captive.fr
 
   # Required variables for docker.mk
+  #
+  # @type {string}
   REGISTRY_PROJECT_URL: $CONTAINER_REGISTRY/$CI_PROJECT_PATH
+
   BUILD_SUBPATH: dev
   BUILD_ID: $CI_COMMIT_SHORT_SHA
   REF_ID: $CI_COMMIT_REF_SLUG
@@ -30,11 +48,13 @@ variables:
   # docker-dind
   #
 
-  # Use driver overlay2 for performances
+  # @internal Use driver overlay2 for performances
   DOCKER_DRIVER: overlay2
-  # Disable TLS
+
+  # @internal Disable TLS
   DOCKER_TLS_CERTDIR: ''
 
+  # @internal
   DEPLOY_SSH_KNOWN_HOSTS_BASE64: ''
 
   #

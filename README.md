@@ -46,6 +46,7 @@ variables:
   - ⚠️ No pipeline for detached branches (to avoid duplication with branch)
 - 📦 Deploy platform :
   - ✓ Scalingo `AUTO_DEVOPS_PLATFORM_TARGET: 'SCALINGO'`
+  - ✓ Heroku `AUTO_DEVOPS_PLATFORM_TARGET: 'HEROKU'`
   - ✓ Makefile `AUTO_DEVOPS_PLATFORM_TARGET: 'MAKEFILE'` (custom deploy script)
 
 ## Recipes
@@ -68,6 +69,20 @@ variables:
 # .gitlab-ci.yml
 variables:
     AUTO_DEVOPS_PLATFORM_TARGET: 'SCALINGO'
+    SCALINGO_APP: 'my-app'
+```
+
+</details>
+
+<details>
+<summary>Deploy on Heroku</summary>
+
+```yml
+# .gitlab-ci.yml
+variables:
+    AUTO_DEVOPS_PLATFORM_TARGET: 'HEROKU'
+    # Required: the name of the app
+    HEROKU_APP: 'my-app'
 ```
 
 </details>

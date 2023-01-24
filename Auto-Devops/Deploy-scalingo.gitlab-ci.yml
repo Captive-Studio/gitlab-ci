@@ -5,17 +5,35 @@ variables:
   SCALINGO_REGION: osc-fr1
 
   # Required: the name of the app
+  #
+  # @type {string}
   SCALINGO_APP: ''
+
   # Optional key to override only for staging environment
+  #
+  # @type {string}
+  # @default "$SCALINGO_APP-staging"
   SCALINGO_APP_STAGING: ''
+
   # Optional key to override only for production environment
+  #
+  # @type {string}
+  # @default "$SCALINGO_APP-production"
   SCALINGO_APP_PRODUCTION: ''
 
   # Required the api key used to deploy
+  #
+  # @type {string}
   SCALINGO_API_KEY: ''
-  # Optional key to override only for staging environment
+
+  # Override api key only for staging environment
+  #
+  # @default $SCALINGO_API_KEY
   SCALINGO_API_KEY_STAGING: ''
-  # Optional key to override only for production environment
+
+  # Override api key only for production environment
+  #
+  # @default $SCALINGO_API_KEY
   SCALINGO_API_KEY_PRODUCTION: ''
 
 .deploy_scalingo:
