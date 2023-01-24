@@ -1,19 +1,47 @@
 # @see https://gitlab.com/gitlab-org/gitlab-foss/-/blob/master/lib/gitlab/ci/templates/Jobs/Deploy/EC2.gitlab-ci.yml
 
+variables:
+  # DPL scalingo default region https://doc.scalingo.com/platform/internals/regions
+  SCALINGO_REGION: osc-fr1
+
+  # Required: the name of the app
+  SCALINGO_APP: ''
+  # Optional key to override only for staging environment
+  SCALINGO_APP_STAGING: ''
+  # Optional key to override only for production environment
+  SCALINGO_APP_PRODUCTION: ''
+
+  # Required the api key used to deploy
+  SCALINGO_API_KEY: ''
+  # Optional key to override only for staging environment
+  SCALINGO_API_KEY_STAGING: ''
+  # Optional key to override only for production environment
+  SCALINGO_API_KEY_PRODUCTION: ''
+
 .deploy_scalingo:
   script:
-    - set -eu; echo "CI_ENVIRONMENT_NAME = $CI_ENVIRONMENT_NAME"
-    - eval $(ssh-agent -s)
-    - echo "$DEPLOY_SSH_PRIVATE_KEY_GZ64" | base64 -d | gunzip | ssh-add -
-    - make -e stage=$CI_ENVIRONMENT_NAME generate-env
-    - make -e stage=$CI_ENVIRONMENT_NAME deploy-scalingo
+    - gem install dpl
+    - SCALINGO_API_KEY=${SCALINGO_API_KEY_OVERRIDE:-$SCALINGO_API_KEY}
+    - SCALINGO_APP=${SCALINGO_APP_OVERRIDE:-"$SCALINGO_APP-$CI_ENVIRONMENT_NAME"}
+    - echo "SCALINGO_APP = $SCALINGO_APP"
+    - dpl --provider=scalingo
+
+.auto-devops_staging:
+  variables:
+    SCALINGO_API_KEY_OVERRIDE: $SCALINGO_API_KEY_STAGING
+    SCALINGO_APP_OVERRIDE: $SCALINGO_APP_STAGING
+
+.auto-devops_production:
+  variables:
+    SCALINGO_API_KEY_OVERRIDE: $SCALINGO_API_KEY_PRODUCTION
+    SCALINGO_APP_OVERRIDE: $SCALINGO_APP_PRODUCTION
 
 # scalingo:review:review:
 #   extends:
 #     - .auto-devops_review
 #     - .deploy_scalingo
 #   variables:
-#     IF_AUTO_DEVOPS_PLATFORM_TARGET: 'SCALINGO'
+#     IF_AUTO_DEVOPS_PLATFORM_TARGET: SCALINGO
 
 scalingo:review:staging:
   extends:
