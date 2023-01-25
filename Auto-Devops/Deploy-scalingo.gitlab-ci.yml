@@ -37,6 +37,7 @@ variables:
   SCALINGO_API_KEY_PRODUCTION: ''
 
 .deploy_scalingo:
+  image: ruby:2
   script:
     - gem install dpl
     - SCALINGO_API_KEY=${SCALINGO_API_KEY_OVERRIDE:-$SCALINGO_API_KEY}
