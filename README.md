@@ -65,12 +65,17 @@ variables:
 <details>
 <summary>Deploy on Scalingo</summary>
 
+1. Check or create `SCALINGO_API_KEY` in Gitlab CI project variables
+2. Configure `.gitlab-ci.yml` in the project repository
+
 ```yml
 # .gitlab-ci.yml
 variables:
     AUTO_DEVOPS_PLATFORM_TARGET: 'SCALINGO'
-    SCALINGO_API_KEY: '...'
-    SCALINGO_APP: 'my-app' # Can be overridden with SCALINGO_APP_STAGING / SCALINGO_APP_PRODUCTION
+    SCALINGO_APP: 'my-app' # By default, deployment will use app "$SCALINGO_APP-$CI_ENVIRONMENT_NAME" (ex: my-app-staging)
+    # Overrides (Optional)
+    # SCALINGO_APP_STAGING: 'my-app-preprod-custom' 
+    # SCALINGO_APP_PRODUCTION: 'my-app-custom-prod-custom'
 ```
 
 </details>
@@ -82,7 +87,6 @@ variables:
 # .gitlab-ci.yml
 variables:
     AUTO_DEVOPS_PLATFORM_TARGET: 'HEROKU'
-    HEROKU_API_KEY: '...'
     HEROKU_APP: 'my-app'  # Can be overridden with SCALINGO_APP_STAGING / SCALINGO_APP_PRODUCTION
 ```
 
