@@ -24,35 +24,35 @@ variables:
   # Required the api key used to deploy
   #
   # @type {string}
-  SCALINGO_API_KEY: ''
+  SCALINGO_API_TOKEN: ''
 
   # Override api key only for staging environment
   #
-  # @default $SCALINGO_API_KEY
-  SCALINGO_API_KEY_STAGING: ''
+  # @default $SCALINGO_API_TOKEN
+  SCALINGO_API_TOKEN_STAGING: ''
 
   # Override api key only for production environment
   #
-  # @default $SCALINGO_API_KEY
-  SCALINGO_API_KEY_PRODUCTION: ''
+  # @default $SCALINGO_API_TOKEN
+  SCALINGO_API_TOKEN_PRODUCTION: ''
 
 .deploy_scalingo:
   image: ruby:2
   script:
     - gem install dpl
-    - SCALINGO_API_KEY=${SCALINGO_API_KEY_OVERRIDE:-$SCALINGO_API_KEY}
+    - SCALINGO_API_TOKEN=${SCALINGO_API_TOKEN_OVERRIDE:-$SCALINGO_API_TOKEN}
     - SCALINGO_APP=${SCALINGO_APP_OVERRIDE:-"$SCALINGO_APP-$CI_ENVIRONMENT_NAME"}
     - echo "SCALINGO_APP = $SCALINGO_APP"
     - dpl --provider=scalingo
 
 .auto-devops_staging:
   variables:
-    SCALINGO_API_KEY_OVERRIDE: $SCALINGO_API_KEY_STAGING
+    SCALINGO_API_TOKEN_OVERRIDE: $SCALINGO_API_TOKEN_STAGING
     SCALINGO_APP_OVERRIDE: $SCALINGO_APP_STAGING
 
 .auto-devops_production:
   variables:
-    SCALINGO_API_KEY_OVERRIDE: $SCALINGO_API_KEY_PRODUCTION
+    SCALINGO_API_TOKEN_OVERRIDE: $SCALINGO_API_TOKEN_PRODUCTION
     SCALINGO_APP_OVERRIDE: $SCALINGO_APP_PRODUCTION
 
 # scalingo:review:review:
