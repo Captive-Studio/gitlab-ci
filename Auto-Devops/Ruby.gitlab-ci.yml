@@ -106,7 +106,7 @@ ruby:bundle-rubocop:
     - <<: *skip_if_makefile
     - <<: *only_rubocop_conf
 
-.rails_test:
+.rake_test:
   extends:
     - .ruby_image
     - .ruby_cache
@@ -131,7 +131,7 @@ ruby:bundle-rubocop:
 
 ruby:rake:test:
   extends:
-    - .ruby_image
+    - .rake_test
   script:
     - |
       RAKE_TEST_FOUND=0
@@ -154,7 +154,8 @@ ruby:rake:test:
 
 ruby:rake:test-system:
   extends:
-    - .rails_test_browsers
+    - .rake_test
+    - .ruby_image_browsers
   script:
     - |
       RAKE_TEST_FOUND=0
