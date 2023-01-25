@@ -65,18 +65,26 @@ variables:
 <details>
 <summary>Deploy on Scalingo</summary>
 
-1. Check or create `SCALINGO_API_KEY` in Gitlab CI project variables
+1. Create a branch for testing CI__ _(ex: `ci/autodevops`)_
+
 2. Configure `.gitlab-ci.yml` in the project repository
 
-```yml
-# .gitlab-ci.yml
-variables:
-    AUTO_DEVOPS_PLATFORM_TARGET: 'SCALINGO'
-    SCALINGO_APP: 'my-app' # By default, deployment will use app "$SCALINGO_APP-$CI_ENVIRONMENT_NAME" (ex: my-app-staging)
-    # Overrides (Optional)
-    # SCALINGO_APP_STAGING: 'my-app-preprod-custom' 
-    # SCALINGO_APP_PRODUCTION: 'my-app-custom-prod-custom'
-```
+    ⚠️ Never commit `SCALINGO_API_KEY` value in `.gitlab-ci.yml`
+
+    ```yml
+    # .gitlab-ci.yml
+    variables:
+        AUTO_DEVOPS_PLATFORM_TARGET: 'SCALINGO'
+        SCALINGO_API_KEY: $CAPTIVE_SCALINGO_API_KEY # OR other variable
+        SCALINGO_APP: 'my-app' # By default, deployment will use app "$SCALINGO_APP-$CI_ENVIRONMENT_NAME" (ex: my-app-staging)
+        # Overrides (Optional)
+        # SCALINGO_APP_STAGING: 'my-app-preprod-custom' 
+        # SCALINGO_APP_PRODUCTION: 'my-app-custom-prod-custom'
+    ```
+
+3. Check that job `scalingo:review:staging` is present and successful (manual trigger is required)
+
+4. Merge branch into default branch
 
 </details>
 
