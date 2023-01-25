@@ -1,3 +1,14 @@
+# 1.2.5 (2023-01-25)
+
+## 🐛 Bug Fixes
+- [`3129dce`](https://gitlab.com/captive/gitlab-ci/-/commit/3129dce)  Use browsers image for test:system
+
+- [`f94f8d9`](https://gitlab.com/captive/gitlab-ci/-/commit/f94f8d9)  Fix mixin references
+
+
+
+## [1.2.5](https://git.captive.fr/captive/gitlab-ci/compare/1.2.4...1.2.5) (2023-01-25)
+
 # 1.2.4 (2023-01-25)
 
 ## 🐛 Bug Fixes
