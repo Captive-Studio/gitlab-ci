@@ -1,3 +1,12 @@
+# 1.1.2 (2023-01-25)
+
+## 🐛 Bug Fixes
+- [`332f6f5`](https://gitlab.com/captive/gitlab-ci/-/commit/332f6f5)  Fix dpl ruby version
+
+
+
+## [1.1.2](https://git.captive.fr/captive/gitlab-ci/compare/1.1.1...1.1.2) (2023-01-25)
+
 # 1.1.1 (2023-01-25)
 
 ## 🐛 Bug Fixes
