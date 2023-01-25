@@ -1,3 +1,12 @@
+# 1.2.6 (2023-01-25)
+
+## 🐛 Bug Fixes
+- [`4da4de5`](https://gitlab.com/captive/gitlab-ci/-/commit/4da4de5)  Make review_staging optional
+
+
+
+## [1.2.6](https://git.captive.fr/captive/gitlab-ci/compare/1.2.5...1.2.6) (2023-01-25)
+
 # 1.2.5 (2023-01-25)
 
 ## 🐛 Bug Fixes
