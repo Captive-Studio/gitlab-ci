@@ -1,3 +1,12 @@
+# 1.2.1 (2023-01-25)
+
+## 🐛 Bug Fixes
+- [`e5fdbbd`](https://gitlab.com/captive/gitlab-ci/-/commit/e5fdbbd)  Force api_key parameter
+
+
+
+## [1.2.1](https://git.captive.fr/captive/gitlab-ci/compare/1.2.0...1.2.1) (2023-01-25)
+
 # 1.2.0 (2023-01-25)
 
 ## ✨ New Features
