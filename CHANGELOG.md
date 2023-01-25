@@ -1,3 +1,15 @@
+# 1.2.0 (2023-01-25)
+
+## ✨ New Features
+- [`6517e9a`](https://gitlab.com/captive/gitlab-ci/-/commit/6517e9a)  Add $APP_NAME
+
+## 🐛 Bug Fixes
+- [`2a1bc26`](https://gitlab.com/captive/gitlab-ci/-/commit/2a1bc26)  Fix SCALINGO_API_TOKEN variable
+
+
+
+# [1.2.0](https://git.captive.fr/captive/gitlab-ci/compare/1.1.2...1.2.0) (2023-01-25)
+
 # 1.1.2 (2023-01-25)
 
 ## 🐛 Bug Fixes
