@@ -131,7 +131,7 @@ ruby:bundle-rubocop:
 
 ruby:rails:test:
   extends:
-    - .ruby_image_browsers
+    - .ruby_image
   script:
     - |
       RAKE_TEST_FOUND=0
@@ -154,7 +154,7 @@ ruby:rails:test:
 
 ruby:rails:test-system:
   extends:
-    - .rails_test
+    - .rails_test_browsers
   script:
     - |
       RAKE_TEST_FOUND=0
