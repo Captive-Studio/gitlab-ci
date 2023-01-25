@@ -1,3 +1,14 @@
+# 1.2.2 (2023-01-25)
+
+## 🐛 Bug Fixes
+- [`c5f5cda`](https://gitlab.com/captive/gitlab-ci/-/commit/c5f5cda)  Use arguments instead of environment variable for scalingo
+
+- [`38e254e`](https://gitlab.com/captive/gitlab-ci/-/commit/38e254e)  Use arguments instead of environment variable for heroku
+
+
+
+## [1.2.2](https://git.captive.fr/captive/gitlab-ci/compare/1.2.1...1.2.2) (2023-01-25)
+
 # 1.2.1 (2023-01-25)
 
 ## 🐛 Bug Fixes
