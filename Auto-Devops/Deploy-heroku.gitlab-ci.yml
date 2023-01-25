@@ -22,15 +22,19 @@ variables:
   HEROKU_API_KEY_PRODUCTION: ''
 
 .deploy_heroku:
+  variables:
+    GIT_STRATEGY: clone
+    GIT_DEPTH: 0
   image: ruby:2
   script:
     - gem install dpl
     - HEROKU_API_KEY=${HEROKU_API_KEY_OVERRIDE:-$HEROKU_API_KEY}
     - HEROKU_APP=${HEROKU_APP_OVERRIDE:-"$HEROKU_APP-$CI_ENVIRONMENT_NAME"}
     - echo "HEROKU_APP = $HEROKU_APP"
-    - dpl  \
-      --provider=heroku \
-      --app=$HEROKU_APP \
+    - >
+      dpl
+      --provider=heroku
+      --app=$HEROKU_APP
       --api_key=$HEROKU_API_KEY
 
 .auto-devops_staging:
