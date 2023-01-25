@@ -1,3 +1,14 @@
+# 1.2.7 (2023-01-25)
+
+## 🐛 Bug Fixes
+- [`d0004e1`](https://gitlab.com/captive/gitlab-ci/-/commit/d0004e1)  Change git strategy to fix unshallow errors
+
+- [`2443a8f`](https://gitlab.com/captive/gitlab-ci/-/commit/2443a8f)  Fix multiline syntax error
+
+
+
+## [1.2.7](https://git.captive.fr/captive/gitlab-ci/compare/1.2.6...1.2.7) (2023-01-25)
+
 # 1.2.6 (2023-01-25)
 
 ## 🐛 Bug Fixes

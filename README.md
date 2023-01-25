@@ -21,7 +21,7 @@
 include:
   - project: captive/gitlab-ci
     file: '/Auto-Devops.gitlab-ci.yml'
-    ref: v1.2.6
+    ref: v1.2.7
     # OR Unstable / latest version
     # ref: main
 
