@@ -145,6 +145,11 @@
     - .auto-devops_review
   environment:
     name: staging
+  rules:
+    - <<: *filter_platform_target
+    - <<: *skip_kubernetes
+    - <<: *skip_default_branch
+    - if: $STAGING_ENABLED
 
 # Mixin to trigger at staging step only when `$STAGING_ENABLED` is truthy
 #
@@ -172,7 +177,6 @@
     - <<: *filter_platform_target
     - <<: *skip_kubernetes
     - <<: *skip_non_default_branch
-    # Only if $STAGING_ENABLED and on a tag or branch
     - if: $STAGING_ENABLED
 
 # Common mixin for production environment
