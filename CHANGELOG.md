@@ -1,3 +1,12 @@
+# 1.2.3 (2023-01-25)
+
+## 🐛 Bug Fixes
+- [`8dcfd70`](https://gitlab.com/captive/gitlab-ci/-/commit/8dcfd70)  Fix all scalingo deploy errors
+
+
+
+## [1.2.3](https://git.captive.fr/captive/gitlab-ci/compare/1.2.2...1.2.3) (2023-01-25)
+
 # 1.2.2 (2023-01-25)
 
 ## 🐛 Bug Fixes
