@@ -43,7 +43,7 @@ variables:
     - SCALINGO_API_TOKEN=${SCALINGO_API_TOKEN_OVERRIDE:-$SCALINGO_API_TOKEN}
     - SCALINGO_APP=${SCALINGO_APP_OVERRIDE:-"$SCALINGO_APP-$CI_ENVIRONMENT_NAME"}
     - echo "SCALINGO_APP = $SCALINGO_APP"
-    - dpl --provider=scalingo
+    - dpl --provider=scalingo --app=$SCALINGO_APP --api_token=$SCALINGO_API_TOKEN --region=$SCALINGO_REGION
 
 .auto-devops_staging:
   variables:
