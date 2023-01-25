@@ -5,6 +5,11 @@
 # ✓ Variables should be `UPPER_UNDERSCORE_CASE`
 # ✓ Each Variables should be documented
 variables:
+  # Application name (for deployment, packages, etc)
+  #
+  # @type {string}
+  APP_NAME: ''
+
   # Enable Review step
   #
   # @type {'true'|''}

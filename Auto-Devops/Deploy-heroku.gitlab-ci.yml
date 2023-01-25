@@ -8,7 +8,7 @@ variables:
   HEROKU_GIT: $CI_REPOSITORY_URL
 
   # Required: the name of the app
-  HEROKU_APP: ''
+  HEROKU_APP: $APP_NAME
   # Optional key to override only for staging environment
   HEROKU_APP_STAGING: ''
   # Optional key to override only for production environment
