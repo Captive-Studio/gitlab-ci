@@ -1,3 +1,12 @@
+# 1.2.4 (2023-01-25)
+
+## 🐛 Bug Fixes
+- [`c1f6aff`](https://gitlab.com/captive/gitlab-ci/-/commit/c1f6aff)  Use circle ci images for ruby
+
+
+
+## [1.2.4](https://git.captive.fr/captive/gitlab-ci/compare/1.2.3...1.2.4) (2023-01-25)
+
 # 1.2.3 (2023-01-25)
 
 ## 🐛 Bug Fixes
