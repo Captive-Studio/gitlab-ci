@@ -69,7 +69,8 @@ variables:
 # .gitlab-ci.yml
 variables:
     AUTO_DEVOPS_PLATFORM_TARGET: 'SCALINGO'
-    SCALINGO_APP: 'my-app'
+    SCALINGO_API_KEY: '...'
+    SCALINGO_APP: 'my-app' # Can be overridden with SCALINGO_APP_STAGING / SCALINGO_APP_PRODUCTION
 ```
 
 </details>
@@ -81,8 +82,8 @@ variables:
 # .gitlab-ci.yml
 variables:
     AUTO_DEVOPS_PLATFORM_TARGET: 'HEROKU'
-    # Required: the name of the app
-    HEROKU_APP: 'my-app'
+    HEROKU_API_KEY: '...'
+    HEROKU_APP: 'my-app'  # Can be overridden with SCALINGO_APP_STAGING / SCALINGO_APP_PRODUCTION
 ```
 
 </details>
