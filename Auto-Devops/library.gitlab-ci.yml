@@ -150,6 +150,7 @@
     - <<: *skip_kubernetes
     - <<: *skip_default_branch
     - if: $STAGING_ENABLED
+  allow_failure: true
 
 # Mixin to trigger at staging step only when `$STAGING_ENABLED` is truthy
 #
