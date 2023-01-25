@@ -1,3 +1,12 @@
+# 1.1.1 (2023-01-25)
+
+## 🐛 Bug Fixes
+- [`647bd66`](https://gitlab.com/captive/gitlab-ci/-/commit/647bd66)  Make review_staging visible on any branch
+
+
+
+## [1.1.1](https://git.captive.fr/captive/gitlab-ci/compare/1.1.0...1.1.1) (2023-01-25)
+
 # 1.1.0 (2023-01-24)
 
 ## ✨ New Features
