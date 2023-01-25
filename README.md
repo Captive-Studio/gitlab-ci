@@ -28,8 +28,6 @@ include:
 # 2️⃣ Customize configuration (Optional)
 variables:
   # @see https://github.com/Captive-Studio/gitlab-ci/blob/main/Auto-Devops/variables.gitlab-ci.yml
-  REVIEW_ENABLED: 'true'
-  AUTO_DEVOPS_PLATFORM_TARGET: 'SCALINGO'
   # ...
 ```
 
@@ -75,8 +73,8 @@ variables:
     # .gitlab-ci.yml
     variables:
         AUTO_DEVOPS_PLATFORM_TARGET: 'SCALINGO'
+        APP_NAME: 'my-app' # By default, deployment will use app "$APP_NAME-$CI_ENVIRONMENT_NAME" (ex: my-app-staging, my-app-production)
         SCALINGO_API_TOKEN: $CAPTIVE_SCALINGO_API_TOKEN # OR other variable
-        SCALINGO_APP: 'my-app' # By default, deployment will use app "$SCALINGO_APP-$CI_ENVIRONMENT_NAME" (ex: my-app-staging)
         # Overrides (Optional)
         # SCALINGO_APP_STAGING: 'my-app-preprod-custom' 
         # SCALINGO_APP_PRODUCTION: 'my-app-custom-prod-custom'
@@ -95,7 +93,8 @@ variables:
 # .gitlab-ci.yml
 variables:
     AUTO_DEVOPS_PLATFORM_TARGET: 'HEROKU'
-    HEROKU_APP: 'my-app'  # Can be overridden with SCALINGO_APP_STAGING / SCALINGO_APP_PRODUCTION
+    APP_NAME: 'my-app'  # By default, deployment will use app "$APP_NAME-$CI_ENVIRONMENT_NAME" (ex: my-app-staging, my-app-production)
+    HEROKU_API_KEY: $CAPTIVE_HEROKU_API_KEY # OR other variable
 ```
 
 </details>
