@@ -129,7 +129,7 @@ ruby:bundle-rubocop:
     - <<: *skip_if_makefile
     - <<: *only_rakefile
 
-ruby:rails:test:
+ruby:rake:test:
   extends:
     - .ruby_image
   script:
@@ -152,7 +152,7 @@ ruby:rails:test:
         coverage_format: cobertura
         path: coverage/coverage.xml
 
-ruby:rails:test-system:
+ruby:rake:test-system:
   extends:
     - .rails_test_browsers
   script:
