@@ -69,13 +69,13 @@ variables:
 
 2. Configure `.gitlab-ci.yml` in the project repository
 
-    ⚠️ Never commit `SCALINGO_API_KEY` value in `.gitlab-ci.yml`
+    ⚠️ Never commit `SCALINGO_API_TOKEN` value in `.gitlab-ci.yml`
 
     ```yml
     # .gitlab-ci.yml
     variables:
         AUTO_DEVOPS_PLATFORM_TARGET: 'SCALINGO'
-        SCALINGO_API_KEY: $CAPTIVE_SCALINGO_API_KEY # OR other variable
+        SCALINGO_API_TOKEN: $CAPTIVE_SCALINGO_API_TOKEN # OR other variable
         SCALINGO_APP: 'my-app' # By default, deployment will use app "$SCALINGO_APP-$CI_ENVIRONMENT_NAME" (ex: my-app-staging)
         # Overrides (Optional)
         # SCALINGO_APP_STAGING: 'my-app-preprod-custom' 
