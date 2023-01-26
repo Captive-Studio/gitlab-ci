@@ -159,8 +159,9 @@
 .auto-devops_review_staging:
   extends:
     - .auto-devops_review
-  environment:
-    name: staging
+    - .auto-devops_staging
+  stage: review
+  when: manual
   rules:
     - <<: *filter_platform_target
     - <<: *skip_kubernetes
@@ -190,6 +191,7 @@
     IF_AUTO_DEVOPS_PLATFORM_TARGET: null
   environment:
     name: staging
+    url: http://staging.$APP_NAME.$APP_DOMAIN
   rules:
     - <<: *filter_platform_target
     - <<: *skip_kubernetes
@@ -208,6 +210,7 @@
     IF_AUTO_DEVOPS_PLATFORM_TARGET: null
   environment:
     name: production
+    url: http://prod.$APP_NAME.$APP_DOMAIN
 
 .auto-devops_production_auto:
   extends:

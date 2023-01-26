@@ -10,6 +10,11 @@ variables:
   # @type {string}
   APP_NAME: ''
 
+  # Default domain for deployment `env.app.$APP_DOMAIN`
+  #
+  # @type {string}
+  APP_DOMAIN: captive.dev
+
   # Enable Review step
   #
   # @type {'true'|''}
