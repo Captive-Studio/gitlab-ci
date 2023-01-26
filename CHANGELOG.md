@@ -1,3 +1,12 @@
+# 1.3.0 (2023-01-26)
+
+## ✨ New Features
+- [`b3a433f`](https://gitlab.com/captive/gitlab-ci/-/commit/b3a433f)  Add environment url
+
+
+
+# [1.3.0](https://git.captive.fr/captive/gitlab-ci/compare/1.2.7...1.3.0) (2023-01-26)
+
 # 1.2.7 (2023-01-25)
 
 ## 🐛 Bug Fixes
