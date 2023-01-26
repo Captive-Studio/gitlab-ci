@@ -125,6 +125,22 @@
     # Only if $REVIEW_ENABLED and on a tag or branch
     - if: '$REVIEW_ENABLED && ($CI_COMMIT_TAG || $CI_COMMIT_BRANCH)'
 
+.auto-devops_stop_review:
+  stage: cleanup
+  variables:
+    GIT_STRATEGY: none
+  # script:
+  environment:
+    name: review/$CI_COMMIT_REF_SLUG
+    action: stop
+  allow_failure: true
+  rules:
+    - <<: *filter_platform_target
+    - <<: *skip_kubernetes
+    - <<: *skip_default_branch
+    - if: '$REVIEW_DISABLED && ($CI_COMMIT_TAG || $CI_COMMIT_BRANCH)'
+      when: manual
+
 # Mixin to trigger review on staging environment
 #
 # @example
