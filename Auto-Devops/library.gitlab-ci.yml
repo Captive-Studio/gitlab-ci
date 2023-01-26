@@ -238,3 +238,43 @@
     - if: '$STAGING_ENABLED || $CANARY_ENABLED'
       when: manual
 # - if: '$CI_COMMIT_TAG =~ /^v([0-9]|[1-9][0-9]+)\.([0-9]|[1-9][0-9]+)\.([0-9]|[1-9][0-9]+)$/'
+
+# Mixin to use CircleCI nodejs images
+#
+# @example
+#
+# my_step:
+#   extends
+#     - .nodejs_image
+.nodejs_image:
+  image: cimg/node:${NODEJS_VERSION}
+
+# Mixin to use CircleCI nodejs images (+ Chrome)
+#
+# @example
+#
+# my_step:
+#   extends
+#     - .nodejs_image_browsers
+.nodejs_image_browsers:
+  image: cimg/node:${NODEJS_VERSION}-browsers
+
+# Mixin to use CircleCI ruby images
+#
+# @example
+#
+# my_step:
+#   extends
+#     - .ruby_image
+.ruby_image:
+  image: cimg/ruby:${RUBY_VERSION}-node
+
+# Mixin to use CircleCI ruby images (+ Chrome)
+#
+# @example
+#
+# my_step:
+#   extends
+#     - .ruby_image_browsers
+.ruby_image_browsers:
+  image: cimg/ruby:${RUBY_VERSION}-browsers

@@ -16,12 +16,6 @@
       exists:
         - Gemfile
 
-.ruby_image:
-  image: cimg/ruby:${RUBY_VERSION}-node
-
-.ruby_image_browsers:
-  image: cimg/ruby:${RUBY_VERSION}-browsers
-
 .ruby_cache:
   cache:
     - &ruby_cache
@@ -33,7 +27,6 @@
       policy: pull
 
 variables:
-  RUBY_VERSION: 3.2.0
   BUNDLE_PATH: vendor/bundle
   BUNDLE_JOBS: $(nproc)
   BUNDLE_FROZEN: 'true'
