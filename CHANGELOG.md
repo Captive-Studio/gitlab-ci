@@ -1,3 +1,12 @@
+# 1.4.0 (2023-01-26)
+
+## ✨ New Features
+- [`68a3375`](https://gitlab.com/captive/gitlab-ci/-/commit/68a3375)  Use CircleCI images
+
+
+
+# [1.4.0](https://git.captive.fr/captive/gitlab-ci/compare/1.3.0...1.4.0) (2023-01-26)
+
 # 1.3.0 (2023-01-26)
 
 ## ✨ New Features
