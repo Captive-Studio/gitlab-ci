@@ -112,6 +112,11 @@ nodejs:test:
   needs:
     - job: nodejs:build
       artifacts: true
+  artifacts:
+    reports:
+      coverage_report:
+        coverage_format: cobertura
+        path: coverage/cobertura-coverage.xml
   tags:
     - lightweight-job
   script:
