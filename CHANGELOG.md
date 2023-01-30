@@ -1,3 +1,12 @@
+# 1.5.0 (2023-01-30)
+
+## ✨ New Features
+- [`89c39fc`](https://gitlab.com/captive/gitlab-ci/-/commit/89c39fc)  Add support for cobertura report
+
+
+
+# [1.5.0](https://git.captive.fr/captive/gitlab-ci/compare/1.4.0...1.5.0) (2023-01-30)
+
 # 1.4.0 (2023-01-26)
 
 ## ✨ New Features
