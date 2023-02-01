@@ -61,20 +61,20 @@ variables:
 </details>
 
 <details>
-<summary>Deploy on Scalingo</summary>
+<summary>Configure deployment on Scalingo</summary>
 
 1. Create a branch for testing CI__ _(ex: `ci/autodevops`)_
 
 2. Configure `.gitlab-ci.yml` in the project repository
 
     ⚠️ Never commit `SCALINGO_API_TOKEN` value in `.gitlab-ci.yml`
+    ⚠️ Default configuration will deploy to Scalingo App named `$CI_PROJECT_NAME-$CI_PROJECT_ENVIRONMENT`
 
     ```yml
     # .gitlab-ci.yml
     variables:
         AUTO_DEVOPS_PLATFORM_TARGET: 'SCALINGO'
         SCALINGO_API_TOKEN: $CAPTIVE_SCALINGO_API_TOKEN # OR other variable
-        # ⚠️ Will deploy to Scalingo app named $CI_PROJECT_NAME-$CI_PROJECT_ENVIRONMENT
 
         # Override variables if needed (Optional)
         # 
@@ -91,15 +91,30 @@ variables:
 </details>
 
 <details>
-<summary>Deploy on Heroku</summary>
+<summary>Configure deployment on Heroku</summary>
 
-```yml
-# .gitlab-ci.yml
-variables:
-    AUTO_DEVOPS_PLATFORM_TARGET: 'HEROKU'
-    APP_NAME: 'my-app'  # By default, deployment will use app "$APP_NAME-$CI_ENVIRONMENT_NAME" (ex: my-app-staging, my-app-production)
-    HEROKU_API_KEY: $CAPTIVE_HEROKU_API_KEY # OR other variable
-```
+1. Create a branch for testing CI__ _(ex: `ci/autodevops`)_
+
+2. Configure `.gitlab-ci.yml` in the project repository
+
+    ⚠️ Never commit `HEROKU_API_KEY` value in `.gitlab-ci.yml`
+    ⚠️ Default configuration will deploy to Heroku App named `$CI_PROJECT_NAME-$CI_PROJECT_ENVIRONMENT`
+
+    ```yml
+    # .gitlab-ci.yml
+    variables:
+        AUTO_DEVOPS_PLATFORM_TARGET: 'HEROKU'
+        HEROKU_API_KEY: $CAPTIVE_HEROKU_API_KEY # OR other variable
+
+        # ⚠️ Will deploy to Heroku app named $CI_PROJECT_NAME-$CI_PROJECT_ENVIRONMENT
+
+        # Override variables if needed (Optional)
+        # 
+        # APP_NAME: 'my-special-app' => override only $CI_PROJECT_NAME
+        # HEROKU_APP: '' => override only $CI_PROJECT_NAME for Heroku deployments
+        # HEROKU_APP_STAGING: 'my-special-app-preprod-custom' => specify app full name only for staging environment
+        # HEROKU_APP_PRODUCTION: 'my-special-app-custom-prod-custom' => specify app full name only for production environment
+    ```
 
 </details>
 
