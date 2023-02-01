@@ -1,35 +1,10 @@
-.makefile_pass: &pass # ssh
-  - eval $(ssh-agent -s)
-  - mkdir -p $HOME/.ssh
-
-  # pass
-  - echo "$PASS_SSH_PRIVATE_KEY_GZ64" | base64 -d | gunzip | ssh-add -
-  - (ssh -o StrictHostKeyChecking=no git@git.captive.fr true 2> /dev/null || true)
-  - git clone "$PASS_REPOSITORY" ~/.password-store
-  # - export PASSWORD_STORE_DIR=$(pwd)/pass-system
-
-  # gpg
-  - eval $(gpg-agent --daemon --default-cache-ttl 600 --max-cache-ttl 600)
-  - export GPG_AGENT_INFO
-  - echo "$GPG_KEYS_GZ64" | base64 -d | gunzip > keys.asc
-  - echo "$GPG_PRIVATE_KEY_PASSPHRASE" | gpg --pinentry-mode loopback --passphrase-fd 0 --import keys.asc
-  - echo "$GPG_PRIVATE_KEY_PASSPHRASE" | gpg --pinentry-mode loopback --passphrase-fd 0 --decrypt ~/.password-store/test.gpg > /dev/null
-  - pass show test
-
-  # deploy
-  - echo "$DEPLOY_SSH_KNOWN_HOSTS_BASE64" | base64 -d >> $HOME/.ssh/known_hosts
-  - cat $HOME/.ssh/known_hosts
-  - echo "$DEPLOY_SSH_PRIVATE_KEY_GZ64" | base64 -d | gunzip | ssh-add -
 
 .deploy_makefile:
   extends:
     - .docker_dind
   script:
     - set -eu; echo "CI_ENVIRONMENT_NAME = $CI_ENVIRONMENT_NAME"
-    - *pass
-    - make -e stage=$CI_ENVIRONMENT_NAME generate-env
-    - make -e stage=$CI_ENVIRONMENT_NAME ssh-check-fingerprint
-    - make -e stage=$CI_ENVIRONMENT_NAME traefik-deploy
+    - make -e stage=$CI_ENVIRONMENT_NAME deploy
 
 makefile:review:staging:
   extends:
