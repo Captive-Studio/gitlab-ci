@@ -1,4 +1,0 @@
-include:
-  - project: $CI_PROJECT_NAMESPACE
-    file: /Auto-Devops.gitlab-ci.yml
-    ref: $CI_COMMIT_SHORT_SHA
