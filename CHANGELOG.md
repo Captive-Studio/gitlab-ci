@@ -1,3 +1,17 @@
+# 1.6.0 (2023-02-01)
+
+## ✨ New Features
+- [`4db8689`](https://gitlab.com/captive/gitlab-ci/-/commit/4db8689)  Change deploy target name in makefile
+
+## 🐛 Bug Fixes
+- [`50449b6`](https://gitlab.com/captive/gitlab-ci/-/commit/50449b6)  Remove pass dependency
+
+- [`ce3a687`](https://gitlab.com/captive/gitlab-ci/-/commit/ce3a687)  Use docker maker image for deploy with make jobs
+
+
+
+# [1.6.0](https://git.captive.fr/captive/gitlab-ci/compare/1.5.0...1.6.0) (2023-02-01)
+
 # 1.5.0 (2023-01-30)
 
 ## ✨ New Features
