@@ -2,6 +2,9 @@
   extends:
     - .docker_dind
     - .docker_maker_image
+  variables:
+    GIT_STRATEGY: fetch
+    GIT_CHECKOUT: 'true'
   script:
     - set -eu; echo "CI_ENVIRONMENT_NAME = $CI_ENVIRONMENT_NAME"
     - make -e stage=$CI_ENVIRONMENT_NAME ci-deploy
