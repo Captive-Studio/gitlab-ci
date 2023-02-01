@@ -2,6 +2,7 @@
 .deploy_makefile:
   extends:
     - .docker_dind
+    - .docker_maker_image
   script:
     - set -eu; echo "CI_ENVIRONMENT_NAME = $CI_ENVIRONMENT_NAME"
     - make -e stage=$CI_ENVIRONMENT_NAME deploy
