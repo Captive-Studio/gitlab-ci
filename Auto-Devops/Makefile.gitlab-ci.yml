@@ -13,7 +13,7 @@ makefile:check-changelog:
     - .docker_maker_image
   stage: prepare
   script:
-    - make changelog-check
+    - make ci-check-changelog
   allow_failure: true
   rules:
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
@@ -22,27 +22,6 @@ makefile:check-changelog:
       when: never
     - <<: *makefile_present_rule
 
-# prepare:lint:eslint:
-#   extends:
-#   - .code_quality
-#   script:
-#     - controle-qualite.mk eslint
-#   allow_failure: true
-#
-# prepare:lint:prettier:
-#   extends:
-#   - .code_quality
-#   script:
-#     - controle-qualite.mk prettier
-#   allow_failure: true
-#
-# prepare:lint:stylelint:
-#   extends:
-#   - .code_quality
-#   script:
-#     - controle-qualite.mk stylelint
-#   allow_failure: true
-
 makefile:build:
   extends:
     - .docker_maker_image
@@ -50,7 +29,7 @@ makefile:build:
     - .makefile_checkout
   stage: build
   script:
-    - make ci-build ci-push
+    - make ci-build
   rules:
     - <<: *makefile_present_rule
   # FIXME: except:
@@ -59,15 +38,14 @@ makefile:build:
     - docker-dind
     - heavy-job
 
-makefile:test:most:
+makefile:test:
   extends:
     - .docker_maker_image
     - .docker_dind
     - .makefile_checkout
   stage: test
   script:
-    - make -e stage=test generate-env
-    - make test-most
+    - make ci-test
   # FIXME: except:
   #   - /^backup\//
   tags:
@@ -83,8 +61,7 @@ makefile:test:system:
     - .makefile_checkout
   stage: test
   script:
-    - make -e stage=test generate-env
-    - make test-system
+    - make ci-test-system
   # FIXME: except:
   #   - /^backup\//
   rules:
@@ -102,8 +79,7 @@ makefile:release:image:
     - .makefile_checkout
   stage: release
   script:
-    - make ci-push-release
-    - make -e REF_ID=latest ci-push-release
+    - make ci-release-images
   rules:
     - if: $CI_COMMIT_BRANCH != $CI_DEFAULT_BRANCH
       when: never
