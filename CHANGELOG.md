@@ -1,3 +1,14 @@
+# 1.8.0 (2023-02-01)
+
+## ✨ New Features
+- [`b98ac88`](https://gitlab.com/captive/gitlab-ci/-/commit/b98ac88)  Simplify makefile interface
+
+- [`b770fac`](https://gitlab.com/captive/gitlab-ci/-/commit/b770fac)  Renomme make ci-test-most en make ci-test
+
+
+
+# [1.8.0](https://git.captive.fr/captive/gitlab-ci/compare/1.7.0...1.8.0) (2023-02-01)
+
 # 1.7.0 (2023-02-01)
 
 ## ✨ New Features
