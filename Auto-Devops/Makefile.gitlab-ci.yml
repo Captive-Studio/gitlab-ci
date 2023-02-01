@@ -79,7 +79,7 @@ makefile:release:image:
     - .makefile_checkout
   stage: release
   script:
-    - make ci-release-image
+    - make ci-release-images
   rules:
     - if: $CI_COMMIT_BRANCH != $CI_DEFAULT_BRANCH
       when: never
