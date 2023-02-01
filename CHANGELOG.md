@@ -1,3 +1,12 @@
+# 1.6.1 (2023-02-01)
+
+## 🐛 Bug Fixes
+- [`ddf7535`](https://gitlab.com/captive/gitlab-ci/-/commit/ddf7535)  Fix deploy with makefile bug
+
+
+
+## [1.6.1](https://git.captive.fr/captive/gitlab-ci/compare/1.6.0...1.6.1) (2023-02-01)
+
 # 1.6.0 (2023-02-01)
 
 ## ✨ New Features
