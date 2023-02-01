@@ -6,9 +6,14 @@
 # ✓ Each Variables should be documented
 variables:
   # Application name (for deployment, packages, etc)
+  # By default $CI_PROJECT_NAME is used.
+  #
+  # @example
+  # URL: https://git.captive.fr/captive/my-project
+  # $CI_PROJECT_NAME // 'my-project'
   #
   # @type {string}
-  APP_NAME: ''
+  APP_NAME: $CI_PROJECT_NAME
 
   # Default domain for deployment `env.app.$APP_DOMAIN`
   #

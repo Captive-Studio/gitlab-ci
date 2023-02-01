@@ -73,11 +73,15 @@ variables:
     # .gitlab-ci.yml
     variables:
         AUTO_DEVOPS_PLATFORM_TARGET: 'SCALINGO'
-        APP_NAME: 'my-app' # By default, deployment will use app "$APP_NAME-$CI_ENVIRONMENT_NAME" (ex: my-app-staging, my-app-production)
         SCALINGO_API_TOKEN: $CAPTIVE_SCALINGO_API_TOKEN # OR other variable
-        # Overrides (Optional)
-        # SCALINGO_APP_STAGING: 'my-app-preprod-custom' 
-        # SCALINGO_APP_PRODUCTION: 'my-app-custom-prod-custom'
+        # ⚠️ Will deploy to Scalingo app named $CI_PROJECT_NAME-$CI_PROJECT_ENVIRONMENT
+
+        # Override variables if needed (Optional)
+        # 
+        # APP_NAME: 'my-special-app' => override only $CI_PROJECT_NAME
+        # SCALINGO_APP: '' => override only $CI_PROJECT_NAME for scalingo deployments
+        # SCALINGO_APP_STAGING: 'my-special-app-preprod-custom' => specify app full name only for staging environment
+        # SCALINGO_APP_PRODUCTION: 'my-special-app-custom-prod-custom' => specify app full name only for production environment
     ```
 
 3. Check that job `scalingo:review:staging` is present and successful (manual trigger is required)
