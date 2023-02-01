@@ -38,14 +38,14 @@ makefile:build:
     - docker-dind
     - heavy-job
 
-makefile:test:most:
+makefile:test:
   extends:
     - .docker_maker_image
     - .docker_dind
     - .makefile_checkout
   stage: test
   script:
-    - make ci-test-most
+    - make ci-test
   # FIXME: except:
   #   - /^backup\//
   tags:
