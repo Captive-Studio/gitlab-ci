@@ -1,3 +1,12 @@
+# 1.8.1 (2023-02-01)
+
+## 🐛 Bug Fixes
+- [`40c8de1`](https://gitlab.com/captive/gitlab-ci/-/commit/40c8de1)  Correct variable used for project
+
+
+
+## [1.8.1](https://git.captive.fr/captive/gitlab-ci/compare/1.8.0...1.8.1) (2023-02-01)
+
 # 1.8.0 (2023-02-01)
 
 ## ✨ New Features
