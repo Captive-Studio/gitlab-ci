@@ -1,3 +1,12 @@
+# 1.7.0 (2023-02-01)
+
+## ✨ New Features
+- [`38d240d`](https://gitlab.com/captive/gitlab-ci/-/commit/38d240d)  Use $CI_PROJECT_NAME as default for $APP_NAME
+
+
+
+# [1.7.0](https://git.captive.fr/captive/gitlab-ci/compare/1.6.1...1.7.0) (2023-02-01)
+
 # 1.6.1 (2023-02-01)
 
 ## 🐛 Bug Fixes
