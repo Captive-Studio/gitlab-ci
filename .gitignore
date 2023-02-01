@@ -143,5 +143,5 @@ Temporary Items
 !packages/*/lib/**
 packages/*/lib/*.spec.*
 
-# mrm tester
-_tester
+
+test/test.gitlab-ci.yml
