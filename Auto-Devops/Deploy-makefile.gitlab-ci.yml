@@ -1,3 +1,5 @@
+# @see https://docs.gitlab.com/ee/ci/variables/predefined_variables.html
+
 .deploy_makefile:
   extends:
     - .docker_dind
@@ -6,8 +8,11 @@
     GIT_STRATEGY: fetch
     GIT_CHECKOUT: 'true'
   script:
-    - set -eu; echo "CI_ENVIRONMENT_NAME = $CI_ENVIRONMENT_NAME"
-    - make -e stage=$CI_ENVIRONMENT_NAME ci-deploy
+    - |
+      set -eu;
+      echo "CI_ENVIRONMENT_NAME = $CI_ENVIRONMENT_NAME"
+      echo "CI_ENVIRONMENT_URL = $CI_ENVIRONMENT_URL"
+    - make ci-deploy
 
 makefile:review:staging:
   extends:
