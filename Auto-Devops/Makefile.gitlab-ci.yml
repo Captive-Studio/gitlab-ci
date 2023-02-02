@@ -1,3 +1,16 @@
+# Makefile deployment based
+#
+# Used to have complete control over task steps
+#
+# Guidelines
+#
+# ✓ If Makefile is present, every other jobs should be disabled (NodeJS, Ruby, etc)
+# ✓ Makefile script should be compatible with https://docs.gitlab.com/ee/ci/variables/predefined_variables.html
+# ✓ Simple 1:1 correspondence between gitlab job <> Makefile target
+# ✓ Convention :
+#     gitlab job: 'makefile:${job_name}'
+#     makefile target : 'make ci-${job_name}'
+
 .makefile_present_rule: &makefile_present_rule
   exists:
     - Makefile
