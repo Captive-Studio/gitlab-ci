@@ -1,3 +1,18 @@
+# 1.8.2 (2023-02-02)
+
+## 🐛 Bug Fixes
+- [`a32495d`](https://gitlab.com/captive/gitlab-ci/-/commit/a32495d)  Add missing npm cache folder
+
+- [`2891e03`](https://gitlab.com/captive/gitlab-ci/-/commit/2891e03)  Change nodejs install cache key
+
+- [`33d90ee`](https://gitlab.com/captive/gitlab-ci/-/commit/33d90ee)  Use different cache key for .npm and node_modules
+
+- [`f97dffc`](https://gitlab.com/captive/gitlab-ci/-/commit/f97dffc)  Use pipeline id as cache key for node_modules
+
+
+
+## [1.8.2](https://git.captive.fr/captive/gitlab-ci/compare/1.8.1...1.8.2) (2023-02-02)
+
 # 1.8.1 (2023-02-01)
 
 ## 🐛 Bug Fixes
