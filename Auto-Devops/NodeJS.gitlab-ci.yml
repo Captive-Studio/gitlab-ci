@@ -45,6 +45,7 @@ nodejs:install:
     - key: ${CI_COMMIT_REF_SLUG}
       # must be inside $CI_PROJECT_DIR for gitlab-runner caching (#3)
       paths:
+        - ${CI_NPM_CACHE_FOLDER}
         - ${CI_YARN_CACHE_FOLDER}
       when: on_success
       policy: pull-push
