@@ -11,10 +11,7 @@
 .nodejs_cache:
   cache:
     - &nodejs_cache
-      key:
-        files:
-          - package-lock.json
-          - yarn.lock
+      key: ${CI_COMMIT_REF_SLUG}-node-install
       paths:
         - ${CI_CYPRESS_CACHE_FOLDER}
         - '**/node_modules/'
