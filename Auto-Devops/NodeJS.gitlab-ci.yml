@@ -39,7 +39,7 @@ nodejs:install:
     - .gitlab_fast_zip
   stage: prepare
   cache:
-    - key: ${CI_COMMIT_REF_SLUG}
+    - key: ${CI_COMMIT_REF_SLUG}-package-cache
       # must be inside $CI_PROJECT_DIR for gitlab-runner caching (#3)
       paths:
         - ${CI_NPM_CACHE_FOLDER}
