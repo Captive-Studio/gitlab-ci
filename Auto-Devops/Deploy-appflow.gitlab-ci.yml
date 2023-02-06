@@ -1,0 +1,99 @@
+# @see https://gitlab.com/gitlab-org/gitlab-foss/-/blob/master/lib/gitlab/ci/templates/Jobs/Deploy/EC2.gitlab-ci.yml
+
+variables:
+  # Required: the name of the app
+  #
+  # @type {string}
+  APPFLOW_APP: $APP_NAME
+
+  # Optional key to override only for staging environment
+  #
+  # @type {string}
+  # @default "$APPFLOW_APP-staging"
+  APPFLOW_APP_STAGING: ''
+
+  # Optional key to override only for production environment
+  #
+  # @type {string}
+  # @default "$APPFLOW_APP-production"
+  APPFLOW_APP_PRODUCTION: ''
+
+  # Required the api key used to deploy
+  #
+  # @type {string}
+  APPFLOW_API_TOKEN: ''
+
+  # Override api key only for staging environment
+  #
+  # @default $APPFLOW_API_TOKEN
+  APPFLOW_API_TOKEN_STAGING: ''
+
+  # Override api key only for production environment
+  #
+  # @default $APPFLOW_API_TOKEN
+  APPFLOW_API_TOKEN_PRODUCTION: ''
+
+.deploy_appflow:
+  # @see https://ionic.io/docs/appflow/cookbook/integrate-ci#gitlab-ci
+  variables:
+    GIT_STRATEGY: clone
+    GIT_DEPTH: 0
+  image: ghcr.io/ionic-team/ionic-cli:6.11.11
+  script:
+    - exit 1
+    # - gem install dpl --pre
+    # - APPFLOW_API_TOKEN=${APPFLOW_API_TOKEN_OVERRIDE:-$APPFLOW_API_TOKEN}
+    # - APPFLOW_APP=${APPFLOW_APP_OVERRIDE:-"$APPFLOW_APP-$CI_ENVIRONMENT_NAME"}
+    # - echo "APPFLOW_APP = $APPFLOW_APP"
+    # - >
+    #   dpl
+    #   --provider=scalingo
+    #   --api_token=$APPFLOW_API_TOKEN
+    #   --app=$APPFLOW_APP
+    #   --remote="scalingo-dpl --force"
+    #   --branch=refs/heads/master
+
+.auto-devops_staging:
+  variables:
+    APPFLOW_API_TOKEN_OVERRIDE: $APPFLOW_API_TOKEN_STAGING
+    APPFLOW_APP_OVERRIDE: $APPFLOW_APP_STAGING
+
+.auto-devops_production:
+  variables:
+    APPFLOW_API_TOKEN_OVERRIDE: $APPFLOW_API_TOKEN_PRODUCTION
+    APPFLOW_APP_OVERRIDE: $APPFLOW_APP_PRODUCTION
+
+# appflow:review:review:
+#   extends:
+#     - .auto-devops_review
+#     - .deploy_appflow
+#   variables:
+#     IF_AUTO_DEVOPS_PLATFORM_TARGET: APPFLOW
+
+appflow:review:staging:
+  extends:
+    - .auto-devops_review_staging
+    - .deploy_appflow
+  variables:
+    IF_AUTO_DEVOPS_PLATFORM_TARGET: APPFLOW
+
+appflow:staging:
+  extends:
+    - .auto-devops_staging
+    - .deploy_appflow
+  variables:
+    IF_AUTO_DEVOPS_PLATFORM_TARGET: APPFLOW
+
+appflow:production:
+  extends:
+    - .auto-devops_production_auto
+    - .deploy_appflow
+  variables:
+    IF_AUTO_DEVOPS_PLATFORM_TARGET: APPFLOW
+
+appflow:production_manual:
+  extends:
+    - .auto-devops_production_manual
+    - .deploy_appflow
+  variables:
+    IF_AUTO_DEVOPS_PLATFORM_TARGET: APPFLOW
