@@ -22,7 +22,7 @@
   },
   "eslintIgnore": [],
   "devDependencies": {
-    "@captive/eslint-config": "1.7.11",
+    "@captive/eslint-config": "1.7.16",
     "envhandlebars": "^1.4.8",
     "eslint": "8.31.0",
     "gitlab-ci-lint": "1.1.0",
