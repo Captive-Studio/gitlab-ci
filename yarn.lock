@@ -59,7 +59,7 @@ __metadata:
   resolution: "@captive/gitlab-ci@workspace:."
   dependencies:
     "@captive/eslint-config": 1.7.16
-    envhandlebars: ^1.4.8
+    envhandlebars: 1.4.8
     eslint: 8.31.0
     gitlab-ci-lint: 1.1.0
     prettier: 2.8.2
@@ -944,7 +944,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"envhandlebars@npm:^1.4.8":
+"envhandlebars@npm:1.4.8":
   version: 1.4.8
   resolution: "envhandlebars@npm:1.4.8"
   dependencies:
