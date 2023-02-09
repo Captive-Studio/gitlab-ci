@@ -69,6 +69,9 @@ variables:
 variables:
     # 'true' to enabled, null or '' to disable
 
+    # Build jobs
+    BUILD_ENABLED: ''
+
     # Code quality jobs (ESLint, Rubocop, etc)
     CODE_QUALITY_ENABLED: ''
 
