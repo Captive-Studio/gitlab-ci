@@ -2,6 +2,18 @@
 
 .ruby_rules:
   rules:
+    - &skip_build_disabled
+      if: $BUILD_ENABLED == null || $BUILD_ENABLED == ''
+      when: never
+    - &skip_code_quality_disabled
+      if: $CODE_QUALITY_ENABLED == null || $CODE_QUALITY_ENABLED == ''
+      when: never
+    - &skip_test_disabled
+      if: $TEST_ENABLED == null || $TEST_ENABLED == ''
+      when: never
+    - &skip_test_system_disabled
+      if: $TEST_SYSTEM_ENABLED == null || $TEST_SYSTEM_ENABLED == ''
+      when: never
     - &skip_if_makefile
       exists:
         - Makefile
@@ -51,6 +63,7 @@ ruby:rubocop:
   script:
     - controle-qualite.mk rubocop
   rules:
+    - <<: *skip_code_quality_disabled
     - <<: *only_rubocop_conf
 
 ruby:bundle-audit:
@@ -68,6 +81,7 @@ ruby:brakeman:
   script:
     - controle-qualite.mk brakeman
   rules:
+    - <<: *skip_code_quality_disabled
     - <<: *only_gemfile
   allow_failure: true
 
@@ -96,6 +110,7 @@ ruby:bundle-rubocop:
     - job: ruby:install
       artifacts: true
   rules:
+    - <<: *skip_code_quality_disabled
     - <<: *skip_if_makefile
     - <<: *only_rubocop_conf
 
@@ -118,9 +133,6 @@ ruby:bundle-rubocop:
   needs:
     - job: ruby:install
       artifacts: true
-  rules:
-    - <<: *skip_if_makefile
-    - <<: *only_rakefile
 
 ruby:rake:test:
   extends:
@@ -144,6 +156,10 @@ ruby:rake:test:
       coverage_report:
         coverage_format: cobertura
         path: coverage/coverage.xml
+  rules:
+    - <<: *skip_test_disabled
+    - <<: *skip_if_makefile
+    - <<: *only_rakefile
 
 ruby:rake:test-system:
   extends:
@@ -159,3 +175,7 @@ ruby:rake:test-system:
       if [[ "$RAKE_TEST_FOUND" == "0" ]];then
         echo 'Warning: No rake test:system command found'
       fi
+  rules:
+    - <<: *skip_test_system_disabled
+    - <<: *skip_if_makefile
+    - <<: *only_rakefile

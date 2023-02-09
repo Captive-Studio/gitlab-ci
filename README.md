@@ -50,12 +50,46 @@ variables:
 ## Recipes
 
 <details>
-<summary>Disable Review</summary>
+<summary>Pin version (Ruby, NodeJS, etc)</summary>
 
 ```yml
 # .gitlab-ci.yml
 variables:
-    REVIEW_DISABLED: 'true' # Disable Review
+    RUBY_VERSION: 'x.x.x' # It will use image `cimg/ruby-${RUBY_VERSION}` and `cimg/ruby-${RUBY_VERSION}-browsers` for all `ruby:*` jobs
+    NODEJS_VERSION: 'x.x.x' # It will use image `cimg/node-${NODEJS_VERSION}` and `cimg/node-${NODEJS_VERSION}-browsers` for all `node:*` jobs
+```
+
+</details>
+
+<details>
+<summary>Enable / Disable job</summary>
+
+```yml
+# .gitlab-ci.yml
+variables:
+    # 'true' to enabled, null or '' to disable
+
+    # Build jobs
+    BUILD_ENABLED: ''
+
+    # Code quality jobs (ESLint, Rubocop, etc)
+    CODE_QUALITY_ENABLED: ''
+
+    # Test & Test system step
+    TEST_ENABLED: ''
+    TEST_SYSTEM_ENABLED: ''
+
+    # Review step
+    REVIEW_ENABLED: ''
+
+    # Deploy to staging step
+    STAGING_ENABLED: ''
+
+    # Deploy to canary step
+    CANARY_ENABLED: ''
+
+    # Gitlab default variable to disable production deployment
+    CI_DEPLOY_FREEZE: ''
 ```
 
 </details>
