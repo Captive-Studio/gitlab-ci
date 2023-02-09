@@ -69,6 +69,9 @@ variables:
 variables:
     # 'true' to enabled, null or '' to disable
 
+    # Code quality jobs (ESLint, Rubocop, etc)
+    CODE_QUALITY_ENABLED: ''
+
     # Test & Test system step
     TEST_ENABLED: ''
     TEST_SYSTEM_ENABLED: ''
