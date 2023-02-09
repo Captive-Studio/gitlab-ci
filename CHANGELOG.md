@@ -1,3 +1,16 @@
+# 1.9.0 (2023-02-09)
+
+## ✨ New Features
+- [`105c93b`](https://gitlab.com/captive/gitlab-ci/-/commit/105c93b)  Add TEST_ENABLED and TEST_SYSTEM_ENABLED flags
+
+- [`12bebec`](https://gitlab.com/captive/gitlab-ci/-/commit/12bebec)  Add CODE_QUALITY_ENABLED variable
+
+- [`95a30c2`](https://gitlab.com/captive/gitlab-ci/-/commit/95a30c2)  Add BUILD_ENABLED flag
+
+
+
+# [1.9.0](https://git.captive.fr/captive/gitlab-ci/compare/1.8.2...1.9.0) (2023-02-09)
+
 # 1.8.2 (2023-02-02)
 
 ## 🐛 Bug Fixes
