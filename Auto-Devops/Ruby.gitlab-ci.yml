@@ -2,6 +2,9 @@
 
 .ruby_rules:
   rules:
+    - &skip_code_quality_disabled
+      if: $CODE_QUALITY_ENABLED == null || $CODE_QUALITY_ENABLED == ''
+      when: never
     - &skip_test_disabled
       if: $TEST_ENABLED == null || $TEST_ENABLED == ''
       when: never
@@ -57,6 +60,7 @@ ruby:rubocop:
   script:
     - controle-qualite.mk rubocop
   rules:
+    - <<: *skip_code_quality_disabled
     - <<: *only_rubocop_conf
 
 ruby:bundle-audit:
@@ -74,6 +78,7 @@ ruby:brakeman:
   script:
     - controle-qualite.mk brakeman
   rules:
+    - <<: *skip_code_quality_disabled
     - <<: *only_gemfile
   allow_failure: true
 
@@ -102,6 +107,7 @@ ruby:bundle-rubocop:
     - job: ruby:install
       artifacts: true
   rules:
+    - <<: *skip_code_quality_disabled
     - <<: *skip_if_makefile
     - <<: *only_rubocop_conf
 

@@ -21,6 +21,11 @@ variables:
   # @type {string}
   APP_DOMAIN: captive.dev
 
+  # Enable Code quality (lint, rubocop, audit, etc)
+  #
+  # @type {'true'|''}
+  CODE_QUALITY_ENABLED: 'true'
+
   # Enable Test step
   #
   # @type {'true'|''}

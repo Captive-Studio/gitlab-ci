@@ -1,5 +1,8 @@
 .nodejs_rules:
   rules:
+    - &skip_code_quality_disabled
+      if: $CODE_QUALITY_ENABLED == null || $CODE_QUALITY_ENABLED == ''
+      when: never
     - &skip_test_disabled
       if: $TEST_ENABLED == null || $TEST_ENABLED == ''
       when: never
@@ -105,6 +108,7 @@ nodejs:lint:
   script:
     - npm run lint --if-present
   rules:
+    - <<: *skip_code_quality_disabled
     - <<: *skip_if_makefile
     - <<: *nodejs_present_rule
 
