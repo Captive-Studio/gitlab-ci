@@ -1,5 +1,8 @@
 .nodejs_rules:
   rules:
+    - &skip_build_disabled
+      if: $BUILD_ENABLED == null || $BUILD_ENABLED == ''
+      when: never
     - &skip_code_quality_disabled
       if: $CODE_QUALITY_ENABLED == null || $CODE_QUALITY_ENABLED == ''
       when: never
@@ -92,6 +95,7 @@ nodejs:build:
       - packages/*/lib/
       - packages/*/dist/
   rules:
+    - <<: *skip_build_disabled
     - <<: *skip_if_makefile
     - <<: *nodejs_present_rule
 

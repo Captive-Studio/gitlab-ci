@@ -13,6 +13,9 @@
 
 .makefile_rules:
   rules:
+    - &skip_build_disabled
+      if: $BUILD_ENABLED == null || $BUILD_ENABLED == ''
+      when: never
     - &skip_code_quality_disabled
       if: $CODE_QUALITY_ENABLED == null || $CODE_QUALITY_ENABLED == ''
       when: never
@@ -61,6 +64,7 @@ makefile:build:
   script:
     - make ci-build
   rules:
+    - <<: *skip_build_disabled
     - <<: *makefile_present_rule
   # FIXME: except:
   #   - /^backup\//
