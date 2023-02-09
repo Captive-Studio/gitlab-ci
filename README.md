@@ -50,6 +50,18 @@ variables:
 ## Recipes
 
 <details>
+<summary>Pin version (Ruby, NodeJS, etc)</summary>
+
+```yml
+# .gitlab-ci.yml
+variables:
+    RUBY_VERSION: 'x.x.x' # It will use image `cimg/ruby-${RUBY_VERSION}` and `cimg/ruby-${RUBY_VERSION}-browsers` for all `ruby:*` jobs
+    NODEJS_VERSION: 'x.x.x' # It will use image `cimg/node-${NODEJS_VERSION}` and `cimg/node-${NODEJS_VERSION}-browsers` for all `node:*` jobs
+```
+
+</details>
+
+<details>
 <summary>Disable Review</summary>
 
 ```yml
