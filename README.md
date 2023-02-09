@@ -87,6 +87,9 @@ variables:
 
     # Deploy to canary step
     CANARY_ENABLED: ''
+
+    # Gitlab default variable to disable production deployment
+    CI_DEPLOY_FREEZE: ''
 ```
 
 </details>
