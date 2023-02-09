@@ -67,7 +67,11 @@ variables:
 ```yml
 # .gitlab-ci.yml
 variables:
-    # 'true' to enabled, '' empty string to disable
+    # 'true' to enabled, null or '' to disable
+
+    # Test & Test system step
+    TEST_ENABLED: ''
+    TEST_SYSTEM_ENABLED: ''
 
     # Review step
     REVIEW_ENABLED: ''
