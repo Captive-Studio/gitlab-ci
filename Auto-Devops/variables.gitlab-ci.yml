@@ -89,7 +89,7 @@ variables:
   # NodeJS
   #
 
-  # NodeJS version used (with `cimg/node-${NODEJS_VERSION}`)
+  # NodeJS version used (with `image: cimg/node-${NODEJS_VERSION}`)
   #
   # @see https://circleci.com/developer/images/image/cimg/node
   NODEJS_VERSION: 19.5.0
@@ -98,7 +98,7 @@ variables:
   # Ruby
   #
 
-  # NodeJS version used (with `cimg/ruby-${NODEJS_VERSION}`)
+  # NodeJS version used (with `image: cimg/ruby-${NODEJS_VERSION}`)
   #
   # @see https://circleci.com/developer/images/image/cimg/ruby
   RUBY_VERSION: 3.2.0
