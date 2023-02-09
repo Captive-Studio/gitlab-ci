@@ -3,6 +3,7 @@
 # Guidelines
 #
 # ✓ Variables should be `UPPER_UNDERSCORE_CASE`
+# ✓ Toggle variables should always use `_ENABLED` (not `_DISABLED`)
 # ✓ Each Variables should be documented
 variables:
   # Application name (for deployment, packages, etc)
@@ -19,6 +20,16 @@ variables:
   #
   # @type {string}
   APP_DOMAIN: captive.dev
+
+  # Enable Test step
+  #
+  # @type {'true'|''}
+  TEST_ENABLED: 'true'
+
+  # Enable Test system step
+  #
+  # @type {'true'|''}
+  TEST_SYSTEM_ENABLED: 'true'
 
   # Enable Review step
   #

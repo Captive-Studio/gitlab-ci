@@ -11,9 +11,17 @@
 #     gitlab job: 'makefile:${job_name}'
 #     makefile target : 'make ci-${job_name}'
 
-.makefile_present_rule: &makefile_present_rule
-  exists:
-    - Makefile
+.makefile_present_rule:
+  rules:
+    - &skip_test_disabled
+      if: $TEST_ENABLED == null || $TEST_ENABLED == ''
+      when: never
+    - &skip_test_system_disabled
+      if: $TEST_SYSTEM_ENABLED == null || $TEST_SYSTEM_ENABLED == ''
+      when: never
+    - &makefile_present_rule
+      exists:
+        - Makefile
 
 # TODO: use $CI_BUILD_REF_NAME in makefile
 .makefile_checkout:
@@ -65,6 +73,7 @@ makefile:test:
     - docker-dind
     - heavy-job
   rules:
+    - <<: *skip_test_disabled
     - <<: *makefile_present_rule
 
 makefile:test:system:
@@ -78,6 +87,7 @@ makefile:test:system:
   # FIXME: except:
   #   - /^backup\//
   rules:
+    - <<: *skip_test_system_disabled
     - <<: *makefile_present_rule
       when: manual
   tags:

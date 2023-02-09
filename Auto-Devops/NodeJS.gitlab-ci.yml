@@ -1,5 +1,11 @@
 .nodejs_rules:
   rules:
+    - &skip_test_disabled
+      if: $TEST_ENABLED == null || $TEST_ENABLED == ''
+      when: never
+    - &skip_test_system_disabled
+      if: $TEST_SYSTEM_ENABLED == null || $TEST_SYSTEM_ENABLED == ''
+      when: never
     - &skip_if_makefile
       exists:
         - Makefile
@@ -120,6 +126,7 @@ nodejs:test:
   script:
     - npm test --if-present
   rules:
+    - <<: *skip_test_disabled
     - <<: *skip_if_makefile
     - <<: *nodejs_present_rule
 
@@ -136,5 +143,6 @@ nodejs:test:e2e:
   script:
     - npm run test:e2e --if-present
   rules:
+    - <<: *skip_test_system_disabled
     - <<: *skip_if_makefile
     - <<: *nodejs_present_rule
