@@ -62,12 +62,21 @@ variables:
 </details>
 
 <details>
-<summary>Disable Review</summary>
+<summary>Enable / Disable job</summary>
 
 ```yml
 # .gitlab-ci.yml
 variables:
-    REVIEW_DISABLED: 'true' # Disable Review
+    # 'true' to enabled, '' empty string to disable
+
+    # Review step
+    REVIEW_ENABLED: ''
+
+    # Deploy to staging step
+    STAGING_ENABLED: ''
+
+    # Deploy to canary step
+    CANARY_ENABLED: ''
 ```
 
 </details>
