@@ -10,36 +10,17 @@
 
 ## Getting Started
 
-## Usage
-
-### GitlabCI Configuration
-
-```yml
-# .gitlab-ci.yml
-
-# 1️⃣ Include remote common configuration
-include:
-  - project: captive/gitlab-ci
-    file: '/Auto-Devops.gitlab-ci.yml'
-    ref: v1.9.0
-    # OR Unstable / latest version
-    # ref: main
-
-# 2️⃣ Customize configuration (Optional)
-variables:
-  # @see https://github.com/Captive-Studio/gitlab-ci/blob/main/Auto-Devops/variables.gitlab-ci.yml
-  # ...
-```
+This project aims to make GitlabCI configuration easier for each project. One include to build them all !
 
 ## Features
 
-- 🚀 Simple configuration for developer
+- 🚀 Zero configuration philosophy, use variables to configure jobs
 - ✓ Supported Technologies
   - Ruby
   - NodeJS
   - Docker
 - ⛙ Merge request workflow :
-  - Pipelines enabled for `main`, `develop` branch
+  - Pipelines enabled for `main` branch (`develop` for backward compatibility)
   - Pipelines enabled for merge requests
   - ⚠️ No pipeline for detached branches (to avoid duplication with branch)
 - 📦 Deploy platform :
@@ -47,52 +28,30 @@ variables:
   - ✓ Heroku `AUTO_DEVOPS_PLATFORM_TARGET: 'HEROKU'`
   - ✓ Makefile `AUTO_DEVOPS_PLATFORM_TARGET: 'MAKEFILE'` (custom deploy script)
 
-## Recipes
+## Usage
 
-<details>
-<summary>Pin version (Ruby, NodeJS, etc)</summary>
-
-```yml
-# .gitlab-ci.yml
-variables:
-    RUBY_VERSION: 'x.x.x' # It will use image `cimg/ruby-${RUBY_VERSION}` and `cimg/ruby-${RUBY_VERSION}-browsers` for all `ruby:*` jobs
-    NODEJS_VERSION: 'x.x.x' # It will use image `cimg/node-${NODEJS_VERSION}` and `cimg/node-${NODEJS_VERSION}-browsers` for all `node:*` jobs
-```
-
-</details>
-
-<details>
-<summary>Enable / Disable job</summary>
+### 1. Configure Build
 
 ```yml
 # .gitlab-ci.yml
-variables:
-    # 'true' to enabled, null or '' to disable
 
-    # Build jobs
-    BUILD_ENABLED: ''
+# 1.1 Include remote common configuration
+include:
+  - project: captive/gitlab-ci
+    file: '/Auto-Devops.gitlab-ci.yml'
+    ref: v1.9.0
+    # OR Unstable / latest version
+    # ref: main
 
-    # Code quality jobs (ESLint, Rubocop, etc)
-    CODE_QUALITY_ENABLED: ''
+# 1.2 Commit & Push
 
-    # Test & Test system step
-    TEST_ENABLED: ''
-    TEST_SYSTEM_ENABLED: ''
+# 1.3 Check that correct pipelines are running and passing
 
-    # Review step
-    REVIEW_ENABLED: ''
-
-    # Deploy to staging step
-    STAGING_ENABLED: ''
-
-    # Deploy to canary step
-    CANARY_ENABLED: ''
-
-    # Gitlab default variable to disable production deployment
-    CI_DEPLOY_FREEZE: ''
 ```
 
-</details>
+### 2. Configure deployment
+
+Depending on the target development platform, choose one :
 
 <details>
 <summary>Configure deployment on Scalingo</summary>
@@ -153,12 +112,63 @@ variables:
 </details>
 
 <details>
-<summary>Deploy with Makefile</summary>
+<summary>Configure deployment with Makefile</summary>
 
 ```yml
 # .gitlab-ci.yml
 variables:
     AUTO_DEVOPS_PLATFORM_TARGET: 'MAKEFILE'
+```
+
+</details>
+
+### 3. 🎉 You're done
+
+## Recipes
+
+<details>
+<summary>Pin version (Ruby, NodeJS, etc)</summary>
+
+```yml
+# .gitlab-ci.yml
+variables:
+    RUBY_VERSION: 'x.x.x' # It will use image `cimg/ruby-${RUBY_VERSION}` and `cimg/ruby-${RUBY_VERSION}-browsers` for all `ruby:*` jobs
+    NODEJS_VERSION: 'x.x.x' # It will use image `cimg/node-${NODEJS_VERSION}` and `cimg/node-${NODEJS_VERSION}-browsers` for all `node:*` jobs
+```
+
+</details>
+
+<details>
+<summary>Enable / Disable job</summary>
+
+ℹ️ By default most jobs are enabled, here are some examples to disable jobs if needed
+
+```yml
+# .gitlab-ci.yml
+variables:
+    # 'true' to enabled, null or '' to disable
+
+    # Example: Disable Build jobs
+    BUILD_ENABLED: ''
+
+    # Example: Disable Code quality jobs (ESLint, Rubocop, etc)
+    CODE_QUALITY_ENABLED: ''
+
+    # Example: Disable Test & Test system step
+    TEST_ENABLED: ''
+    TEST_SYSTEM_ENABLED: ''
+
+    # Example: Disable Review step
+    REVIEW_ENABLED: ''
+
+    # Example: Disable Deploy to staging step
+    STAGING_ENABLED: ''
+
+    # Example: Disable Deploy to canary step
+    CANARY_ENABLED: ''
+
+    # Example: Disable Gitlab default variable to disable production deployment
+    CI_DEPLOY_FREEZE: ''
 ```
 
 </details>
