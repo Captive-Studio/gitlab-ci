@@ -11,7 +11,7 @@
 #     gitlab job: 'makefile:${job_name}'
 #     makefile target : 'make ci-${job_name}'
 
-.makefile_present_rule:
+.makefile_rules:
   rules:
     - &skip_test_disabled
       if: $TEST_ENABLED == null || $TEST_ENABLED == ''
