@@ -54,7 +54,7 @@ include:
 Depending on the target development platform, choose one :
 
 <details>
-<summary>Configure deployment on Scalingo</summary>
+<summary>Configure deployment on <b>Scalingo</b></summary>
 
 1. Create a branch for testing CI _(ex: `ci/autodevops`)_
 
@@ -85,7 +85,7 @@ Depending on the target development platform, choose one :
 </details>
 
 <details>
-<summary>Configure deployment on Heroku</summary>
+<summary>Configure deployment on <b>Heroku</b></summary>
 
 1. Create a branch for testing CI _(ex: `ci/autodevops`)_
 
@@ -114,7 +114,7 @@ Depending on the target development platform, choose one :
 </details>
 
 <details>
-<summary>Configure deployment with Makefile</summary>
+<summary>Configure deployment with <b>Makefile</b></summary>
 
 ```yml
 # .gitlab-ci.yml
