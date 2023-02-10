@@ -56,11 +56,12 @@ Depending on the target development platform, choose one :
 <details>
 <summary>Configure deployment on Scalingo</summary>
 
-1. Create a branch for testing CI__ _(ex: `ci/autodevops`)_
+1. Create a branch for testing CI _(ex: `ci/autodevops`)_
 
 2. Configure `.gitlab-ci.yml` in the project repository
 
     ⚠️ Never commit `SCALINGO_API_TOKEN` value in `.gitlab-ci.yml`
+
     ⚠️ Default configuration will deploy to Scalingo App named `$CI_PROJECT_NAME-$CI_PROJECT_ENVIRONMENT`
 
     ```yml
@@ -86,11 +87,12 @@ Depending on the target development platform, choose one :
 <details>
 <summary>Configure deployment on Heroku</summary>
 
-1. Create a branch for testing CI__ _(ex: `ci/autodevops`)_
+1. Create a branch for testing CI _(ex: `ci/autodevops`)_
 
 2. Configure `.gitlab-ci.yml` in the project repository
 
     ⚠️ Never commit `HEROKU_API_KEY` value in `.gitlab-ci.yml`
+
     ⚠️ Default configuration will deploy to Heroku App named `$CI_PROJECT_NAME-$CI_PROJECT_ENVIRONMENT`
 
     ```yml
