@@ -1,3 +1,15 @@
+# 1.10.0 (2023-02-10)
+
+## ✨ New Features
+- [`814afe9`](https://gitlab.com/captive/gitlab-ci/-/commit/814afe9)  Support NodeJS installation along with Ruby jobs
+
+## 🐛 Bug Fixes
+- [`04e7239`](https://gitlab.com/captive/gitlab-ci/-/commit/04e7239)  Remove needs: statements
+
+
+
+# [1.10.0](https://git.captive.fr/captive/gitlab-ci/compare/1.9.0...1.10.0) (2023-02-10)
+
 # 1.9.0 (2023-02-09)
 
 ## ✨ New Features
