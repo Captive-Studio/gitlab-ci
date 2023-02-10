@@ -85,9 +85,6 @@ nodejs:build:
   stage: build
   script:
     - npm run build --if-present
-  needs:
-    - job: nodejs:install
-      artifacts: true
   artifacts:
     paths:
       - dist/
@@ -104,9 +101,6 @@ nodejs:lint:
     - .nodejs_image
     - .nodejs_cache
   stage: test
-  needs:
-    - job: nodejs:build
-      artifacts: true
   tags:
     - lightweight-job
   script:
@@ -121,9 +115,6 @@ nodejs:test:
     - .nodejs_image
     - .nodejs_cache
   stage: test
-  needs:
-    - job: nodejs:build
-      artifacts: true
   artifacts:
     reports:
       coverage_report:
@@ -143,9 +134,6 @@ nodejs:test:e2e:
     - .nodejs_image_browsers
     - .nodejs_cache
   stage: test
-  needs:
-    - job: nodejs:build
-      artifacts: true
   tags:
     - heavy-job
   script:

@@ -106,9 +106,6 @@ ruby:bundle-rubocop:
   stage: test
   script:
     - bundle exec rubocop
-  needs:
-    - job: ruby:install
-      artifacts: true
   rules:
     - <<: *skip_code_quality_disabled
     - <<: *skip_if_makefile
@@ -130,9 +127,6 @@ ruby:bundle-rubocop:
         bundle exec rake db:create db:migrate
         bundle exec rake db:seed
       fi
-  needs:
-    - job: ruby:install
-      artifacts: true
 
 ruby:rake:test:
   extends:
