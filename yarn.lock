@@ -32,11 +32,11 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@captive/eslint-config@npm:1.7.16":
-  version: 1.7.16
-  resolution: "@captive/eslint-config@npm:1.7.16"
+"@captive/eslint-config@npm:1.7.17":
+  version: 1.7.17
+  resolution: "@captive/eslint-config@npm:1.7.17"
   dependencies:
-    "@captive/prettier-config": ^1.1.6
+    "@captive/prettier-config": ^1.1.7
     "@w5s/dev": ^1.0.0-alpha.3
     "@w5s/eslint-config": 1.0.0-alpha.51
     eslint-plugin-cypress: ^2.12.1
@@ -50,7 +50,7 @@ __metadata:
       optional: true
     typescript:
       optional: true
-  checksum: a1b5814b7f1ed5eb5eb8121acef7a0e5511358dbf2e980b4b8f3459c4ce40990822683448cb4af4aa0217410bad084b9b9f5184eacb3c9a91e5acf3a25b92737
+  checksum: 787f4690a0d970edf35529b41911d87ed5eedc82f2e2e6e92e2b6b32e0b53118a6e58ef95a92a984b06f3316bce37d1b9effd4c7d271487660ea2aac85565607
   languageName: node
   linkType: hard
 
@@ -58,7 +58,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@captive/gitlab-ci@workspace:."
   dependencies:
-    "@captive/eslint-config": 1.7.16
+    "@captive/eslint-config": 1.7.17
     envhandlebars: 1.4.8
     eslint: 8.33.0
     gitlab-ci-lint: 1.1.0
@@ -66,9 +66,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@captive/prettier-config@npm:^1.1.6":
-  version: 1.1.6
-  resolution: "@captive/prettier-config@npm:1.1.6"
+"@captive/prettier-config@npm:^1.1.7":
+  version: 1.1.7
+  resolution: "@captive/prettier-config@npm:1.1.7"
   dependencies:
     "@w5s/prettier-config": ^1.0.1
   peerDependencies:
@@ -76,7 +76,7 @@ __metadata:
   peerDependenciesMeta:
     prettier:
       optional: true
-  checksum: 0a7f1aa06fd9213aab3178b004a658204c1587018a017f6d3bdb469163438287d68e287bb0bde55d373bd51e3148f43539bc83cd4366eaedd872ac72a5d346b7
+  checksum: 044dfdfd233f742766bbfcb2a30fc63be7c8e79a48933f6061a03b7d7abae6997b2366f23c64624adb73774879e5dcedbca649bd5fe4ff9770bfa5026c3b9e65
   languageName: node
   linkType: hard
 
