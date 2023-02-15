@@ -82,8 +82,8 @@ makefile:lint:
         echo 'Warning: `make ci-lint` not found'
       fi;
   rules:
-    - <<: *skip_build_disabled
-
+    - <<: *skip_code_quality_disabled
+    - always
   tags:
     - docker-dind
     - heavy-job
