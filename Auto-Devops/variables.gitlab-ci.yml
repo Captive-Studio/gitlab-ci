@@ -71,6 +71,14 @@ variables:
   # @type {string}
   CONTAINER_REGISTRY: registry.git.captive.fr
 
+  # Docker image registry URL mirror (used by .docker-dind), to avoid limitation
+  # By default we use google mirror (https://mirror.gcr.io) to ensure this configuration works in most environments
+  #
+  # Can be overriden in Captive group
+  #
+  # @type {string}
+  CONTAINER_REGISTRY_MIRROR: https://mirror.gcr.io
+
   # Required variables for docker.mk
   #
   # @type {string}
