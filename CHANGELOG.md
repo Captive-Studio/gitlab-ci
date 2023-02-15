@@ -1,3 +1,12 @@
+# 1.11.0 (2023-02-15)
+
+## ✨ New Features
+- [`19e50cf`](https://gitlab.com/captive/gitlab-ci/-/commit/19e50cf)  Add CONTAINER_REGISTRY_MIRROR variable
+
+
+
+# [1.11.0](https://git.captive.fr/captive/gitlab-ci/compare/1.10.0...1.11.0) (2023-02-15)
+
 # 1.10.0 (2023-02-10)
 
 ## ✨ New Features
