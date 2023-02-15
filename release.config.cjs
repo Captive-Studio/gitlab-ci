@@ -14,7 +14,7 @@ semanticConfig.plugins.splice(
   [
     '@semantic-release/exec',
     // eslint-disable-next-line no-template-curly-in-string
-    { prepareCmd: "sed -i -e 's/  ref: .*/  ref: v${nextRelease.version}/g' README.md" },
+    { prepareCmd: "sed -i -e 's/  ref: .*/  ref: ${nextRelease.version}/g' README.md" },
   ],
   '@semantic-release/release-notes-generator',
   '@semantic-release/changelog'
