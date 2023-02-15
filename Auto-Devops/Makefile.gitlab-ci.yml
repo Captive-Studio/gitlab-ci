@@ -55,6 +55,17 @@ makefile:check-changelog:
       when: never
     - <<: *makefile_present_rule
 
+makefile:rubocop:
+  extends:
+    - .code_quality
+  script:
+    - controle-qualite.mk rubocop
+  rules:
+    - <<: *skip_code_quality_disabled
+    # FIXME: Makefile does not always imply that this is a Ruby project
+    # This is a temporary solution, we have to find a generic way of launching lint
+    - <<: *makefile_present_rule
+
 makefile:build:
   extends:
     - .docker_maker_image

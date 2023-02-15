@@ -63,15 +63,6 @@ ruby:check-tools:
     - <<: *only_gemfile
   allow_failure: true
 
-ruby:rubocop:
-  extends:
-    - .code_quality
-  script:
-    - controle-qualite.mk rubocop
-  rules:
-    - <<: *skip_code_quality_disabled
-    - <<: *only_rubocop_conf
-
 ruby:bundle-audit:
   extends:
     - .code_quality
