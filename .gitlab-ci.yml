@@ -68,6 +68,11 @@ gitlab-ci:test_makefile_test_system:
     - makefile:test-system
     - .gitlab-test
 
+gitlab-ci:test_makefile_release_image:
+  extends:
+    - makefile:release-images
+    - .gitlab-test
+
 gitlab-ci:test_docker_dind:
   stage: test
   extends:
