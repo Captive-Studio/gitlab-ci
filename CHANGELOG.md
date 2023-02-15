@@ -1,3 +1,15 @@
+# 1.13.0 (2023-02-15)
+
+## ✨ New Features
+- [`02c6ca6`](https://gitlab.com/captive/gitlab-ci/-/commit/02c6ca6)  Use CONTAINER_REGISTRY_MIRROR to configure docker daemon
+
+## 🐛 Bug Fixes
+- [`54ffa33`](https://gitlab.com/captive/gitlab-ci/-/commit/54ffa33)  Remove warning
+
+
+
+# [1.13.0](https://git.captive.fr/captive/gitlab-ci/compare/1.12.1...1.13.0) (2023-02-15)
+
 # 1.12.1 (2023-02-15)
 
 ## 🐛 Bug Fixes
