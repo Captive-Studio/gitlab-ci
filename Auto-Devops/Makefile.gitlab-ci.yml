@@ -76,14 +76,14 @@ makefile:lint:
     - | # make ci-lint (only if present)
       # Present
       if make -n ci-lint 2>/dev/null; then
-        make -n ci-lint
+        make ci-lint
       # Not present
       else
         echo 'Warning: `make ci-lint` not found'
       fi;
   rules:
     - <<: *skip_code_quality_disabled
-    - always
+    - <<: *only_makefile
   tags:
     - docker-dind
     - heavy-job
