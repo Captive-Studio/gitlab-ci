@@ -52,7 +52,8 @@
   tags:
     - docker-dind
   before_script:
-    - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CONTAINER_REGISTRY
+    - unset HISTFILE
+    - echo $CI_JOB_TOKEN | docker login -u gitlab-ci-token --password-stdin $CONTAINER_REGISTRY
     - export TEST_IMAGE=$REGISTRY_PROJECT_URL/$BUILD_SUBPATH:${BUILD_ID}-test
 
 # Docker make image mixin.
