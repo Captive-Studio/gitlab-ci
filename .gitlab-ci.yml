@@ -46,7 +46,25 @@ gitlab-ci:test_makefile_build:
   extends:
     - makefile:build
   rules:
-    - always
+    - when: always
+
+gitlab-ci:test_makefile_lint:
+  extends:
+    - makefile:lint
+  rules:
+    - when: always
+
+gitlab-ci:test_makefile_test:
+  extends:
+    - makefile:test
+  rules:
+    - when: always
+
+gitlab-ci:test_makefile_test_system:
+  extends:
+    - makefile:test-system
+  rules:
+    - when: always
 
 gitlab-ci:test_docker_dind:
   stage: test
