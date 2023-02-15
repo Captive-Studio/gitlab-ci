@@ -33,6 +33,21 @@ variables:
 nodejs:release:
   extends: .semantic_release_stage
 
+gitlab-ci:prepare:
+  stage: .pre
+  script:
+    - cp test/Makefile Makefile
+  artifacts:
+    paths:
+      - ./Makefile
+    when: on_success
+
+gitlab-ci:test_makefile_build:
+  extends:
+    - makefile:build
+  rules:
+    - always
+
 gitlab-ci:test_docker_dind:
   stage: test
   extends:
