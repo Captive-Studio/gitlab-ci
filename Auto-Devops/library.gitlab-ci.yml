@@ -46,11 +46,14 @@
 .docker_dind:
   services:
     - name: docker:20.10.16-dind-alpine3.15
-      command: [--registry-mirror, 'https://mirror.gcr.io', --tls=false]
+      entrypoint: [sh, -c, dockerd-entrypoint.sh $DOCKER_DAEMON_OPTIONS]
+  variables:
+    DOCKER_DAEMON_OPTIONS: '--registry-mirror=${CONTAINER_REGISTRY_MIRROR} --tls=false'
   tags:
     - docker-dind
   before_script:
-    - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CONTAINER_REGISTRY
+    - unset HISTFILE
+    - echo $CI_JOB_TOKEN | docker login -u gitlab-ci-token --password-stdin $CONTAINER_REGISTRY
     - export TEST_IMAGE=$REGISTRY_PROJECT_URL/$BUILD_SUBPATH:${BUILD_ID}-test
 
 # Docker make image mixin.
