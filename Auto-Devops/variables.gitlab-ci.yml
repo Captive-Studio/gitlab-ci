@@ -68,6 +68,8 @@ variables:
 
   # Docker image registry URL, where image are pushed
   #
+  # Can be overridden in Gitlab Projects and Groups
+  #
   # @type {string}
   CONTAINER_REGISTRY: registry.git.captive.fr
 
