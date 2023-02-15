@@ -14,6 +14,7 @@ variables:
 .semantic_release_stage:
   stage: release
   image: node:latest
+  dependencies: [] # Do not download artifacts
   extends:
     - .nodejs_image
   #  - .nodejs_cache
