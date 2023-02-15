@@ -1,3 +1,12 @@
+# 1.12.1 (2023-02-15)
+
+## 🐛 Bug Fixes
+- [`85b4647`](https://gitlab.com/captive/gitlab-ci/-/commit/85b4647)  Use google mirror temporarily
+
+
+
+## [1.12.1](https://git.captive.fr/captive/gitlab-ci/compare/1.12.0...1.12.1) (2023-02-15)
+
 # 1.12.0 (2023-02-15)
 
 ## ✨ New Features
