@@ -31,7 +31,7 @@
     - &skip_non_default_branch
       if: $CI_COMMIT_BRANCH != $CI_DEFAULT_BRANCH
       when: never
-    - &makefile_present_rule
+    - &only_makefile
       exists:
         - Makefile
 
@@ -53,7 +53,40 @@ makefile:check-changelog:
     - <<: *skip_default_branch
     - if: $CI_COMMIT_TAG
       when: never
-    - <<: *makefile_present_rule
+    - <<: *only_makefile
+
+makefile:rubocop:
+  extends:
+    - .code_quality
+  script:
+    - controle-qualite.mk rubocop
+  rules:
+    - <<: *skip_code_quality_disabled
+    # FIXME: Makefile does not always imply that this is a Ruby project
+    # This is a temporary solution, we have to find a generic way of launching lint
+    - <<: *only_makefile
+
+makefile:lint:
+  extends:
+    - .docker_maker_image
+    - .docker_dind
+    - .makefile_checkout
+  stage: test
+  script:
+    - | # make ci-lint (only if present)
+      # Present
+      if make -n ci-lint 2>/dev/null; then
+        make ci-lint
+      # Not present
+      else
+        echo 'Warning: `make ci-lint` not found'
+      fi;
+  rules:
+    - <<: *skip_code_quality_disabled
+    - <<: *only_makefile
+  tags:
+    - docker-dind
+    - heavy-job
 
 makefile:build:
   extends:
@@ -65,7 +98,7 @@ makefile:build:
     - make ci-build
   rules:
     - <<: *skip_build_disabled
-    - <<: *makefile_present_rule
+    - <<: *only_makefile
   # FIXME: except:
   #   - /^backup\//
   tags:
@@ -87,7 +120,7 @@ makefile:test:
     - heavy-job
   rules:
     - <<: *skip_test_disabled
-    - <<: *makefile_present_rule
+    - <<: *only_makefile
 
 makefile:test:system:
   extends:
@@ -101,7 +134,7 @@ makefile:test:system:
   #   - /^backup\//
   rules:
     - <<: *skip_test_system_disabled
-    - <<: *makefile_present_rule
+    - <<: *only_makefile
       when: manual
   tags:
     - docker-dind
@@ -118,4 +151,4 @@ makefile:release:image:
     - make ci-release-images
   rules:
     - <<: *skip_non_default_branch
-    - <<: *makefile_present_rule
+    - <<: *only_makefile
