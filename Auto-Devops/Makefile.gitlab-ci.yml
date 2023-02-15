@@ -141,7 +141,7 @@ makefile:test-system:
     - heavy-job
   allow_failure: true
 
-makefile:release:image:
+makefile:release-images:
   extends:
     - .docker_maker_image
     - .docker_dind
