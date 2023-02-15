@@ -32,3 +32,10 @@ variables:
 
 nodejs:release:
   extends: .semantic_release_stage
+
+gitlab-ci:test_docker_dind:
+  stage: test
+  extends:
+    - .docker_dind
+  script:
+    - exit 0
