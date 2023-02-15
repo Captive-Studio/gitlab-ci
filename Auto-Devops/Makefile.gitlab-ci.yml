@@ -122,7 +122,7 @@ makefile:test:
     - <<: *skip_test_disabled
     - <<: *only_makefile
 
-makefile:test:system:
+makefile:test-system:
   extends:
     - .docker_maker_image
     - .docker_dind
