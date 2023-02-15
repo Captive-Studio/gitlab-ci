@@ -1,3 +1,17 @@
+# 1.12.0 (2023-02-15)
+
+## ✨ New Features
+- [`43ddf72`](https://gitlab.com/captive/gitlab-ci/-/commit/43ddf72)  Utilise les variables d&#x27;environnement standard dans deploy
+
+- [`0753dd0`](https://gitlab.com/captive/gitlab-ci/-/commit/0753dd0)  Add makefile:lint job
+
+## 🐛 Bug Fixes
+- [`a3c5aa9`](https://gitlab.com/captive/gitlab-ci/-/commit/a3c5aa9)  Do not launch ruby:rubocop job on &quot;non makefile&quot; project
+
+
+
+# [1.12.0](https://git.captive.fr/captive/gitlab-ci/compare/1.11.0...1.12.0) (2023-02-15)
+
 # [1.11.0](https://git.captive.fr/captive/gitlab-ci/compare/1.10.0...1.11.0) (2023-02-15)
 
 ## ✨ New Features
