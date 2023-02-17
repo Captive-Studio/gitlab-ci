@@ -135,7 +135,6 @@ makefile:test-system:
   rules:
     - <<: *skip_test_system_disabled
     - <<: *only_makefile
-      when: manual
   tags:
     - docker-dind
     - heavy-job
