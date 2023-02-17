@@ -45,8 +45,8 @@
 
 makefile:check-changelog:
   extends:
-    - .docker_maker_image
     - .makefile_checkout
+    - .docker_maker_image
   stage: prepare
   script:
     - make ci-check-changelog
@@ -71,9 +71,9 @@ makefile:rubocop:
 
 makefile:lint:
   extends:
+    - .makefile_checkout
     - .docker_maker_image
     - .docker_dind
-    - .makefile_checkout
   stage: test
   script:
     - | # make ci-lint (only if present)
@@ -93,9 +93,9 @@ makefile:lint:
 
 makefile:build:
   extends:
+    - .makefile_checkout
     - .docker_maker_image
     - .docker_dind
-    - .makefile_checkout
   stage: build
   script:
     - make ci-build
@@ -110,9 +110,9 @@ makefile:build:
 
 makefile:test:
   extends:
+    - .makefile_checkout
     - .docker_maker_image
     - .docker_dind
-    - .makefile_checkout
   stage: test
   script:
     - make ci-test
@@ -127,9 +127,9 @@ makefile:test:
 
 makefile:test-system:
   extends:
+    - .makefile_checkout
     - .docker_maker_image
     - .docker_dind
-    - .makefile_checkout
   stage: test
   script:
     - make ci-test-system
@@ -144,9 +144,9 @@ makefile:test-system:
 
 makefile:release-images:
   extends:
+    - .makefile_checkout
     - .docker_maker_image
     - .docker_dind
-    - .makefile_checkout
   stage: release
   script:
     - make ci-release-images
