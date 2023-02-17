@@ -1,3 +1,12 @@
+# 1.14.1 (2023-02-17)
+
+## 🐛 Bug Fixes
+- [`6214adf`](https://gitlab.com/captive/gitlab-ci/-/commit/6214adf)  Fix detached branch
+
+
+
+## [1.14.1](https://git.captive.fr/captive/gitlab-ci/compare/1.14.0...1.14.1) (2023-02-17)
+
 # 1.14.0 (2023-02-17)
 
 ## ✨ New Features
