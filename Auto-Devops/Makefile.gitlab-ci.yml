@@ -44,6 +44,7 @@
 makefile:check-changelog:
   extends:
     - .docker_maker_image
+    - .makefile_checkout
   stage: prepare
   script:
     - make ci-check-changelog
@@ -135,11 +136,9 @@ makefile:test-system:
   rules:
     - <<: *skip_test_system_disabled
     - <<: *only_makefile
-      when: manual
   tags:
     - docker-dind
     - heavy-job
-  allow_failure: true
 
 makefile:release-images:
   extends:
