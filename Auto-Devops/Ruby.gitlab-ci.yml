@@ -18,6 +18,9 @@
       exists:
         - Makefile
       when: never
+    - &skip_non_default_branch
+      if: $CI_COMMIT_BRANCH != $CI_DEFAULT_BRANCH
+      when: never
     - &only_rubocop_conf
       exists:
         - .rubocop.yml
@@ -69,6 +72,7 @@ ruby:bundle-audit:
   script:
     - controle-qualite.mk bundle-audit
   rules:
+    - <<: *skip_non_default_branch
     - <<: *only_gemfile
   allow_failure: true
 
