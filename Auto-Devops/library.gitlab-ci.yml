@@ -45,7 +45,7 @@
 #
 .docker_dind:
   services:
-    - name: docker:20.10.22-dind-alpine3.15
+    - name: docker:20-dind
       entrypoint: [sh, -c, dockerd-entrypoint.sh $DOCKER_DAEMON_OPTIONS]
   variables:
     DOCKER_DAEMON_OPTIONS: '--registry-mirror=${CONTAINER_REGISTRY_MIRROR} --tls=false'
