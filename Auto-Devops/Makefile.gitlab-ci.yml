@@ -41,7 +41,6 @@
     - .git_checkout
   variables:
     GIT_STRATEGY: fetch
-    GIT_CHECKOUT: 'false'
     GIT_CHECKOUT_REF_NAME: 'true'
 
 makefile:check-changelog:

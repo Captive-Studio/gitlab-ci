@@ -6,7 +6,6 @@
     - .docker_maker_image
   variables:
     GIT_STRATEGY: fetch
-    GIT_CHECKOUT: 'false'
     GIT_CHECKOUT_REF_NAME: 'true'
   script:
     - |

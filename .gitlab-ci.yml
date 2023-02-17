@@ -80,7 +80,6 @@ gitlab-ci:test_docker_dind:
     - .docker_maker_image
     - .docker_dind
   variables:
-    GIT_CHECKOUT: 'false'
     GIT_CHECKOUT_REF_NAME: 'true'
   script:
     - exit 0
