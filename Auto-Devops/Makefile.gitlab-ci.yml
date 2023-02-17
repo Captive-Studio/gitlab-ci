@@ -138,7 +138,6 @@ makefile:test-system:
   tags:
     - docker-dind
     - heavy-job
-  allow_failure: true
 
 makefile:release-images:
   extends:
