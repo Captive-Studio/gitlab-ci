@@ -1,3 +1,12 @@
+# 1.15.0 (2023-02-17)
+
+## ✨ New Features
+- [`add16a9`](https://gitlab.com/captive/gitlab-ci/-/commit/add16a9)  Skip bundle audit on non default branch
+
+
+
+# [1.15.0](https://git.captive.fr/captive/gitlab-ci/compare/1.14.2...1.15.0) (2023-02-17)
+
 # 1.14.2 (2023-02-17)
 
 ## 🐛 Bug Fixes
