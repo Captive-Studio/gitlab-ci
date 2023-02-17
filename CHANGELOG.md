@@ -1,3 +1,12 @@
+# 1.14.2 (2023-02-17)
+
+## 🐛 Bug Fixes
+- [`2dc9b3b`](https://gitlab.com/captive/gitlab-ci/-/commit/2dc9b3b)  Unset GIT_CHECKOUT: &#x27;false&#x27;
+
+
+
+## [1.14.2](https://git.captive.fr/captive/gitlab-ci/compare/1.14.1...1.14.2) (2023-02-17)
+
 # 1.14.1 (2023-02-17)
 
 ## 🐛 Bug Fixes
