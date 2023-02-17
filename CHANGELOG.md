@@ -1,3 +1,12 @@
+# 1.13.1 (2023-02-17)
+
+## 🐛 Bug Fixes
+- [`409bd51`](https://gitlab.com/captive/gitlab-ci/-/commit/409bd51)  Rename service
+
+
+
+## [1.13.1](https://git.captive.fr/captive/gitlab-ci/compare/1.13.0...1.13.1) (2023-02-17)
+
 # 1.13.0 (2023-02-15)
 
 ## ✨ New Features
