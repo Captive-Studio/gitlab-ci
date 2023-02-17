@@ -45,7 +45,7 @@
 #
 .docker_dind:
   services:
-    - name: docker:20.10.16-dind-alpine3.15
+    - name: docker:20.10.22-dind-alpine3.15
       entrypoint: [sh, -c, dockerd-entrypoint.sh $DOCKER_DAEMON_OPTIONS]
   variables:
     DOCKER_DAEMON_OPTIONS: '--registry-mirror=${CONTAINER_REGISTRY_MIRROR} --tls=false'
@@ -65,7 +65,7 @@
 #   stage: ...
 #
 .docker_maker_image:
-  image: registry.git.captive.fr/captive/systeme/docker-maker:20.10.16-1
+  image: registry.git.captive.fr/captive/systeme/docker-maker:20.10.22-0
 
 # Use controle-qualite image and a lightweight machine
 # By default use `prepare` step to fail early and fast
