@@ -35,6 +35,14 @@
       if: '$INCREMENTAL_ROLLOUT_ENABLED || $INCREMENTAL_ROLLOUT_MODE'
       when: never
 
+.git_checkout:
+  before_script:
+    - &git_checkout |
+      # git checkout -B "$CI_BUILD_REF_NAME" (if $GIT_CHECKOUT_REF_NAME)
+      if [[ ! -z "$GIT_CHECKOUT_REF_NAME" ]];then
+        git checkout -B "$CI_BUILD_REF_NAME"
+      fi
+
 # Docker in Docker mixin
 #
 # @example
@@ -55,6 +63,7 @@
     - unset HISTFILE
     - echo $CI_JOB_TOKEN | docker login -u gitlab-ci-token --password-stdin $CONTAINER_REGISTRY
     - export TEST_IMAGE=$REGISTRY_PROJECT_URL/$BUILD_SUBPATH:${BUILD_ID}-test
+    - *git_checkout
 
 # Docker make image mixin.
 #

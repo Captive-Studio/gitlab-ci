@@ -37,9 +37,12 @@
 
 # TODO: use $CI_BUILD_REF_NAME in makefile
 .makefile_checkout:
+  extends:
+    - .git_checkout
   variables:
     GIT_STRATEGY: fetch
-    GIT_CHECKOUT: 'true'
+    GIT_CHECKOUT: 'false'
+    GIT_CHECKOUT_REF_NAME: 'true'
 
 makefile:check-changelog:
   extends:
