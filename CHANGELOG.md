@@ -1,3 +1,12 @@
+# 1.15.1 (2023-02-17)
+
+## 🐛 Bug Fixes
+- [`92b4eb3`](https://gitlab.com/captive/gitlab-ci/-/commit/92b4eb3)  Fix makefile and docker_dind before_script conflict
+
+
+
+## [1.15.1](https://git.captive.fr/captive/gitlab-ci/compare/1.15.0...1.15.1) (2023-02-17)
+
 # 1.15.0 (2023-02-17)
 
 ## ✨ New Features
