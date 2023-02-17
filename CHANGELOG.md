@@ -1,3 +1,17 @@
+# 1.14.0 (2023-02-17)
+
+## ✨ New Features
+- [`ce85a44`](https://gitlab.com/captive/gitlab-ci/-/commit/ce85a44)  Set makefile:test-system as always
+
+- [`b75091d`](https://gitlab.com/captive/gitlab-ci/-/commit/b75091d)  Disable allow_failure on makefile:test-system by default
+
+## 🐛 Bug Fixes
+- [`e627013`](https://gitlab.com/captive/gitlab-ci/-/commit/e627013)  Use checkout for check changelog job
+
+
+
+# [1.14.0](https://git.captive.fr/captive/gitlab-ci/compare/1.13.1...1.14.0) (2023-02-17)
+
 # 1.13.1 (2023-02-17)
 
 ## 🐛 Bug Fixes
