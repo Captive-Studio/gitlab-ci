@@ -38,7 +38,7 @@ This project aims to make GitlabCI configuration easier for each project. One in
 # 1.1 Include remote common configuration
 include:
   - project: captive/gitlab-ci
-    file: '/Auto-Devops.gitlab-ci.yml'
+    file: /Auto-Devops.gitlab-ci.yml
     ref: 1.15.1
     # OR Unstable / latest version
     # ref: main
@@ -67,7 +67,7 @@ Depending on the target development platform, choose one :
     ```yml
     # .gitlab-ci.yml
     variables:
-        AUTO_DEVOPS_PLATFORM_TARGET: 'SCALINGO'
+        AUTO_DEVOPS_PLATFORM_TARGET: SCALINGO
         SCALINGO_API_TOKEN: $CAPTIVE_SCALINGO_API_TOKEN # OR other variable
 
         # Override variables if needed (Optional)
@@ -98,7 +98,7 @@ Depending on the target development platform, choose one :
     ```yml
     # .gitlab-ci.yml
     variables:
-        AUTO_DEVOPS_PLATFORM_TARGET: 'HEROKU'
+        AUTO_DEVOPS_PLATFORM_TARGET: HEROKU
         HEROKU_API_KEY: $CAPTIVE_HEROKU_API_KEY # OR other variable
 
         # ⚠️ Will deploy to Heroku app named $CI_PROJECT_NAME-$CI_PROJECT_ENVIRONMENT
@@ -119,7 +119,7 @@ Depending on the target development platform, choose one :
 ```yml
 # .gitlab-ci.yml
 variables:
-    AUTO_DEVOPS_PLATFORM_TARGET: 'MAKEFILE'
+    AUTO_DEVOPS_PLATFORM_TARGET: MAKEFILE
 ```
 
 </details>
