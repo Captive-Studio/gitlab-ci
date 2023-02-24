@@ -14,16 +14,16 @@
 .makefile_rules:
   rules:
     - &skip_build_disabled
-      if: $BUILD_ENABLED == null || $BUILD_ENABLED == ''
+      if: $BUILD_ENABLED == null || $BUILD_ENABLED == '' || $BUILD_ENABLED == 'false'
       when: never
     - &skip_code_quality_disabled
-      if: $CODE_QUALITY_ENABLED == null || $CODE_QUALITY_ENABLED == ''
+      if: $CODE_QUALITY_ENABLED == null || $CODE_QUALITY_ENABLED == '' || $CODE_QUALITY_ENABLED == 'false'
       when: never
     - &skip_test_disabled
-      if: $TEST_ENABLED == null || $TEST_ENABLED == ''
+      if: $TEST_ENABLED == null || $TEST_ENABLED == '' || $TEST_ENABLED == 'false'
       when: never
     - &skip_test_system_disabled
-      if: $TEST_SYSTEM_ENABLED == null || $TEST_SYSTEM_ENABLED == ''
+      if: $TEST_SYSTEM_ENABLED == null || $TEST_SYSTEM_ENABLED == '' || $TEST_SYSTEM_ENABLED == 'false'
       when: never
     - &skip_default_branch
       if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
