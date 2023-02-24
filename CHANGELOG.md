@@ -1,3 +1,12 @@
+# 1.16.0 (2023-02-24)
+
+## ✨ New Features
+- [`0bacd38`](https://gitlab.com/captive/gitlab-ci/-/commit/0bacd38)  Add support for false values
+
+
+
+# [1.16.0](https://git.captive.fr/captive/gitlab-ci/compare/1.15.1...1.16.0) (2023-02-24)
+
 # 1.15.1 (2023-02-17)
 
 ## 🐛 Bug Fixes
