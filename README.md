@@ -145,10 +145,14 @@ variables:
 
 ℹ️ By default most jobs are enabled, here are some examples to disable jobs if needed
 
+> ⚠️ Warning : Gitlab CI spec states that variables are always `string` or `null` (i.e. `VAR: true` is not valid)
+>
+> - False values : `''`, `null`
+> - True values : any other non false value
+
 ```yml
 # .gitlab-ci.yml
 variables:
-    # 'true' to enabled, null or '' to disable
 
     # Example: Disable Build jobs
     BUILD_ENABLED: ''
