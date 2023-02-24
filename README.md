@@ -146,8 +146,9 @@ variables:
 ℹ️ By default most jobs are enabled, here are some examples to disable jobs if needed
 
 > ⚠️ Warning : Gitlab CI spec states that variables are always `string` or `null` (i.e. `VAR: true` is not valid)
+> To support `VAR: 'false'`, each job is implementing custom test `$VAR != 'false'`
 >
-> - False values : `''`, `null`
+> - False values : `''`, `null` + `false`
 > - True values : any other non false value
 
 ```yml
