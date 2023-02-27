@@ -1,3 +1,12 @@
+# 1.16.2 (2023-02-27)
+
+## 🐛 Bug Fixes
+- [`9f88be3`](https://gitlab.com/captive/gitlab-ci/-/commit/9f88be3)  Remove --force hack
+
+
+
+## [1.16.2](https://git.captive.fr/captive/gitlab-ci/compare/1.16.1...1.16.2) (2023-02-27)
+
 # 1.16.1 (2023-02-27)
 
 ## 🐛 Bug Fixes
