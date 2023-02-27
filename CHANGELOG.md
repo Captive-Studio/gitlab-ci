@@ -1,3 +1,12 @@
+# 1.16.1 (2023-02-27)
+
+## 🐛 Bug Fixes
+- [`668c149`](https://gitlab.com/captive/gitlab-ci/-/commit/668c149)  Stop job when error for scalingo deploy
+
+
+
+## [1.16.1](https://git.captive.fr/captive/gitlab-ci/compare/1.16.0...1.16.1) (2023-02-27)
+
 # 1.16.0 (2023-02-24)
 
 ## ✨ New Features
