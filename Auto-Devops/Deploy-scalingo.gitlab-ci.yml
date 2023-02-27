@@ -43,6 +43,8 @@ variables:
     GIT_DEPTH: 0
   image: ruby:3.1.3
   script:
+    - set -e
+    - set -o pipefail
     - gem install dpl --pre
     - SCALINGO_API_TOKEN=${SCALINGO_API_TOKEN_OVERRIDE:-$SCALINGO_API_TOKEN}
     - SCALINGO_APP=${SCALINGO_APP_OVERRIDE:-"$SCALINGO_APP-$CI_ENVIRONMENT_NAME"}
