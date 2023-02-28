@@ -24,7 +24,7 @@
   "devDependencies": {
     "@captive/eslint-config": "1.7.18",
     "envhandlebars": "1.4.8",
-    "eslint": "8.34.0",
+    "eslint": "8.35.0",
     "gitlab-ci-lint": "1.1.0",
     "prettier": "2.8.4"
   },
