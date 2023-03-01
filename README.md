@@ -67,6 +67,7 @@ Depending on the target development platform, choose one :
     ```yml
     # .gitlab-ci.yml
     variables:
+        APP_NAME: "$CI_PROJECT_NAME"
         AUTO_DEVOPS_PLATFORM_TARGET: SCALINGO
         SCALINGO_API_TOKEN: $CAPTIVE_SCALINGO_API_TOKEN # OR other variable
 
