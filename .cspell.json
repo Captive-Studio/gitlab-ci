@@ -1,8 +1,6 @@
 {
   "version": "0.2",
-  "language": "en",
-  "ignorePaths": [],
-  "words": ["dast", "scalingo"],
-  "ignoreWords": [],
-  "import": []
+  "language": "en,fr-FR",
+  "words": ["cimg", "preprod"],
+  "import": ["@captive/cspell-config"]
 }
