@@ -1,3 +1,12 @@
+# 1.16.3 (2023-03-01)
+
+## 🐛 Bug Fixes
+- [`8804f42`](https://gitlab.com/captive/gitlab-ci/-/commit/8804f42)  Fix false like values
+
+
+
+## [1.16.3](https://git.captive.fr/captive/gitlab-ci/compare/1.16.2...1.16.3) (2023-03-01)
+
 # 1.16.2 (2023-02-27)
 
 ## 🐛 Bug Fixes
