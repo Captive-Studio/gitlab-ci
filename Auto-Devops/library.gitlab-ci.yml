@@ -23,17 +23,23 @@
       if: $CI_COMMIT_BRANCH != $CI_DEFAULT_BRANCH
       when: never
     - &skip_deploy_freeze
-      if: $CI_DEPLOY_FREEZE
+      if: $CI_DEPLOY_FREEZE && $CI_DEPLOY_FREEZE != 'false'
       when: never
     - &skip_if_staging_enabled
-      if: $STAGING_ENABLED
+      if: $STAGING_ENABLED && $STAGING_ENABLED != 'false'
       when: never
     - &skip_if_canary_enabled
-      if: $CANARY_ENABLED
+      if: $CANARY_ENABLED && $CANARY_ENABLED != 'false'
       when: never
     - &skip_if_incremental_rollout_enabled
       if: '$INCREMENTAL_ROLLOUT_ENABLED || $INCREMENTAL_ROLLOUT_MODE'
       when: never
+    - &only_review_enabled
+      if: $REVIEW_ENABLED && $REVIEW_ENABLED != 'false' && ($CI_COMMIT_TAG || $CI_COMMIT_BRANCH)
+    - &only_staging_enabled
+      if: $STAGING_ENABLED && $STAGING_ENABLED != 'false' && ($CI_COMMIT_TAG || $CI_COMMIT_BRANCH)
+    - &only_canary_enabled
+      if: $CANARY_ENABLED && $CANARY_ENABLED != 'false' && ($CI_COMMIT_TAG || $CI_COMMIT_BRANCH)
 
 .git_checkout:
   before_script:
@@ -133,8 +139,7 @@
     - <<: *filter_platform_target
     - <<: *skip_kubernetes
     - <<: *skip_default_branch
-    # Only if $REVIEW_ENABLED and on a tag or branch
-    - if: '$REVIEW_ENABLED && ($CI_COMMIT_TAG || $CI_COMMIT_BRANCH)'
+    - <<: *only_review_enabled
 
 .auto-devops_stop_review:
   stage: cleanup
@@ -149,7 +154,7 @@
     - <<: *filter_platform_target
     - <<: *skip_kubernetes
     - <<: *skip_default_branch
-    - if: '$REVIEW_DISABLED && ($CI_COMMIT_TAG || $CI_COMMIT_BRANCH)'
+    - <<: *only_review_enabled
       when: manual
 
 # Mixin to trigger review on staging environment
@@ -177,7 +182,7 @@
     - <<: *filter_platform_target
     - <<: *skip_kubernetes
     - <<: *skip_default_branch
-    - if: $STAGING_ENABLED
+    - <<: *only_staging_enabled
   allow_failure: true
 
 # Mixin to trigger at staging step only when `$STAGING_ENABLED` is truthy
@@ -207,7 +212,7 @@
     - <<: *filter_platform_target
     - <<: *skip_kubernetes
     - <<: *skip_non_default_branch
-    - if: $STAGING_ENABLED
+    - <<: *only_staging_enabled
 
 # Common mixin for production environment
 #
@@ -246,7 +251,9 @@
     - <<: *skip_kubernetes
     - <<: *skip_non_default_branch
     - <<: *skip_if_incremental_rollout_enabled
-    - if: '$STAGING_ENABLED || $CANARY_ENABLED'
+    - <<: *only_staging_enabled
+      when: manual
+    - <<: *only_canary_enabled
       when: manual
 # - if: '$CI_COMMIT_TAG =~ /^v([0-9]|[1-9][0-9]+)\.([0-9]|[1-9][0-9]+)\.([0-9]|[1-9][0-9]+)$/'
 
