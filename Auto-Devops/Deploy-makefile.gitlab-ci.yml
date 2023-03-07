@@ -14,7 +14,7 @@
       echo "CI_ENVIRONMENT_URL = $CI_ENVIRONMENT_URL"
     - make ci-deploy
 
-makefile:review:staging:
+makefile:review-staging:
   extends:
     - .auto-devops_review_staging
     - .deploy_makefile

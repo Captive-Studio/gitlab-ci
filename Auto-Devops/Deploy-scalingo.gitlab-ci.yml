@@ -74,7 +74,7 @@ variables:
 #   variables:
 #     IF_AUTO_DEVOPS_PLATFORM_TARGET: SCALINGO
 
-scalingo:review:staging:
+scalingo:review-staging:
   extends:
     - .auto-devops_review_staging
     - .deploy_scalingo
