@@ -25,6 +25,12 @@
     - &skip_deploy_freeze
       if: $CI_DEPLOY_FREEZE && $CI_DEPLOY_FREEZE != 'false'
       when: never
+    - &skip_if_review_disabled
+      if: $REVIEW_ENABLED == null || $REVIEW_ENABLED == '' || $REVIEW_ENABLED == 'false'
+      when: never
+    - &skip_if_staging_disabled
+      if: $STAGING_ENABLED == null || $STAGING_ENABLED == '' || $STAGING_ENABLED == 'false'
+      when: never
     - &skip_if_staging_enabled
       if: $STAGING_ENABLED && $STAGING_ENABLED != 'false'
       when: never
@@ -34,8 +40,6 @@
     - &skip_if_incremental_rollout_enabled
       if: '$INCREMENTAL_ROLLOUT_ENABLED || $INCREMENTAL_ROLLOUT_MODE'
       when: never
-    - &only_review_enabled
-      if: $REVIEW_ENABLED && $REVIEW_ENABLED != 'false' && ($CI_COMMIT_TAG || $CI_COMMIT_BRANCH)
     - &only_staging_enabled
       if: $STAGING_ENABLED && $STAGING_ENABLED != 'false' && ($CI_COMMIT_TAG || $CI_COMMIT_BRANCH)
     - &only_canary_enabled
@@ -139,7 +143,8 @@
     - <<: *filter_platform_target
     - <<: *skip_kubernetes
     - <<: *skip_default_branch
-    - <<: *only_review_enabled
+    - <<: *skip_if_review_disabled
+    - when: on_success
 
 .auto-devops_stop_review:
   stage: cleanup
@@ -154,8 +159,8 @@
     - <<: *filter_platform_target
     - <<: *skip_kubernetes
     - <<: *skip_default_branch
-    - <<: *only_review_enabled
-      when: manual
+    - <<: *skip_if_review_disabled
+    - when: manual
 
 # Mixin to trigger review on staging environment
 #
@@ -177,12 +182,12 @@
     - .auto-devops_review
     - .auto-devops_staging
   stage: review
-  when: manual
   rules:
     - <<: *filter_platform_target
     - <<: *skip_kubernetes
     - <<: *skip_default_branch
-    - <<: *only_staging_enabled
+    - <<: *skip_if_staging_disabled
+    - when: manual
   allow_failure: true
 
 # Mixin to trigger at staging step only when `$STAGING_ENABLED` is truthy
@@ -212,7 +217,8 @@
     - <<: *filter_platform_target
     - <<: *skip_kubernetes
     - <<: *skip_non_default_branch
-    - <<: *only_staging_enabled
+    - <<: *skip_if_staging_disabled
+    - when: on_success
 
 # Common mixin for production environment
 #
