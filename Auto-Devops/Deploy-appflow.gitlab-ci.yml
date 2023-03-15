@@ -1,0 +1,130 @@
+# 🚨 Warning : AppFlow CLI is not available for plans under Business
+
+variables:
+  # Required the api key used to deploy
+  #
+  # @type {string}
+  APPFLOW_API_TOKEN: ''
+
+  # Override api key only for staging environment
+  #
+  # @default $APPFLOW_API_TOKEN
+  APPFLOW_API_TOKEN_STAGING: ''
+
+  # Override api key only for production environment
+  #
+  # @default $APPFLOW_API_TOKEN
+  APPFLOW_API_TOKEN_PRODUCTION: ''
+
+.appflow_build:
+  image: ghcr.io/ionic-team/ionic-cli:6.11.11
+  variables:
+    GIT_STRATEGY: clone
+    GIT_DEPTH: 0
+    APPFLOW_BUILD_TYPE: null # To define in job
+    APPFLOW_ENVIRONMENT: $CI_ENVIRONMENT_NAME
+    APPFLOW_NATIVE_CONFIG: $CI_ENVIRONMENT_NAME
+    APPFLOW_SIGNING_CERTIFICATE: $CI_ENVIRONMENT_NAME
+    APPFLOW_FILENAME: $APP_NAME-$CI_COMMIT_REF_NAME
+  before_script:
+    - IONIC_TOKEN=${APPFLOW_API_TOKEN_OVERRIDE:-$APPFLOW_API_TOKEN}
+    - echo "IONIC_TOKEN=$IONIC_TOKEN"
+    - echo "APPFLOW_API_TOKEN=$APPFLOW_API_TOKEN"
+
+.appflow_build_ios:
+  extends:
+    - .appflow_build
+  variables:
+    APPFLOW_BUILD_TYPE: app-store
+  script:
+    - >
+      ionic package build ios $APPFLOW_BUILD_TYPE
+      --environment="$APPFLOW_ENVIRONMENT"
+      --native-config="$APPFLOW_NATIVE_CONFIG"
+      --signing-certificate="$APPFLOW_SIGNING_CERTIFICATE"
+      --ipa-name="$APPFLOW_FILENAME.ipa"
+      --commit="$CI_COMMIT_SHA"
+  artifacts:
+    paths:
+      - $APPFLOW_FILENAME.ipa
+
+.appflow_build_android:
+  extends:
+    - .appflow_build
+  variables:
+    APPFLOW_BUILD_TYPE: release
+  script:
+    - >
+      ionic package build android $APPFLOW_BUILD_TYPE
+      --environment="$APPFLOW_ENVIRONMENT"
+      --native-config="$APPFLOW_NATIVE_CONFIG"
+      --signing-certificate="$APPFLOW_SIGNING_CERTIFICATE"
+      --aab-name="$APPFLOW_FILENAME.aab"
+      --commit="$CI_COMMIT_SHA"
+  artifacts:
+    paths:
+      - $APPFLOW_FILENAME.aab
+
+.auto-devops_staging:
+  variables:
+    APPFLOW_API_TOKEN_OVERRIDE: $APPFLOW_API_TOKEN_STAGING
+
+.auto-devops_production:
+  variables:
+    APPFLOW_API_TOKEN_OVERRIDE: $APPFLOW_API_TOKEN_PRODUCTION
+
+appflow:review:staging:ios:
+  extends:
+    - .auto-devops_review_staging
+    - .appflow_build_ios
+  variables:
+    IF_AUTO_DEVOPS_PLATFORM_TARGET: APPFLOW
+
+appflow:review:staging:android:
+  extends:
+    - .auto-devops_review_staging
+    - .appflow_build_android
+  variables:
+    IF_AUTO_DEVOPS_PLATFORM_TARGET: APPFLOW
+
+appflow:staging:ios:
+  extends:
+    - .auto-devops_staging
+    - .appflow_build_ios
+  variables:
+    IF_AUTO_DEVOPS_PLATFORM_TARGET: APPFLOW
+
+appflow:staging:android:
+  extends:
+    - .auto-devops_staging
+    - .appflow_build_android
+  variables:
+    IF_AUTO_DEVOPS_PLATFORM_TARGET: APPFLOW
+
+appflow:production:ios:
+  extends:
+    - .auto-devops_production_auto
+    - .appflow_build_ios
+  variables:
+    IF_AUTO_DEVOPS_PLATFORM_TARGET: APPFLOW
+
+appflow:production:android:
+  extends:
+    - .auto-devops_production_auto
+    - .appflow_build_android
+  variables:
+    IF_AUTO_DEVOPS_PLATFORM_TARGET: APPFLOW
+
+appflow:production_manual:ios:
+  extends:
+    - .auto-devops_production_manual
+    - .appflow_build_ios
+  variables:
+    IF_AUTO_DEVOPS_PLATFORM_TARGET: APPFLOW
+
+appflow:production_manual:android:
+  extends:
+    - .auto-devops_production_manual
+    - .appflow_build_android
+  variables:
+    IF_AUTO_DEVOPS_PLATFORM_TARGET: APPFLOW
