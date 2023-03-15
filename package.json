@@ -23,7 +23,7 @@
   },
   "eslintIgnore": [],
   "devDependencies": {
-    "@captive/cspell-config": "1.0.4",
+    "@captive/cspell-config": "1.0.5",
     "@captive/eslint-config": "1.7.21",
     "envhandlebars": "1.4.8",
     "eslint": "8.36.0",
