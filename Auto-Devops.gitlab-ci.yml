@@ -6,7 +6,7 @@ include:
   - /Auto-Devops/Ruby.gitlab-ci.yml
   - /Auto-Devops/Makefile.gitlab-ci.yml
   - /Auto-Devops/NodeJS.gitlab-ci.yml
-  - /Auto-Devops/Deploy-appflow.gitlab-ci.yml
+  # - /Auto-Devops/Deploy-appflow.gitlab-ci.yml
   - /Auto-Devops/Deploy-heroku.gitlab-ci.yml
   - /Auto-Devops/Deploy-scalingo.gitlab-ci.yml
   - /Auto-Devops/Deploy-makefile.gitlab-ci.yml

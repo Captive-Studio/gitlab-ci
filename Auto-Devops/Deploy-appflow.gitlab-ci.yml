@@ -1,23 +1,6 @@
-# @see https://gitlab.com/gitlab-org/gitlab-foss/-/blob/master/lib/gitlab/ci/templates/Jobs/Deploy/EC2.gitlab-ci.yml
+# 🚨 Warning : AppFlow CLI is not available for plans under Business
 
 variables:
-  # Required: the name of the app
-  #
-  # @type {string}
-  APPFLOW_APP: $APP_NAME
-
-  # Optional key to override only for staging environment
-  #
-  # @type {string}
-  # @default "$APPFLOW_APP-staging"
-  APPFLOW_APP_STAGING: ''
-
-  # Optional key to override only for production environment
-  #
-  # @type {string}
-  # @default "$APPFLOW_APP-production"
-  APPFLOW_APP_PRODUCTION: ''
-
   # Required the api key used to deploy
   #
   # @type {string}
@@ -33,67 +16,115 @@ variables:
   # @default $APPFLOW_API_TOKEN
   APPFLOW_API_TOKEN_PRODUCTION: ''
 
-.deploy_appflow:
-  # @see https://ionic.io/docs/appflow/cookbook/integrate-ci#gitlab-ci
+.appflow_build:
+  image: ghcr.io/ionic-team/ionic-cli:6.11.11
   variables:
     GIT_STRATEGY: clone
     GIT_DEPTH: 0
-  image: ghcr.io/ionic-team/ionic-cli:6.11.11
+    APPFLOW_BUILD_TYPE: null # To define in job
+    APPFLOW_ENVIRONMENT: $CI_ENVIRONMENT_NAME
+    APPFLOW_NATIVE_CONFIG: $CI_ENVIRONMENT_NAME
+    APPFLOW_SIGNING_CERTIFICATE: $CI_ENVIRONMENT_NAME
+    APPFLOW_FILENAME: $APP_NAME-$CI_COMMIT_REF_NAME
+  before_script:
+    - IONIC_TOKEN=${APPFLOW_API_TOKEN_OVERRIDE:-$APPFLOW_API_TOKEN}
+    - echo "IONIC_TOKEN=$IONIC_TOKEN"
+    - echo "APPFLOW_API_TOKEN=$APPFLOW_API_TOKEN"
+
+.appflow_build_ios:
+  extends:
+    - .appflow_build
+  variables:
+    APPFLOW_BUILD_TYPE: app-store
   script:
-    - exit 1
-    # - gem install dpl --pre
-    # - APPFLOW_API_TOKEN=${APPFLOW_API_TOKEN_OVERRIDE:-$APPFLOW_API_TOKEN}
-    # - APPFLOW_APP=${APPFLOW_APP_OVERRIDE:-"$APPFLOW_APP-$CI_ENVIRONMENT_NAME"}
-    # - echo "APPFLOW_APP = $APPFLOW_APP"
-    # - >
-    #   dpl
-    #   --provider=scalingo
-    #   --api_token=$APPFLOW_API_TOKEN
-    #   --app=$APPFLOW_APP
-    #   --remote="scalingo-dpl --force"
-    #   --branch=refs/heads/master
+    - >
+      ionic package build ios $APPFLOW_BUILD_TYPE
+      --environment="$APPFLOW_ENVIRONMENT"
+      --native-config="$APPFLOW_NATIVE_CONFIG"
+      --signing-certificate="$APPFLOW_SIGNING_CERTIFICATE"
+      --ipa-name="$APPFLOW_FILENAME.ipa"
+      --commit="$CI_COMMIT_SHA"
+  artifacts:
+    paths:
+      - $APPFLOW_FILENAME.ipa
+
+.appflow_build_android:
+  extends:
+    - .appflow_build
+  variables:
+    APPFLOW_BUILD_TYPE: release
+  script:
+    - >
+      ionic package build android $APPFLOW_BUILD_TYPE
+      --environment="$APPFLOW_ENVIRONMENT"
+      --native-config="$APPFLOW_NATIVE_CONFIG"
+      --signing-certificate="$APPFLOW_SIGNING_CERTIFICATE"
+      --aab-name="$APPFLOW_FILENAME.aab"
+      --commit="$CI_COMMIT_SHA"
+  artifacts:
+    paths:
+      - $APPFLOW_FILENAME.aab
 
 .auto-devops_staging:
   variables:
     APPFLOW_API_TOKEN_OVERRIDE: $APPFLOW_API_TOKEN_STAGING
-    APPFLOW_APP_OVERRIDE: $APPFLOW_APP_STAGING
 
 .auto-devops_production:
   variables:
     APPFLOW_API_TOKEN_OVERRIDE: $APPFLOW_API_TOKEN_PRODUCTION
-    APPFLOW_APP_OVERRIDE: $APPFLOW_APP_PRODUCTION
 
-# appflow:review:review:
-#   extends:
-#     - .auto-devops_review
-#     - .deploy_appflow
-#   variables:
-#     IF_AUTO_DEVOPS_PLATFORM_TARGET: APPFLOW
-
-appflow:review:staging:
+appflow:review:staging:ios:
   extends:
     - .auto-devops_review_staging
-    - .deploy_appflow
+    - .appflow_build_ios
   variables:
     IF_AUTO_DEVOPS_PLATFORM_TARGET: APPFLOW
 
-appflow:staging:
+appflow:review:staging:android:
+  extends:
+    - .auto-devops_review_staging
+    - .appflow_build_android
+  variables:
+    IF_AUTO_DEVOPS_PLATFORM_TARGET: APPFLOW
+
+appflow:staging:ios:
   extends:
     - .auto-devops_staging
-    - .deploy_appflow
+    - .appflow_build_ios
   variables:
     IF_AUTO_DEVOPS_PLATFORM_TARGET: APPFLOW
 
-appflow:production:
+appflow:staging:android:
+  extends:
+    - .auto-devops_staging
+    - .appflow_build_android
+  variables:
+    IF_AUTO_DEVOPS_PLATFORM_TARGET: APPFLOW
+
+appflow:production:ios:
   extends:
     - .auto-devops_production_auto
-    - .deploy_appflow
+    - .appflow_build_ios
   variables:
     IF_AUTO_DEVOPS_PLATFORM_TARGET: APPFLOW
 
-appflow:production_manual:
+appflow:production:android:
+  extends:
+    - .auto-devops_production_auto
+    - .appflow_build_android
+  variables:
+    IF_AUTO_DEVOPS_PLATFORM_TARGET: APPFLOW
+
+appflow:production_manual:ios:
   extends:
     - .auto-devops_production_manual
-    - .deploy_appflow
+    - .appflow_build_ios
+  variables:
+    IF_AUTO_DEVOPS_PLATFORM_TARGET: APPFLOW
+
+appflow:production_manual:android:
+  extends:
+    - .auto-devops_production_manual
+    - .appflow_build_android
   variables:
     IF_AUTO_DEVOPS_PLATFORM_TARGET: APPFLOW
