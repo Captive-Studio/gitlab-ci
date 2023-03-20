@@ -32,9 +32,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@captive/cspell-config@npm:1.0.5":
-  version: 1.0.5
-  resolution: "@captive/cspell-config@npm:1.0.5"
+"@captive/cspell-config@npm:1.0.6":
+  version: 1.0.6
+  resolution: "@captive/cspell-config@npm:1.0.6"
   dependencies:
     "@cspell/dict-fr-fr": ^2.2.0
     "@w5s/cspell-config": ^1.0.0-alpha.12
@@ -43,7 +43,7 @@ __metadata:
   peerDependenciesMeta:
     cspell:
       optional: true
-  checksum: 6eaceab6e71f670a4c58df82988bda8c2878714835b69051aa141a26d477b526169612441d984be7ac6e734c97b9dda4cc75b10de22dbc14951663291db13a4c
+  checksum: 5e1c4fb527acc200df8167527d6c7d558f0d094c0dd4a40ec6f3b79d9fd42c7f8e493a249a7e253c4cc566a3bd1e4108f424a3cf95e9baea90be8bb458d10962
   languageName: node
   linkType: hard
 
@@ -74,7 +74,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@captive/gitlab-ci@workspace:."
   dependencies:
-    "@captive/cspell-config": 1.0.5
+    "@captive/cspell-config": 1.0.6
     "@captive/eslint-config": 1.7.24
     envhandlebars: 1.4.8
     eslint: 8.36.0
