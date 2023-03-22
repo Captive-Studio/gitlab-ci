@@ -22,8 +22,10 @@ variables:
   #   - job: nodejs:install
   #     artifacts: true
   rules:
+    - if: $CI_SCHEDULE_NAME == 'release'
+      when: on_success
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
-    #  when: manual
+      when: manual
   script:
     # Set git to a branch
     - git checkout ${CI_COMMIT_REF_NAME}
