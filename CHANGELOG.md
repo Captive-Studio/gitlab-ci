@@ -7,6 +7,15 @@
 
 # [1.17.0](https://git.captive.fr/captive/gitlab-ci/compare/1.16.3...1.17.0) (2023-03-22)
 
+# 1.17.0 (2023-03-22)
+
+## ✨ New Features
+- [`03954c1`](https://gitlab.com/captive/gitlab-ci/-/commit/03954c1)  Add Appflow configuration
+
+
+
+# [1.17.0](https://git.captive.fr/captive/gitlab-ci/compare/1.16.3...1.17.0) (2023-03-22)
+
 # 1.16.3 (2023-03-01)
 
 ## 🐛 Bug Fixes
