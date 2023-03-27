@@ -46,7 +46,7 @@ variables:
   YARN_CACHE_FOLDER: $CI_PROJECT_DIR/$CI_YARN_CACHE_FOLDER
 
   # https://github.com/jest-community/jest-junit
-  JEST_JUNIT_OUTPUT_NAME: jest-junit.xml
+  NODEJS_JUNIT_OUTPUT_NAME: nodejs-junit.xml
 
 nodejs:install:
   extends:
@@ -122,7 +122,7 @@ nodejs:test:
     when: always
     reports:
       junit:
-        - jest-junit.xml
+        - ${NODEJS_JUNIT_OUTPUT_NAME}
       coverage_report:
         coverage_format: cobertura
         path: coverage/cobertura-coverage.xml
