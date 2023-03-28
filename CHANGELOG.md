@@ -1,3 +1,15 @@
+# 2.0.0 (2023-03-28)
+
+## ✨ New Features
+- [`b9c0807`](https://gitlab.com/captive/gitlab-ci/-/commit/b9c0807)  Configure default JEST_JUNIT_OUTPUT_NAME
+
+## 💥 Breaking Changes
+- [`6014388`](https://gitlab.com/captive/gitlab-ci/-/commit/6014388)  Remove makefile:rubocop
+
+
+
+# [2.0.0](https://git.captive.fr/captive/gitlab-ci/compare/1.17.0...2.0.0) (2023-03-28)
+
 # 1.17.0 (2023-03-22)
 
 ## ✨ New Features
