@@ -1,3 +1,12 @@
+# 2.0.1 (2023-03-28)
+
+## 🐛 Bug Fixes
+- [`3fcc323`](https://gitlab.com/captive/gitlab-ci/-/commit/3fcc323)  Configure JEST_JUNIT_OUTPUT_NAME
+
+
+
+## [2.0.1](https://git.captive.fr/captive/gitlab-ci/compare/2.0.0...2.0.1) (2023-03-28)
+
 # 2.0.0 (2023-03-28)
 
 ## ✨ New Features
