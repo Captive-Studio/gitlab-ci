@@ -1,3 +1,12 @@
+# 2.0.2 (2023-03-28)
+
+## 🐛 Bug Fixes
+- [`aaf78e3`](https://gitlab.com/captive/gitlab-ci/-/commit/aaf78e3)  Use **/junit.xml wildcard for test reports
+
+
+
+## [2.0.2](https://git.captive.fr/captive/gitlab-ci/compare/2.0.1...2.0.2) (2023-03-28)
+
 # 2.0.1 (2023-03-28)
 
 ## 🐛 Bug Fixes
