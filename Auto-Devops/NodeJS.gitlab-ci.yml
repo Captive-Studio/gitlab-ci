@@ -45,9 +45,6 @@ variables:
   # Cypress cache environment variable
   YARN_CACHE_FOLDER: $CI_PROJECT_DIR/$CI_YARN_CACHE_FOLDER
 
-  # https://github.com/jest-community/jest-junit
-  NODEJS_JUNIT_OUTPUT_NAME: nodejs-junit.xml
-
 nodejs:install:
   extends:
     - .nodejs_image
@@ -122,16 +119,13 @@ nodejs:test:
     when: always
     reports:
       junit:
-        - ${NODEJS_JUNIT_OUTPUT_NAME}
+        - '**/junit.xml'
       coverage_report:
         coverage_format: cobertura
         path: coverage/cobertura-coverage.xml
   tags:
     - lightweight-job
   script:
-    - |
-      # Set environment variables (Jest, Vitest, etc)
-      JEST_JUNIT_OUTPUT_NAME=$NODEJS_JUNIT_OUTPUT_NAME
     - npm test --if-present
   rules:
     - <<: *skip_test_disabled
