@@ -129,6 +129,9 @@ nodejs:test:
   tags:
     - lightweight-job
   script:
+    - |
+      # Set environment variables (Jest, Vitest, etc)
+      JEST_JUNIT_OUTPUT_NAME=$NODEJS_JUNIT_OUTPUT_NAME
     - npm test --if-present
   rules:
     - <<: *skip_test_disabled
