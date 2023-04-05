@@ -44,7 +44,7 @@ variables:
   # Enable Review step
   #
   # @type {'true'|''}
-  REVIEW_ENABLED: 'true'
+  REVIEW_ENABLED: ''
 
   # Deploy to staging step
   #
