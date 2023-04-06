@@ -1,3 +1,12 @@
+# 2.0.3 (2023-04-06)
+
+## 🐛 Bug Fixes
+- [`086b083`](https://gitlab.com/captive/gitlab-ci/-/commit/086b083)  Disable review by default
+
+
+
+## [2.0.3](https://git.captive.fr/captive/gitlab-ci/compare/2.0.2...2.0.3) (2023-04-06)
+
 # 2.0.2 (2023-03-28)
 
 ## 🐛 Bug Fixes
