@@ -246,7 +246,7 @@
     - <<: *skip_if_canary_enabled
     - <<: *skip_if_incremental_rollout_enabled
     # Default
-    - when: always
+    - when: on_success
 
 .auto-devops_production_manual:
   extends:
