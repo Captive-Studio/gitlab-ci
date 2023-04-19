@@ -22,7 +22,7 @@ makefile:review-staging:
   variables:
     IF_AUTO_DEVOPS_PLATFORM_TARGET: MAKEFILE
 
-makefile:review:review:
+makefile:review:
   extends:
     - .auto-devops_review
     - .deploy_makefile
