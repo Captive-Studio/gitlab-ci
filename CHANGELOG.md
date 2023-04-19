@@ -1,3 +1,14 @@
+# 2.0.4 (2023-04-19)
+
+## 🐛 Bug Fixes
+- [`f3b040d`](https://gitlab.com/captive/gitlab-ci/-/commit/f3b040d)  Fix when: condition
+
+- [`50a82e0`](https://gitlab.com/captive/gitlab-ci/-/commit/50a82e0)  Fix docker_dind before script
+
+
+
+## [2.0.4](https://git.captive.fr/captive/gitlab-ci/compare/2.0.3...2.0.4) (2023-04-19)
+
 # 2.0.3 (2023-04-06)
 
 ## 🐛 Bug Fixes
