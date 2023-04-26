@@ -52,6 +52,7 @@ variables:
   BUNDLE_JOBS: $(nproc)
   BUNDLE_FROZEN: 'true'
   DISABLE_SPRING: 'true'
+  BRAKEMAN_FLAGS: ''
 
 # FIXME: .code_quality "except" conflicts with "rules"
 # except:
@@ -79,8 +80,9 @@ ruby:bundle-audit:
 ruby:brakeman:
   extends:
     - .code_quality
+  image: presidentbeef/brakeman:latest
   script:
-    - controle-qualite.mk brakeman
+    - brakeman ${BRAKEMAN_FLAGS}
   rules:
     - <<: *skip_code_quality_disabled
     - <<: *only_gemfile
