@@ -1,3 +1,12 @@
+# 2.1.0 (2023-04-28)
+
+## ✨ New Features
+- [`b04658e`](https://gitlab.com/captive/gitlab-ci/-/commit/b04658e)  Use presidentbeef/brakeman:latest image for brakeman
+
+
+
+# [2.1.0](https://git.captive.fr/captive/gitlab-ci/compare/2.0.4...2.1.0) (2023-04-28)
+
 # 2.0.4 (2023-04-19)
 
 ## 🐛 Bug Fixes
