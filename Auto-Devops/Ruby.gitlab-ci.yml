@@ -57,15 +57,6 @@ variables:
 # except:
 #   - /^backup\//
 
-ruby:check-tools:
-  extends:
-    - .code_quality
-  script:
-    - controle-qualite.mk self-check-ruby
-  rules:
-    - <<: *only_gemfile
-  allow_failure: true
-
 ruby:install:
   extends:
     - .ruby_image
