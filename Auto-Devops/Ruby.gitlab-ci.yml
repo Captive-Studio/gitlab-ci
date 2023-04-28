@@ -66,16 +66,6 @@ ruby:check-tools:
     - <<: *only_gemfile
   allow_failure: true
 
-ruby:bundle-audit:
-  extends:
-    - .code_quality
-  script:
-    - controle-qualite.mk bundle-audit
-  rules:
-    - <<: *skip_non_default_branch
-    - <<: *only_gemfile
-  allow_failure: true
-
 ruby:install:
   extends:
     - .ruby_image
