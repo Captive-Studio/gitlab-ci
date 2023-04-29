@@ -1,3 +1,19 @@
+# 2.2.0 (2023-04-29)
+
+## ✨ New Features
+- [`675f12f`](https://gitlab.com/captive/gitlab-ci/-/commit/675f12f)  Add default SAST.gitlab-ci.yml
+
+## 🐛 Bug Fixes
+- [`2aa3586`](https://gitlab.com/captive/gitlab-ci/-/commit/2aa3586)  Remove ruby:brakeman
+
+- [`367e2f1`](https://gitlab.com/captive/gitlab-ci/-/commit/367e2f1)  Remove ruby:bundle-audit
+
+- [`f1d1f88`](https://gitlab.com/captive/gitlab-ci/-/commit/f1d1f88)  Remove ruby:check-tools
+
+
+
+# [2.2.0](https://git.captive.fr/captive/gitlab-ci/compare/2.1.0...2.2.0) (2023-04-29)
+
 # 2.1.0 (2023-04-28)
 
 ## ✨ New Features
