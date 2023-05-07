@@ -3793,13 +3793,13 @@ __metadata:
   linkType: hard
 
 "yaml-eslint-parser@npm:^1.1.0":
-  version: 1.2.0
-  resolution: "yaml-eslint-parser@npm:1.2.0"
+  version: 1.2.1
+  resolution: "yaml-eslint-parser@npm:1.2.1"
   dependencies:
     eslint-visitor-keys: ^3.0.0
     lodash: ^4.17.21
     yaml: ^2.0.0
-  checksum: 2e8a84b639991bdd0e4ad9984d96f3b6ae0d39852aa06e4fc594f5bfa2e68a64d7f8f07086e781bb6198310f8df7246354473d70dd294a07358a1d551a5ae9ee
+  checksum: 498238b2c87374a0aa2c562a7d48d4abb11028572f7396421f351954f6f5735356b30191c5fc15b4cff8b44e12dfc1fc881aff266c96e3e0fce34e718b23ed62
   languageName: node
   linkType: hard
 
