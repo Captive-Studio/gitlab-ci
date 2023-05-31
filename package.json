@@ -24,7 +24,7 @@
   "eslintIgnore": [],
   "devDependencies": {
     "@captive/cspell-config": "1.0.7",
-    "@captive/eslint-config": "1.7.32",
+    "@captive/eslint-config": "1.7.33",
     "envhandlebars": "1.4.8",
     "eslint": "8.41.0",
     "gitlab-ci-lint": "1.1.0",
