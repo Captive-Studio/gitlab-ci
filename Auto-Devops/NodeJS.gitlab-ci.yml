@@ -48,7 +48,6 @@ variables:
 nodejs:install:
   extends:
     - .nodejs_image
-    - .gitlab_fast_zip
   stage: prepare
   cache:
     - key: ${CI_COMMIT_REF_SLUG}-package-cache

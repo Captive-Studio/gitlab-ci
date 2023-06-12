@@ -133,3 +133,8 @@ variables:
   #
   # @see https://circleci.com/developer/images/image/cimg/ruby
   RUBY_VERSION: 3.2.0
+
+  # @see https://blog.nimbleways.com/let-s-make-faster-gitlab-ci-cd-pipelines/
+  FF_USE_FASTZIP: 'true'
+  ARTIFACT_COMPRESSION_LEVEL: fast
+  CACHE_COMPRESSION_LEVEL: fast
