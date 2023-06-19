@@ -90,6 +90,8 @@ nodejs:build:
       - lib/
       - packages/*/lib/
       - packages/*/dist/
+  needs:
+    - job: nodejs:install
   rules:
     - <<: *skip_build_disabled
     - <<: *skip_if_makefile
@@ -104,6 +106,9 @@ nodejs:lint:
     - lightweight-job
   script:
     - npm run lint --if-present
+  needs:
+    - job: nodejs:build
+      artifacts: true
   rules:
     - <<: *skip_code_quality_disabled
     - <<: *skip_if_makefile
@@ -126,6 +131,9 @@ nodejs:test:
     - lightweight-job
   script:
     - npm test --if-present
+  needs:
+    - job: nodejs:build
+      artifacts: true
   rules:
     - <<: *skip_test_disabled
     - <<: *skip_if_makefile
@@ -140,6 +148,9 @@ nodejs:test:e2e:
     - heavy-job
   script:
     - npm run test:e2e --if-present
+  needs:
+    - job: nodejs:build
+      artifacts: true
   rules:
     - <<: *skip_test_system_disabled
     - <<: *skip_if_makefile
