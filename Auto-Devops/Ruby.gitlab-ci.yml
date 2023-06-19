@@ -78,6 +78,8 @@ ruby:bundle-rubocop:
   stage: test
   script:
     - bundle exec rubocop
+  needs:
+    - job: ruby:install
   rules:
     - <<: *skip_code_quality_disabled
     - <<: *skip_if_makefile
