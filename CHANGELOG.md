@@ -1,3 +1,12 @@
+# 2.3.0 (2023-06-20)
+
+## ✨ New Features
+- [`269766c`](https://gitlab.com/captive/gitlab-ci/-/commit/269766c)  Add ADR in doc
+
+
+
+# [2.3.0](https://git.captive.fr/captive/gitlab-ci/compare/2.2.0...2.3.0) (2023-06-20)
+
 # 2.2.0 (2023-04-29)
 
 ## ✨ New Features
