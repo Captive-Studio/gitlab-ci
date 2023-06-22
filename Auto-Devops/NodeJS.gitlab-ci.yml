@@ -92,6 +92,7 @@ nodejs:build:
       - packages/*/dist/
   needs:
     - job: nodejs:install
+      artifacts: true
   rules:
     - <<: *skip_build_disabled
     - <<: *skip_if_makefile
