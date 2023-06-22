@@ -1,3 +1,12 @@
+# 2.3.1 (2023-06-22)
+
+## 🐛 Bug Fixes
+- [`66aa988`](https://gitlab.com/captive/gitlab-ci/-/commit/66aa988)  Fix needs artifacts missing
+
+
+
+## [2.3.1](https://git.captive.fr/captive/gitlab-ci/compare/2.3.0...2.3.1) (2023-06-22)
+
 # 2.3.0 (2023-06-20)
 
 ## ✨ New Features
