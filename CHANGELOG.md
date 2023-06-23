@@ -1,3 +1,14 @@
+# 2.4.0 (2023-06-23)
+
+## ✨ New Features
+- [`d2f7969`](https://gitlab.com/captive/gitlab-ci/-/commit/d2f7969)  Add CI_BUNDLE_CACHE_FOLDER and BUNDLE_CACHE_PATH configuration
+
+- [`32b02bb`](https://gitlab.com/captive/gitlab-ci/-/commit/32b02bb)  Ignore .shared-cache cleaning
+
+
+
+# [2.4.0](https://git.captive.fr/captive/gitlab-ci/compare/2.3.1...2.4.0) (2023-06-23)
+
 # 2.3.1 (2023-06-22)
 
 ## 🐛 Bug Fixes
