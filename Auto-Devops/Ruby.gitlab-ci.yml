@@ -48,6 +48,7 @@
       policy: pull
 
 variables:
+  BUNDLE_CACHE_PATH: $CI_BUNDLE_CACHE_FOLDER
   BUNDLE_PATH: vendor/bundle
   BUNDLE_JOBS: $(nproc)
   BUNDLE_FROZEN: 'true'

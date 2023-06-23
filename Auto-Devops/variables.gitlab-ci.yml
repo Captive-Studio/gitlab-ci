@@ -129,6 +129,8 @@ variables:
   CI_NPM_CACHE_FOLDER: .shared-cache/npm
   # Relative NPM cache path
   CI_YARN_CACHE_FOLDER: .shared-cache/yarn
+  # Relative Bundle cache path
+  CI_BUNDLE_CACHE_FOLDER: .shared-cache/bundle
   # Relative Cypress cache path
   CI_CYPRESS_CACHE_FOLDER: .cache/cypress
 
