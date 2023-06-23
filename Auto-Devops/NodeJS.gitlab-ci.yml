@@ -84,9 +84,9 @@ nodejs:build:
       - lib/
       - packages/*/lib/
       - packages/*/dist/
-  needs:
-    - job: nodejs:install
-      artifacts: true
+  # needs:
+  #   - job: nodejs:install
+  #     artifacts: true
   rules:
     - <<: *skip_build_disabled
     - <<: *skip_if_makefile
