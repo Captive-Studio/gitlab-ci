@@ -81,6 +81,7 @@ ruby:bundle-rubocop:
     - bundle exec rubocop
   needs:
     - job: ruby:install
+      artifacts: true
   rules:
     - <<: *skip_code_quality_disabled
     - <<: *skip_if_makefile
