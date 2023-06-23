@@ -6,6 +6,8 @@
 # ✓ Toggle variables should always use `_ENABLED` (not `_DISABLED`)
 # ✓ Each Variables should be documented
 variables:
+  GIT_CLEAN_FLAGS: -ffdx -e .shared-cache
+
   # Application name (for deployment, packages, etc)
   # By default $CI_PROJECT_NAME is used.
   #
