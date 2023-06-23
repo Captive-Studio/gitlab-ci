@@ -30,12 +30,6 @@
       policy: pull
 
 variables:
-  # Relative NPM cache path
-  CI_NPM_CACHE_FOLDER: .cache/npm
-  # Relative NPM cache path
-  CI_YARN_CACHE_FOLDER: .yarn/cache
-  # Relative Cypress cache path
-  CI_CYPRESS_CACHE_FOLDER: .cache/cypress
   # Display less npm message
   npm_config_loglevel: warn
   # NPM cache environment variable
