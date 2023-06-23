@@ -126,9 +126,9 @@ variables:
   NODEJS_VERSION: 19.5.0
 
   # Relative NPM cache path
-  CI_NPM_CACHE_FOLDER: .npm
+  CI_NPM_CACHE_FOLDER: .shared-cache/npm
   # Relative NPM cache path
-  CI_YARN_CACHE_FOLDER: .yarn
+  CI_YARN_CACHE_FOLDER: .shared-cache/yarn
   # Relative Cypress cache path
   CI_CYPRESS_CACHE_FOLDER: .cache/cypress
 
