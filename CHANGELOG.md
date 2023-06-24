@@ -1,3 +1,12 @@
+# 2.4.1 (2023-06-24)
+
+## 🐛 Bug Fixes
+- [`8ef4493`](https://gitlab.com/captive/gitlab-ci/-/commit/8ef4493)  Rollback nodejs:build dependency to nodejs:install
+
+
+
+## [2.4.1](https://git.captive.fr/captive/gitlab-ci/compare/2.4.0...2.4.1) (2023-06-24)
+
 # 2.4.0 (2023-06-23)
 
 ## ✨ New Features
