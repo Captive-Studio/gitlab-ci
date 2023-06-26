@@ -1,3 +1,12 @@
+# 2.4.2 (2023-06-26)
+
+## 🐛 Bug Fixes
+- [`a005081`](https://gitlab.com/captive/gitlab-ci/-/commit/a005081)  Revert more needs directive
+
+
+
+## [2.4.2](https://git.captive.fr/captive/gitlab-ci/compare/2.4.1...2.4.2) (2023-06-26)
+
 # 2.4.1 (2023-06-24)
 
 ## 🐛 Bug Fixes
