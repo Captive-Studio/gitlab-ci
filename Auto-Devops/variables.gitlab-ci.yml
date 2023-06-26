@@ -146,6 +146,8 @@ variables:
   RUBY_VERSION: 3.2.0
 
   # @see https://blog.nimbleways.com/let-s-make-faster-gitlab-ci-cd-pipelines/
-  FF_USE_FASTZIP: 'true'
+  # ⚠️ If enabled, this will cause cache restore errors
+  # FATAL: remove [...]: directory not empty
+  FF_USE_FASTZIP: 'false'
   ARTIFACT_COMPRESSION_LEVEL: fast
   CACHE_COMPRESSION_LEVEL: fast
