@@ -1,3 +1,12 @@
+# 2.4.3 (2023-06-26)
+
+## 🐛 Bug Fixes
+- [`8d4cfca`](https://gitlab.com/captive/gitlab-ci/-/commit/8d4cfca)  Fix cache restore errors
+
+
+
+## [2.4.3](https://git.captive.fr/captive/gitlab-ci/compare/2.4.2...2.4.3) (2023-06-26)
+
 # 2.4.2 (2023-06-26)
 
 ## 🐛 Bug Fixes
