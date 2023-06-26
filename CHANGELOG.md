@@ -1,3 +1,12 @@
+# 2.5.0 (2023-06-26)
+
+## ✨ New Features
+- [`62a7f32`](https://gitlab.com/captive/gitlab-ci/-/commit/62a7f32)  Add needs constraint for parallelization
+
+
+
+# [2.5.0](https://git.captive.fr/captive/gitlab-ci/compare/2.4.3...2.5.0) (2023-06-26)
+
 # 2.4.3 (2023-06-26)
 
 ## 🐛 Bug Fixes
