@@ -3,7 +3,7 @@
 .ruby_rules:
   rules:
     - &skip_build_disabled
-      if: $BUILD_ENABLED == null || $BUILD_ENABLED == '' || $BUILD_ENABLED == 'false'
+      if: $BUILD_ENABLED == null || $BUILD_ENABLED == '' || $BUILD_ENABLED == 'false' || $BUILD_RUBY_ENABLED == null || $BUILD_RUBY_ENABLED == '' || $BUILD_RUBY_ENABLED == 'false'
       when: never
     - &skip_code_quality_disabled
       if: $CODE_QUALITY_ENABLED == null || $CODE_QUALITY_ENABLED == '' || $CODE_QUALITY_ENABLED == 'false'

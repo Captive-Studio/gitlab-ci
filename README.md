@@ -158,6 +158,7 @@ variables:
 
     # Example: Disable Build jobs
     BUILD_ENABLED: ''
+    BUILD_RUBY_ENABLED: ''
 
     # Example: Disable Code quality jobs (ESLint, Rubocop, etc)
     CODE_QUALITY_ENABLED: ''

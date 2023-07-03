@@ -1,7 +1,7 @@
 .nodejs_rules:
   rules:
     - &skip_build_disabled
-      if: $BUILD_ENABLED == null || $BUILD_ENABLED == '' || $BUILD_ENABLED == 'false'
+      if: $BUILD_ENABLED == null || $BUILD_ENABLED == '' || $BUILD_ENABLED == 'false' || $BUILD_NODEJS_ENABLED == null || $BUILD_NODEJS_ENABLED == '' || $BUILD_NODEJS_ENABLED == 'false'
       when: never
     - &skip_code_quality_disabled
       if: $CODE_QUALITY_ENABLED == null || $CODE_QUALITY_ENABLED == '' || $CODE_QUALITY_ENABLED == 'false'
