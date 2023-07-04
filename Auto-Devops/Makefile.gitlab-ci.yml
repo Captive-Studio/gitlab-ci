@@ -35,7 +35,7 @@
       exists:
         - Makefile
 
-# TODO: use $CI_BUILD_REF_NAME in makefile
+# TODO: use $CI_COMMIT_REF_NAME in makefile
 .makefile_checkout:
   extends:
     - .git_checkout

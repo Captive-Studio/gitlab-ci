@@ -48,9 +48,9 @@
 .git_checkout:
   before_script:
     - |
-      # git checkout -B "$CI_BUILD_REF_NAME" (if $GIT_CHECKOUT_REF_NAME)
+      # git checkout -B "$CI_COMMIT_REF_NAME" (if $GIT_CHECKOUT_REF_NAME)
       if [[ ! -z "$GIT_CHECKOUT_REF_NAME" ]];then
-        git checkout -B "$CI_BUILD_REF_NAME"
+        git checkout -B "$CI_COMMIT_REF_NAME"
       fi
 
 # Docker in Docker mixin
@@ -75,9 +75,9 @@
     - export TEST_IMAGE=$REGISTRY_PROJECT_URL/$BUILD_SUBPATH:${BUILD_ID}-test
     # Inline .git_checkout > before_script
     - |
-      # git checkout -B "$CI_BUILD_REF_NAME" (if $GIT_CHECKOUT_REF_NAME)
+      # git checkout -B "$CI_COMMIT_REF_NAME" (if $GIT_CHECKOUT_REF_NAME)
       if [[ ! -z "$GIT_CHECKOUT_REF_NAME" ]];then
-        git checkout -B "$CI_BUILD_REF_NAME"
+        git checkout -B "$CI_COMMIT_REF_NAME"
       fi
 
 # Docker make image mixin.
