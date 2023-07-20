@@ -1,3 +1,12 @@
+# 2.5.1 (2023-07-20)
+
+## 🚑 Critical Hotfixes
+- [`2d953ee`](https://gitlab.com/captive/gitlab-ci/-/commit/2d953ee) ️ Remplace la variable d&#x27;env CI_BUILD_REF_NAME par CI_COMMIT_REF_NAME car deprecated
+
+
+
+## [2.5.1](https://git.captive.fr/captive/gitlab-ci/compare/2.5.0...2.5.1) (2023-07-20)
+
 # 2.5.0 (2023-06-26)
 
 ## ✨ New Features
