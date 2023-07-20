@@ -13,7 +13,7 @@
     "pretest": "envhandlebars < 'test/test.gitlab-ci.yml.hbs' > 'test/test.gitlab-ci.yml'",
     "release": "scripts/release",
     "spellcheck": "npx cspell '**/*.md' --no-progress",
-    "test": "npx gitlab-ci-lint test/test.gitlab-ci.yml --url https://git.captive.fr --token=${GITLAB_LINT_TOKEN:-GITLAB_TOKEN}"
+    "test": "npx gitlab-ci-file-lint test/test.gitlab-ci.yml --url https://git.captive.fr --token=${GITLAB_LINT_TOKEN:-GITLAB_TOKEN}"
   },
   "eslintConfig": {
     "extends": [
@@ -25,9 +25,9 @@
   "devDependencies": {
     "@captive/cspell-config": "1.0.7",
     "@captive/eslint-config": "1.8.0",
+    "@techmynder/gitlab-ci-file-lint": "2.0.0",
     "envhandlebars": "1.4.8",
     "eslint": "8.44.0",
-    "gitlab-ci-lint": "1.1.0",
     "prettier": "2.8.8"
   },
   "packageManager": "yarn@3.6.1"
