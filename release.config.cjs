@@ -1,5 +1,5 @@
 /* eslint-disable import/no-unresolved */
-/* eslint-disable import/no-extraneous-dependencies */
+
 const makeConfig = require('@wavevision/semantic-release/config');
 const { CONFIG_GITLAB } = require('@wavevision/semantic-release/config/constants');
 
