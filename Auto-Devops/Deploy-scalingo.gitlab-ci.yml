@@ -36,26 +36,22 @@ variables:
   # @default $SCALINGO_API_TOKEN
   SCALINGO_API_TOKEN_PRODUCTION: ''
 
+  # Archive file name that will be deployed by Scalingo
+  #
+  # @default scalingo-app.tar.gz
+  SCALINGO_DEPLOYMENT_FILE: scalingo-app.tar.gz
+
 .deploy_scalingo:
-  # @see https://doc.scalingo.com/platform/deployment/continuous-integration/deploy-scalingo-from-gitlab
-  variables:
-    GIT_STRATEGY: clone
-    GIT_DEPTH: 0
-  image: ruby:3.1.3
+  # @see https://doc.scalingo.com/platform/deployment/deploy-from-archive
+  extends:
+    - .docker_maker_image
   script:
-    - gem install dpl --pre
+    - set -eu;
     - SCALINGO_API_TOKEN=${SCALINGO_API_TOKEN_OVERRIDE:-$SCALINGO_API_TOKEN}
     - SCALINGO_APP=${SCALINGO_APP_OVERRIDE:-"$SCALINGO_APP-$CI_ENVIRONMENT_NAME"}
     - echo "SCALINGO_APP = $SCALINGO_APP"
-    - > # git remote rm scalingo-dpl (if present)
-      git remote -v | grep scalingo-dpl && git remote rm scalingo-dpl
-    - >
-      dpl
-      --provider=scalingo
-      --api_token=$SCALINGO_API_TOKEN
-      --app=$SCALINGO_APP
-      --remote="scalingo-dpl"
-      --branch=refs/heads/master
+    - git archive --prefix=master/ HEAD | gzip > $SCALINGO_DEPLOYMENT_FILE
+    - scalingo --app $SCALINGO_APP deploy $SCALINGO_DEPLOYMENT_FILE $CI_COMMIT_SHORT_SHA
 
 .auto-devops_staging:
   variables:
