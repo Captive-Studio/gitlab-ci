@@ -142,6 +142,8 @@ variables:
   # Ruby
   #
 
+  # Ruby jobs are enabled by default if Gemfile is found
+  RUBY_ENABLED: 'true'
   # NodeJS version used (with `image: cimg/ruby-${NODEJS_VERSION}`)
   #
   # @see https://circleci.com/developer/images/image/cimg/ruby

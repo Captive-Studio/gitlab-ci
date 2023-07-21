@@ -3,7 +3,7 @@
 .ruby_rules:
   rules:
     - &skip_build_disabled
-      if: $BUILD_ENABLED == null || $BUILD_ENABLED == '' || $BUILD_ENABLED == 'false' || $BUILD_RUBY_ENABLED == null || $BUILD_RUBY_ENABLED == '' || $BUILD_RUBY_ENABLED == 'false'
+      if: $BUILD_ENABLED == null || $BUILD_ENABLED == '' || $BUILD_ENABLED == 'false'
       when: never
     - &skip_code_quality_disabled
       if: $CODE_QUALITY_ENABLED == null || $CODE_QUALITY_ENABLED == '' || $CODE_QUALITY_ENABLED == 'false'
@@ -17,6 +17,9 @@
     - &skip_if_makefile
       exists:
         - Makefile
+      when: never
+    - &skip_if_ruby_disabled
+      if: $RUBY_ENABLED == null || $RUBY_ENABLED == '' || $RUBY_ENABLED == 'false'
       when: never
     - &skip_non_default_branch
       if: $CI_COMMIT_BRANCH != $CI_DEFAULT_BRANCH
@@ -70,6 +73,7 @@ ruby:install:
     - bundle install "${FLAGS[@]}"
   rules:
     - <<: *skip_if_makefile
+    - <<: *skip_if_ruby_disabled
     - <<: *only_gemfile
 
 ruby:bundle-rubocop:
@@ -85,6 +89,7 @@ ruby:bundle-rubocop:
   rules:
     - <<: *skip_code_quality_disabled
     - <<: *skip_if_makefile
+    - <<: *skip_if_ruby_disabled
     - <<: *only_rubocop_conf
 
 .rake_test:
@@ -129,6 +134,7 @@ ruby:rake:test:
   rules:
     - <<: *skip_test_disabled
     - <<: *skip_if_makefile
+    - <<: *skip_if_ruby_disabled
     - <<: *only_rakefile
 
 ruby:rake:test-system:
@@ -148,4 +154,5 @@ ruby:rake:test-system:
   rules:
     - <<: *skip_test_system_disabled
     - <<: *skip_if_makefile
+    - <<: *skip_if_ruby_disabled
     - <<: *only_rakefile
