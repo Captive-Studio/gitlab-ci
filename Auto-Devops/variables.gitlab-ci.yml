@@ -122,6 +122,8 @@ variables:
   # NodeJS
   #
 
+  # NodeJS jobs are enabled by default if package.json is found
+  NODEJS_ENABLED: 'true'
   # NodeJS version used (with `image: cimg/node-${NODEJS_VERSION}`)
   #
   # @see https://circleci.com/developer/images/image/cimg/node

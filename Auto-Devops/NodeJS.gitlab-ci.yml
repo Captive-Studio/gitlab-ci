@@ -1,7 +1,7 @@
 .nodejs_rules:
   rules:
     - &skip_build_disabled
-      if: $BUILD_ENABLED == null || $BUILD_ENABLED == '' || $BUILD_ENABLED == 'false' || $BUILD_NODEJS_ENABLED == null || $BUILD_NODEJS_ENABLED == '' || $BUILD_NODEJS_ENABLED == 'false'
+      if: $BUILD_ENABLED == null || $BUILD_ENABLED == '' || $BUILD_ENABLED == 'false'
       when: never
     - &skip_code_quality_disabled
       if: $CODE_QUALITY_ENABLED == null || $CODE_QUALITY_ENABLED == '' || $CODE_QUALITY_ENABLED == 'false'
@@ -15,6 +15,9 @@
     - &skip_if_makefile
       exists:
         - Makefile
+      when: never
+    - &skip_if_nodejs_disabled
+      if: $NODEJS_ENABLED == null || $NODEJS_ENABLED == '' || $NODEJS_ENABLED == 'false'
       when: never
     - &nodejs_present_rule
       exists:
@@ -69,6 +72,7 @@ nodejs:install:
       fi;
   rules:
     - <<: *skip_if_makefile
+    - <<: *skip_if_nodejs_disabled
     - <<: *nodejs_present_rule
 
 nodejs:build:
@@ -90,6 +94,7 @@ nodejs:build:
   rules:
     - <<: *skip_build_disabled
     - <<: *skip_if_makefile
+    - <<: *skip_if_nodejs_disabled
     - <<: *nodejs_present_rule
 
 nodejs:lint:
@@ -107,6 +112,7 @@ nodejs:lint:
   rules:
     - <<: *skip_code_quality_disabled
     - <<: *skip_if_makefile
+    - <<: *skip_if_nodejs_disabled
     - <<: *nodejs_present_rule
 
 nodejs:test:
@@ -132,6 +138,7 @@ nodejs:test:
   rules:
     - <<: *skip_test_disabled
     - <<: *skip_if_makefile
+    - <<: *skip_if_nodejs_disabled
     - <<: *nodejs_present_rule
 
 nodejs:test:e2e:
@@ -149,4 +156,5 @@ nodejs:test:e2e:
   rules:
     - <<: *skip_test_system_disabled
     - <<: *skip_if_makefile
+    - <<: *skip_if_nodejs_disabled
     - <<: *nodejs_present_rule
