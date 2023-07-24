@@ -186,6 +186,15 @@ variables:
 
 </details>
 
+## Déployer une nouvelle version
+
+Pour déployer une nouvelle version, il faut sur rendre dans la page [CI/CD > Pipelines](https://git.captive.fr/captive/gitlab-ci/-/pipelines) de Gitlab
+
+![Screenshot](doc/mise_en_prod.png)
+
+La version est automatiquement définis en fonction des emojis des commits
+
+
 ## Contributing
 
 Here are good `gitlab-ci.yml` used as base / inspiration :
