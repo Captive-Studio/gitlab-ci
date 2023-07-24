@@ -1,3 +1,19 @@
+# 2.6.0 (2023-07-24)
+
+## ✨ New Features
+- [`43aeed7`](https://gitlab.com/captive/gitlab-ci/-/commit/43aeed7)  Migrate from dpl to scalingo cli
+
+- [`155e3cc`](https://gitlab.com/captive/gitlab-ci/-/commit/155e3cc)  Permet de désactiver le build de Ruby ou NodeJS
+
+## 🐛 Bug Fixes
+- [`dc48937`](https://gitlab.com/captive/gitlab-ci/-/commit/dc48937)  Corrige les bugs de yaml error
+
+- [`0bcc50b`](https://gitlab.com/captive/gitlab-ci/-/commit/0bcc50b)  Corrige les jobs ruby toujours présents
+
+
+
+# [2.6.0](https://git.captive.fr/captive/gitlab-ci/compare/2.5.1...2.6.0) (2023-07-24)
+
 # 2.5.1 (2023-07-20)
 
 ## 🚑 Critical Hotfixes
