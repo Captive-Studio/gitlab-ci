@@ -1,3 +1,12 @@
+# 2.6.1 (2023-07-25)
+
+## 🐛 Bug Fixes
+- [`962fbca`](https://gitlab.com/captive/gitlab-ci/-/commit/962fbca)  Deprecate dpl
+
+
+
+## [2.6.1](https://git.captive.fr/captive/gitlab-ci/compare/2.6.0...2.6.1) (2023-07-25)
+
 # 2.6.0 (2023-07-24)
 
 ## ✨ New Features
