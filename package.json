@@ -26,7 +26,7 @@
     "@captive/cspell-config": "1.0.9",
     "@captive/eslint-config": "1.9.1",
     "envhandlebars": "1.4.8",
-    "eslint": "8.45.0",
+    "eslint": "8.46.0",
     "gitlab-ci-lint": "1.1.0",
     "prettier": "3.0.0"
   },
