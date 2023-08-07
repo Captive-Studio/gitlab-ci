@@ -80,7 +80,7 @@ ruby:bundle-rubocop:
   extends:
     - .ruby_image
     - .ruby_cache
-  stage: test
+  stage: validate
   script:
     - bundle exec rubocop
   needs:
