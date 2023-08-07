@@ -101,7 +101,7 @@ nodejs:lint:
   extends:
     - .nodejs_image
     - .nodejs_cache
-  stage: test
+  stage: validate
   tags:
     - lightweight-job
   script:
