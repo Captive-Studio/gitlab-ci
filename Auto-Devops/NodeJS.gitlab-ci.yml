@@ -107,7 +107,7 @@ nodejs:lint:
   script:
     - npm run lint --if-present
   needs:
-    - job: nodejs:build
+    - job: nodejs:install
       artifacts: true
   rules:
     - <<: *skip_code_quality_disabled
