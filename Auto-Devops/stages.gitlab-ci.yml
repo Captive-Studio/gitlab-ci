@@ -12,9 +12,11 @@
 stages:
   # Prepare installation, Fail early stage
   - prepare
+  # Code quality tools, Linters, Static code analysis
+  - validate
   # Build image, resources, etc
   - build
-  # Code quality tools, Linters, Unit tests, End-to-End tests
+  # Unit tests, End-to-End tests
   - test
   - deploy # dummy stage to follow the template guidelines
   # Publish on NPM, DockerHub, etc
