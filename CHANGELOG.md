@@ -1,3 +1,19 @@
+# 2.7.0 (2023-08-07)
+
+## ✨ New Features
+- [`8fdf7b3`](https://gitlab.com/captive/gitlab-ci/-/commit/8fdf7b3)  Add validate stage
+
+- [`f7fa109`](https://gitlab.com/captive/gitlab-ci/-/commit/f7fa109)  Move rubocop to validate stage
+
+- [`75e4cf4`](https://gitlab.com/captive/gitlab-ci/-/commit/75e4cf4)  Move nodejs:lint to validate stage
+
+## 🐛 Bug Fixes
+- [`0a6e6c7`](https://gitlab.com/captive/gitlab-ci/-/commit/0a6e6c7)  nodejs:lint should need only nodejs:install
+
+
+
+# [2.7.0](https://git.captive.fr/captive/gitlab-ci/compare/2.6.1...2.7.0) (2023-08-07)
+
 # 2.6.1 (2023-07-25)
 
 ## 🐛 Bug Fixes
