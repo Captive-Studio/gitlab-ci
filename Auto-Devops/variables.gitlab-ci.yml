@@ -83,14 +83,10 @@ variables:
   # @type {string}
   CI_REGISTRY_MIRROR: https://mirror.gcr.io
 
-  # Required variables for docker.mk
-  #
-  # @type {string}
-  REGISTRY_PROJECT_URL: $CONTAINER_REGISTRY/$CI_PROJECT_PATH
-
   # @deprecated Legacy variables only used for custom Makefiles
   # TODO: use predefined CI_* variables in Makefiles instead
   CONTAINER_REGISTRY: $CI_REGISTRY
+  REGISTRY_PROJECT_URL: $CI_REGISTRY_IMAGE
   BUILD_SUBPATH: dev
   BUILD_ID: $CI_COMMIT_SHORT_SHA
   REF_ID: $CI_COMMIT_REF_SLUG
