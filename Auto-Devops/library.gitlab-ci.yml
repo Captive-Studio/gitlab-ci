@@ -66,7 +66,7 @@
     - name: docker:20-dind
       entrypoint: [sh, -c, dockerd-entrypoint.sh $DOCKER_DAEMON_OPTIONS]
   variables:
-    DOCKER_DAEMON_OPTIONS: '--registry-mirror=${CONTAINER_REGISTRY_MIRROR} --tls=false'
+    DOCKER_DAEMON_OPTIONS: '--registry-mirror=${CI_REGISTRY_MIRROR} --tls=false'
   tags:
     - docker-dind
   before_script:
