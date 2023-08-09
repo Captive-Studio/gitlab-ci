@@ -73,7 +73,7 @@ variables:
   # Can be overridden in Gitlab Projects and Groups
   #
   # @type {string}
-  CONTAINER_REGISTRY: registry.git.captive.fr
+  # CI_REGISTRY: registry.git.captive.fr
 
   # Docker image registry URL mirror (used by .docker-dind), to avoid limitation
   # By default we use google mirror (https://mirror.gcr.io) to ensure this configuration works in most environments
@@ -88,6 +88,9 @@ variables:
   # @type {string}
   REGISTRY_PROJECT_URL: $CONTAINER_REGISTRY/$CI_PROJECT_PATH
 
+  # @deprecated Legacy variables only used for custom Makefiles
+  # TODO: use predefined CI_* variables in Makefiles instead
+  CONTAINER_REGISTRY: $CI_REGISTRY
   BUILD_SUBPATH: dev
   BUILD_ID: $CI_COMMIT_SHORT_SHA
   REF_ID: $CI_COMMIT_REF_SLUG

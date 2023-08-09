@@ -71,7 +71,7 @@
     - docker-dind
   before_script:
     - unset HISTFILE
-    - echo $CI_JOB_TOKEN | docker login -u gitlab-ci-token --password-stdin $CONTAINER_REGISTRY
+    - echo $CI_JOB_TOKEN | docker login -u gitlab-ci-token --password-stdin $CI_REGISTRY
     - export TEST_IMAGE=$REGISTRY_PROJECT_URL/$BUILD_SUBPATH:${BUILD_ID}-test
     # Inline .git_checkout > before_script
     - |
