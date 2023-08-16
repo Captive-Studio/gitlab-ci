@@ -3,9 +3,9 @@
 
 include:
   # Add security scan
-  - template: Jobs/SAST-IaC.gitlab-ci.yml
-    # rules:
-    #   - if: $TF_ENABLED != null && $TF_ENABLED != '' & $TF_ENABLED != 'false'
+  # - template: Jobs/SAST-IaC.gitlab-ci.yml
+  # rules:
+  #   - if: $TF_ENABLED != null && $TF_ENABLED != '' & $TF_ENABLED != 'false'
 
 .terraform_rules:
   rules:
