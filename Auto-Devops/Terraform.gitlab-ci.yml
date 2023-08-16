@@ -1,11 +1,11 @@
 # @see https://gitlab.com/gitlab-org/gitlab/-/blob/master/lib/gitlab/ci/templates/Terraform/Base.gitlab-ci.yml
 # @see https://docs.gitlab.com/ee/user/infrastructure/iac/terraform_template_recipes.html
 
-include:
-  # Add security scan
-  # - template: Jobs/SAST-IaC.gitlab-ci.yml
-  # rules:
-  #   - if: $TF_ENABLED != null && $TF_ENABLED != '' & $TF_ENABLED != 'false'
+# include:
+# Add security scan
+# - template: Jobs/SAST-IaC.gitlab-ci.yml
+# rules:
+#   - if: $TF_ENABLED != null && $TF_ENABLED != '' & $TF_ENABLED != 'false'
 
 .terraform_rules:
   rules:
@@ -101,3 +101,59 @@ include:
     - <<: *skip_if_terraform_disabled
     - <<: *skip_if_staging_disabled
     - when: on_success
+
+terraform:fmt:
+  extends: .terraform:fmt
+  needs: []
+
+terraform:validate:staging:
+  extends: .terraform:validate
+  needs: []
+  variables:
+    TF_STATE_NAME: staging
+
+terraform:build:staging:
+  extends:
+    - .terraform:build
+  environment:
+    name: staging
+    action: prepare
+  needs:
+    - job: terraform:validate:staging
+      artifacts: true
+
+terraform:deploy:staging:
+  extends:
+    - .terraform:deploy
+  stage: staging
+  dependencies:
+    - terraform:build:staging
+  environment:
+    name: staging
+    action: start
+  variables:
+    TF_AUTO_DEPLOY: 'true'
+
+terraform:validate:production:
+  extends: .terraform:validate
+  needs: []
+  variables:
+    TF_STATE_NAME: production
+
+terraform:build:production:
+  extends: .terraform:build
+  environment:
+    name: production
+    action: prepare
+  needs:
+    - job: terraform:validate:production
+      artifacts: true
+
+terraform:deploy:production:
+  extends: .terraform:deploy
+  stage: production
+  dependencies:
+    - terraform:build:production
+  environment:
+    name: production
+    action: start
