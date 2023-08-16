@@ -148,6 +148,34 @@ variables:
   # @see https://circleci.com/developer/images/image/cimg/ruby
   RUBY_VERSION: 3.2.0
 
+  #
+  # Terraform
+  #
+
+  # Enable all terraform related jobs
+  #
+  # @type {'true'|''}
+  TF_ENABLED: ''
+
+  # Location of terraform scripts
+  #
+  # @type {string}
+  TF_PROJECT_DIR: ${CI_PROJECT_DIR}/terraform
+
+  # @type {'true'|''}
+  TF_AUTO_DEPLOY: ''
+
+  # Terraform State name (file that will be read)
+  # By default, the name of the gitlab CI environnement
+  #
+  # @type {string}
+  TF_STATE_NAME: ${CI_ENVIRONMENT_NAME}
+
+  # Terraform root directory. By default should be put in a "terraform/environments/XXX" folder
+  #
+  # @type {string}
+  TF_ROOT: ${TF_PROJECT_DIR}/environments/${TF_STATE_NAME}
+
   # @see https://blog.nimbleways.com/let-s-make-faster-gitlab-ci-cd-pipelines/
   # ⚠️ If enabled, this will cause cache restore errors
   # FATAL: remove [...]: directory not empty
