@@ -1,0 +1,90 @@
+# @see https://gitlab.com/gitlab-org/gitlab/-/blob/master/lib/gitlab/ci/templates/Terraform/Base.gitlab-ci.yml
+# @see https://docs.gitlab.com/ee/user/infrastructure/iac/terraform_template_recipes.html
+
+.terraform_rules:
+  rules:
+    - &skip_non_default_branch
+      if: $CI_COMMIT_BRANCH != $CI_DEFAULT_BRANCH
+      when: never
+    - &skip_if_terraform_disabled
+      if: $TF_ENABLED == null || $TF_ENABLED == '' || $TF_ENABLED == 'false'
+      when: never
+
+.terraform_cache:
+  cache:
+    key: '${TF_ROOT}'
+    paths:
+      - ${TF_ROOT}/.terraform/
+
+.terraform:fmt:
+  extends:
+    - .terraform_image
+    - .terraform_cache
+  stage: validate
+  script:
+    - gitlab-terraform fmt
+  allow_failure: true
+  rules:
+    - <<: *skip_if_terraform_disabled
+    - when: on_success
+  variables:
+    TF_ROOT: ${TF_PROJECT_DIR}
+
+.terraform:validate:
+  extends:
+    - .terraform_image
+    - .terraform_cache
+  stage: validate
+  script:
+    - gitlab-terraform validate
+  rules:
+    - <<: *skip_if_terraform_disabled
+    - when: on_success
+
+.terraform:build:
+  extends:
+    - .terraform_image
+    - .terraform_cache
+  stage: build
+  script:
+    - gitlab-terraform plan
+    - gitlab-terraform plan-json
+  resource_group: ${TF_STATE_NAME}
+  artifacts:
+    # The next line, which disables public access to pipeline artifacts, may not be available everywhere.
+    # See: https://docs.gitlab.com/ee/ci/yaml/#artifactspublic
+    public: false
+    paths:
+      - ${TF_ROOT}/plan.cache
+    reports:
+      terraform: ${TF_ROOT}/plan.json
+  rules:
+    - <<: *skip_if_terraform_disabled
+    - when: on_success
+
+.terraform:deploy:
+  extends:
+    - .terraform_image
+    - .terraform_cache
+  stage: deploy
+  script:
+    - gitlab-terraform apply
+  resource_group: ${TF_STATE_NAME}
+  rules:
+    - <<: *skip_if_terraform_disabled
+    - <<: *skip_non_default_branch
+    - if: $TF_AUTO_DEPLOY == "true"
+    - when: manual
+
+.terraform:destroy:
+  extends:
+    - .terraform_image
+    - .terraform_cache
+  stage: cleanup
+  script:
+    - gitlab-terraform destroy
+  resource_group: ${TF_STATE_NAME}
+  when: manual
+  rules:
+    - <<: *skip_if_terraform_disabled
+    - when: on_success
