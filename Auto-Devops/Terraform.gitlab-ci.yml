@@ -1,6 +1,12 @@
 # @see https://gitlab.com/gitlab-org/gitlab/-/blob/master/lib/gitlab/ci/templates/Terraform/Base.gitlab-ci.yml
 # @see https://docs.gitlab.com/ee/user/infrastructure/iac/terraform_template_recipes.html
 
+include:
+  # Add security scan
+  - template: Jobs/SAST-IaC.gitlab-ci.yml
+    # rules:
+    #   - if: $TF_ENABLED != null && $TF_ENABLED != '' & $TF_ENABLED != 'false'
+
 .terraform_rules:
   rules:
     - &skip_non_default_branch
