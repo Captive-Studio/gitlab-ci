@@ -1,3 +1,18 @@
+# 2.8.0 (2023-08-16)
+
+## ✨ New Features
+- [`8cbdd1b`](https://gitlab.com/captive/gitlab-ci/-/commit/8cbdd1b)  Add .terraform:* jobs
+
+- [`dd1242e`](https://gitlab.com/captive/gitlab-ci/-/commit/dd1242e)  Add Jobs/SAST-IaC
+
+- [`1b254a9`](https://gitlab.com/captive/gitlab-ci/-/commit/1b254a9)  Disable staging jobs when STAGING_ENABLED is falsy
+
+- [`4cc9d90`](https://gitlab.com/captive/gitlab-ci/-/commit/4cc9d90)  Add default terraform jobs
+
+
+
+# [2.8.0](https://git.captive.fr/captive/gitlab-ci/compare/2.7.0...2.8.0) (2023-08-16)
+
 # 2.7.0 (2023-08-07)
 
 ## ✨ New Features
