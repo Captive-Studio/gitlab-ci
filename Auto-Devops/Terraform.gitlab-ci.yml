@@ -15,6 +15,9 @@ include:
     - &skip_if_terraform_disabled
       if: $TF_ENABLED == null || $TF_ENABLED == '' || $TF_ENABLED == 'false'
       when: never
+    - &skip_if_staging_disabled
+      if: ($STAGING_ENABLED == null || $STAGING_ENABLED == '' || $STAGING_ENABLED == 'false') && $CI_ENVIRONMENT_NAME == 'staging'
+      when: never
 
 .terraform_cache:
   cache:
@@ -45,6 +48,7 @@ include:
     - gitlab-terraform validate
   rules:
     - <<: *skip_if_terraform_disabled
+    - <<: *skip_if_staging_disabled
     - when: on_success
 
 .terraform:build:
@@ -66,6 +70,7 @@ include:
       terraform: ${TF_ROOT}/plan.json
   rules:
     - <<: *skip_if_terraform_disabled
+    - <<: *skip_if_staging_disabled
     - when: on_success
 
 .terraform:deploy:
@@ -78,6 +83,7 @@ include:
   resource_group: ${TF_STATE_NAME}
   rules:
     - <<: *skip_if_terraform_disabled
+    - <<: *skip_if_staging_disabled
     - <<: *skip_non_default_branch
     - if: $TF_AUTO_DEPLOY == "true"
     - when: manual
@@ -93,4 +99,5 @@ include:
   when: manual
   rules:
     - <<: *skip_if_terraform_disabled
+    - <<: *skip_if_staging_disabled
     - when: on_success
