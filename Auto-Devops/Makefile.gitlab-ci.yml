@@ -93,6 +93,7 @@ makefile:build:
     - <<: *only_makefile
   # FIXME: except:
   #   - /^backup\//
+  needs: []
   tags:
     - docker-dind
     - heavy-job
@@ -107,6 +108,9 @@ makefile:test:
     - make ci-test
   # FIXME: except:
   #   - /^backup\//
+  needs:
+    - job: makefile:build
+      artifacts: true
   tags:
     - docker-dind
     - heavy-job
@@ -124,6 +128,9 @@ makefile:test-system:
     - make ci-test-system
   # FIXME: except:
   #   - /^backup\//
+  needs:
+    - job: makefile:build
+      artifacts: true
   rules:
     - <<: *skip_test_system_disabled
     - <<: *only_makefile
