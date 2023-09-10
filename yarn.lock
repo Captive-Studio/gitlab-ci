@@ -106,8 +106,8 @@ __metadata:
   linkType: hard
 
 "@cspell/cspell-bundled-dicts@npm:^7.0.0":
-  version: 7.3.4
-  resolution: "@cspell/cspell-bundled-dicts@npm:7.3.4"
+  version: 7.3.5
+  resolution: "@cspell/cspell-bundled-dicts@npm:7.3.5"
   dependencies:
     "@cspell/dict-ada": ^4.0.2
     "@cspell/dict-aws": ^4.0.0
@@ -156,7 +156,7 @@ __metadata:
     "@cspell/dict-swift": ^2.0.1
     "@cspell/dict-typescript": ^3.1.1
     "@cspell/dict-vue": ^3.0.0
-  checksum: 1c5e07698573db6b5eac9d23870da08c3448d48e2ebc5b32fb6ef48233e98f98af0b14b03dbc59abe0d3af652a83b9415abcc35a63eaf0d1776a4012b6b8750f
+  checksum: 0b7008a4da6726fda8491dc61dd98a8377bed79821ea04e8f02695078c9c74b5c16af34a53173d73fc3b92ad5c7c7666ca5b3bbdef1f88be74ec42748003ef8d
   languageName: node
   linkType: hard
 
