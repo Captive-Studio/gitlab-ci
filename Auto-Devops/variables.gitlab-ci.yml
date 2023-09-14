@@ -96,7 +96,7 @@ variables:
   # The channel where a message will be posted in case of failure
   #
   # @type {string}
-  SLACK_FAILURE_CHANNEL: '#devops'
+  SLACK_FAILURE_CHANNEL: '#ci-notification'
 
   # The message that will be sent in case of failure
   #
