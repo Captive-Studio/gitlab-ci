@@ -1,3 +1,14 @@
+# 2.9.0 (2023-09-14)
+
+## ✨ New Features
+- [`ff8431d`](https://gitlab.com/captive/gitlab-ci/-/commit/ff8431d)  Add Slack notifications
+
+- [`a95ad3a`](https://gitlab.com/captive/gitlab-ci/-/commit/a95ad3a)  Améliore le message de notification
+
+
+
+# [2.9.0](https://git.captive.fr/captive/gitlab-ci/compare/2.8.0...2.9.0) (2023-09-14)
+
 # 2.8.0 (2023-08-16)
 
 ## ✨ New Features
