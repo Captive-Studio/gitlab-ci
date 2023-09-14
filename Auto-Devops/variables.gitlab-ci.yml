@@ -98,6 +98,12 @@ variables:
   # @type {string}
   SLACK_FAILURE_CHANNEL: '#devops'
 
+  # The message that will be sent in case of failure
+  #
+  # @type {string}
+  SLACK_FAILURE_MESSAGE: >
+    💥 La CI de $CI_PROJECT_NAME a échoué
+
   # @deprecated Legacy variables only used for custom Makefiles
   # TODO: use predefined CI_* variables in Makefiles instead
   CONTAINER_REGISTRY: $CI_REGISTRY

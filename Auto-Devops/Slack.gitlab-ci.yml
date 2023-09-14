@@ -19,6 +19,5 @@ slack:failure:
     - <<: *skip_non_default_branch
     - when: on_failure
   script:
-    - MESSAGE="💥 La CI de $CI_PROJECT_NAME a échoué"
     - |
-      curl -X POST --data-urlencode "payload={\"channel\": \"$SLACK_FAILURE_CHANNEL\", \"text\": \"$MESSAGE\"}" $SLACK_WEBHOOK_URL
+      curl -X POST --data-urlencode "payload={\"channel\": \"$SLACK_FAILURE_CHANNEL\", \"text\": \"$SLACK_FAILURE_MESSAGE\"}" $SLACK_WEBHOOK_URL
