@@ -1,0 +1,24 @@
+.slack_rules:
+  rules:
+    - &skip_non_default_branch
+      if: $CI_COMMIT_BRANCH != $CI_DEFAULT_BRANCH
+      when: never
+    - &skip_if_slack_failure_disabled
+      if: $SLACK_FAILURE_ENABLED == null || $SLACK_FAILURE_ENABLED == '' || $SLACK_FAILURE_ENABLED == 'false'
+      when: never
+
+.slack_notification:
+  stage: cleanup
+  image: curlimages/curl
+
+slack:failure:
+  extends:
+    - .slack_notification
+  rules:
+    - <<: *skip_if_slack_failure_disabled
+    - <<: *skip_non_default_branch
+    - when: on_failure
+  script:
+    - MESSAGE="💥 La CI de $CI_PROJECT_NAME a échoué"
+    - |
+      curl -X POST --data-urlencode "payload={\"channel\": \"$SLACK_FAILURE_CHANNEL\", \"text\": \"$MESSAGE\"}" $SLACK_WEBHOOK_URL

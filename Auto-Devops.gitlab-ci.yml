@@ -11,4 +11,5 @@ include:
   - /Auto-Devops/Deploy-heroku.gitlab-ci.yml
   - /Auto-Devops/Deploy-scalingo.gitlab-ci.yml
   - /Auto-Devops/Deploy-makefile.gitlab-ci.yml
+  - /Auto-Devops/Slack.gitlab-ci.yml
   - template: Jobs/SAST.gitlab-ci.yml
