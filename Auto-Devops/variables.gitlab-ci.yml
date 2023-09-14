@@ -102,7 +102,9 @@ variables:
   #
   # @type {string}
   SLACK_FAILURE_MESSAGE: >
-    💥 La CI de $CI_PROJECT_NAME a échoué
+    💥 [$CI_PROJECT_NAME] La pipeline <$CI_PIPELINE_URL|#$CI_PIPELINE_ID> a échoué
+      | Source : $CI_PIPELINE_SOURCE
+      | Commit : $CI_COMMIT_SHA
 
   # @deprecated Legacy variables only used for custom Makefiles
   # TODO: use predefined CI_* variables in Makefiles instead
