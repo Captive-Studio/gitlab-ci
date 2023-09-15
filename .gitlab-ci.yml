@@ -13,7 +13,7 @@ variables:
 
 .semantic_release_stage:
   stage: release
-  image: node:lts-alpine
+  image: cimg/node:lts
   dependencies: [] # Do not download artifacts
   extends:
     - .nodejs_image
