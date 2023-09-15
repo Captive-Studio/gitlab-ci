@@ -1,3 +1,12 @@
+# 2.9.1 (2023-09-15)
+
+## 🐛 Bug Fixes
+- [`af5852c`](https://gitlab.com/captive/gitlab-ci/-/commit/af5852c)  Fix SLACK_FAILURE_CHANNEL
+
+
+
+## [2.9.1](https://git.captive.fr/captive/gitlab-ci/compare/2.9.0...2.9.1) (2023-09-15)
+
 # 2.9.0 (2023-09-14)
 
 ## ✨ New Features
