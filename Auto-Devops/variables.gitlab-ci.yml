@@ -6,7 +6,7 @@
 # ✓ Toggle variables should always use `_ENABLED` (not `_DISABLED`)
 # ✓ Each Variables should be documented
 variables:
-  GIT_CLEAN_FLAGS: -ffdx -e .shared-cache
+  GIT_CLEAN_FLAGS: -ffdx -e .cache
 
   # Application name (for deployment, packages, etc)
   # By default $CI_PROJECT_NAME is used.
@@ -152,11 +152,11 @@ variables:
   NODEJS_VERSION: 19.5.0
 
   # Relative NPM cache path
-  CI_NPM_CACHE_FOLDER: .shared-cache/npm
+  CI_NPM_CACHE_FOLDER: .cache/npm
   # Relative NPM cache path
-  CI_YARN_CACHE_FOLDER: .shared-cache/yarn
+  CI_YARN_CACHE_FOLDER: .cache/yarn
   # Relative Bundle cache path
-  CI_BUNDLE_CACHE_FOLDER: .shared-cache/bundle
+  CI_BUNDLE_CACHE_FOLDER: .cache/bundle
   # Relative Cypress cache path
   CI_CYPRESS_CACHE_FOLDER: .cache/cypress
 
