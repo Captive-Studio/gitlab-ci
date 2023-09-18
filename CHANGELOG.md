@@ -1,3 +1,12 @@
+# 2.10.2 (2023-09-18)
+
+## 🐛 Bug Fixes
+- [`de2586f`](https://gitlab.com/captive/gitlab-ci/-/commit/de2586f)  Move slack notification when on top level
+
+
+
+## [2.10.2](https://git.captive.fr/captive/gitlab-ci/compare/2.10.1...2.10.2) (2023-09-18)
+
 # 2.10.1 (2023-09-18)
 
 ## 🐛 Bug Fixes
