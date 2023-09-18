@@ -1,3 +1,14 @@
+# 2.10.1 (2023-09-18)
+
+## 🐛 Bug Fixes
+- [`5567c00`](https://gitlab.com/captive/gitlab-ci/-/commit/5567c00)  Enable allow_failure: true for slack notifications
+
+- [`ee0fb3f`](https://gitlab.com/captive/gitlab-ci/-/commit/ee0fb3f)  Change slack notification stage to .post
+
+
+
+## [2.10.1](https://git.captive.fr/captive/gitlab-ci/compare/2.10.0...2.10.1) (2023-09-18)
+
 # 2.10.0 (2023-09-18)
 
 ## ✨ New Features
