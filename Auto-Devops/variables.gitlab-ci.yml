@@ -152,13 +152,13 @@ variables:
   NODEJS_VERSION: 19.5.0
 
   # Relative NPM cache path
-  CI_NPM_CACHE_FOLDER: .cache/npm
+  CI_NPM_CACHE_PATH: .cache/npm
   # Relative NPM cache path
-  CI_YARN_CACHE_FOLDER: .cache/yarn
+  CI_YARN_CACHE_PATH: .cache/yarn
   # Relative Bundle cache path
-  CI_BUNDLE_CACHE_FOLDER: .cache/bundle
+  CI_BUNDLE_CACHE_PATH: .cache/bundle
   # Relative Cypress cache path
-  CI_CYPRESS_CACHE_FOLDER: .cache/cypress
+  CI_CYPRESS_CACHE_PATH: .cache/cypress
 
   #
   # Ruby

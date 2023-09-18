@@ -28,7 +28,7 @@
     - &nodejs_cache
       key: ${CI_PIPELINE_ID}-node-install
       paths:
-        - ${CI_CYPRESS_CACHE_FOLDER}
+        - ${CI_CYPRESS_CACHE_PATH}
         - '**/node_modules/'
       policy: pull
 
@@ -36,11 +36,11 @@ variables:
   # Display less npm message
   npm_config_loglevel: warn
   # NPM cache environment variable
-  npm_config_cache: $CI_PROJECT_DIR/$CI_NPM_CACHE_FOLDER
+  npm_config_cache: $CI_PROJECT_DIR/$CI_NPM_CACHE_PATH
   # Cypress cache environment variable
-  CYPRESS_CACHE_FOLDER: $CI_PROJECT_DIR/$CI_CYPRESS_CACHE_FOLDER
+  CYPRESS_CACHE_FOLDER: $CI_PROJECT_DIR/$CI_CYPRESS_CACHE_PATH
   # Cypress cache environment variable
-  YARN_CACHE_FOLDER: $CI_PROJECT_DIR/$CI_YARN_CACHE_FOLDER
+  YARN_CACHE_FOLDER: $CI_PROJECT_DIR/$CI_YARN_CACHE_PATH
 
 nodejs:install:
   extends:
@@ -50,8 +50,8 @@ nodejs:install:
     - key: ${CI_COMMIT_REF_SLUG}-package-cache
       # must be inside $CI_PROJECT_DIR for gitlab-runner caching (#3)
       paths:
-        - ${CI_NPM_CACHE_FOLDER}
-        - ${CI_YARN_CACHE_FOLDER}
+        - ${CI_NPM_CACHE_PATH}
+        - ${CI_YARN_CACHE_PATH}
       when: on_success
       policy: pull-push
     - <<: *nodejs_cache

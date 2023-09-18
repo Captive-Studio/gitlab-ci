@@ -46,12 +46,12 @@
     - &nodejs_cache
       key: ${CI_PIPELINE_ID}-node-install
       paths:
-        - ${CI_CYPRESS_CACHE_FOLDER}
+        - ${CI_CYPRESS_CACHE_PATH}
         - '**/node_modules/'
       policy: pull
 
 variables:
-  BUNDLE_CACHE_PATH: $CI_BUNDLE_CACHE_FOLDER
+  BUNDLE_CACHE_PATH: $CI_BUNDLE_CACHE_PATH
   BUNDLE_PATH: vendor/bundle
   BUNDLE_JOBS: $(nproc)
   BUNDLE_FROZEN: 'true'
