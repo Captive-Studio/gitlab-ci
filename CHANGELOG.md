@@ -1,3 +1,12 @@
+# 2.10.0 (2023-09-18)
+
+## ✨ New Features
+- [`5f271bc`](https://gitlab.com/captive/gitlab-ci/-/commit/5f271bc)  Add ruby:rake:build
+
+
+
+# [2.10.0](https://git.captive.fr/captive/gitlab-ci/compare/2.9.1...2.10.0) (2023-09-18)
+
 # 2.9.1 (2023-09-15)
 
 ## 🐛 Bug Fixes
