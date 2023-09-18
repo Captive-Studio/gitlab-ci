@@ -8,7 +8,7 @@
       when: never
 
 .slack_notification:
-  stage: cleanup
+  stage: .post
   image: curlimages/curl
   allow_failure: true
 
