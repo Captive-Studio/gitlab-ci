@@ -10,6 +10,7 @@
 .slack_notification:
   stage: cleanup
   image: curlimages/curl
+  allow_failure: true
 
 slack:failure:
   extends:
