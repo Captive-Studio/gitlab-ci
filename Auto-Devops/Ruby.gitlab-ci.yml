@@ -109,6 +109,34 @@ ruby:bundle-rubocop:
         bundle exec rake db:seed
       fi
 
+ruby:rake:build:
+  extends:
+    - .ruby_image
+    - .ruby_cache
+  stage: build
+  script:
+    - |
+      # bundle exec rake assets:precompile
+      SUPPRESS_JASMINE_DEPRECATION="true"
+      if [[ ! -z $(bundle exec rake --tasks 'assets:precompile')  ]];then
+        bundle exec rake assets:precompile
+      fi
+  artifacts:
+    paths:
+      - public/assets
+    expire_in: 1 day
+    when: always
+  needs:
+    - job: ruby:install
+      artifacts: true
+    - job: nodejs:install
+      artifacts: true
+  rules:
+    - <<: *skip_build_disabled
+    - <<: *skip_if_makefile
+    - <<: *skip_if_ruby_disabled
+    - <<: *only_rakefile
+
 ruby:rake:test:
   extends:
     - .rake_test
