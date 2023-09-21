@@ -2,6 +2,7 @@ include:
   - /Auto-Devops/workflow.gitlab-ci.yml
   - /Auto-Devops/stages.gitlab-ci.yml
   - /Auto-Devops/variables.gitlab-ci.yml
+  - /Auto-Devops/cache.gitlab-ci.yml
   - /Auto-Devops/library.gitlab-ci.yml
   - /Auto-Devops/Ruby.gitlab-ci.yml
   - /Auto-Devops/Makefile.gitlab-ci.yml

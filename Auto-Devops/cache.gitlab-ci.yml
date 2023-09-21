@@ -1,0 +1,31 @@
+# NodeJS
+
+# Cache used to download packages (.yarn, etc)
+.nodejs_download_cache:
+  cache:
+    key: ${CI_COMMIT_REF_SLUG}-nodejs-cache
+    fallback_keys:
+      - ${CI_DEFAULT_BRANCH}-nodejs-cache
+    # must be inside $CI_PROJECT_DIR for gitlab-runner caching (#3)
+    paths:
+      - ${CI_NPM_CACHE_PATH}
+      - ${CI_YARN_CACHE_PATH}
+    when: on_success
+    policy: pull-push
+
+# Cache used to install dependencies (node_modules) in read mode
+.nodejs_cache:
+  cache: &nodejs_cache
+    key: ${CI_COMMIT_REF_SLUG}-nodejs-install
+    fallback_keys:
+      - ${CI_DEFAULT_BRANCH}-nodejs-install
+    paths:
+      - ${CI_CYPRESS_CACHE_PATH}
+      - '**/node_modules/'
+    policy: pull
+
+# Cache used to install dependencies (node_modules) in write mode
+.nodejs_cache_push:
+  cache:
+    <<: *nodejs_cache
+    policy: push
