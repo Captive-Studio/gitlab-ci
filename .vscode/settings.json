@@ -10,5 +10,8 @@
     "json",
     "vue",
     "yaml"
-  ]
+  ],
+  "yaml.customTags": [
+    "!reference sequence"
+ ]
 }
