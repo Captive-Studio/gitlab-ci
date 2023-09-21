@@ -1,3 +1,16 @@
+# 2.11.0 (2023-09-21)
+
+## ✨ New Features
+- [`20f528b`](https://gitlab.com/captive/gitlab-ci/-/commit/20f528b)  Use reference for nodejs cache
+
+- [`00514c8`](https://gitlab.com/captive/gitlab-ci/-/commit/00514c8)  Add ruby download cache
+
+- [`e384dd8`](https://gitlab.com/captive/gitlab-ci/-/commit/e384dd8)  Use install_cache in nodejs jobs
+
+
+
+# [2.11.0](https://git.captive.fr/captive/gitlab-ci/compare/2.10.4...2.11.0) (2023-09-21)
+
 # 2.10.4 (2023-09-21)
 
 ## 🐛 Bug Fixes
