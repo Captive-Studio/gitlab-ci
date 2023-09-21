@@ -131,6 +131,7 @@ ruby:rake:build:
       artifacts: true
     - job: nodejs:install
       artifacts: true
+      optional: true
   rules:
     - <<: *skip_build_disabled
     - <<: *skip_if_makefile
