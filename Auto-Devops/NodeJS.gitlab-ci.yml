@@ -62,7 +62,7 @@ nodejs:install:
 nodejs:build:
   extends:
     - .nodejs_image
-    - .nodejs_cache
+    - .install_cache
   stage: build
   script:
     - npm run build --if-present
@@ -84,7 +84,7 @@ nodejs:build:
 nodejs:lint:
   extends:
     - .nodejs_image
-    - .nodejs_cache
+    - .install_cache
   stage: validate
   tags:
     - lightweight-job
@@ -102,7 +102,7 @@ nodejs:lint:
 nodejs:test:
   extends:
     - .nodejs_image
-    - .nodejs_cache
+    - .install_cache
   stage: test
   artifacts:
     when: always
@@ -128,7 +128,7 @@ nodejs:test:
 nodejs:test:e2e:
   extends:
     - .nodejs_image_browsers
-    - .nodejs_cache
+    - .install_cache
   stage: test
   tags:
     - heavy-job
