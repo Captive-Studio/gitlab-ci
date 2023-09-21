@@ -1,3 +1,12 @@
+# 2.10.4 (2023-09-21)
+
+## 🐛 Bug Fixes
+- [`493473c`](https://gitlab.com/captive/gitlab-ci/-/commit/493473c)  Fix missing nodejs:install job error
+
+
+
+## [2.10.4](https://git.captive.fr/captive/gitlab-ci/compare/2.10.3...2.10.4) (2023-09-21)
+
 # 2.10.3 (2023-09-21)
 
 ## 🐛 Bug Fixes
