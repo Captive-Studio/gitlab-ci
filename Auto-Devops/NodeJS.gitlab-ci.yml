@@ -25,7 +25,9 @@
 
 .nodejs_download_cache:
   cache:
-    key: ${CI_COMMIT_REF_SLUG}-package-cache
+    key: ${CI_COMMIT_REF_SLUG}-nodejs-cache
+    fallback_keys:
+      - ${CI_DEFAULT_BRANCH}-nodejs-cache
     # must be inside $CI_PROJECT_DIR for gitlab-runner caching (#3)
     paths:
       - ${CI_NPM_CACHE_PATH}
@@ -34,14 +36,19 @@
     policy: pull-push
 
 .nodejs_cache:
-  cache:
-    key: ${CI_COMMIT_REF_SLUG}-node-install
+  cache: &nodejs_cache
+    key: ${CI_COMMIT_REF_SLUG}-nodejs-install
     fallback_keys:
-      - ${CI_DEFAULT_BRANCH}-node-install
+      - ${CI_DEFAULT_BRANCH}-nodejs-install
     paths:
       - ${CI_CYPRESS_CACHE_PATH}
       - '**/node_modules/'
     policy: pull
+
+.nodejs_cache_push:
+  cache:
+    <<: *nodejs_cache
+    policy: push
 
 variables:
   # Display less npm message
@@ -59,8 +66,7 @@ nodejs:install:
   stage: prepare
   cache:
     - !reference [.nodejs_download_cache, cache]
-    - !reference [.nodejs_cache, cache]
-      policy: push
+    - !reference [.nodejs_cache_push, cache]
   script:
     - |
       # Case Yarn Berry
