@@ -29,3 +29,37 @@
   cache:
     <<: *nodejs_cache
     policy: push
+
+# Ruby
+
+# Cache used to download packages ($BUNDLE_CACHE_PATH)
+.ruby_download_cache:
+  cache:
+    key: ${CI_COMMIT_REF_SLUG}-ruby-cache
+    fallback_keys:
+      - ${CI_DEFAULT_BRANCH}-ruby-cache
+    paths:
+      - ${CI_BUNDLE_CACHE_PATH}
+    when: on_success
+    policy: pull-push
+
+# Cache used to download packages ($BUNDLE_PATH) in read mode
+.ruby_cache:
+  cache: &ruby_cache
+    key:
+      files:
+        - Gemfile.lock
+    paths:
+      - ${BUNDLE_PATH}
+    policy: pull
+
+# Cache used to download packages ($BUNDLE_PATH) in write mode
+.ruby_cache_push:
+  cache:
+    <<: *ruby_cache
+    policy: push
+
+.install_cache:
+  cache:
+    - !reference [.ruby_cache, cache]
+    - !reference [.nodejs_cache, cache]

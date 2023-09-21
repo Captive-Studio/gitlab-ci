@@ -34,27 +34,6 @@
       exists:
         - Gemfile
 
-.ruby_download_cache:
-  cache:
-    key: ${CI_COMMIT_REF_SLUG}-ruby-cache
-    fallback_keys:
-      - ${CI_DEFAULT_BRANCH}-ruby-cache
-    paths:
-      - ${CI_BUNDLE_CACHE_PATH}
-    when: on_success
-    policy: pull-push
-
-.ruby_cache:
-  cache:
-    - &ruby_cache
-      key:
-        files:
-          - Gemfile.lock
-      paths:
-        - ${BUNDLE_PATH}
-      policy: pull
-    - !reference [.nodejs_cache, cache]
-
 variables:
   BUNDLE_CACHE_PATH: $CI_BUNDLE_CACHE_PATH
   BUNDLE_PATH: vendor/bundle
@@ -72,8 +51,7 @@ ruby:install:
   stage: prepare
   cache:
     - !reference [.ruby_download_cache, cache]
-    - <<: *ruby_cache
-      policy: pull-push
+    - !reference [.ruby_cache_push, cache]
   script:
     - ruby --version # Print out ruby version for debugging
     - bundle install "${FLAGS[@]}"
@@ -101,7 +79,7 @@ ruby:bundle-rubocop:
 .rake_test:
   extends:
     - .ruby_image
-    - .ruby_cache
+    - .install_cache
   stage: test
   services:
     - postgres:latest
@@ -118,7 +96,7 @@ ruby:bundle-rubocop:
 ruby:rake:build:
   extends:
     - .ruby_image
-    - .ruby_cache
+    - .install_cache
   stage: build
   script:
     - |
