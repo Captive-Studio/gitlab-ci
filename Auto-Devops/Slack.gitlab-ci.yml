@@ -18,6 +18,7 @@ slack:failure:
   rules:
     - <<: *skip_if_slack_failure_disabled
     - <<: *skip_non_default_branch
+    - when: on_failure
   when: on_failure
   script:
     - |
