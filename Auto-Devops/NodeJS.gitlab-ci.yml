@@ -23,14 +23,25 @@
       exists:
         - package.json
 
+.nodejs_download_cache:
+  cache:
+    key: ${CI_COMMIT_REF_SLUG}-package-cache
+    # must be inside $CI_PROJECT_DIR for gitlab-runner caching (#3)
+    paths:
+      - ${CI_NPM_CACHE_PATH}
+      - ${CI_YARN_CACHE_PATH}
+    when: on_success
+    policy: pull-push
+
 .nodejs_cache:
   cache:
-    - &nodejs_cache
-      key: ${CI_PIPELINE_ID}-node-install
-      paths:
-        - ${CI_CYPRESS_CACHE_PATH}
-        - '**/node_modules/'
-      policy: pull
+    key: ${CI_COMMIT_REF_SLUG}-node-install
+    fallback_keys:
+      - ${CI_DEFAULT_BRANCH}-node-install
+    paths:
+      - ${CI_CYPRESS_CACHE_PATH}
+      - '**/node_modules/'
+    policy: pull
 
 variables:
   # Display less npm message
@@ -47,14 +58,8 @@ nodejs:install:
     - .nodejs_image
   stage: prepare
   cache:
-    - key: ${CI_COMMIT_REF_SLUG}-package-cache
-      # must be inside $CI_PROJECT_DIR for gitlab-runner caching (#3)
-      paths:
-        - ${CI_NPM_CACHE_PATH}
-        - ${CI_YARN_CACHE_PATH}
-      when: on_success
-      policy: pull-push
-    - <<: *nodejs_cache
+    - !reference [.nodejs_download_cache, cache]
+    - !reference [.nodejs_cache, cache]
       policy: push
   script:
     - |
