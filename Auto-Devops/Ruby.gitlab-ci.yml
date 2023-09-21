@@ -34,6 +34,16 @@
       exists:
         - Gemfile
 
+.ruby_download_cache:
+  cache:
+    key: ${CI_COMMIT_REF_SLUG}-ruby-cache
+    fallback_keys:
+      - ${CI_DEFAULT_BRANCH}-ruby-cache
+    paths:
+      - ${CI_BUNDLE_CACHE_PATH}
+    when: on_success
+    policy: pull-push
+
 .ruby_cache:
   cache:
     - &ruby_cache
@@ -61,6 +71,7 @@ ruby:install:
     - .ruby_image
   stage: prepare
   cache:
+    - !reference [.ruby_download_cache, cache]
     - <<: *ruby_cache
       policy: pull-push
   script:
