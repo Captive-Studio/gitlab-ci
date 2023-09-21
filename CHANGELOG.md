@@ -1,3 +1,12 @@
+# 2.10.3 (2023-09-21)
+
+## 🐛 Bug Fixes
+- [`832bbc5`](https://gitlab.com/captive/gitlab-ci/-/commit/832bbc5)  Fix missing slack:failure job
+
+
+
+## [2.10.3](https://git.captive.fr/captive/gitlab-ci/compare/2.10.2...2.10.3) (2023-09-21)
+
 # 2.10.2 (2023-09-18)
 
 ## 🐛 Bug Fixes
