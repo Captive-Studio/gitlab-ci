@@ -169,7 +169,7 @@ variables:
   # NodeJS version used (with `image: cimg/ruby-${NODEJS_VERSION}`)
   #
   # @see https://circleci.com/developer/images/image/cimg/ruby
-  RUBY_VERSION: 3.2.0
+  RUBY_VERSION: 3.2.2
 
   #
   # Terraform
