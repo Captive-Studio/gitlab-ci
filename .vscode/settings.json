@@ -11,7 +11,5 @@
     "vue",
     "yaml"
   ],
-  "yaml.customTags": [
-    "!reference sequence"
- ]
+  "yaml.customTags": ["!reference sequence"]
 }
