@@ -43,12 +43,7 @@
       paths:
         - ${BUNDLE_PATH}
       policy: pull
-    - &nodejs_cache
-      key: ${CI_PIPELINE_ID}-node-install
-      paths:
-        - ${CI_CYPRESS_CACHE_PATH}
-        - '**/node_modules/'
-      policy: pull
+    - !reference [.nodejs_cache, cache]
 
 variables:
   BUNDLE_CACHE_PATH: $CI_BUNDLE_CACHE_PATH
