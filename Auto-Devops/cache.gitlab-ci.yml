@@ -16,9 +16,10 @@
 # Cache used to install dependencies (node_modules) in read mode
 .nodejs_cache:
   cache: &nodejs_cache
-    key: ${CI_COMMIT_REF_SLUG}-nodejs-install
-    fallback_keys:
-      - ${CI_DEFAULT_BRANCH}-nodejs-install
+    key:
+      files:
+        - package-lock.json
+        - yarn.lock
     paths:
       - ${CI_CYPRESS_CACHE_PATH}
       - '**/node_modules/'
