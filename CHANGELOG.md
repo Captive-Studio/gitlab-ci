@@ -1,3 +1,20 @@
+# 2.11.2 (2023-09-22)
+
+## 🐛 Bug Fixes
+- [`4beb0df`](https://gitlab.com/captive/gitlab-ci/-/commit/4beb0df)  Fix bundle dump output
+
+- [`ef381dc`](https://gitlab.com/captive/gitlab-ci/-/commit/ef381dc)  Ensure ruby cache exists
+
+- [`2cb0bf8`](https://gitlab.com/captive/gitlab-ci/-/commit/2cb0bf8)  Disable BUNDLE_CACHE_PATH
+
+- [`a48154a`](https://gitlab.com/captive/gitlab-ci/-/commit/a48154a)  Use --prefer-local to avoid download if possible
+
+- [`0a940dd`](https://gitlab.com/captive/gitlab-ci/-/commit/0a940dd)  Conditionnally apply mkdir if BUNDLE_CACHE_PATH
+
+
+
+## [2.11.2](https://git.captive.fr/captive/gitlab-ci/compare/2.11.1...2.11.2) (2023-09-22)
+
 # 2.11.1 (2023-09-22)
 
 ## 🐛 Bug Fixes
