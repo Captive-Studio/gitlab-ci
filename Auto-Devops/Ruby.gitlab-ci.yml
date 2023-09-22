@@ -52,7 +52,7 @@ ruby:install:
     - .ruby_image
   stage: prepare
   cache:
-    - !reference [.ruby_download_cache, cache]
+    # - !reference [.ruby_download_cache, cache]
     - !reference [.ruby_cache_push, cache]
   script:
     # Dump environment
