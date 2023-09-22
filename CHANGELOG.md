@@ -1,3 +1,12 @@
+# 2.11.3 (2023-09-22)
+
+## 🐛 Bug Fixes
+- [`1ea35bf`](https://gitlab.com/captive/gitlab-ci/-/commit/1ea35bf)  Fix unknown switch --prefer-local
+
+
+
+## [2.11.3](https://git.captive.fr/captive/gitlab-ci/compare/2.11.2...2.11.3) (2023-09-22)
+
 # 2.11.2 (2023-09-22)
 
 ## 🐛 Bug Fixes
