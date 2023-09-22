@@ -63,5 +63,5 @@
 
 .install_cache:
   cache:
-    - !reference [.ruby_cache, cache]
-    - !reference [.nodejs_cache, cache]
+    - <<: *ruby_cache
+    - <<: *nodejs_cache
