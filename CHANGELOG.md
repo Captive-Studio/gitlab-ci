@@ -1,3 +1,12 @@
+# 2.11.5 (2023-09-22)
+
+## 🐛 Bug Fixes
+- [`6240924`](https://gitlab.com/captive/gitlab-ci/-/commit/6240924)  Fix install cache
+
+
+
+## [2.11.5](https://git.captive.fr/captive/gitlab-ci/compare/2.11.4...2.11.5) (2023-09-22)
+
 # 2.11.4 (2023-09-22)
 
 ## 🐛 Bug Fixes
