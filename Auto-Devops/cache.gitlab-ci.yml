@@ -57,7 +57,9 @@
 .ruby_cache_push:
   cache:
     <<: *ruby_cache
-    policy: push
+    # Workaround because ruby_download_cache does not work
+    # policy: push
+    policy: pull-push
 
 .install_cache:
   cache:
