@@ -1,3 +1,12 @@
+# 2.11.1 (2023-09-22)
+
+## 🐛 Bug Fixes
+- [`cc800b5`](https://gitlab.com/captive/gitlab-ci/-/commit/cc800b5)  Display bundle informations
+
+
+
+## [2.11.1](https://git.captive.fr/captive/gitlab-ci/compare/2.11.0...2.11.1) (2023-09-22)
+
 # 2.11.0 (2023-09-21)
 
 ## ✨ New Features
