@@ -1,3 +1,12 @@
+# 2.11.4 (2023-09-22)
+
+## 🐛 Bug Fixes
+- [`b334892`](https://gitlab.com/captive/gitlab-ci/-/commit/b334892)  Workaround for ruby_download_cache not working
+
+
+
+## [2.11.4](https://git.captive.fr/captive/gitlab-ci/compare/2.11.3...2.11.4) (2023-09-22)
+
 # 2.11.3 (2023-09-22)
 
 ## 🐛 Bug Fixes
