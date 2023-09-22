@@ -53,12 +53,16 @@ ruby:install:
     - !reference [.ruby_download_cache, cache]
     - !reference [.ruby_cache_push, cache]
   script:
+    # Dump environment
     - |
       # Display the environment
       echo BUNDLE_CACHE_PATH=$BUNDLE_CACHE_PATH
       echo BUNDLE_PATH=$BUNDLE_PATH
       bundle --version
       ruby --version
+    # Ensure download cache exist
+    - mkdir -p $BUNDLE_CACHE_PATH
+    # Install dependencies
     - bundle install
   rules:
     - <<: *skip_if_makefile
