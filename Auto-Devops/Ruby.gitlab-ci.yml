@@ -65,7 +65,7 @@ ruby:install:
     # Ensure download cache exist
     - mkdir -p $BUNDLE_CACHE_PATH
     # Install dependencies
-    - bundle install
+    - bundle install --prefer-local
   rules:
     - <<: *skip_if_makefile
     - <<: *skip_if_ruby_disabled
