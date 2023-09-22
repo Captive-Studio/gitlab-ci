@@ -62,8 +62,11 @@ ruby:install:
       echo BUNDLE_PATH=$BUNDLE_PATH
       bundle --version
       ruby --version
-    # Ensure download cache exist
-    - mkdir -p $BUNDLE_CACHE_PATH
+    - |
+      # Ensure download cache exist
+      if [ ! -z "$BUNDLE_CACHE_PATH" ];then
+        mkdir -p $BUNDLE_CACHE_PATH
+      fi
     # Install dependencies
     - bundle install --prefer-local
   rules:
