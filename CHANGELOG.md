@@ -1,3 +1,12 @@
+# 2.11.6 (2023-09-22)
+
+## 🐛 Bug Fixes
+- [`bc2f421`](https://gitlab.com/captive/gitlab-ci/-/commit/bc2f421)  Disable ruby_download_cache
+
+
+
+## [2.11.6](https://git.captive.fr/captive/gitlab-ci/compare/2.11.5...2.11.6) (2023-09-22)
+
 # 2.11.5 (2023-09-22)
 
 ## 🐛 Bug Fixes
