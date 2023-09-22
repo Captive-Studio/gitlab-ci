@@ -35,7 +35,9 @@
         - Gemfile
 
 variables:
-  BUNDLE_CACHE_PATH: $CI_BUNDLE_CACHE_PATH
+  # TODO: Enable this to optimize on shared runner cache
+  # => BUT there is conflict between BUNDLE_CACHE_PATH and BUNDLE_FROZEN, bundle install returns an error
+  # BUNDLE_CACHE_PATH: $CI_BUNDLE_CACHE_PATH
   BUNDLE_PATH: vendor/bundle
   BUNDLE_JOBS: $(nproc)
   BUNDLE_FROZEN: 'true'
