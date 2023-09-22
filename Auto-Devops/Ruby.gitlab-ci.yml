@@ -68,7 +68,7 @@ ruby:install:
         mkdir -p $BUNDLE_CACHE_PATH
       fi
     # Install dependencies
-    - bundle install --prefer-local
+    - bundle install
   rules:
     - <<: *skip_if_makefile
     - <<: *skip_if_ruby_disabled
