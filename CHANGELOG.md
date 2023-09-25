@@ -1,3 +1,12 @@
+# 2.12.0 (2023-09-25)
+
+## ✨ New Features
+- [`c786ab0`](https://gitlab.com/captive/gitlab-ci/-/commit/c786ab0)  Add DangerJS support
+
+
+
+# [2.12.0](https://git.captive.fr/captive/gitlab-ci/compare/2.11.6...2.12.0) (2023-09-25)
+
 # 2.11.6 (2023-09-22)
 
 ## 🐛 Bug Fixes
