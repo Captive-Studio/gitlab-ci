@@ -84,7 +84,7 @@ __metadata:
   dependencies:
     "@captive/cspell-config": 1.0.11
     "@captive/eslint-config": 1.10.3
-    danger: ^11.3.0
+    danger: 11.3.0
     envhandlebars: 1.4.8
     eslint: 8.50.0
     gitlab-ci-lint: 1.1.0
@@ -1719,7 +1719,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"danger@npm:^11.3.0":
+"danger@npm:11.3.0":
   version: 11.3.0
   resolution: "danger@npm:11.3.0"
   dependencies:
