@@ -33,6 +33,14 @@ variables:
   # @type {'true'|''}
   CODE_QUALITY_ENABLED: 'true'
 
+  # SAST analyzers list to exclude
+  #
+  # By default we disable almost all analyzers and migrate to semgrep as suggested by Gitlab
+  # @see https://docs.gitlab.com/ee/user/application_security/sast/analyzers.html#transition-to-semgrep-based-scanning
+  #
+  # @type {string}
+  SAST_EXCLUDED_ANALYZERS: ' bandit, brakeman, flawfinder, phpcs-security-audit, pmd-apex, security-code-scan, spotbugs, eslint, nodejs-scan, sobelow'
+
   # Enable Test step
   #
   # @type {'true'|''}
