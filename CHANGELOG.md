@@ -1,3 +1,12 @@
+# 2.13.0 (2023-10-07)
+
+## ✨ New Features
+- [`bced0f4`](https://gitlab.com/captive/gitlab-ci/-/commit/bced0f4)  Use only semgrep scanning
+
+
+
+# [2.13.0](https://git.captive.fr/captive/gitlab-ci/compare/2.12.0...2.13.0) (2023-10-07)
+
 # 2.12.0 (2023-09-25)
 
 ## ✨ New Features
