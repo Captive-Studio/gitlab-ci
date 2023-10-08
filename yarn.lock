@@ -2077,11 +2077,11 @@ __metadata:
   linkType: hard
 
 "eslint-compat-utils@npm:^0.1.0":
-  version: 0.1.1
-  resolution: "eslint-compat-utils@npm:0.1.1"
+  version: 0.1.2
+  resolution: "eslint-compat-utils@npm:0.1.2"
   peerDependencies:
     eslint: ">=6.0.0"
-  checksum: 1e5e7289c63b254b9029ba1be8f2add3c248a4e12d7fc706d3e7492c2f9e4cefd8f9aee0efc6e3c50b47779ff752b38eb52f1ebd59eb5758a671bc73088ce323
+  checksum: 2315d9db81efb7f58808053bf32a1d5970b38e01cd8244f4f1b5aa05d883255c5c93fc184e9c29a0e7e2dcf16ff16330977302474d3fa870e41c5bed9c66f76b
   languageName: node
   linkType: hard
 
