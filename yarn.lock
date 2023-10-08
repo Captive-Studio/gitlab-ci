@@ -190,9 +190,9 @@ __metadata:
   linkType: hard
 
 "@cspell/dict-cpp@npm:^5.0.5":
-  version: 5.0.6
-  resolution: "@cspell/dict-cpp@npm:5.0.6"
-  checksum: 62273a6723234810f403aa34b95e7d866cd1cf9320aa32c0ad21caffd1da64b53529ceba743d6cc8c8b8f997d57a8a14e4142fb2a78d30da469de5af303e895d
+  version: 5.0.7
+  resolution: "@cspell/dict-cpp@npm:5.0.7"
+  checksum: 2543a140a884228f68e2268e08f552505cd035267b28c791796d77baf8dc161c50ed482dd8a0fa49bcddf4578bdb7d9748d60b10f86b8f936bbaebbb858188a0
   languageName: node
   linkType: hard
 
@@ -421,9 +421,9 @@ __metadata:
   linkType: hard
 
 "@cspell/dict-public-licenses@npm:^2.0.4":
-  version: 2.0.4
-  resolution: "@cspell/dict-public-licenses@npm:2.0.4"
-  checksum: 643892b9a8a9f78c6439f31520c4ed6527b3eed37b6c9e7ff1d5d72dd14191b7c939540901c9991503844c7e1076d4f8a89ccacf95a832b0490b6e8b6cd10a52
+  version: 2.0.5
+  resolution: "@cspell/dict-public-licenses@npm:2.0.5"
+  checksum: 07e647c24ed1a5f0e88828264581e9f8fde179f776a50c4389ac0bc5c09a2bb94280d299c94d1884a8da01fbf112c5640178789b457f06b1a97414b18cda99e0
   languageName: node
   linkType: hard
 
@@ -465,9 +465,9 @@ __metadata:
   linkType: hard
 
 "@cspell/dict-software-terms@npm:^3.3.2":
-  version: 3.3.4
-  resolution: "@cspell/dict-software-terms@npm:3.3.4"
-  checksum: 84efa97ac4e1aa5a609b9e22296165134062b107dbcd964926341d48e75b9c891c57e86ff470338c3783ca1736c710ca5323c27c79f3f8f38a2c4db7c1da7352
+  version: 3.3.5
+  resolution: "@cspell/dict-software-terms@npm:3.3.5"
+  checksum: 237c7a1ecc3347bdb0e5e5eb833a19804e723eac4e42092c7f4c7baa75e9775a770d597015dadccca33ba247347b2ec3775b463698ca496deb0d0b26b427498c
   languageName: node
   linkType: hard
 
