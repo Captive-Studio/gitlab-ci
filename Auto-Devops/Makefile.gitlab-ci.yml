@@ -13,9 +13,6 @@
 
 .makefile_rules:
   rules:
-    - &skip_code_quality_disabled
-      if: $CODE_QUALITY_ENABLED == null || $CODE_QUALITY_ENABLED == '' || $CODE_QUALITY_ENABLED == 'false'
-      when: never
     - &skip_test_disabled
       if: $TEST_ENABLED == null || $TEST_ENABLED == '' || $TEST_ENABLED == 'false'
       when: never
@@ -43,7 +40,7 @@ makefile:check-changelog:
     - make ci-check-changelog
   allow_failure: true
   rules:
-    - <<: *skip_code_quality_disabled
+    - !reference [.auto-devops:rules:skip_code_quality_disabled, rules]
     - !reference [.auto-devops:rules:skip_default_branch, rules]
     - if: $CI_COMMIT_TAG
       when: never
@@ -65,7 +62,7 @@ makefile:lint:
         echo 'Warning: `make ci-lint` not found'
       fi;
   rules:
-    - <<: *skip_code_quality_disabled
+    - !reference [.auto-devops:rules:skip_code_quality_disabled, rules]
     - <<: *only_makefile
   tags:
     - docker-dind

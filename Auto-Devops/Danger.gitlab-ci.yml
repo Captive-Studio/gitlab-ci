@@ -1,8 +1,5 @@
 .danger_rules:
   rules:
-    - &skip_code_quality_disabled
-      if: $CODE_QUALITY_ENABLED == null || $CODE_QUALITY_ENABLED == '' || $CODE_QUALITY_ENABLED == 'false'
-      when: never
     - &skip_if_danger_disabled
       if: $DANGER_ENABLED == null || $DANGER_ENABLED == '' || $DANGER_ENABLED == ''
       when: never
@@ -22,6 +19,6 @@ danger-js:
     - job: nodejs:install
       artifacts: true
   rules:
-    - <<: *skip_code_quality_disabled
+    - !reference [.auto-devops:rules:skip_code_quality_disabled, rules]
     - <<: *skip_if_danger_disabled
     - <<: *dangerjs_present_rule

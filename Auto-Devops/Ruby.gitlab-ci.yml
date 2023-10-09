@@ -2,9 +2,6 @@
 
 .ruby_rules:
   rules:
-    - &skip_code_quality_disabled
-      if: $CODE_QUALITY_ENABLED == null || $CODE_QUALITY_ENABLED == '' || $CODE_QUALITY_ENABLED == 'false'
-      when: never
     - &skip_test_disabled
       if: $TEST_ENABLED == null || $TEST_ENABLED == '' || $TEST_ENABLED == 'false'
       when: never
@@ -79,7 +76,7 @@ ruby:bundle-rubocop:
     - job: ruby:install
       artifacts: true
   rules:
-    - <<: *skip_code_quality_disabled
+    - !reference [.auto-devops:rules:skip_code_quality_disabled, rules]
     - <<: *skip_if_makefile
     - <<: *skip_if_ruby_disabled
     - <<: *only_rubocop_conf
