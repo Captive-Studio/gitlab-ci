@@ -16,9 +16,6 @@
     - &skip_kubernetes
       if: '$CI_KUBERNETES_ACTIVE || $KUBECONFIG'
       when: never
-    - &skip_default_branch
-      if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
-      when: never
     - &skip_non_default_branch
       if: $CI_COMMIT_BRANCH != $CI_DEFAULT_BRANCH
       when: never
@@ -151,7 +148,7 @@
   rules:
     - <<: *filter_platform_target
     - <<: *skip_kubernetes
-    - <<: *skip_default_branch
+    - !reference [.auto-devops:rules:skip_default_branch, rules]
     - <<: *skip_if_review_disabled
     - when: on_success
 
@@ -167,7 +164,7 @@
   rules:
     - <<: *filter_platform_target
     - <<: *skip_kubernetes
-    - <<: *skip_default_branch
+    - !reference [.auto-devops:rules:skip_default_branch, rules]
     - <<: *skip_if_review_disabled
     - when: manual
 
@@ -194,7 +191,7 @@
   rules:
     - <<: *filter_platform_target
     - <<: *skip_kubernetes
-    - <<: *skip_default_branch
+    - !reference [.auto-devops:rules:skip_default_branch, rules]
     - <<: *skip_if_staging_disabled
     - when: manual
   allow_failure: true

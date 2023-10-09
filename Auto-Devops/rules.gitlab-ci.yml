@@ -1,0 +1,7 @@
+.if_default_branch: &if_default_branch
+  if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+
+.auto-devops:rules:skip_default_branch:
+  rules:
+    - <<: *if_default_branch
+      when: never
