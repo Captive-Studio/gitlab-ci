@@ -11,12 +11,6 @@
 #     gitlab job: 'makefile:${job_name}'
 #     makefile target : 'make ci-${job_name}'
 
-.makefile_rules:
-  rules:
-    - &only_makefile
-      exists:
-        - Makefile
-
 # TODO: use $CI_COMMIT_REF_NAME in makefile
 .makefile_checkout:
   extends:
@@ -38,7 +32,7 @@ makefile:check-changelog:
     - !reference [.auto-devops:rules:skip_default_branch, rules]
     - if: $CI_COMMIT_TAG
       when: never
-    - <<: *only_makefile
+    - !reference [.auto-devops:rules:only_makefile, rules]
 
 makefile:lint:
   extends:
@@ -57,7 +51,7 @@ makefile:lint:
       fi;
   rules:
     - !reference [.auto-devops:rules:skip_code_quality_disabled, rules]
-    - <<: *only_makefile
+    - !reference [.auto-devops:rules:only_makefile, rules]
   tags:
     - docker-dind
     - heavy-job
@@ -72,7 +66,7 @@ makefile:build:
     - make ci-build
   rules:
     - !reference [.auto-devops:rules:skip_build_disabled, rules]
-    - <<: *only_makefile
+    - !reference [.auto-devops:rules:only_makefile, rules]
   # FIXME: except:
   #   - /^backup\//
   needs: []
@@ -98,7 +92,7 @@ makefile:test:
     - heavy-job
   rules:
     - !reference [.auto-devops:rules:skip_test_disabled, rules]
-    - <<: *only_makefile
+    - !reference [.auto-devops:rules:only_makefile, rules]
 
 makefile:test-system:
   extends:
@@ -115,7 +109,7 @@ makefile:test-system:
       artifacts: true
   rules:
     - !reference [.auto-devops:rules:skip_test_system_disabled, rules]
-    - <<: *only_makefile
+    - !reference [.auto-devops:rules:only_makefile, rules]
   tags:
     - docker-dind
     - heavy-job
@@ -130,4 +124,4 @@ makefile:release-images:
     - make ci-release-images
   rules:
     - !reference [.auto-devops:rules:skip_non_default_branch, rules]
-    - <<: *only_makefile
+    - !reference [.auto-devops:rules:only_makefile, rules]

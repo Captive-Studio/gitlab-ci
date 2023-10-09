@@ -68,3 +68,7 @@
   rules:
     - <<: *if_makefile
       when: never
+
+.auto-devops:rules:only_makefile:
+  rules:
+    - <<: *if_makefile
