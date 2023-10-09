@@ -72,3 +72,8 @@
 .auto-devops:rules:only_makefile:
   rules:
     - <<: *if_makefile
+
+.auto-devops:rules:filter_platform_target:
+  rules:
+    - if: '$IF_AUTO_DEVOPS_PLATFORM_TARGET && $AUTO_DEVOPS_PLATFORM_TARGET != $IF_AUTO_DEVOPS_PLATFORM_TARGET'
+      when: never

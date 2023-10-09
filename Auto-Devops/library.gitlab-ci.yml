@@ -10,9 +10,6 @@
 # ⚠️ Must be declared before use
 .auto-devops_rules:
   rules:
-    - &filter_platform_target
-      if: '$IF_AUTO_DEVOPS_PLATFORM_TARGET && $AUTO_DEVOPS_PLATFORM_TARGET != $IF_AUTO_DEVOPS_PLATFORM_TARGET'
-      when: never
     - &skip_if_staging_enabled
       if: $STAGING_ENABLED && $STAGING_ENABLED != 'false'
       when: never
@@ -131,7 +128,7 @@
   environment:
     name: review/$CI_COMMIT_REF_SLUG
   rules:
-    - <<: *filter_platform_target
+    - !reference [.auto-devops:rules:filter_platform_target, rules]
     - !reference [.auto-devops:rules:skip_kubernetes, rules]
     - !reference [.auto-devops:rules:skip_default_branch, rules]
     - !reference [.auto-devops:rules:skip_if_review_disabled, rules]
@@ -147,7 +144,7 @@
     action: stop
   allow_failure: true
   rules:
-    - <<: *filter_platform_target
+    - !reference [.auto-devops:rules:filter_platform_target, rules]
     - !reference [.auto-devops:rules:skip_kubernetes, rules]
     - !reference [.auto-devops:rules:skip_default_branch, rules]
     - !reference [.auto-devops:rules:skip_if_review_disabled, rules]
@@ -174,7 +171,7 @@
     - .auto-devops_staging
   stage: review
   rules:
-    - <<: *filter_platform_target
+    - !reference [.auto-devops:rules:filter_platform_target, rules]
     - !reference [.auto-devops:rules:skip_kubernetes, rules]
     - !reference [.auto-devops:rules:skip_default_branch, rules]
     - !reference [.auto-devops:rules:skip_if_staging_disabled, rules]
@@ -205,7 +202,7 @@
     name: staging
     url: http://staging.$APP_NAME.$APP_DOMAIN
   rules:
-    - <<: *filter_platform_target
+    - !reference [.auto-devops:rules:filter_platform_target, rules]
     - !reference [.auto-devops:rules:skip_kubernetes, rules]
     - !reference [.auto-devops:rules:skip_non_default_branch, rules]
     - !reference [.auto-devops:rules:skip_if_staging_disabled, rules]
@@ -230,7 +227,7 @@
     - .auto-devops_production
   rules:
     - !reference [.auto-devops:rules:skip_deploy_freeze, rules]
-    - <<: *filter_platform_target
+    - !reference [.auto-devops:rules:filter_platform_target, rules]
     - !reference [.auto-devops:rules:skip_kubernetes, rules]
     - !reference [.auto-devops:rules:skip_non_default_branch, rules]
     - <<: *skip_if_staging_enabled
@@ -244,7 +241,7 @@
     - .auto-devops_production
   rules:
     - !reference [.auto-devops:rules:skip_deploy_freeze, rules]
-    - <<: *filter_platform_target
+    - !reference [.auto-devops:rules:filter_platform_target, rules]
     - !reference [.auto-devops:rules:skip_kubernetes, rules]
     - !reference [.auto-devops:rules:skip_non_default_branch, rules]
     - <<: *skip_if_incremental_rollout_enabled
