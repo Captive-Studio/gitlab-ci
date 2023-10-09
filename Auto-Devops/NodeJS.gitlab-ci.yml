@@ -1,10 +1,11 @@
-.nodejs_rules:
+.auto-devops:rules:skip_if_nodejs_disabled:
   rules:
-    - &skip_if_nodejs_disabled
-      if: $NODEJS_ENABLED == null || $NODEJS_ENABLED == '' || $NODEJS_ENABLED == 'false'
+    - if: $NODEJS_ENABLED == null || $NODEJS_ENABLED == '' || $NODEJS_ENABLED == 'false'
       when: never
-    - &nodejs_present_rule
-      exists:
+
+.auto-devops:rules:nodejs_present_rule:
+  rules:
+    - exists:
         - package.json
 
 variables:
@@ -40,8 +41,8 @@ nodejs:install:
       fi;
   rules:
     - !reference [.auto-devops:rules:skip_if_makefile, rules]
-    - <<: *skip_if_nodejs_disabled
-    - <<: *nodejs_present_rule
+    - !reference [.auto-devops:rules:skip_if_nodejs_disabled, rules]
+    - !reference [.auto-devops:rules:nodejs_present_rule, rules]
 
 nodejs:build:
   extends:
@@ -62,8 +63,8 @@ nodejs:build:
   rules:
     - !reference [.auto-devops:rules:skip_build_disabled, rules]
     - !reference [.auto-devops:rules:skip_if_makefile, rules]
-    - <<: *skip_if_nodejs_disabled
-    - <<: *nodejs_present_rule
+    - !reference [.auto-devops:rules:skip_if_nodejs_disabled, rules]
+    - !reference [.auto-devops:rules:nodejs_present_rule, rules]
 
 nodejs:lint:
   extends:
@@ -80,8 +81,8 @@ nodejs:lint:
   rules:
     - !reference [.auto-devops:rules:skip_code_quality_disabled, rules]
     - !reference [.auto-devops:rules:skip_if_makefile, rules]
-    - <<: *skip_if_nodejs_disabled
-    - <<: *nodejs_present_rule
+    - !reference [.auto-devops:rules:skip_if_nodejs_disabled, rules]
+    - !reference [.auto-devops:rules:nodejs_present_rule, rules]
 
 nodejs:test:
   extends:
@@ -106,8 +107,8 @@ nodejs:test:
   rules:
     - !reference [.auto-devops:rules:skip_test_disabled, rules]
     - !reference [.auto-devops:rules:skip_if_makefile, rules]
-    - <<: *skip_if_nodejs_disabled
-    - <<: *nodejs_present_rule
+    - !reference [.auto-devops:rules:skip_if_nodejs_disabled, rules]
+    - !reference [.auto-devops:rules:nodejs_present_rule, rules]
 
 nodejs:test:e2e:
   extends:
@@ -124,5 +125,5 @@ nodejs:test:e2e:
   rules:
     - !reference [.auto-devops:rules:skip_test_system_disabled, rules]
     - !reference [.auto-devops:rules:skip_if_makefile, rules]
-    - <<: *skip_if_nodejs_disabled
-    - <<: *nodejs_present_rule
+    - !reference [.auto-devops:rules:skip_if_nodejs_disabled, rules]
+    - !reference [.auto-devops:rules:nodejs_present_rule, rules]
