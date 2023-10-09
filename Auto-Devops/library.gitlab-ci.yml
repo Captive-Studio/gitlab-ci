@@ -13,9 +13,6 @@
     - &filter_platform_target
       if: '$IF_AUTO_DEVOPS_PLATFORM_TARGET && $AUTO_DEVOPS_PLATFORM_TARGET != $IF_AUTO_DEVOPS_PLATFORM_TARGET'
       when: never
-    - &skip_if_staging_disabled
-      if: $STAGING_ENABLED == null || $STAGING_ENABLED == '' || $STAGING_ENABLED == 'false'
-      when: never
     - &skip_if_staging_enabled
       if: $STAGING_ENABLED && $STAGING_ENABLED != 'false'
       when: never
@@ -180,7 +177,7 @@
     - <<: *filter_platform_target
     - !reference [.auto-devops:rules:skip_kubernetes, rules]
     - !reference [.auto-devops:rules:skip_default_branch, rules]
-    - <<: *skip_if_staging_disabled
+    - !reference [.auto-devops:rules:skip_if_staging_disabled, rules]
     - when: manual
   allow_failure: true
 
@@ -211,7 +208,7 @@
     - <<: *filter_platform_target
     - !reference [.auto-devops:rules:skip_kubernetes, rules]
     - !reference [.auto-devops:rules:skip_non_default_branch, rules]
-    - <<: *skip_if_staging_disabled
+    - !reference [.auto-devops:rules:skip_if_staging_disabled, rules]
     - when: on_success
 
 # Common mixin for production environment

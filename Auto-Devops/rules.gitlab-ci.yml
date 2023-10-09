@@ -54,3 +54,8 @@
   rules:
     - if: $REVIEW_ENABLED == null || $REVIEW_ENABLED == '' || $REVIEW_ENABLED == 'false'
       when: never
+
+.auto-devops:rules:skip_if_staging_disabled:
+  rules:
+    - if: $STAGING_ENABLED == null || $STAGING_ENABLED == '' || $STAGING_ENABLED == 'false'
+      when: never
