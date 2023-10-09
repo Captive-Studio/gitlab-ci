@@ -15,6 +15,11 @@
     - exists:
         - Gemfile
 
+.auto-devops:rules:only_rakefile:
+  rules:
+    - exists:
+        - Rakefile
+
 variables:
   # TODO: Enable this to optimize on shared runner cache
   # => BUT there is conflict between BUNDLE_CACHE_PATH and BUNDLE_FROZEN, bundle install returns an error
