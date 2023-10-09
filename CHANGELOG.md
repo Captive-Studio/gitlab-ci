@@ -1,3 +1,16 @@
+# 2.13.1 (2023-10-09)
+
+## 🐛 Bug Fixes
+- [`5ba1f38`](https://gitlab.com/captive/gitlab-ci/-/commit/5ba1f38)  Fix spacing
+
+- [`7298414`](https://gitlab.com/captive/gitlab-ci/-/commit/7298414)  Fix SAST at start to be overridable
+
+- [`0c71fab`](https://gitlab.com/captive/gitlab-ci/-/commit/0c71fab)  Add missing include
+
+
+
+## [2.13.1](https://git.captive.fr/captive/gitlab-ci/compare/2.13.0...2.13.1) (2023-10-09)
+
 # 2.13.0 (2023-10-07)
 
 ## ✨ New Features
