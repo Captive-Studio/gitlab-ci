@@ -10,6 +10,10 @@
 .if_deploy_freeze: &if_deploy_freeze
   if: $CI_DEPLOY_FREEZE && $CI_DEPLOY_FREEZE != 'false'
 
+.if_makefile: &if_makefile
+  exists:
+    - Makefile
+
 .auto-devops:rules:skip_kubernetes:
   rules:
     - <<: *if_kubernetes
@@ -58,4 +62,9 @@
 .auto-devops:rules:skip_if_staging_disabled:
   rules:
     - if: $STAGING_ENABLED == null || $STAGING_ENABLED == '' || $STAGING_ENABLED == 'false'
+      when: never
+
+.auto-devops:rules:skip_if_makefile:
+  rules:
+    - <<: *if_makefile
       when: never

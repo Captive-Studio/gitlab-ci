@@ -1,9 +1,5 @@
 .nodejs_rules:
   rules:
-    - &skip_if_makefile
-      exists:
-        - Makefile
-      when: never
     - &skip_if_nodejs_disabled
       if: $NODEJS_ENABLED == null || $NODEJS_ENABLED == '' || $NODEJS_ENABLED == 'false'
       when: never
@@ -43,7 +39,7 @@ nodejs:install:
         npm ci --prefer-offline --no-audit --no-optional;
       fi;
   rules:
-    - <<: *skip_if_makefile
+    - !reference [.auto-devops:rules:skip_if_makefile, rules]
     - <<: *skip_if_nodejs_disabled
     - <<: *nodejs_present_rule
 
@@ -65,7 +61,7 @@ nodejs:build:
       artifacts: true
   rules:
     - !reference [.auto-devops:rules:skip_build_disabled, rules]
-    - <<: *skip_if_makefile
+    - !reference [.auto-devops:rules:skip_if_makefile, rules]
     - <<: *skip_if_nodejs_disabled
     - <<: *nodejs_present_rule
 
@@ -83,7 +79,7 @@ nodejs:lint:
       artifacts: true
   rules:
     - !reference [.auto-devops:rules:skip_code_quality_disabled, rules]
-    - <<: *skip_if_makefile
+    - !reference [.auto-devops:rules:skip_if_makefile, rules]
     - <<: *skip_if_nodejs_disabled
     - <<: *nodejs_present_rule
 
@@ -109,7 +105,7 @@ nodejs:test:
       artifacts: true
   rules:
     - !reference [.auto-devops:rules:skip_test_disabled, rules]
-    - <<: *skip_if_makefile
+    - !reference [.auto-devops:rules:skip_if_makefile, rules]
     - <<: *skip_if_nodejs_disabled
     - <<: *nodejs_present_rule
 
@@ -127,6 +123,6 @@ nodejs:test:e2e:
       artifacts: true
   rules:
     - !reference [.auto-devops:rules:skip_test_system_disabled, rules]
-    - <<: *skip_if_makefile
+    - !reference [.auto-devops:rules:skip_if_makefile, rules]
     - <<: *skip_if_nodejs_disabled
     - <<: *nodejs_present_rule

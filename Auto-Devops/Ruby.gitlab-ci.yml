@@ -2,10 +2,6 @@
 
 .ruby_rules:
   rules:
-    - &skip_if_makefile
-      exists:
-        - Makefile
-      when: never
     - &skip_if_ruby_disabled
       if: $RUBY_ENABLED == null || $RUBY_ENABLED == '' || $RUBY_ENABLED == 'false'
       when: never
@@ -55,7 +51,7 @@ ruby:install:
     # Install dependencies
     - bundle install
   rules:
-    - <<: *skip_if_makefile
+    - !reference [.auto-devops:rules:skip_if_makefile, rules]
     - <<: *skip_if_ruby_disabled
     - <<: *only_gemfile
 
@@ -71,7 +67,7 @@ ruby:bundle-rubocop:
       artifacts: true
   rules:
     - !reference [.auto-devops:rules:skip_code_quality_disabled, rules]
-    - <<: *skip_if_makefile
+    - !reference [.auto-devops:rules:skip_if_makefile, rules]
     - <<: *skip_if_ruby_disabled
     - <<: *only_rubocop_conf
 
@@ -117,7 +113,7 @@ ruby:rake:build:
       optional: true
   rules:
     - !reference [.auto-devops:rules:skip_build_disabled, rules]
-    - <<: *skip_if_makefile
+    - !reference [.auto-devops:rules:skip_if_makefile, rules]
     - <<: *skip_if_ruby_disabled
     - <<: *only_rakefile
 
@@ -145,7 +141,7 @@ ruby:rake:test:
         path: coverage/coverage.xml
   rules:
     - !reference [.auto-devops:rules:skip_test_disabled, rules]
-    - <<: *skip_if_makefile
+    - !reference [.auto-devops:rules:skip_if_makefile, rules]
     - <<: *skip_if_ruby_disabled
     - <<: *only_rakefile
 
@@ -165,6 +161,6 @@ ruby:rake:test-system:
       fi
   rules:
     - !reference [.auto-devops:rules:skip_test_system_disabled, rules]
-    - <<: *skip_if_makefile
+    - !reference [.auto-devops:rules:skip_if_makefile, rules]
     - <<: *skip_if_ruby_disabled
     - <<: *only_rakefile
