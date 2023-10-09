@@ -1,18 +1,18 @@
 # @see https://gitlab.com/gitlab-org/gitlab-foss/-/blob/master/lib/gitlab/ci/templates/Ruby.gitlab-ci.yml
 
-.ruby_rules:
+.auto-devops:rules:skip_if_ruby_disabled:
   rules:
-    - &skip_if_ruby_disabled
-      if: $RUBY_ENABLED == null || $RUBY_ENABLED == '' || $RUBY_ENABLED == 'false'
+    - if: $RUBY_ENABLED == null || $RUBY_ENABLED == '' || $RUBY_ENABLED == 'false'
       when: never
-    - &only_rubocop_conf
-      exists:
+
+.auto-devops:rules:only_rubocop_conf:
+  rules:
+    - exists:
         - .rubocop.yml
-    - &only_rakefile
-      exists:
-        - Rakefile
-    - &only_gemfile
-      exists:
+
+.auto-devops:rules:only_gemfile:
+  rules:
+    - exists:
         - Gemfile
 
 variables:
@@ -52,8 +52,8 @@ ruby:install:
     - bundle install
   rules:
     - !reference [.auto-devops:rules:skip_if_makefile, rules]
-    - <<: *skip_if_ruby_disabled
-    - <<: *only_gemfile
+    - !reference [.auto-devops:rules:skip_if_ruby_disabled, rules]
+    - !reference [.auto-devops:rules:only_gemfile, rules]
 
 ruby:bundle-rubocop:
   extends:
@@ -68,8 +68,8 @@ ruby:bundle-rubocop:
   rules:
     - !reference [.auto-devops:rules:skip_code_quality_disabled, rules]
     - !reference [.auto-devops:rules:skip_if_makefile, rules]
-    - <<: *skip_if_ruby_disabled
-    - <<: *only_rubocop_conf
+    - !reference [.auto-devops:rules:skip_if_ruby_disabled, rules]
+    - !reference [.auto-devops:rules:only_rubocop_conf, rules]
 
 .rake_test:
   extends:
@@ -114,8 +114,8 @@ ruby:rake:build:
   rules:
     - !reference [.auto-devops:rules:skip_build_disabled, rules]
     - !reference [.auto-devops:rules:skip_if_makefile, rules]
-    - <<: *skip_if_ruby_disabled
-    - <<: *only_rakefile
+    - !reference [.auto-devops:rules:skip_if_ruby_disabled, rules]
+    - !reference [.auto-devops:rules:only_rakefile, rules]
 
 ruby:rake:test:
   extends:
@@ -142,8 +142,8 @@ ruby:rake:test:
   rules:
     - !reference [.auto-devops:rules:skip_test_disabled, rules]
     - !reference [.auto-devops:rules:skip_if_makefile, rules]
-    - <<: *skip_if_ruby_disabled
-    - <<: *only_rakefile
+    - !reference [.auto-devops:rules:skip_if_ruby_disabled, rules]
+    - !reference [.auto-devops:rules:only_rakefile, rules]
 
 ruby:rake:test-system:
   extends:
@@ -162,5 +162,5 @@ ruby:rake:test-system:
   rules:
     - !reference [.auto-devops:rules:skip_test_system_disabled, rules]
     - !reference [.auto-devops:rules:skip_if_makefile, rules]
-    - <<: *skip_if_ruby_disabled
-    - <<: *only_rakefile
+    - !reference [.auto-devops:rules:skip_if_ruby_disabled, rules]
+    - !reference [.auto-devops:rules:only_rakefile, rules]
