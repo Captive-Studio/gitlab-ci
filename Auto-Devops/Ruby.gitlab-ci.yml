@@ -2,9 +2,6 @@
 
 .ruby_rules:
   rules:
-    - &skip_test_system_disabled
-      if: $TEST_SYSTEM_ENABLED == null || $TEST_SYSTEM_ENABLED == '' || $TEST_SYSTEM_ENABLED == 'false'
-      when: never
     - &skip_if_makefile
       exists:
         - Makefile
@@ -167,7 +164,7 @@ ruby:rake:test-system:
         echo 'Warning: No rake test:system command found'
       fi
   rules:
-    - <<: *skip_test_system_disabled
+    - !reference [.auto-devops:rules:skip_test_system_disabled, rules]
     - <<: *skip_if_makefile
     - <<: *skip_if_ruby_disabled
     - <<: *only_rakefile

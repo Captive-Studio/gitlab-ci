@@ -13,9 +13,6 @@
 
 .makefile_rules:
   rules:
-    - &skip_test_system_disabled
-      if: $TEST_SYSTEM_ENABLED == null || $TEST_SYSTEM_ENABLED == '' || $TEST_SYSTEM_ENABLED == 'false'
-      when: never
     - &only_makefile
       exists:
         - Makefile
@@ -117,7 +114,7 @@ makefile:test-system:
     - job: makefile:build
       artifacts: true
   rules:
-    - <<: *skip_test_system_disabled
+    - !reference [.auto-devops:rules:skip_test_system_disabled, rules]
     - <<: *only_makefile
   tags:
     - docker-dind

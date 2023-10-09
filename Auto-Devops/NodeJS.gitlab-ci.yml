@@ -1,8 +1,5 @@
 .nodejs_rules:
   rules:
-    - &skip_test_system_disabled
-      if: $TEST_SYSTEM_ENABLED == null || $TEST_SYSTEM_ENABLED == '' || $TEST_SYSTEM_ENABLED == 'false'
-      when: never
     - &skip_if_makefile
       exists:
         - Makefile
@@ -129,7 +126,7 @@ nodejs:test:e2e:
     - job: nodejs:build
       artifacts: true
   rules:
-    - <<: *skip_test_system_disabled
+    - !reference [.auto-devops:rules:skip_test_system_disabled, rules]
     - <<: *skip_if_makefile
     - <<: *skip_if_nodejs_disabled
     - <<: *nodejs_present_rule
