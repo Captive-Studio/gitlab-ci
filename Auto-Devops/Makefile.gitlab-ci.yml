@@ -25,12 +25,6 @@
     - &skip_test_system_disabled
       if: $TEST_SYSTEM_ENABLED == null || $TEST_SYSTEM_ENABLED == '' || $TEST_SYSTEM_ENABLED == 'false'
       when: never
-    - &skip_default_branch
-      if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
-      when: never
-    - &skip_non_default_branch
-      if: $CI_COMMIT_BRANCH != $CI_DEFAULT_BRANCH
-      when: never
     - &only_makefile
       exists:
         - Makefile
@@ -53,7 +47,7 @@ makefile:check-changelog:
   allow_failure: true
   rules:
     - <<: *skip_code_quality_disabled
-    - <<: *skip_default_branch
+    - !reference [.auto-devops:rules:skip_default_branch, rules]
     - if: $CI_COMMIT_TAG
       when: never
     - <<: *only_makefile
@@ -147,5 +141,5 @@ makefile:release-images:
   script:
     - make ci-release-images
   rules:
-    - <<: *skip_non_default_branch
+    - !reference [.auto-devops:rules:skip_non_default_branch, rules]
     - <<: *only_makefile

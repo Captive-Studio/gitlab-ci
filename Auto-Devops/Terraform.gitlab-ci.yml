@@ -9,9 +9,6 @@
 
 .terraform_rules:
   rules:
-    - &skip_non_default_branch
-      if: $CI_COMMIT_BRANCH != $CI_DEFAULT_BRANCH
-      when: never
     - &skip_if_terraform_disabled
       if: $TF_ENABLED == null || $TF_ENABLED == '' || $TF_ENABLED == 'false'
       when: never
@@ -84,7 +81,7 @@
   rules:
     - <<: *skip_if_terraform_disabled
     - <<: *skip_if_staging_disabled
-    - <<: *skip_non_default_branch
+    - !reference [.auto-devops:rules:skip_non_default_branch, rules]
     - if: $TF_AUTO_DEPLOY == "true"
     - when: manual
 

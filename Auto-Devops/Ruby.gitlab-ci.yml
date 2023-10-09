@@ -21,9 +21,6 @@
     - &skip_if_ruby_disabled
       if: $RUBY_ENABLED == null || $RUBY_ENABLED == '' || $RUBY_ENABLED == 'false'
       when: never
-    - &skip_non_default_branch
-      if: $CI_COMMIT_BRANCH != $CI_DEFAULT_BRANCH
-      when: never
     - &only_rubocop_conf
       exists:
         - .rubocop.yml

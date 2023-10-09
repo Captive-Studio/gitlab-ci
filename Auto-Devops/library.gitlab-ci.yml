@@ -13,9 +13,6 @@
     - &filter_platform_target
       if: '$IF_AUTO_DEVOPS_PLATFORM_TARGET && $AUTO_DEVOPS_PLATFORM_TARGET != $IF_AUTO_DEVOPS_PLATFORM_TARGET'
       when: never
-    - &skip_non_default_branch
-      if: $CI_COMMIT_BRANCH != $CI_DEFAULT_BRANCH
-      when: never
     - &skip_deploy_freeze
       if: $CI_DEPLOY_FREEZE && $CI_DEPLOY_FREEZE != 'false'
       when: never
@@ -219,7 +216,7 @@
   rules:
     - <<: *filter_platform_target
     - !reference [.auto-devops:rules:skip_kubernetes, rules]
-    - <<: *skip_non_default_branch
+    - !reference [.auto-devops:rules:skip_non_default_branch, rules]
     - <<: *skip_if_staging_disabled
     - when: on_success
 
@@ -244,7 +241,7 @@
     - <<: *skip_deploy_freeze
     - <<: *filter_platform_target
     - !reference [.auto-devops:rules:skip_kubernetes, rules]
-    - <<: *skip_non_default_branch
+    - !reference [.auto-devops:rules:skip_non_default_branch, rules]
     - <<: *skip_if_staging_enabled
     - <<: *skip_if_canary_enabled
     - <<: *skip_if_incremental_rollout_enabled
@@ -258,7 +255,7 @@
     - <<: *skip_deploy_freeze
     - <<: *filter_platform_target
     - !reference [.auto-devops:rules:skip_kubernetes, rules]
-    - <<: *skip_non_default_branch
+    - !reference [.auto-devops:rules:skip_non_default_branch, rules]
     - <<: *skip_if_incremental_rollout_enabled
     - <<: *only_staging_enabled
       when: manual
