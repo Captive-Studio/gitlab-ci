@@ -13,9 +13,6 @@
     - &filter_platform_target
       if: '$IF_AUTO_DEVOPS_PLATFORM_TARGET && $AUTO_DEVOPS_PLATFORM_TARGET != $IF_AUTO_DEVOPS_PLATFORM_TARGET'
       when: never
-    - &skip_kubernetes
-      if: '$CI_KUBERNETES_ACTIVE || $KUBECONFIG'
-      when: never
     - &skip_non_default_branch
       if: $CI_COMMIT_BRANCH != $CI_DEFAULT_BRANCH
       when: never
@@ -147,7 +144,7 @@
     name: review/$CI_COMMIT_REF_SLUG
   rules:
     - <<: *filter_platform_target
-    - <<: *skip_kubernetes
+    - !reference [.auto-devops:rules:skip_kubernetes, rules]
     - !reference [.auto-devops:rules:skip_default_branch, rules]
     - <<: *skip_if_review_disabled
     - when: on_success
@@ -163,7 +160,7 @@
   allow_failure: true
   rules:
     - <<: *filter_platform_target
-    - <<: *skip_kubernetes
+    - !reference [.auto-devops:rules:skip_kubernetes, rules]
     - !reference [.auto-devops:rules:skip_default_branch, rules]
     - <<: *skip_if_review_disabled
     - when: manual
@@ -190,7 +187,7 @@
   stage: review
   rules:
     - <<: *filter_platform_target
-    - <<: *skip_kubernetes
+    - !reference [.auto-devops:rules:skip_kubernetes, rules]
     - !reference [.auto-devops:rules:skip_default_branch, rules]
     - <<: *skip_if_staging_disabled
     - when: manual
@@ -221,7 +218,7 @@
     url: http://staging.$APP_NAME.$APP_DOMAIN
   rules:
     - <<: *filter_platform_target
-    - <<: *skip_kubernetes
+    - !reference [.auto-devops:rules:skip_kubernetes, rules]
     - <<: *skip_non_default_branch
     - <<: *skip_if_staging_disabled
     - when: on_success
@@ -246,7 +243,7 @@
   rules:
     - <<: *skip_deploy_freeze
     - <<: *filter_platform_target
-    - <<: *skip_kubernetes
+    - !reference [.auto-devops:rules:skip_kubernetes, rules]
     - <<: *skip_non_default_branch
     - <<: *skip_if_staging_enabled
     - <<: *skip_if_canary_enabled
@@ -260,7 +257,7 @@
   rules:
     - <<: *skip_deploy_freeze
     - <<: *filter_platform_target
-    - <<: *skip_kubernetes
+    - !reference [.auto-devops:rules:skip_kubernetes, rules]
     - <<: *skip_non_default_branch
     - <<: *skip_if_incremental_rollout_enabled
     - <<: *only_staging_enabled

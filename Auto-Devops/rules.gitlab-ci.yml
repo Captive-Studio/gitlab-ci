@@ -1,6 +1,14 @@
 .if_default_branch: &if_default_branch
   if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
 
+.if_kubernetes: &if_kubernetes
+  if: '$CI_KUBERNETES_ACTIVE || $KUBECONFIG'
+
+.auto-devops:rules:skip_kubernetes:
+  rules:
+    - <<: *if_kubernetes
+      when: never
+
 .auto-devops:rules:skip_default_branch:
   rules:
     - <<: *if_default_branch
