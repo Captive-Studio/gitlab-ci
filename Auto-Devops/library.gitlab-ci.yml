@@ -53,6 +53,25 @@
         git checkout -B "$CI_COMMIT_REF_NAME"
       fi
 
+# Retry twice when a restricted set of error occurs
+#
+# @example
+# my_step:
+#   extends
+#     - .autodevops_retry
+#   stage: ...
+#
+.autodevops_retry:
+  retry:
+    max: 2 # This is confusing but this means "3 runs at max".
+    when:
+      - api_failure
+      - data_integrity_failure
+      - runner_system_failure
+      - scheduler_failure
+      - stuck_or_timeout_failure
+      - unknown_failure
+
 # Docker in Docker mixin
 #
 # @example
