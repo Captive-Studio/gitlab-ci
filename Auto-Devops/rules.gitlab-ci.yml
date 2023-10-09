@@ -49,3 +49,8 @@
   rules:
     - if: $TEST_SYSTEM_ENABLED == null || $TEST_SYSTEM_ENABLED == '' || $TEST_SYSTEM_ENABLED == 'false'
       when: never
+
+.auto-devops:rules:skip_if_review_disabled:
+  rules:
+    - if: $REVIEW_ENABLED == null || $REVIEW_ENABLED == '' || $REVIEW_ENABLED == 'false'
+      when: never
