@@ -1,5 +1,6 @@
 include:
   - template: Jobs/SAST.gitlab-ci.yml
+  - /Auto-Devops/rules.gitlab-ci.yml
   - /Auto-Devops/workflow.gitlab-ci.yml
   - /Auto-Devops/stages.gitlab-ci.yml
   - /Auto-Devops/variables.gitlab-ci.yml
