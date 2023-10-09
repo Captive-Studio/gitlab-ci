@@ -1,8 +1,7 @@
-.slack_rules:
+.auto-devops:rules:skip_if_slack_failure_disabled:
   rules:
-    - &skip_if_slack_failure_disabled
-      if: $SLACK_FAILURE_ENABLED == null || $SLACK_FAILURE_ENABLED == '' || $SLACK_FAILURE_ENABLED == 'false'
-      when: never
+    if: $SLACK_FAILURE_ENABLED == null || $SLACK_FAILURE_ENABLED == '' || $SLACK_FAILURE_ENABLED == 'false'
+    when: never
 
 .slack_notification:
   stage: .post
@@ -13,7 +12,7 @@ slack:failure:
   extends:
     - .slack_notification
   rules:
-    - <<: *skip_if_slack_failure_disabled
+    - !reference [.auto-devops:rules:skip_if_slack_failure_disabled, rules]
     - !reference [.auto-devops:rules:skip_non_default_branch, rules]
     - when: on_failure
   when: on_failure
