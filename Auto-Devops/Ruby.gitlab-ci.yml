@@ -2,9 +2,6 @@
 
 .ruby_rules:
   rules:
-    - &skip_test_disabled
-      if: $TEST_ENABLED == null || $TEST_ENABLED == '' || $TEST_ENABLED == 'false'
-      when: never
     - &skip_test_system_disabled
       if: $TEST_SYSTEM_ENABLED == null || $TEST_SYSTEM_ENABLED == '' || $TEST_SYSTEM_ENABLED == 'false'
       when: never
@@ -150,7 +147,7 @@ ruby:rake:test:
         coverage_format: cobertura
         path: coverage/coverage.xml
   rules:
-    - <<: *skip_test_disabled
+    - !reference [.auto-devops:rules:skip_test_disabled, rules]
     - <<: *skip_if_makefile
     - <<: *skip_if_ruby_disabled
     - <<: *only_rakefile

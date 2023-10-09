@@ -13,9 +13,6 @@
 
 .makefile_rules:
   rules:
-    - &skip_test_disabled
-      if: $TEST_ENABLED == null || $TEST_ENABLED == '' || $TEST_ENABLED == 'false'
-      when: never
     - &skip_test_system_disabled
       if: $TEST_SYSTEM_ENABLED == null || $TEST_SYSTEM_ENABLED == '' || $TEST_SYSTEM_ENABLED == 'false'
       when: never
@@ -103,7 +100,7 @@ makefile:test:
     - docker-dind
     - heavy-job
   rules:
-    - <<: *skip_test_disabled
+    - !reference [.auto-devops:rules:skip_test_disabled, rules]
     - <<: *only_makefile
 
 makefile:test-system:
