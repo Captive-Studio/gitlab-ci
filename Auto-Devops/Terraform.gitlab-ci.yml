@@ -7,11 +7,10 @@
 # rules:
 #   - if: $TF_ENABLED != null && $TF_ENABLED != '' & $TF_ENABLED != 'false'
 
-.terraform_rules:
+.auto-devops:rules:skip_if_terraform_disabled:
   rules:
-    - &skip_if_terraform_disabled
-      if: $TF_ENABLED == null || $TF_ENABLED == '' || $TF_ENABLED == 'false'
-      when: never
+    if: $TF_ENABLED == null || $TF_ENABLED == '' || $TF_ENABLED == 'false'
+    when: never
 
 .terraform_cache:
   cache:
@@ -28,7 +27,7 @@
     - gitlab-terraform fmt
   allow_failure: true
   rules:
-    - <<: *skip_if_terraform_disabled
+    - !reference [.auto-devops:rules:skip_if_terraform_disabled, rules]
     - when: on_success
   variables:
     TF_ROOT: ${TF_PROJECT_DIR}
@@ -41,7 +40,7 @@
   script:
     - gitlab-terraform validate
   rules:
-    - <<: *skip_if_terraform_disabled
+    - !reference [.auto-devops:rules:skip_if_terraform_disabled, rules]
     - !reference [.auto-devops:rules:skip_if_staging_disabled, rules]
     - when: on_success
 
@@ -63,7 +62,7 @@
     reports:
       terraform: ${TF_ROOT}/plan.json
   rules:
-    - <<: *skip_if_terraform_disabled
+    - !reference [.auto-devops:rules:skip_if_terraform_disabled, rules]
     - !reference [.auto-devops:rules:skip_if_staging_disabled, rules]
     - when: on_success
 
@@ -76,7 +75,7 @@
     - gitlab-terraform apply
   resource_group: ${TF_STATE_NAME}
   rules:
-    - <<: *skip_if_terraform_disabled
+    - !reference [.auto-devops:rules:skip_if_terraform_disabled, rules]
     - !reference [.auto-devops:rules:skip_if_staging_disabled, rules]
     - !reference [.auto-devops:rules:skip_non_default_branch, rules]
     - if: $TF_AUTO_DEPLOY == "true"
@@ -92,7 +91,7 @@
   resource_group: ${TF_STATE_NAME}
   when: manual
   rules:
-    - <<: *skip_if_terraform_disabled
+    - !reference [.auto-devops:rules:skip_if_terraform_disabled, rules]
     - !reference [.auto-devops:rules:skip_if_staging_disabled, rules]
     - when: on_success
 
