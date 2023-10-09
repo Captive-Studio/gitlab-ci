@@ -1,8 +1,5 @@
 .nodejs_rules:
   rules:
-    - &skip_build_disabled
-      if: $BUILD_ENABLED == null || $BUILD_ENABLED == '' || $BUILD_ENABLED == 'false'
-      when: never
     - &skip_code_quality_disabled
       if: $CODE_QUALITY_ENABLED == null || $CODE_QUALITY_ENABLED == '' || $CODE_QUALITY_ENABLED == 'false'
       when: never
@@ -76,7 +73,7 @@ nodejs:build:
     - job: nodejs:install
       artifacts: true
   rules:
-    - <<: *skip_build_disabled
+    - !reference [.auto-devops:rules:skip_build_disabled, rules]
     - <<: *skip_if_makefile
     - <<: *skip_if_nodejs_disabled
     - <<: *nodejs_present_rule

@@ -29,3 +29,23 @@
   rules:
     - <<: *if_deploy_freeze
       when: never
+
+.auto-devops:rules:skip_build_disabled:
+  rules:
+    - if: $BUILD_ENABLED == null || $BUILD_ENABLED == '' || $BUILD_ENABLED == 'false'
+      when: never
+
+.auto-devops:rules:skip_code_quality_disabled:
+  rules:
+    - if: $CODE_QUALITY_ENABLED == null || $CODE_QUALITY_ENABLED == '' || $CODE_QUALITY_ENABLED == 'false'
+      when: never
+
+.auto-devops:rules:skip_test_disabled:
+  rules:
+    - if: $TEST_ENABLED == null || $TEST_ENABLED == '' || $TEST_ENABLED == 'false'
+      when: never
+
+.auto-devops:rules:skip_test_system_disabled:
+  rules:
+    - if: $TEST_SYSTEM_ENABLED == null || $TEST_SYSTEM_ENABLED == '' || $TEST_SYSTEM_ENABLED == 'false'
+      when: never
