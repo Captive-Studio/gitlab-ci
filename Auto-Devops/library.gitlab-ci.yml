@@ -13,9 +13,6 @@
     - &filter_platform_target
       if: '$IF_AUTO_DEVOPS_PLATFORM_TARGET && $AUTO_DEVOPS_PLATFORM_TARGET != $IF_AUTO_DEVOPS_PLATFORM_TARGET'
       when: never
-    - &skip_deploy_freeze
-      if: $CI_DEPLOY_FREEZE && $CI_DEPLOY_FREEZE != 'false'
-      when: never
     - &skip_if_review_disabled
       if: $REVIEW_ENABLED == null || $REVIEW_ENABLED == '' || $REVIEW_ENABLED == 'false'
       when: never
@@ -238,7 +235,7 @@
   extends:
     - .auto-devops_production
   rules:
-    - <<: *skip_deploy_freeze
+    - !reference [.auto-devops:rules:skip_deploy_freeze, rules]
     - <<: *filter_platform_target
     - !reference [.auto-devops:rules:skip_kubernetes, rules]
     - !reference [.auto-devops:rules:skip_non_default_branch, rules]
@@ -252,7 +249,7 @@
   extends:
     - .auto-devops_production
   rules:
-    - <<: *skip_deploy_freeze
+    - !reference [.auto-devops:rules:skip_deploy_freeze, rules]
     - <<: *filter_platform_target
     - !reference [.auto-devops:rules:skip_kubernetes, rules]
     - !reference [.auto-devops:rules:skip_non_default_branch, rules]

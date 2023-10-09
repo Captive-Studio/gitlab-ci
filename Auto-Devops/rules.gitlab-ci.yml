@@ -7,6 +7,9 @@
 .if_kubernetes: &if_kubernetes
   if: '$CI_KUBERNETES_ACTIVE || $KUBECONFIG'
 
+.if_deploy_freeze: &if_deploy_freeze
+  if: $CI_DEPLOY_FREEZE && $CI_DEPLOY_FREEZE != 'false'
+
 .auto-devops:rules:skip_kubernetes:
   rules:
     - <<: *if_kubernetes
@@ -20,4 +23,9 @@
 .auto-devops:rules:skip_non_default_branch:
   rules:
     - <<: *if_non_default_branch
+      when: never
+
+.auto-devops:rules:skip_deploy_freeze:
+  rules:
+    - <<: *if_deploy_freeze
       when: never
