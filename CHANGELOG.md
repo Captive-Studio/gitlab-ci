@@ -1,3 +1,18 @@
+# 2.14.1 (2023-10-13)
+
+## 🐛 Bug Fixes
+- [`d12ec9c`](https://gitlab.com/captive/gitlab-ci/-/commit/d12ec9c)  Retry failed terraform jobs
+
+- [`bd8066d`](https://gitlab.com/captive/gitlab-ci/-/commit/bd8066d)  Retry makefile jobs
+
+- [`d797534`](https://gitlab.com/captive/gitlab-ci/-/commit/d797534)  Retry nodejs jobs
+
+- [`d9916d9`](https://gitlab.com/captive/gitlab-ci/-/commit/d9916d9)  Retry ruby jobs
+
+
+
+## [2.14.1](https://git.captive.fr/captive/gitlab-ci/compare/2.14.0...2.14.1) (2023-10-13)
+
 # 2.14.0 (2023-10-13)
 
 ## ✨ New Features
