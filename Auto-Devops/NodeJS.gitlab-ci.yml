@@ -18,9 +18,13 @@ variables:
   # Cypress cache environment variable
   YARN_CACHE_FOLDER: $CI_PROJECT_DIR/$CI_YARN_CACHE_PATH
 
-nodejs:install:
+.nodejs_base:
   extends:
     - .nodejs_image
+
+nodejs:install:
+  extends:
+    - .nodejs_base
   stage: prepare
   cache:
     - !reference [.nodejs_download_cache, cache]
@@ -46,7 +50,7 @@ nodejs:install:
 
 nodejs:build:
   extends:
-    - .nodejs_image
+    - .nodejs_base
     - .install_cache
   stage: build
   script:
@@ -68,7 +72,7 @@ nodejs:build:
 
 nodejs:lint:
   extends:
-    - .nodejs_image
+    - .nodejs_base
     - .install_cache
   stage: validate
   tags:
@@ -86,7 +90,7 @@ nodejs:lint:
 
 nodejs:test:
   extends:
-    - .nodejs_image
+    - .nodejs_base
     - .install_cache
   stage: test
   artifacts:
@@ -112,6 +116,7 @@ nodejs:test:
 
 nodejs:test:e2e:
   extends:
+    - .nodejs_base
     - .nodejs_image_browsers
     - .install_cache
   stage: test
