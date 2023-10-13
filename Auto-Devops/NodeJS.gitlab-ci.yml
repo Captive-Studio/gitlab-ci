@@ -20,6 +20,7 @@ variables:
 
 .nodejs_base:
   extends:
+    - .autodevops_retry
     - .nodejs_image
 
 nodejs:install:
