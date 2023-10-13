@@ -33,9 +33,30 @@ variables:
 # except:
 #   - /^backup\//
 
-ruby:install:
+.ruby_base:
   extends:
     - .ruby_image
+
+.rake_test:
+  extends:
+    - .ruby_base
+    - .install_cache
+  stage: test
+  services:
+    - postgres:latest
+    - redis:latest
+  variables:
+    RAILS_ENV: test
+  before_script:
+    - |
+      if [[ ! -z $(bundle exec rake --tasks 'db')  ]];then
+        bundle exec rake db:create db:migrate
+        bundle exec rake db:seed
+      fi
+
+ruby:install:
+  extends:
+    - .ruby_base
   stage: prepare
   cache:
     # - !reference [.ruby_download_cache, cache]
@@ -62,7 +83,7 @@ ruby:install:
 
 ruby:bundle-rubocop:
   extends:
-    - .ruby_image
+    - .ruby_base
     - .ruby_cache
   stage: validate
   script:
@@ -76,26 +97,9 @@ ruby:bundle-rubocop:
     - !reference [.auto-devops:rules:skip_if_ruby_disabled, rules]
     - !reference [.auto-devops:rules:only_rubocop_conf, rules]
 
-.rake_test:
-  extends:
-    - .ruby_image
-    - .install_cache
-  stage: test
-  services:
-    - postgres:latest
-    - redis:latest
-  variables:
-    RAILS_ENV: test
-  before_script:
-    - |
-      if [[ ! -z $(bundle exec rake --tasks 'db')  ]];then
-        bundle exec rake db:create db:migrate
-        bundle exec rake db:seed
-      fi
-
 ruby:rake:build:
   extends:
-    - .ruby_image
+    - .ruby_base
     - .install_cache
   stage: build
   script:
