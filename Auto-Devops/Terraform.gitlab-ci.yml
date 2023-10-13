@@ -18,10 +18,15 @@
     paths:
       - ${TF_ROOT}/.terraform/
 
-.terraform:fmt:
+.terraform_base:
   extends:
     - .terraform_image
     - .terraform_cache
+    - .autodevops_retry
+
+.terraform:fmt:
+  extends:
+    - .terraform_base
   stage: validate
   script:
     - gitlab-terraform fmt
@@ -34,8 +39,7 @@
 
 .terraform:validate:
   extends:
-    - .terraform_image
-    - .terraform_cache
+    - .terraform_base
   stage: validate
   script:
     - gitlab-terraform validate
@@ -46,8 +50,7 @@
 
 .terraform:plan:
   extends:
-    - .terraform_image
-    - .terraform_cache
+    - .terraform_base
   stage: build
   script:
     - gitlab-terraform plan
@@ -68,8 +71,7 @@
 
 .terraform:apply:
   extends:
-    - .terraform_image
-    - .terraform_cache
+    - .terraform_base
   stage: deploy
   script:
     - gitlab-terraform apply
@@ -83,8 +85,7 @@
 
 .terraform:destroy:
   extends:
-    - .terraform_image
-    - .terraform_cache
+    - .terraform_base
   stage: cleanup
   script:
     - gitlab-terraform destroy
