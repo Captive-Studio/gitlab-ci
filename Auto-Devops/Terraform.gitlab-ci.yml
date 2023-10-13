@@ -44,7 +44,7 @@
     - !reference [.auto-devops:rules:skip_if_staging_disabled, rules]
     - when: on_success
 
-.terraform:build:
+.terraform:plan:
   extends:
     - .terraform_image
     - .terraform_cache
@@ -66,7 +66,7 @@
     - !reference [.auto-devops:rules:skip_if_staging_disabled, rules]
     - when: on_success
 
-.terraform:deploy:
+.terraform:apply:
   extends:
     - .terraform_image
     - .terraform_cache
@@ -105,9 +105,9 @@ terraform:validate:staging:
   variables:
     TF_STATE_NAME: staging
 
-terraform:build:staging:
+terraform:plan:staging:
   extends:
-    - .terraform:build
+    - .terraform:plan
   environment:
     name: staging
     action: prepare
@@ -115,12 +115,12 @@ terraform:build:staging:
     - job: terraform:validate:staging
       artifacts: true
 
-terraform:deploy:staging:
+terraform:apply:staging:
   extends:
-    - .terraform:deploy
+    - .terraform:apply
   stage: staging
   dependencies:
-    - terraform:build:staging
+    - terraform:plan:staging
   environment:
     name: staging
     action: start
@@ -133,8 +133,8 @@ terraform:validate:production:
   variables:
     TF_STATE_NAME: production
 
-terraform:build:production:
-  extends: .terraform:build
+terraform:plan:production:
+  extends: .terraform:plan
   environment:
     name: production
     action: prepare
@@ -142,11 +142,11 @@ terraform:build:production:
     - job: terraform:validate:production
       artifacts: true
 
-terraform:deploy:production:
-  extends: .terraform:deploy
+terraform:apply:production:
+  extends: .terraform:apply
   stage: production
   dependencies:
-    - terraform:build:production
+    - terraform:plan:production
   environment:
     name: production
     action: start
