@@ -1,3 +1,14 @@
+# 2.14.0 (2023-10-13)
+
+## ✨ New Features
+- [`eca78b0`](https://gitlab.com/captive/gitlab-ci/-/commit/eca78b0)  Rename terraform jobs
+
+- [`2f80141`](https://gitlab.com/captive/gitlab-ci/-/commit/2f80141)  Use needs instead of dependencies for better parallelism
+
+
+
+# [2.14.0](https://git.captive.fr/captive/gitlab-ci/compare/2.13.1...2.14.0) (2023-10-13)
+
 # 2.13.1 (2023-10-09)
 
 ## 🐛 Bug Fixes
