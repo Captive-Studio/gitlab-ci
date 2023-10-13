@@ -19,6 +19,12 @@
     GIT_STRATEGY: fetch
     GIT_CHECKOUT_REF_NAME: 'true'
 
+.makefile_base:
+  extends:
+    - .makefile_checkout
+    - .docker_maker_image
+    - .docker_dind
+
 makefile:check-changelog:
   extends:
     - .makefile_checkout
@@ -36,9 +42,7 @@ makefile:check-changelog:
 
 makefile:lint:
   extends:
-    - .makefile_checkout
-    - .docker_maker_image
-    - .docker_dind
+    - .makefile_base
   stage: test
   script:
     - | # make ci-lint (only if present)
@@ -58,9 +62,7 @@ makefile:lint:
 
 makefile:build:
   extends:
-    - .makefile_checkout
-    - .docker_maker_image
-    - .docker_dind
+    - .makefile_base
   stage: build
   script:
     - make ci-build
@@ -76,9 +78,7 @@ makefile:build:
 
 makefile:test:
   extends:
-    - .makefile_checkout
-    - .docker_maker_image
-    - .docker_dind
+    - .makefile_base
   stage: test
   script:
     - make ci-test
@@ -96,9 +96,7 @@ makefile:test:
 
 makefile:test-system:
   extends:
-    - .makefile_checkout
-    - .docker_maker_image
-    - .docker_dind
+    - .makefile_base
   stage: test
   script:
     - make ci-test-system
@@ -116,9 +114,7 @@ makefile:test-system:
 
 makefile:release-images:
   extends:
-    - .makefile_checkout
-    - .docker_maker_image
-    - .docker_dind
+    - .makefile_base
   stage: release
   script:
     - make ci-release-images
