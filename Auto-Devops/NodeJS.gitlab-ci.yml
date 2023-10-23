@@ -34,7 +34,7 @@ nodejs:install:
     - |
       # Check lock files
       if [[ -f yarn.lock && -f package-lock.json ]]; then
-        >&2 echo "Error: Duplicate lockfile. Either `package-lock.json` or `yarn.lock` should be removed."
+        >&2 echo -e "\e[31m❌ Error: Duplicate lockfile. Either 'package-lock.json' or 'yarn.lock' should be removed."
         exit 1
       fi
     - |
