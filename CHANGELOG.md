@@ -1,3 +1,12 @@
+# 2.14.2 (2023-10-23)
+
+## 🐛 Bug Fixes
+- [`576f74c`](https://gitlab.com/captive/gitlab-ci/-/commit/576f74c)  Check lock files at installation
+
+
+
+## [2.14.2](https://git.captive.fr/captive/gitlab-ci/compare/2.14.1...2.14.2) (2023-10-23)
+
 # 2.14.1 (2023-10-13)
 
 ## 🐛 Bug Fixes
