@@ -31,7 +31,7 @@
     "gitlab-ci-lint": "1.1.0",
     "prettier": "3.0.3"
   },
-  "packageManager": "yarn@4.0.0",
+  "packageManager": "yarn@4.0.1",
   "engines": {
     "node": "20"
   }
