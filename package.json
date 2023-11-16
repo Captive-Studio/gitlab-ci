@@ -8,8 +8,8 @@
   "scripts": {
     "build": "npm run docs",
     "docs": ":",
-    "format": "npx eslint . --ext=mjs,cjs,js,jsx,ts,tsx,json,jsonc,json5,yml,yaml --fix",
-    "lint": "npx eslint . --ext=mjs,cjs,js,jsx,ts,tsx,json,jsonc,json5,yml,yaml",
+    "format": "eslint . --ext=mjs,cjs,js,jsx,ts,tsx,json,jsonc,json5,yml,yaml --fix",
+    "lint": "eslint . --ext=mjs,cjs,js,jsx,ts,tsx,json,jsonc,json5,yml,yaml",
     "pretest": "envhandlebars < 'test/test.gitlab-ci.yml.hbs' > 'test/test.gitlab-ci.yml'",
     "release": "scripts/release",
     "spellcheck": "npx cspell '**/*.md' --no-progress",
