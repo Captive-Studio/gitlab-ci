@@ -20,6 +20,11 @@
     - exists:
         - Rakefile
 
+.auto-devops:rules:only_rubycritic:
+  rules:
+    - exists:
+        - .rubycritic.yml
+
 variables:
   # TODO: Enable this to optimize on shared runner cache
   # => BUT there is conflict between BUNDLE_CACHE_PATH and BUNDLE_FROZEN, bundle install returns an error
@@ -97,6 +102,25 @@ ruby:bundle-rubocop:
     - !reference [.auto-devops:rules:skip_if_makefile, rules]
     - !reference [.auto-devops:rules:skip_if_ruby_disabled, rules]
     - !reference [.auto-devops:rules:only_rubocop_conf, rules]
+    - !reference [.auto-devops:rules:only_rubycritic, rules]
+
+ruby:ruby-critic:
+  extends:
+    - .ruby_base
+    - .ruby_cache
+  stage: validate
+  needs:
+    - job: ruby:install
+      artifacts: true
+  script:
+    - git fetch origin $CI_DEFAULT_BRANCH:$CI_DEFAULT_BRANCH
+    - gem install rubycritic
+    - rubycritic --no-browser --mode-ci
+  rules:
+    - !reference [.auto-devops:rules:skip_code_quality_disabled, rules]
+    - !reference [.auto-devops:rules:skip_if_makefile, rules]
+    - !reference [.auto-devops:rules:skip_if_ruby_disabled, rules]
+    - !reference [.auto-devops:rules:only_rubycritic, rules]
 
 ruby:rake:build:
   extends:
