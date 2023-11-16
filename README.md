@@ -49,7 +49,34 @@ include:
 
 ```
 
-### 2. Configure deployment
+### 2. Configure workflow
+
+<details>
+<summary>Automatic workflow</summary>
+
+This is the default behavior if no `Makefile` does not exist.
+Easy to use : the CI detects configuration files for each language and tools and runs the corresponding tool.
+
+Example 1 : if `package.json` file exists then all `nodejs:*` jobs will be run
+
+Example 2 : if `.rubycritic.yml` file exists then the `ruby:ruby-critic` job will be run
+
+</details>
+
+<details>
+<summary>Full control workflow (Makefile)</summary>
+
+This is the behavior if a `Makefile` exists.
+
+The CI does not trigger any job based on detection. Every CI job is simply forwarded to the equivalent make target.
+
+Example 1 : `makefile:lint` will run `make lint`
+
+Example 2 : `makefile:test` will run `make test`
+
+</details>
+
+### 3. Configure deployment
 
 Depending on the target development platform, choose one :
 
@@ -125,7 +152,7 @@ variables:
 
 </details>
 
-### 3. 🎉 You're done
+### 4. 🎉 You're done
 
 ## Recipes
 
