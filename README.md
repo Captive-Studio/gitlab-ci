@@ -19,6 +19,9 @@ This project aims to make GitlabCI configuration easier for each project. One in
   - Ruby
   - NodeJS
   - Docker
+- 🔍 Code Quality & Test
+  - Ruby: Rubocop, RubyCritic, RSpec
+  - NodeJS : NPM workflow (`npm run lint`, `npm test`)
 - ⛙ Merge request workflow :
   - Pipelines enabled for `main` branch (`develop` for backward compatibility)
   - Pipelines enabled for merge requests
