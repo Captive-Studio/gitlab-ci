@@ -18,5 +18,5 @@ SCRIPT_DIR="$(dirname "$0")"
 cd "$SCRIPT_DIR/.."
 ROOT_DIR=$(pwd)
 
-npm install --no-save semantic-release semantic-release-gitmoji --legacy-peer-deps
-npx semantic-release
+# npm install --no-save semantic-release semantic-release-gitmoji --legacy-peer-deps
+npx -p semantic-release -p semantic-release-gitmoji semantic-release
