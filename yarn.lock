@@ -94,10 +94,10 @@ __metadata:
   dependencies:
     "@captive/cspell-config": "npm:2.4.0"
     "@captive/eslint-config": "npm:2.0.7"
-    "@semantic-release/changelog": "npm:^6.0.3"
-    "@semantic-release/exec": "npm:^6.0.3"
-    "@semantic-release/release-notes-generator": "npm:^12.1.0"
-    "@wavevision/semantic-release": "npm:^2.0.2"
+    "@semantic-release/changelog": "npm:6.0.3"
+    "@semantic-release/exec": "npm:6.0.3"
+    "@semantic-release/release-notes-generator": "npm:12.1.0"
+    "@wavevision/semantic-release": "npm:2.0.2"
     danger: "npm:11.3.0"
     envhandlebars: "npm:1.4.8"
     eslint: "npm:8.53.0"
@@ -1323,7 +1323,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@semantic-release/changelog@npm:^6.0.3":
+"@semantic-release/changelog@npm:6.0.3":
   version: 6.0.3
   resolution: "@semantic-release/changelog@npm:6.0.3"
   dependencies:
@@ -1368,7 +1368,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@semantic-release/exec@npm:^6.0.3":
+"@semantic-release/exec@npm:6.0.3":
   version: 6.0.3
   resolution: "@semantic-release/exec@npm:6.0.3"
   dependencies:
@@ -1473,7 +1473,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@semantic-release/release-notes-generator@npm:^12.1.0":
+"@semantic-release/release-notes-generator@npm:12.1.0":
   version: 12.1.0
   resolution: "@semantic-release/release-notes-generator@npm:12.1.0"
   dependencies:
@@ -1986,7 +1986,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@wavevision/semantic-release@npm:^2.0.2":
+"@wavevision/semantic-release@npm:2.0.2":
   version: 2.0.2
   resolution: "@wavevision/semantic-release@npm:2.0.2"
   dependencies:
