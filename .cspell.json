@@ -1,6 +1,13 @@
 {
   "version": "0.2",
   "language": "en,fr-FR",
-  "words": ["cimg", "preprod"],
-  "import": ["@captive/cspell-config"]
+  "words": ["cimg", "preprod", "AppFlow", "Heroku", "wavevision"],
+  "import": ["@captive/cspell-config"],
+  "overrides": [
+    {
+      // Case sensitive markdown in the docs folder
+      "filename": "Auto-Devops/**/*.yml",
+      "caseSensitive": false
+    }
+  ]
 }
