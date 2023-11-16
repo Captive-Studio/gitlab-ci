@@ -1,3 +1,14 @@
+# [2.15.0](https://git.captive.fr/captive/gitlab-ci/compare/2.14.2...2.15.0) (2023-11-16)
+
+
+
+
+
+# 2.15.0 (2023-11-16)
+
+## ✨ New Features
+- [`114ba0e`](https://gitlab.com/captive/gitlab-ci/-/commit/114ba0e)  Add RubyCritic integration
+
 # 2.14.2 (2023-10-23)
 
 ## 🐛 Bug Fixes
