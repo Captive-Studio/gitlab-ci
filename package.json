@@ -6,7 +6,7 @@
   "license": "MIT",
   "type": "module",
   "scripts": {
-    "build": "npm run docs",
+    "build": "yarn run docs",
     "docs": ":",
     "format": "eslint . --ext=mjs,cjs,js,jsx,ts,tsx,json,jsonc,json5,yml,yaml --fix",
     "lint": "eslint . --ext=mjs,cjs,js,jsx,ts,tsx,json,jsonc,json5,yml,yaml",
