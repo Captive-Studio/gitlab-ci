@@ -20,7 +20,8 @@ This project aims to make GitlabCI configuration easier for each project. One in
   - NodeJS
   - Docker
 - 🔍 Code Quality & Test
-  - Ruby: Rubocop, RubyCritic, RSpec
+  - All : DangerJS
+  - Ruby : Rubocop, RubyCritic, RSpec
   - NodeJS : NPM workflow (`npm run lint`, `npm test`)
 - ⛙ Merge request workflow :
   - Pipelines enabled for `main` branch (`develop` for backward compatibility)
@@ -57,6 +58,8 @@ include:
 <details>
 <summary>Automatic workflow</summary>
 
+**Configuration**
+
 This is the default behavior if no `Makefile` does not exist.
 Easy to use : the CI detects configuration files for each language and tools and runs the corresponding tool.
 
@@ -64,18 +67,37 @@ Example 1 : if `package.json` file exists then all `nodejs:*` jobs will be run
 
 Example 2 : if `.rubycritic.yml` file exists then the `ruby:ruby-critic` job will be run
 
+**Reference**
+
+| Job                     | File detection       |
+|-------------------------|----------------------|
+| `nodejs:*`              | `package.json`       |
+| `ruby:*`                | `Gemfile`            |
+| `ruby:{build,test,e2e}` | `Rakefile`           |
+| `ruby:bundle-rubocop`   | `.rubocop.yml`       |
+| `ruby:ruby-critic`      | `.ruby-critic.yml`   |
+
 </details>
 
 <details>
 <summary>Full control workflow (Makefile)</summary>
 
+**Configuration**
+
 This is the behavior if a `Makefile` exists.
 
 The CI does not trigger any job based on detection. Every CI job is simply forwarded to the equivalent make target.
 
-Example 1 : `makefile:lint` will run `make lint`
+Example : `makefile:lint` will run `make lint`
 
-Example 2 : `makefile:test` will run `make test`
+**Reference**
+
+| Job                     | Makefile target      |
+|-------------------------|----------------------|
+| `makefile:build`        | `make build`         |
+| `makefile:lint`         | `make lint`          |
+| `makefile:test`         | `make test`          |
+| `makefile:test-system`  | `make test-system`   |
 
 </details>
 
