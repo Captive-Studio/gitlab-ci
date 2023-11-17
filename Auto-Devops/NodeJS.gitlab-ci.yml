@@ -64,10 +64,9 @@ nodejs:build:
     - npm run build --if-present
   artifacts:
     paths:
-      - dist/
-      - lib/
-      - packages/*/lib/
-      - packages/*/dist/
+      - dist/*
+      - packages/*/dist/*
+      - apps/*/dist/*
   needs:
     - job: nodejs:install
       artifacts: true
