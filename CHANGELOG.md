@@ -1,3 +1,14 @@
+## [2.15.1](https://git.captive.fr/captive/gitlab-ci/compare/2.15.0...2.15.1) (2023-11-17)
+
+
+
+
+
+# 2.15.1 (2023-11-17)
+
+## 🐛 Bug Fixes
+- [`85ffaf4`](https://gitlab.com/captive/gitlab-ci/-/commit/85ffaf4)  Fix artifact wildcard
+
 # [2.15.0](https://git.captive.fr/captive/gitlab-ci/compare/2.14.2...2.15.0) (2023-11-16)
 
 
