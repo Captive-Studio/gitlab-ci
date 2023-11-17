@@ -23,7 +23,7 @@
   },
   "eslintIgnore": [],
   "devDependencies": {
-    "@captive/cspell-config": "2.4.0",
+    "@captive/cspell-config": "2.4.1",
     "@captive/eslint-config": "2.0.7",
     "@semantic-release/changelog": "6.0.3",
     "@semantic-release/exec": "6.0.3",
