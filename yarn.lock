@@ -7250,7 +7250,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"mute-stream@npm:~1.0.0":
+"mute-stream@npm:^1.0.0, mute-stream@npm:~1.0.0":
   version: 1.0.0
   resolution: "mute-stream@npm:1.0.0"
   checksum: dce2a9ccda171ec979a3b4f869a102b1343dee35e920146776780de182f16eae459644d187e38d59a3d37adf85685e1c17c38cf7bfda7e39a9880f7a1d10a74c
@@ -8571,7 +8571,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"read@npm:*, read@npm:^2.0.0":
+"read@npm:*":
+  version: 3.0.0
+  resolution: "read@npm:3.0.0"
+  dependencies:
+    mute-stream: "npm:^1.0.0"
+  checksum: cad800f3b6f9a3f4b1f71e4402aa31c9ac34d13593a7890793a0b5bbad66b1d4df167a87a42d5c885a3508896c6c391ce03cf3ced332251d495c78521ea52e23
+  languageName: node
+  linkType: hard
+
+"read@npm:^2.0.0":
   version: 2.1.0
   resolution: "read@npm:2.1.0"
   dependencies:
