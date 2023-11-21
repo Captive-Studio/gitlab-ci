@@ -33,6 +33,7 @@ variables:
   BUNDLE_JOBS: $(nproc)
   BUNDLE_FROZEN: 'true'
   DISABLE_SPRING: 'true'
+  RAKE_TASK_BUILD: 'asset:precompile'
 
 # FIXME: .code_quality "except" conflicts with "rules"
 # except:
@@ -129,11 +130,7 @@ ruby:rake:build:
   stage: build
   script:
     - SUPPRESS_JASMINE_DEPRECATION="true"
-    - |
-      # bundle exec rake assets:precompile
-      if [[ ! -z $(bundle exec rake --tasks 'assets:precompile')  ]];then
-        bundle exec rake assets:precompile
-      fi
+    - bundle exec rake "${RAKE_TASK_BUILD}"
   artifacts:
     paths:
       - public/assets
