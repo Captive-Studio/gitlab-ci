@@ -33,7 +33,7 @@ variables:
   BUNDLE_JOBS: $(nproc)
   BUNDLE_FROZEN: 'true'
   DISABLE_SPRING: 'true'
-  RAKE_TASK_BUILD: 'asset:precompile'
+  RAKE_TASK_BUILD: 'assets:precompile'
   # Default is rspec
   RAKE_TASK_TEST: spec
   RAKE_TASK_TEST_SYSTEM: 'test:system'
