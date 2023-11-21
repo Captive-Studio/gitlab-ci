@@ -14,7 +14,7 @@
 danger-js:
   extends:
     - .nodejs_image
-    - .nodejs_cache
+    - .install_cache
   stage: test
   script:
     - npx danger ci
