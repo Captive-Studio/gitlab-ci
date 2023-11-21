@@ -13,6 +13,7 @@
 
 danger-js:
   extends:
+    - .autodevops_retry
     - .nodejs_image
     - .install_cache
   stage: test
