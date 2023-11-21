@@ -8,6 +8,8 @@
     - exists:
         - dangerfile.js
         - dangerfile.ts
+        - dangerfile.mts
+        - dangerfile.cts
 
 danger-js:
   extends:
