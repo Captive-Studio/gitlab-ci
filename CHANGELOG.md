@@ -1,3 +1,14 @@
+# [2.16.0](https://git.captive.fr/captive/gitlab-ci/compare/2.15.3...2.16.0) (2023-11-21)
+
+
+
+
+
+# 2.16.0 (2023-11-21)
+
+## ✨ New Features
+- [`4cfb15d`](https://gitlab.com/captive/gitlab-ci/-/commit/4cfb15d)  Use latest NodeJS LTS version 20.9.0
+
 ## [2.15.3](https://git.captive.fr/captive/gitlab-ci/compare/2.15.2...2.15.3) (2023-11-21)
 
 
