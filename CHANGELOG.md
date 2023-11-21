@@ -1,3 +1,18 @@
+## [2.15.2](https://git.captive.fr/captive/gitlab-ci/compare/2.15.1...2.15.2) (2023-11-21)
+
+
+
+
+
+# 2.15.2 (2023-11-21)
+
+## 🐛 Bug Fixes
+- [`ec980ee`](https://gitlab.com/captive/gitlab-ci/-/commit/ec980ee)  Fix silent rake build job
+
+- [`f123038`](https://gitlab.com/captive/gitlab-ci/-/commit/f123038)  Fix test-system implementation
+
+- [`d42ba36`](https://gitlab.com/captive/gitlab-ci/-/commit/d42ba36)  Fix rake test implementation
+
 ## [2.15.1](https://git.captive.fr/captive/gitlab-ci/compare/2.15.0...2.15.1) (2023-11-17)
 
 
