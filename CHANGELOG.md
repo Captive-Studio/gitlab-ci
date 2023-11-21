@@ -1,3 +1,16 @@
+## [2.15.3](https://git.captive.fr/captive/gitlab-ci/compare/2.15.2...2.15.3) (2023-11-21)
+
+
+
+
+
+# 2.15.3 (2023-11-21)
+
+## 🐛 Bug Fixes
+- [`c3e8979`](https://gitlab.com/captive/gitlab-ci/-/commit/c3e8979)  Add missing dangerfile extensions
+
+- [`7d10536`](https://gitlab.com/captive/gitlab-ci/-/commit/7d10536)  Fix mispelled Rake job
+
 ## [2.15.2](https://git.captive.fr/captive/gitlab-ci/compare/2.15.1...2.15.2) (2023-11-21)
 
 
