@@ -157,7 +157,7 @@ variables:
   # NodeJS version used (with `image: cimg/node-${NODEJS_VERSION}`)
   #
   # @see https://circleci.com/developer/images/image/cimg/node
-  NODEJS_VERSION: 19.5.0
+  NODEJS_VERSION: 20.9.0
 
   # Relative NPM cache path
   CI_NPM_CACHE_PATH: .cache/npm
