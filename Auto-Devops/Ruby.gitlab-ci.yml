@@ -34,6 +34,7 @@ variables:
   BUNDLE_FROZEN: 'true'
   DISABLE_SPRING: 'true'
   RAKE_TASK_BUILD: 'asset:precompile'
+  RAKE_TASK_TEST_SYSTEM: 'test:system'
 
 # FIXME: .code_quality "except" conflicts with "rules"
 # except:
@@ -184,17 +185,7 @@ ruby:rake:test-system:
     - .rake_test
     - .ruby_image_browsers
   script:
-    - RAKE_TEST_FOUND=0
-    - |
-      if [[ ! -z $(bundle exec rake --tasks '^test:system$')  ]];then
-        RAKE_TEST_FOUND=1
-        bundle exec rake test:system
-      fi
-    - |
-      # Warn if not found
-      if [[ "$RAKE_TEST_FOUND" == "0" ]];then
-        echo 'Warning: No rake test:system command found'
-      fi
+    - bundle exec rake ${RAKE_TASK_TEST_SYSTEM}
   rules:
     - !reference [.auto-devops:rules:skip_test_system_disabled, rules]
     - !reference [.auto-devops:rules:skip_if_makefile, rules]
