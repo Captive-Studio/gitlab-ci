@@ -128,9 +128,9 @@ ruby:rake:build:
     - .install_cache
   stage: build
   script:
+    - SUPPRESS_JASMINE_DEPRECATION="true"
     - |
       # bundle exec rake assets:precompile
-      SUPPRESS_JASMINE_DEPRECATION="true"
       if [[ ! -z $(bundle exec rake --tasks 'assets:precompile')  ]];then
         bundle exec rake assets:precompile
       fi
@@ -155,16 +155,19 @@ ruby:rake:test:
   extends:
     - .rake_test
   script:
+    - RAKE_TEST_FOUND=0
     - |
-      RAKE_TEST_FOUND=0
       if [[ ! -z $(bundle exec rake --tasks '^test$')  ]];then
         RAKE_TEST_FOUND=1
         bundle exec rake test
       fi
+    - |
       if [[ ! -z $(bundle exec rake --tasks '^spec$')  ]];then
         RAKE_TEST_FOUND=1
         bundle exec rake spec
       fi
+    - |
+      # Warn if not found
       if [[ "$RAKE_TEST_FOUND" == "0" ]];then
         echo 'Warning: No rake test command found'
       fi
@@ -184,12 +187,14 @@ ruby:rake:test-system:
     - .rake_test
     - .ruby_image_browsers
   script:
+    - RAKE_TEST_FOUND=0
     - |
-      RAKE_TEST_FOUND=0
       if [[ ! -z $(bundle exec rake --tasks '^test:system$')  ]];then
         RAKE_TEST_FOUND=1
         bundle exec rake test:system
       fi
+    - |
+      # Warn if not found
       if [[ "$RAKE_TEST_FOUND" == "0" ]];then
         echo 'Warning: No rake test:system command found'
       fi
