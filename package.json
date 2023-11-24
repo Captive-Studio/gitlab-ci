@@ -24,7 +24,7 @@
   "eslintIgnore": [],
   "devDependencies": {
     "@captive/cspell-config": "2.4.2",
-    "@captive/eslint-config": "2.0.7",
+    "@captive/eslint-config": "2.0.8",
     "@semantic-release/changelog": "6.0.3",
     "@semantic-release/exec": "6.0.3",
     "@semantic-release/release-notes-generator": "12.1.0",
