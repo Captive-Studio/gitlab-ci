@@ -1,3 +1,17 @@
+# [2.17.0](https://git.captive.fr/captive/gitlab-ci/compare/2.16.0...2.17.0) (2023-12-01)
+
+
+
+
+
+# 2.17.0 (2023-12-01)
+
+## ✨ New Features
+- [`576969c`](https://gitlab.com/captive/gitlab-ci/-/commit/576969c)  Enable brakeman audit
+
+## 🐛 Bug Fixes
+- [`47beed8`](https://gitlab.com/captive/gitlab-ci/-/commit/47beed8)  Use rubycritic with bundle
+
 # [2.16.0](https://git.captive.fr/captive/gitlab-ci/compare/2.15.3...2.16.0) (2023-11-21)
 
 
