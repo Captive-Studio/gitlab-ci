@@ -118,8 +118,8 @@ ruby:ruby-critic:
       artifacts: true
   script:
     - git fetch origin $CI_DEFAULT_BRANCH:$CI_DEFAULT_BRANCH
-    - gem install rubycritic
-    - rubycritic --no-browser --mode-ci
+    # - gem install rubycritic
+    - bundle exec rubycritic --no-browser --mode-ci
   rules:
     - !reference [.auto-devops:rules:skip_code_quality_disabled, rules]
     - !reference [.auto-devops:rules:skip_if_makefile, rules]
