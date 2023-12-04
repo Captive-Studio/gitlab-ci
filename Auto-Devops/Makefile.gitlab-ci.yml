@@ -11,6 +11,20 @@
 #     gitlab job: 'makefile:${job_name}'
 #     makefile target : 'make ci-${job_name}'
 
+.makefile_docker_dind:
+  extends:
+    - .docker_dind
+  before_script:
+    - unset HISTFILE
+    - echo $CI_JOB_TOKEN | docker login -u gitlab-ci-token --password-stdin $CI_REGISTRY
+    - export TEST_IMAGE=$REGISTRY_PROJECT_URL/$BUILD_SUBPATH:${BUILD_ID}-test
+    # Inline .git_checkout > before_script
+    - |
+      # git checkout -B "$CI_COMMIT_REF_NAME" (if $GIT_CHECKOUT_REF_NAME)
+      if [[ ! -z "$GIT_CHECKOUT_REF_NAME" ]];then
+        git checkout -B "$CI_COMMIT_REF_NAME"
+      fi
+
 # TODO: use $CI_COMMIT_REF_NAME in makefile
 .makefile_checkout:
   extends:
@@ -24,7 +38,7 @@
     - .autodevops_retry
     - .makefile_checkout
     - .docker_maker_image
-    - .docker_dind
+    - .makefile_docker_dind
 
 makefile:check-changelog:
   extends:

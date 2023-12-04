@@ -2,7 +2,7 @@
 
 .deploy_makefile:
   extends:
-    - .docker_dind
+    - .makefile_docker_dind
     - .docker_maker_image
   variables:
     GIT_STRATEGY: fetch

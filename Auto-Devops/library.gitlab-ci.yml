@@ -70,13 +70,6 @@
   before_script:
     - unset HISTFILE
     - echo $CI_JOB_TOKEN | docker login -u gitlab-ci-token --password-stdin $CI_REGISTRY
-    - export TEST_IMAGE=$REGISTRY_PROJECT_URL/$BUILD_SUBPATH:${BUILD_ID}-test
-    # Inline .git_checkout > before_script
-    - |
-      # git checkout -B "$CI_COMMIT_REF_NAME" (if $GIT_CHECKOUT_REF_NAME)
-      if [[ ! -z "$GIT_CHECKOUT_REF_NAME" ]];then
-        git checkout -B "$CI_COMMIT_REF_NAME"
-      fi
 
 # Docker make image mixin.
 #
