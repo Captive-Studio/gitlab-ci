@@ -37,8 +37,8 @@
   extends:
     - .autodevops_retry
     - .makefile_checkout
-    - .docker_maker_image
     - .makefile_docker_dind
+    - .docker_maker_image
 
 makefile:check-changelog:
   extends:
