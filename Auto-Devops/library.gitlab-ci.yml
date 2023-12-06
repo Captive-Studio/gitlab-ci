@@ -60,8 +60,9 @@
 #   stage: ...
 #
 .docker_dind:
+  image: docker:24
   services:
-    - name: docker:20-dind
+    - name: docker:24-dind
       entrypoint: [sh, -c, dockerd-entrypoint.sh $DOCKER_DAEMON_OPTIONS]
   variables:
     DOCKER_DAEMON_OPTIONS: '--registry-mirror=${CI_REGISTRY_MIRROR} --tls=false'
