@@ -6,6 +6,7 @@ include:
   - /Auto-Devops/variables.gitlab-ci.yml
   - /Auto-Devops/cache.gitlab-ci.yml
   - /Auto-Devops/library.gitlab-ci.yml
+  - /Auto-Devops/scripts.gitlab-ci.yml
   - /Auto-Devops/Ruby.gitlab-ci.yml
   - /Auto-Devops/Makefile.gitlab-ci.yml
   - /Auto-Devops/NodeJS.gitlab-ci.yml
