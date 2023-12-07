@@ -1,3 +1,23 @@
+# [2.18.0](https://git.captive.fr/captive/gitlab-ci/compare/2.17.0...2.18.0) (2023-12-07)
+
+
+
+
+
+# 2.18.0 (2023-12-07)
+
+## ✨ New Features
+- [`16aff71`](https://gitlab.com/captive/gitlab-ci/-/commit/16aff71)  Upgrade docker dind v24
+
+- [`6ac46e6`](https://gitlab.com/captive/gitlab-ci/-/commit/6ac46e6)  Add default before_script
+
+## 🐛 Bug Fixes
+- [`b2d5d7d`](https://gitlab.com/captive/gitlab-ci/-/commit/b2d5d7d)  Fix login method
+
+- [`10166c8`](https://gitlab.com/captive/gitlab-ci/-/commit/10166c8)  Add warning when SCALINGO_API_TOKEN is not set
+
+- [`5f16f87`](https://gitlab.com/captive/gitlab-ci/-/commit/5f16f87)  Fix wrong reference to script .autodevops:script:shell-set-error
+
 # [2.17.0](https://git.captive.fr/captive/gitlab-ci/compare/2.16.0...2.17.0) (2023-12-01)
 
 
