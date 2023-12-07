@@ -25,7 +25,7 @@ default:
 # FIXME: this is only used by "legacy" makefiles
 # Makefile should use predefined variables
 .autodevops:script:git-checkout-branch:
-  before_script:
+  script:
     - |
       # git checkout -B "$CI_COMMIT_REF_NAME" (if $GIT_CHECKOUT_REF_NAME)
       if [[ ! -z "$GIT_CHECKOUT_REF_NAME" ]];then
