@@ -1,3 +1,8 @@
+# Default settings
+default:
+  before_script:
+    - !reference [.autodevops:script:before, script]
+
 # Default script to add
 #
 # Usage :
