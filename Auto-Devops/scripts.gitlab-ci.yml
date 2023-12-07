@@ -7,7 +7,7 @@
 #
 .autodevops:script:before:
   script:
-    - !reference [.autodevops:script:shell-set-error, script]
+    - !reference [.autodevops:script:shell-strict, script]
 
 # Configure shell to be strict
 .autodevops:script:shell-strict:
