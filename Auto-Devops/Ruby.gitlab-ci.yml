@@ -81,7 +81,7 @@ ruby:install:
       ruby --version
     - |
       # Ensure download cache exist
-      if [ ! -z "$BUNDLE_CACHE_PATH" ];then
+      if [ ! -z "${BUNDLE_CACHE_PATH:-""}" ];then
         mkdir -p $BUNDLE_CACHE_PATH
       fi
     # Install dependencies
