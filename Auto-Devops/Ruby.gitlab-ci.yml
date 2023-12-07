@@ -75,8 +75,8 @@ ruby:install:
     # Dump environment
     - |
       # Display the environment
-      echo BUNDLE_CACHE_PATH=$BUNDLE_CACHE_PATH
-      echo BUNDLE_PATH=$BUNDLE_PATH
+      echo BUNDLE_CACHE_PATH=${BUNDLE_CACHE_PATH:-""}
+      echo BUNDLE_PATH=${BUNDLE_PATH:-""}
       bundle --version
       ruby --version
     - |
