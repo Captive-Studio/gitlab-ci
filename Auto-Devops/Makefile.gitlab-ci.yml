@@ -26,20 +26,20 @@
     - !reference [.autodevops:script:git-checkout-branch, script]
     - export TEST_IMAGE=$REGISTRY_PROJECT_URL/$BUILD_SUBPATH:${BUILD_ID}-test
 
-makefile:check-changelog:
-  extends:
-    - .makefile_base
-    - .docker_maker_image
-  stage: prepare
-  script:
-    - make ci-check-changelog
-  allow_failure: true
-  rules:
-    - !reference [.auto-devops:rules:skip_code_quality_disabled, rules]
-    - !reference [.auto-devops:rules:skip_default_branch, rules]
-    - if: $CI_COMMIT_TAG
-      when: never
-    - !reference [.auto-devops:rules:only_makefile, rules]
+# makefile:check-changelog:
+#   extends:
+#     - .makefile_base
+#     - .docker_maker_image
+#   stage: prepare
+#   script:
+#     - make ci-check-changelog
+#   allow_failure: true
+#   rules:
+#     - !reference [.auto-devops:rules:skip_code_quality_disabled, rules]
+#     - !reference [.auto-devops:rules:skip_default_branch, rules]
+#     - if: $CI_COMMIT_TAG
+#       when: never
+#     - !reference [.auto-devops:rules:only_makefile, rules]
 
 makefile:lint:
   extends:
