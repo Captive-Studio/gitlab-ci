@@ -1,3 +1,20 @@
+# Default script to add
+#
+# Usage :
+# .job
+#   script:
+#     - !reference [.autodevops:script:before, script]
+#
+.autodevops:script:before:
+  script:
+    - !reference [.autodevops:script:shell-set-error, script]
+
+# Configure shell to be strict
+.autodevops:script:shell-strict:
+  script:
+    - set -euo pipefail
+
+# Login local gitlab container registry
 .autodevops:script:ci-registry-login:
   script:
     - unset HISTFILE

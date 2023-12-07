@@ -69,6 +69,7 @@
   tags:
     - docker-dind
   before_script:
+    - !reference [.autodevops:script:before, script]
     - !reference [.autodevops:script:ci-registry-login, script]
 
 # Docker make image mixin.
