@@ -49,7 +49,12 @@ variables:
     - set -eu;
     - SCALINGO_API_TOKEN=${SCALINGO_API_TOKEN_OVERRIDE:-$SCALINGO_API_TOKEN}
     - SCALINGO_APP=${SCALINGO_APP_OVERRIDE:-"$SCALINGO_APP-$CI_ENVIRONMENT_NAME"}
-    - echo "SCALINGO_APP = $SCALINGO_APP"
+    - |
+      # Check if scalingo token is defined
+      if [[ -z "$SCALINGO_API_TOKEN" ]];then
+        echo "Warning: SCALINGO_API_TOKEN environment variable is not set"
+      fi
+      echo "SCALINGO_APP = $SCALINGO_APP"
     - git archive --prefix=master/ HEAD | gzip > $SCALINGO_DEPLOYMENT_FILE
     - scalingo --app $SCALINGO_APP deploy $SCALINGO_DEPLOYMENT_FILE $CI_COMMIT_SHORT_SHA
 
