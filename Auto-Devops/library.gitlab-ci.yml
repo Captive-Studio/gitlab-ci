@@ -24,14 +24,6 @@
     - &only_canary_enabled
       if: $CANARY_ENABLED && $CANARY_ENABLED != 'false' && ($CI_COMMIT_TAG || $CI_COMMIT_BRANCH)
 
-.git_checkout:
-  before_script:
-    - |
-      # git checkout -B "$CI_COMMIT_REF_NAME" (if $GIT_CHECKOUT_REF_NAME)
-      if [[ ! -z "$GIT_CHECKOUT_REF_NAME" ]];then
-        git checkout -B "$CI_COMMIT_REF_NAME"
-      fi
-
 # Retry twice when a restricted set of error occurs
 #
 # @example

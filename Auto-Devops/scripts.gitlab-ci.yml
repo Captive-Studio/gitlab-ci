@@ -14,6 +14,19 @@
   script:
     - set -euo pipefail
 
+# Checkout branch
+#
+# Force checkout branch
+# FIXME: this is only used by "legacy" makefiles
+# Makefile should use predefined variables
+.autodevops:script:git-checkout-branch:
+  before_script:
+    - |
+      # git checkout -B "$CI_COMMIT_REF_NAME" (if $GIT_CHECKOUT_REF_NAME)
+      if [[ ! -z "$GIT_CHECKOUT_REF_NAME" ]];then
+        git checkout -B "$CI_COMMIT_REF_NAME"
+      fi
+
 # Login local gitlab container registry
 .autodevops:script:ci-registry-login:
   script:

@@ -11,38 +11,24 @@
 #     gitlab job: 'makefile:${job_name}'
 #     makefile target : 'make ci-${job_name}'
 
-.makefile_docker_dind:
-  extends:
-    - .docker_dind
-  before_script:
-    - !reference [.autodevops:script:before, script]
-    - !reference [.autodevops:script:ci-registry-login, script]
-    - export TEST_IMAGE=$REGISTRY_PROJECT_URL/$BUILD_SUBPATH:${BUILD_ID}-test
-    # Inline .git_checkout > before_script
-    - |
-      # git checkout -B "$CI_COMMIT_REF_NAME" (if $GIT_CHECKOUT_REF_NAME)
-      if [[ ! -z "$GIT_CHECKOUT_REF_NAME" ]];then
-        git checkout -B "$CI_COMMIT_REF_NAME"
-      fi
-
 # TODO: use $CI_COMMIT_REF_NAME in makefile
-.makefile_checkout:
-  extends:
-    - .git_checkout
+.makefile_base:
   variables:
     GIT_STRATEGY: fetch
     GIT_CHECKOUT_REF_NAME: 'true'
-
-.makefile_base:
   extends:
     - .autodevops_retry
-    - .makefile_checkout
-    - .makefile_docker_dind
+    - .docker_dind
     - .docker_maker_image
+  before_script:
+    - !reference [.autodevops:script:before, script]
+    - !reference [.autodevops:script:ci-registry-login, script]
+    - !reference [.autodevops:script:git-checkout-branch, script]
+    - export TEST_IMAGE=$REGISTRY_PROJECT_URL/$BUILD_SUBPATH:${BUILD_ID}-test
 
 makefile:check-changelog:
   extends:
-    - .makefile_checkout
+    - .makefile_base
     - .docker_maker_image
   stage: prepare
   script:
