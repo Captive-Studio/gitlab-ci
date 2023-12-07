@@ -79,8 +79,8 @@ gitlab-ci:test_makefile_release_image:
 gitlab-ci:test_docker_dind:
   stage: test
   extends:
+    - .docker_dind
     - .docker_maker_image
-    - .makefile_docker_dind
   variables:
     GIT_CHECKOUT_REF_NAME: 'true'
   script:
