@@ -13,11 +13,31 @@ default:
 .autodevops:script:before:
   script:
     - !reference [.autodevops:script:shell-strict, script]
+    - !reference [.autodevops:script:env-tool-versions, script]
 
 # Configure shell to be strict
 .autodevops:script:shell-strict:
   script:
     - set -euo pipefail
+
+# Load environment variables from .tool-versions
+# If a variable is already set, it is not overridden
+.autodevops:script:env-tool-versions:
+  script:
+    - |
+      # Set environment variables from .tool-versions
+      if [[ -f .tool-versions ]];then
+        while read line
+        do
+          # Convert to var name and var value
+          TOOL_NAME=$(echo $line | awk '{print $1}')
+          TOOL_VERSION=$(echo $line | awk '{print $2}')
+          TOOL_NAME_VAR=$(echo $TOOL_NAME | tr '[:lower:]' '[:upper:]')"_VERSION"
+
+          # Read default value
+          eval "export $TOOL_NAME_VAR=\${$TOOL_NAME_VAR:-$TOOL_VERSION}"
+        done < .tool-versions
+      fi
 
 # Checkout branch
 #
