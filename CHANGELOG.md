@@ -1,3 +1,14 @@
+# [2.19.0](https://git.captive.fr/captive/gitlab-ci/compare/2.18.0...2.19.0) (2023-12-08)
+
+
+
+
+
+# 2.19.0 (2023-12-08)
+
+## ✨ New Features
+- [`4af9d7b`](https://gitlab.com/captive/gitlab-ci/-/commit/4af9d7b)  Add support for .tool-versions loading
+
 # [2.18.0](https://git.captive.fr/captive/gitlab-ci/compare/2.17.0...2.18.0) (2023-12-07)
 
 
