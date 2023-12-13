@@ -120,9 +120,6 @@ terraform:apply:staging:
   extends:
     - .terraform:apply
   stage: staging
-  needs:
-    - job: terraform:plan:staging
-      artifacts: true
   environment:
     name: staging
     action: start
@@ -147,9 +144,6 @@ terraform:plan:production:
 terraform:apply:production:
   extends: .terraform:apply
   stage: production
-  needs:
-    - job: terraform:plan:production
-      artifacts: true
   environment:
     name: production
     action: start
