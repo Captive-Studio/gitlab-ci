@@ -14,6 +14,7 @@ default:
   script:
     - !reference [.autodevops:script:shell-strict, script]
     - !reference [.autodevops:script:env-tool-versions, script]
+    - !reference [.autodevops:script:env-docker, script]
 
 # Configure shell to be strict
 .autodevops:script:shell-strict:
@@ -38,6 +39,28 @@ default:
           eval "export $TOOL_NAME_VAR=\${$TOOL_NAME_VAR:-$TOOL_VERSION}"
         done < .tool-versions
       fi
+
+# Configure Docker environment variables
+.autodevops:script:env-docker:
+  script:
+    - |
+      # Export default DOCKER_* and CONTAINER_* variables
+      export DOCKER_BUILDKIT=${DOCKER_BUILDKIT:-1}
+
+      # CI images
+      export CONTAINER_CI_IMAGE=${CONTAINER_CI_IMAGE:-${CI_REGISTRY_IMAGE:-""}/dev}
+      export CONTAINER_CI_TAG=${CONTAINER_CI_TAG:-ci-$CI_COMMIT_REF_SLUG-$CI_COMMIT_SHORT_SHA}
+      export CONTAINER_CI_TAG_CACHE=${CONTAINER_CI_TAG_CACHE:-ci--cache}
+      export CONTAINER_CI_TARGET=${CONTAINER_CI_TARGET:-builder}
+
+      # Release candidate image
+      export CONTAINER_RC_IMAGE=${CONTAINER_RC_IMAGE:-$CONTAINER_CI_IMAGE}
+      export CONTAINER_RC_TAG=${CONTAINER_RC_TAG:-rc-$CI_COMMIT_REF_SLUG-$CI_COMMIT_SHORT_SHA}
+      export CONTAINER_RC_TARGET=${CONTAINER_RC_TARGET:-runner}
+
+      # Release image
+      export CONTAINER_RELEASE_IMAGE=${CONTAINER_RELEASE_IMAGE:-${CI_REGISTRY_IMAGE:-""}}
+      export CONTAINER_RELEASE_TAG=${CONTAINER_RELEASE_TAG:-1.$(echo ${CI_PIPELINE_CREATED_AT:0:19} | sed 's/[:-]//g;s/T/./g')-sha.$CI_COMMIT_SHORT_SHA}
 
 # Checkout branch
 #
