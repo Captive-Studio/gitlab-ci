@@ -43,10 +43,6 @@
   stage: validate
   script:
     - gitlab-terraform validate
-  rules:
-    - !reference [.auto-devops:rules:skip_if_terraform_disabled, rules]
-    - !reference [.auto-devops:rules:skip_if_staging_disabled, rules]
-    - when: on_success
 
 .terraform:plan:
   extends:
@@ -64,10 +60,6 @@
       - ${TF_ROOT}/plan.cache
     reports:
       terraform: ${TF_ROOT}/plan.json
-  rules:
-    - !reference [.auto-devops:rules:skip_if_terraform_disabled, rules]
-    - !reference [.auto-devops:rules:skip_if_staging_disabled, rules]
-    - when: on_success
 
 .terraform:apply:
   extends:
@@ -76,12 +68,6 @@
   script:
     - gitlab-terraform apply
   resource_group: ${TF_STATE_NAME}
-  rules:
-    - !reference [.auto-devops:rules:skip_if_terraform_disabled, rules]
-    - !reference [.auto-devops:rules:skip_if_staging_disabled, rules]
-    - !reference [.auto-devops:rules:skip_non_default_branch, rules]
-    - if: $TF_AUTO_DEPLOY == "true"
-    - when: manual
 
 .terraform:destroy:
   extends:
@@ -105,6 +91,10 @@ terraform:validate:staging:
   needs: []
   variables:
     TF_STATE_NAME: staging
+  rules:
+    - !reference [.auto-devops:rules:skip_if_terraform_disabled, rules]
+    - !reference [.auto-devops:rules:skip_if_staging_disabled, rules]
+    - when: on_success
 
 terraform:plan:staging:
   extends:
@@ -115,6 +105,10 @@ terraform:plan:staging:
   needs:
     - job: terraform:validate:staging
       artifacts: true
+  rules:
+    - !reference [.auto-devops:rules:skip_if_terraform_disabled, rules]
+    - !reference [.auto-devops:rules:skip_if_staging_disabled, rules]
+    - when: on_success
 
 terraform:apply:staging:
   extends:
@@ -125,12 +119,21 @@ terraform:apply:staging:
     action: start
   variables:
     TF_AUTO_DEPLOY: 'true'
+  rules:
+    - !reference [.auto-devops:rules:skip_if_terraform_disabled, rules]
+    - !reference [.auto-devops:rules:skip_if_staging_disabled, rules]
+    - !reference [.auto-devops:rules:skip_non_default_branch, rules]
+    - if: $TF_AUTO_DEPLOY == "true"
+    - when: manual
 
 terraform:validate:production:
   extends: .terraform:validate
   needs: []
   variables:
     TF_STATE_NAME: production
+  rules:
+    - !reference [.auto-devops:rules:skip_if_terraform_disabled, rules]
+    - when: on_success
 
 terraform:plan:production:
   extends: .terraform:plan
@@ -140,6 +143,9 @@ terraform:plan:production:
   needs:
     - job: terraform:validate:production
       artifacts: true
+  rules:
+    - !reference [.auto-devops:rules:skip_if_terraform_disabled, rules]
+    - when: on_success
 
 terraform:apply:production:
   extends: .terraform:apply
@@ -147,3 +153,8 @@ terraform:apply:production:
   environment:
     name: production
     action: start
+  rules:
+    - !reference [.auto-devops:rules:skip_if_terraform_disabled, rules]
+    - !reference [.auto-devops:rules:skip_non_default_branch, rules]
+    - if: $TF_AUTO_DEPLOY == "true"
+    - when: manual
