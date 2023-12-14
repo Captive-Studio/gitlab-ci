@@ -1,3 +1,19 @@
+# [2.20.0](https://git.captive.fr/captive/gitlab-ci/compare/2.19.0...2.20.0) (2023-12-14)
+
+
+
+
+
+# 2.20.0 (2023-12-14)
+
+## ✨ New Features
+- [`e39bba3`](https://gitlab.com/captive/gitlab-ci/-/commit/e39bba3)  Add default environment variable for docker
+
+## 🐛 Bug Fixes
+- [`6e9b83c`](https://gitlab.com/captive/gitlab-ci/-/commit/6e9b83c)  Remove need for terraform:apply:*
+
+- [`529dec2`](https://gitlab.com/captive/gitlab-ci/-/commit/529dec2)  Fix terraform validate, plan and apply rule bug
+
 # [2.19.0](https://git.captive.fr/captive/gitlab-ci/compare/2.18.0...2.19.0) (2023-12-08)
 
 
