@@ -8,6 +8,11 @@
 variables:
   GIT_CLEAN_FLAGS: -ffdx -e .cache
 
+  # Will set shell as strict (i.e. set -euo pipefail) before each script
+  #
+  # This can be overriden globally or per job
+  CI_SHELL_STRICT: 'true'
+
   # Application name (for deployment, packages, etc)
   # By default $CI_PROJECT_NAME is used.
   #

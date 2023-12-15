@@ -19,7 +19,11 @@ default:
 # Configure shell to be strict
 .autodevops:script:shell-strict:
   script:
-    - set -euo pipefail
+    - |
+      # Configure Shell as strict (if $CI_SHELL_STRICT, i.e. set -euo pipefail)
+      if [[ -z "$CI_SHELL_STRICT" ]]; then
+        set -euo pipefail
+      fi
 
 # Load environment variables from .tool-versions
 # If a variable is already set, it is not overridden
