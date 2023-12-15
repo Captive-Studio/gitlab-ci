@@ -83,6 +83,6 @@ default:
 .autodevops:script:ci-registry-login:
   script:
     - |
-      # Docker login to $CI_REGISTRY
+      # Docker login to $CI_REGISTRY (login: $CI_REGISTRY_USER, password: $CI_REGISTRY_PASSWORD)
       unset HISTFILE
-      echo $CI_JOB_TOKEN | docker login -u gitlab-ci-token --password-stdin $CI_REGISTRY
+      echo $CI_REGISTRY_PASSWORD | docker login -u $CI_REGISTRY_USER --password-stdin $CI_REGISTRY
