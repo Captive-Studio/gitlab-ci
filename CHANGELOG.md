@@ -1,3 +1,16 @@
+## [2.20.1](https://git.captive.fr/captive/gitlab-ci/compare/2.20.0...2.20.1) (2023-12-17)
+
+
+
+
+
+# 2.20.1 (2023-12-17)
+
+## 🐛 Bug Fixes
+- [`0ee3230`](https://gitlab.com/captive/gitlab-ci/-/commit/0ee3230)  Add CI_SHELL_STRICT to be able to disable set -euo pipefail
+
+- [`8b78fac`](https://gitlab.com/captive/gitlab-ci/-/commit/8b78fac)  Fix gitlab-ci-token hard coded value
+
 # [2.20.0](https://git.captive.fr/captive/gitlab-ci/compare/2.19.0...2.20.0) (2023-12-14)
 
 
