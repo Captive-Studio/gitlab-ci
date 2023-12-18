@@ -65,6 +65,10 @@ default:
       export CONTAINER_RELEASE_IMAGE=${CONTAINER_RELEASE_IMAGE:-${CI_REGISTRY_IMAGE:-""}}
       export CONTAINER_RELEASE_TAG=${CONTAINER_RELEASE_TAG:-1.$(echo ${CI_PIPELINE_CREATED_AT:0:19} | sed 's/[:-]//g;s/T/./g')-sha.$CI_COMMIT_SHORT_SHA}
 
+      # Gitlab AutoDevops compatibility
+      export CI_APPLICATION_REPOSITORY=${CI_APPLICATION_REPOSITORY:-$CONTAINER_CI_IMAGE}
+      export CI_APPLICATION_TAG=${CI_APPLICATION_TAG:-$CONTAINER_CI_TAG}
+
 # Checkout branch
 #
 # Force checkout branch
