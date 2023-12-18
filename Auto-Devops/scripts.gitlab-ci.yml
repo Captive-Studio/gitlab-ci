@@ -20,7 +20,7 @@ default:
 .autodevops:script:shell-strict:
   script:
     - |
-      # Configure Shell as strict (if $CI_SHELL_STRICT, i.e. set -euo pipefail)
+      # [Shell] 🚦 Configure Shell as strict (if $CI_SHELL_STRICT, i.e. set -euo pipefail)
       if [[ -z "$CI_SHELL_STRICT" ]]; then
         set -euo pipefail
       fi
@@ -30,7 +30,7 @@ default:
 .autodevops:script:env-tool-versions:
   script:
     - |
-      # Set environment variables from .tool-versions
+      # [Shell] 🛠️ Set environment variables from .tool-versions
       if [[ -f .tool-versions ]];then
         while read line
         do
@@ -48,7 +48,7 @@ default:
 .autodevops:script:env-docker:
   script:
     - |
-      # Export default DOCKER_* and CONTAINER_* variables
+      # [Docker] 🔧 Export default DOCKER_* and CONTAINER_* variables
       export DOCKER_BUILDKIT=${DOCKER_BUILDKIT:-1}
 
       # CI images
@@ -73,7 +73,7 @@ default:
 .autodevops:script:git-checkout-branch:
   script:
     - |
-      # git checkout -B "$CI_COMMIT_REF_NAME" (if $GIT_CHECKOUT_REF_NAME)
+      # [Git] git checkout -B "$CI_COMMIT_REF_NAME" (if $GIT_CHECKOUT_REF_NAME)
       if [[ ! -z "$GIT_CHECKOUT_REF_NAME" ]];then
         git checkout -B "$CI_COMMIT_REF_NAME"
       fi
@@ -82,6 +82,6 @@ default:
 .autodevops:script:ci-registry-login:
   script:
     - |
-      # Docker login to $CI_REGISTRY (login: $CI_REGISTRY_USER, password: $CI_REGISTRY_PASSWORD)
+      # [Docker] 🔑 Docker login to $CI_REGISTRY (login: $CI_REGISTRY_USER, password: $CI_REGISTRY_PASSWORD)
       unset HISTFILE
       echo $CI_REGISTRY_PASSWORD | docker login -u $CI_REGISTRY_USER --password-stdin $CI_REGISTRY
