@@ -30,7 +30,6 @@ variables:
   # => BUT there is conflict between BUNDLE_CACHE_PATH and BUNDLE_FROZEN, bundle install returns an error
   # BUNDLE_CACHE_PATH: $CI_BUNDLE_CACHE_PATH
   BUNDLE_PATH: vendor/bundle
-  BUNDLE_JOBS: $(nproc)
   BUNDLE_FROZEN: 'true'
   DISABLE_SPRING: 'true'
   RAKE_TASK_BUILD: 'assets:precompile'
@@ -46,6 +45,12 @@ variables:
   extends:
     - .autodevops_retry
     - .ruby_image
+  before_script:
+    - !reference [.autodevops:script:before, script]
+    - |
+      # [Ruby] 🔧 Configure bundle default settings
+      export BUNDLE_JOBS=${BUNDLE_JOBS:-$(nproc)}
+      export BUNDLE_FROZEN=${BUNDLE_FROZEN:-'true'}
 
 .rake_test:
   extends:
@@ -58,6 +63,7 @@ variables:
   variables:
     RAILS_ENV: test
   before_script:
+    - !reference [.ruby_base, before_script]
     - |
       if [[ ! -z $(bundle exec rake --tasks 'db')  ]];then
         bundle exec rake db:create db:migrate
