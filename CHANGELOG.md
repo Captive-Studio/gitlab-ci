@@ -1,3 +1,14 @@
+## [2.20.2](https://git.captive.fr/captive/gitlab-ci/compare/2.20.1...2.20.2) (2023-12-18)
+
+
+
+
+
+# 2.20.2 (2023-12-18)
+
+## 🐛 Bug Fixes
+- [`5ecd3da`](https://gitlab.com/captive/gitlab-ci/-/commit/5ecd3da)  Remove CONTAINER_CI_TAG_CACHE
+
 ## [2.20.1](https://git.captive.fr/captive/gitlab-ci/compare/2.20.0...2.20.1) (2023-12-17)
 
 
