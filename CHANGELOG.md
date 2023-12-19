@@ -1,3 +1,14 @@
+## [2.20.3](https://git.captive.fr/captive/gitlab-ci/compare/2.20.2...2.20.3) (2023-12-19)
+
+
+
+
+
+# 2.20.3 (2023-12-19)
+
+## 🐛 Bug Fixes
+- [`6a2a69a`](https://gitlab.com/captive/gitlab-ci/-/commit/6a2a69a)  Fix autodevops compatibility
+
 ## [2.20.2](https://git.captive.fr/captive/gitlab-ci/compare/2.20.1...2.20.2) (2023-12-18)
 
 
