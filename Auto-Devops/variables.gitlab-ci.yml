@@ -205,7 +205,7 @@ variables:
   # By default, the name of the gitlab CI environnement
   #
   # @type {string}
-  TF_STATE_NAME: ${CI_ENVIRONMENT_NAME}
+  # TF_STATE_NAME: ${CI_ENVIRONMENT_NAME}
 
   # Terraform root directory. By default should be put in a "terraform/environments/XXX" folder
   #

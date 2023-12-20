@@ -102,6 +102,8 @@ terraform:plan:staging:
   environment:
     name: staging
     action: prepare
+  variables:
+    TF_STATE_NAME: staging
   needs:
     - job: terraform:validate:staging
       artifacts: true
@@ -118,6 +120,7 @@ terraform:apply:staging:
     name: staging
     action: start
   variables:
+    TF_STATE_NAME: staging
     TF_AUTO_DEPLOY: 'true'
   rules:
     - !reference [.auto-devops:rules:skip_if_terraform_disabled, rules]
@@ -143,6 +146,8 @@ terraform:plan:production:
   needs:
     - job: terraform:validate:production
       artifacts: true
+  variables:
+    TF_STATE_NAME: production
   rules:
     - !reference [.auto-devops:rules:skip_if_terraform_disabled, rules]
     - when: on_success
@@ -153,6 +158,8 @@ terraform:apply:production:
   environment:
     name: production
     action: start
+  variables:
+    TF_STATE_NAME: production
   rules:
     - !reference [.auto-devops:rules:skip_if_terraform_disabled, rules]
     - !reference [.auto-devops:rules:skip_non_default_branch, rules]
