@@ -1,3 +1,14 @@
+## [2.20.4](https://git.captive.fr/captive/gitlab-ci/compare/2.20.3...2.20.4) (2023-12-20)
+
+
+
+
+
+# 2.20.4 (2023-12-20)
+
+## 🐛 Bug Fixes
+- [`039775c`](https://gitlab.com/captive/gitlab-ci/-/commit/039775c)  Fix bug for resource group
+
 ## [2.20.3](https://git.captive.fr/captive/gitlab-ci/compare/2.20.2...2.20.3) (2023-12-19)
 
 
