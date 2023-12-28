@@ -46,20 +46,12 @@ makefile:lint:
     - .makefile_base
   stage: test
   script:
-    - | # make ci-lint (only if present)
-      # Present
-      if make -n ci-lint 2>/dev/null; then
-        make ci-lint
-      # Not present
-      else
-        echo 'Warning: `make ci-lint` not found'
-      fi;
+    - make ci-lint
   rules:
     - !reference [.auto-devops:rules:skip_code_quality_disabled, rules]
     - !reference [.auto-devops:rules:only_makefile, rules]
   tags:
     - docker-dind
-    - heavy-job
 
 makefile:build:
   extends:
