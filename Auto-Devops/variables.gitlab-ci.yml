@@ -163,7 +163,7 @@ variables:
   # NodeJS version used (with `image: cimg/node-${NODEJS_VERSION}`)
   #
   # @see https://circleci.com/developer/images/image/cimg/node
-  NODEJS_VERSION: 20.9.0
+  # NODEJS_VERSION: 20.9.0
 
   # Relative NPM cache path
   CI_NPM_CACHE_PATH: .cache/npm
@@ -184,7 +184,7 @@ variables:
   # Ruby version used (with `image: cimg/ruby-${RUBY_VERSION}`)
   #
   # @see https://circleci.com/developer/images/image/cimg/ruby
-  RUBY_VERSION: 3.2.2
+  # RUBY_VERSION: 3.2.2
 
   #
   # Terraform
