@@ -245,7 +245,7 @@
 #   extends
 #     - .nodejs_image
 .nodejs_image:
-  image: cimg/node:${NODEJS_VERSION:-20.10.0}
+  image: cimg/node:${NODEJS_VERSION}
 
 # Mixin to use CircleCI nodejs images (+ Chrome)
 #
@@ -255,7 +255,7 @@
 #   extends
 #     - .nodejs_image_browsers
 .nodejs_image_browsers:
-  image: cimg/node:${NODEJS_VERSION:-20.10.0}-browsers
+  image: cimg/node:${NODEJS_VERSION}-browsers
 
 # Mixin to use CircleCI ruby images
 #
@@ -265,7 +265,7 @@
 #   extends
 #     - .ruby_image
 .ruby_image:
-  image: cimg/ruby:${RUBY_VERSION:-3.2.2}-node
+  image: cimg/ruby:${RUBY_VERSION}-node
 
 # Mixin to use CircleCI ruby images (+ Chrome)
 #
@@ -275,7 +275,7 @@
 #   extends
 #     - .ruby_image_browsers
 .ruby_image_browsers:
-  image: cimg/ruby:${RUBY_VERSION:-3.2.2}-browsers
+  image: cimg/ruby:${RUBY_VERSION}-browsers
 
 # Mixin to use Terraform
 #

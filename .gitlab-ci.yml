@@ -11,6 +11,11 @@ variables:
   SEMANTIC_RELEASE_PLUGINS: '@semantic-release/changelog @semantic-release/git'
   SEMANTIC_RELEASE_ARGS: ''
 
+  # TODO: Remove this. Default values does not work we have to explicitly set them
+  # @see https://gitlab.com/groups/gitlab-org/-/epics/7437
+  RUBY_VERSION: 3.2.2
+  NODEJS_VERSION: 20.10.0
+
 .semantic_release_stage:
   stage: release
   image: cimg/node:lts
