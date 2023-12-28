@@ -159,6 +159,7 @@ variables:
 
   # NodeJS jobs are enabled by default if package.json is found
   NODEJS_ENABLED: 'true'
+
   # NodeJS version used (with `image: cimg/node-${NODEJS_VERSION}`)
   #
   # @see https://circleci.com/developer/images/image/cimg/node
@@ -179,7 +180,8 @@ variables:
 
   # Ruby jobs are enabled by default if Gemfile is found
   RUBY_ENABLED: 'true'
-  # NodeJS version used (with `image: cimg/ruby-${NODEJS_VERSION}`)
+
+  # Ruby version used (with `image: cimg/ruby-${RUBY_VERSION}`)
   #
   # @see https://circleci.com/developer/images/image/cimg/ruby
   RUBY_VERSION: 3.2.2
