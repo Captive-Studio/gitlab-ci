@@ -43,7 +43,7 @@ This project aims to make GitlabCI configuration easier for each project. One in
 include:
   - project: captive/gitlab-ci
     file: /Auto-Devops.gitlab-ci.yml
-    ref: 2.20.5
+    ref: 2.20.6
     # OR Unstable / latest version
     # ref: main
 

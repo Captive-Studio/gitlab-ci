@@ -1,3 +1,14 @@
+## [2.20.6](https://git.captive.fr/captive/gitlab-ci/compare/2.20.5...2.20.6) (2023-12-29)
+
+
+
+
+
+# 2.20.6 (2023-12-29)
+
+## 🐛 Bug Fixes
+- [`d4cd47d`](https://gitlab.com/captive/gitlab-ci/-/commit/d4cd47d)  Fix production auto
+
 ## [2.20.5](https://git.captive.fr/captive/gitlab-ci/compare/2.20.4...2.20.5) (2023-12-29)
 
 
