@@ -1,3 +1,16 @@
+## [2.20.5](https://git.captive.fr/captive/gitlab-ci/compare/2.20.4...2.20.5) (2023-12-29)
+
+
+
+
+
+# 2.20.5 (2023-12-29)
+
+## 🐛 Bug Fixes
+- [`59443ce`](https://gitlab.com/captive/gitlab-ci/-/commit/59443ce)  Make makefile:lint fail if ci-lint is not found
+
+- [`fca1f9d`](https://gitlab.com/captive/gitlab-ci/-/commit/fca1f9d)  Remove default value for RUBY_VERSION and NODEJS_VERSION
+
 ## [2.20.4](https://git.captive.fr/captive/gitlab-ci/compare/2.20.3...2.20.4) (2023-12-20)
 
 
