@@ -64,6 +64,11 @@
     - if: $STAGING_ENABLED == null || $STAGING_ENABLED == '' || $STAGING_ENABLED == 'false'
       when: never
 
+.auto-devops:rules:skip_if_staging_enabled:
+  rules:
+    - if: $STAGING_ENABLED != null && $STAGING_ENABLED != '' && $STAGING_ENABLED != 'false'
+      when: never
+
 .auto-devops:rules:skip_if_makefile:
   rules:
     - <<: *if_makefile

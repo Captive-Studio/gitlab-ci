@@ -10,19 +10,16 @@
 # ⚠️ Must be declared before use
 .auto-devops_rules:
   rules:
-    - &skip_if_staging_enabled
-      if: $STAGING_ENABLED && $STAGING_ENABLED != 'false'
-      when: never
     - &skip_if_canary_enabled
-      if: $CANARY_ENABLED && $CANARY_ENABLED != 'false'
+      if: $CANARY_ENABLED != null && $CANARY_ENABLED != '' && $CANARY_ENABLED != 'false'
       when: never
     - &skip_if_incremental_rollout_enabled
       if: '$INCREMENTAL_ROLLOUT_ENABLED || $INCREMENTAL_ROLLOUT_MODE'
       when: never
     - &only_staging_enabled
-      if: $STAGING_ENABLED && $STAGING_ENABLED != 'false' && ($CI_COMMIT_TAG || $CI_COMMIT_BRANCH)
+      if: $STAGING_ENABLED != null && $STAGING_ENABLED != '' && $STAGING_ENABLED != 'false'
     - &only_canary_enabled
-      if: $CANARY_ENABLED && $CANARY_ENABLED != 'false' && ($CI_COMMIT_TAG || $CI_COMMIT_BRANCH)
+      if: $CANARY_ENABLED != null && $CANARY_ENABLED != '' && $CANARY_ENABLED != 'false'
 
 # Retry twice when a restricted set of error occurs
 #
@@ -216,9 +213,9 @@
     - !reference [.auto-devops:rules:filter_platform_target, rules]
     - !reference [.auto-devops:rules:skip_kubernetes, rules]
     - !reference [.auto-devops:rules:skip_non_default_branch, rules]
-    - <<: *skip_if_staging_enabled
+    - !reference [.auto-devops:rules:skip_if_staging_enabled, rules]
     - <<: *skip_if_canary_enabled
-    - <<: *skip_if_incremental_rollout_enabled
+    # - <<: *skip_if_incremental_rollout_enabled
     # Default
     - when: on_success
 
@@ -230,7 +227,7 @@
     - !reference [.auto-devops:rules:filter_platform_target, rules]
     - !reference [.auto-devops:rules:skip_kubernetes, rules]
     - !reference [.auto-devops:rules:skip_non_default_branch, rules]
-    - <<: *skip_if_incremental_rollout_enabled
+    # - <<: *skip_if_incremental_rollout_enabled
     - <<: *only_staging_enabled
       when: manual
     - <<: *only_canary_enabled
