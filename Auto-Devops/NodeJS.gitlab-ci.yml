@@ -32,22 +32,26 @@ nodejs:install:
     - !reference [.nodejs_cache_push, cache]
   script:
     - |
-      # Check lock files
+      # [NodeJS] ✓ Check lock files
       if [[ -f yarn.lock && -f package-lock.json ]]; then
         >&2 echo -e "\e[31m❌ Error: Duplicate lockfile. Either 'package-lock.json' or 'yarn.lock' should be removed."
         exit 1
       fi
     - |
+      # [NodeJS] 🔄 Install dependencies
       # Case Yarn Berry
       if [[ -f yarn.lock && -d .yarn/releases ]]; then
+        echo 'Install using yarn berry'
         yarn install --immutable;
 
       # Case Yarn Classic
       elif [[ -f yarn.lock && ! -d .yarn/releases ]]; then
+        echo 'Install using yarn classic'
         yarn install --frozen-file --prefer-offline;
 
       # Case NPM
       else
+        echo 'Install using npm'
         npm ci --prefer-offline --no-audit --no-optional;
       fi;
   rules:
