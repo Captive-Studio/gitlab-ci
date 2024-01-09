@@ -65,6 +65,7 @@ variables:
   before_script:
     - !reference [.ruby_base, before_script]
     - |
+      # [Ruby] 🔧 Prepare database
       if [[ ! -z $(bundle exec rake --tasks 'db')  ]];then
         bundle exec rake db:create db:migrate
         bundle exec rake db:seed
@@ -80,13 +81,13 @@ ruby:install:
   script:
     # Dump environment
     - |
-      # Display the environment
+      # [Ruby] 🔍 Display the environment
       echo BUNDLE_CACHE_PATH=${BUNDLE_CACHE_PATH:-""}
       echo BUNDLE_PATH=${BUNDLE_PATH:-""}
       bundle --version
       ruby --version
     - |
-      # Ensure download cache exist
+      # [Ruby] ⤵️ Ensure download cache exist
       if [ ! -z "${BUNDLE_CACHE_PATH:-""}" ];then
         mkdir -p $BUNDLE_CACHE_PATH
       fi
