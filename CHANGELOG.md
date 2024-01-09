@@ -1,3 +1,14 @@
+## [2.20.7](https://git.captive.fr/captive/gitlab-ci/compare/2.20.6...2.20.7) (2024-01-09)
+
+
+
+
+
+# 2.20.7 (2024-01-09)
+
+## 🐛 Bug Fixes
+- [`e99b246`](https://gitlab.com/captive/gitlab-ci/-/commit/e99b246)  Bump version
+
 ## [2.20.6](https://git.captive.fr/captive/gitlab-ci/compare/2.20.5...2.20.6) (2023-12-29)
 
 
