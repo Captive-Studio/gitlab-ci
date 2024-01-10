@@ -17,7 +17,7 @@ variables:
   APPFLOW_API_TOKEN_PRODUCTION: ''
 
 .appflow_build:
-  image: ghcr.io/ionic-team/ionic-cli:7.2.0
+  image: ghcr.io/ionic-team/ionic-cli:7.2.0@sha256:72c939de5862a3a390c81f42d7b92087fb9a14b5803e87067a44205b25a8759c
   variables:
     GIT_STRATEGY: clone
     GIT_DEPTH: 0

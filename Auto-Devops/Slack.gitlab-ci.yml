@@ -5,7 +5,7 @@
 
 .slack_notification:
   stage: .post
-  image: curlimages/curl
+  image: curlimages/curl@sha256:4bfa3e2c0164fb103fb9bfd4dc956facce32b6c5d47cc09fcec883ce9535d5ac
   allow_failure: true
 
 slack:failure:
