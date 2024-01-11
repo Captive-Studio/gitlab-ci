@@ -1,3 +1,14 @@
+## [2.20.8](https://git.captive.fr/captive/gitlab-ci/compare/2.20.7...2.20.8) (2024-01-11)
+
+
+
+
+
+# 2.20.8 (2024-01-11)
+
+## 🐛 Bug Fixes
+- [`10be2c5`](https://gitlab.com/captive/gitlab-ci/-/commit/10be2c5)  Remove --if-present for tests
+
 ## [2.20.7](https://git.captive.fr/captive/gitlab-ci/compare/2.20.6...2.20.7) (2024-01-09)
 
 
