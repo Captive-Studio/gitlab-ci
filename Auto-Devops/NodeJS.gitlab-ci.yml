@@ -114,7 +114,7 @@ nodejs:test:
   tags:
     - lightweight-job
   script:
-    - npm test --if-present
+    - npm test
   needs:
     - job: nodejs:build
       artifacts: true
@@ -133,7 +133,7 @@ nodejs:test:e2e:
   tags:
     - heavy-job
   script:
-    - npm run test:e2e --if-present
+    - npm run test:e2e
   needs:
     - job: nodejs:build
       artifacts: true
