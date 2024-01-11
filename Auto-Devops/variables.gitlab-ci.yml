@@ -137,6 +137,9 @@ variables:
   # @internal Disable TLS
   DOCKER_TLS_CERTDIR: ''
 
+  # @internal By Default use Build Kit
+  DOCKER_BUILDKIT: 1
+
   # @internal
   DEPLOY_SSH_KNOWN_HOSTS_BASE64: ''
 
