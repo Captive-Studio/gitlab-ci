@@ -8,6 +8,9 @@
 variables:
   GIT_CLEAN_FLAGS: -ffdx -e .cache
 
+  # Enable submodules
+  GIT_SUBMODULE_STRATEGY: recursive
+
   # Will set shell as strict (i.e. set -euo pipefail) before each script
   #
   # This can be overriden globally or per job
