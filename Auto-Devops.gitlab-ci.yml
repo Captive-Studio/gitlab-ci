@@ -1,19 +1,19 @@
 include:
   - template: Jobs/SAST.gitlab-ci.yml
-  - /Auto-Devops/rules.gitlab-ci.yml
-  - /Auto-Devops/workflow.gitlab-ci.yml
-  - /Auto-Devops/stages.gitlab-ci.yml
-  - /Auto-Devops/variables.gitlab-ci.yml
-  - /Auto-Devops/cache.gitlab-ci.yml
-  - /Auto-Devops/library.gitlab-ci.yml
-  - /Auto-Devops/scripts.gitlab-ci.yml
-  - /Auto-Devops/Ruby.gitlab-ci.yml
-  - /Auto-Devops/Makefile.gitlab-ci.yml
-  - /Auto-Devops/NodeJS.gitlab-ci.yml
-  - /Auto-Devops/Terraform.gitlab-ci.yml
-  # - /Auto-Devops/Deploy-appflow.gitlab-ci.yml
-  - /Auto-Devops/Deploy-heroku.gitlab-ci.yml
-  - /Auto-Devops/Deploy-scalingo.gitlab-ci.yml
-  - /Auto-Devops/Deploy-makefile.gitlab-ci.yml
-  - /Auto-Devops/Danger.gitlab-ci.yml
-  - /Auto-Devops/Slack.gitlab-ci.yml
+  - local: /Auto-Devops/rules.gitlab-ci.yml
+  - local: /Auto-Devops/workflow.gitlab-ci.yml
+  - local: /Auto-Devops/stages.gitlab-ci.yml
+  - local: /Auto-Devops/variables.gitlab-ci.yml
+  - local: /Auto-Devops/cache.gitlab-ci.yml
+  - local: /Auto-Devops/library.gitlab-ci.yml
+  - local: /Auto-Devops/scripts.gitlab-ci.yml
+  - local: /Auto-Devops/Ruby.gitlab-ci.yml
+  - local: /Auto-Devops/Makefile.gitlab-ci.yml
+  - local: /Auto-Devops/NodeJS.gitlab-ci.yml
+  - local: /Auto-Devops/Terraform.gitlab-ci.yml
+  # - local: /Auto-Devops/Deploy-appflow.gitlab-ci.yml
+  - local: /Auto-Devops/Deploy-heroku.gitlab-ci.yml
+  - local: /Auto-Devops/Deploy-scalingo.gitlab-ci.yml
+  - local: /Auto-Devops/Deploy-makefile.gitlab-ci.yml
+  - local: /Auto-Devops/Danger.gitlab-ci.yml
+  - local: /Auto-Devops/Slack.gitlab-ci.yml
