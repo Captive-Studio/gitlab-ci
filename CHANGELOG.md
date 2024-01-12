@@ -1,3 +1,16 @@
+# [2.21.0](https://git.captive.fr/captive/gitlab-ci/compare/2.20.8...2.21.0) (2024-01-12)
+
+
+
+
+
+# 2.21.0 (2024-01-12)
+
+## ✨ New Features
+- [`3187d0b`](https://gitlab.com/captive/gitlab-ci/-/commit/3187d0b)  Enable DOCKER_BUILDKIT by default
+
+- [`2ebdd88`](https://gitlab.com/captive/gitlab-ci/-/commit/2ebdd88)  Add CONTAINER_* variables in gitlab configuration
+
 ## [2.20.8](https://git.captive.fr/captive/gitlab-ci/compare/2.20.7...2.20.8) (2024-01-11)
 
 
