@@ -1,0 +1,98 @@
+# Makefile deployment based
+#
+# Used to have complete control over task steps
+#
+# Guidelines
+#
+# ✓ If Makefile is present, every other jobs should be disabled (NodeJS, Ruby, etc)
+# ✓ Makefile script should be compatible with https://docs.gitlab.com/ee/ci/variables/predefined_variables.html
+# ✓ Simple 1:1 correspondence between gitlab job <> Makefile target
+# ✓ Convention :
+#     gitlab job: 'makefile:${job_name}'
+#     makefile target : 'make ${job_name}'
+
+.auto-devops:rules:only_makefile:
+  rules:
+    - exists:
+        - Makefile
+
+.makefile_base:
+  image: ${CONTAINER_CI_IMAGE}:${CONTAINER_CI_TAG}
+  extends:
+    - .autodevops_retry
+
+makefile:build:
+  extends:
+    - .autodevops_retry
+    - .docker_dind
+    - .docker_maker_image
+  stage: build
+  script:
+    - |
+      # [Docker] 📦 Build docker image used by runners ($CONTAINER_CI_IMAGE) and Release candidate
+    - make docker-build
+    - |
+      # [Docker] ⏫ Push docker image used by runners ($CONTAINER_CI_IMAGE)
+    - docker push ${CONTAINER_CI_IMAGE} --all-tags
+  rules:
+    - !reference [.auto-devops:rules:skip_builder_makefile_disabled, rules]
+    - !reference [.auto-devops:rules:skip_build_disabled, rules]
+    - !reference [.auto-devops:rules:only_makefile, rules]
+  needs: []
+  tags:
+    - docker-dind
+    - heavy-job
+
+makefile:lint:
+  extends:
+    - .makefile_base
+  stage: test
+  script:
+    - make lint
+  rules:
+    - !reference [.auto-devops:rules:skip_builder_makefile_disabled, rules]
+    - !reference [.auto-devops:rules:skip_code_quality_disabled, rules]
+    - !reference [.auto-devops:rules:only_makefile, rules]
+
+makefile:test:
+  extends:
+    - .makefile_base
+  stage: test
+  script:
+    - make test
+  needs:
+    - job: makefile:build
+      artifacts: true
+  tags:
+    - heavy-job
+  rules:
+    - !reference [.auto-devops:rules:skip_builder_makefile_disabled, rules]
+    - !reference [.auto-devops:rules:skip_test_disabled, rules]
+    - !reference [.auto-devops:rules:only_makefile, rules]
+
+makefile:test-system:
+  extends:
+    - .makefile_base
+  stage: test
+  script:
+    - make test-system
+  needs:
+    - job: makefile:build
+      artifacts: true
+  rules:
+    - !reference [.auto-devops:rules:skip_builder_makefile_disabled, rules]
+    - !reference [.auto-devops:rules:skip_test_system_disabled, rules]
+    - !reference [.auto-devops:rules:only_makefile, rules]
+  tags:
+    - heavy-job
+
+makefile:release-images:
+  extends:
+    - .makefile_base
+  stage: release
+  script:
+    - make release-images
+  rules:
+    - !reference [.auto-devops:rules:skip_builder_makefile_disabled, rules]
+    - !reference [.auto-devops:rules:skip_non_default_branch, rules]
+    - !reference [.auto-devops:rules:only_makefile, rules]

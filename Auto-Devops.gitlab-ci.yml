@@ -7,9 +7,9 @@ include:
   - local: /Auto-Devops/cache.gitlab-ci.yml
   - local: /Auto-Devops/library.gitlab-ci.yml
   - local: /Auto-Devops/scripts.gitlab-ci.yml
-  - local: /Auto-Devops/Ruby.gitlab-ci.yml
-  - local: /Auto-Devops/Makefile.gitlab-ci.yml
-  - local: /Auto-Devops/NodeJS.gitlab-ci.yml
+  - local: /Auto-Devops/Build-default.gitlab-ci.yml
+  - local: /Auto-Devops/Build-makefile.gitlab-ci.yml
+  - local: /Auto-Devops/Build-makefile-legacy.gitlab-ci.yml
   - local: /Auto-Devops/Terraform.gitlab-ci.yml
   # - local: /Auto-Devops/Deploy-appflow.gitlab-ci.yml
   - local: /Auto-Devops/Deploy-heroku.gitlab-ci.yml
@@ -17,3 +17,7 @@ include:
   - local: /Auto-Devops/Deploy-makefile.gitlab-ci.yml
   - local: /Auto-Devops/Danger.gitlab-ci.yml
   - local: /Auto-Devops/Slack.gitlab-ci.yml
+
+variables:
+  # Must be declared here
+  AUTO_DEVOPS_BUILD: default

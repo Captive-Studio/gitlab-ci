@@ -55,7 +55,7 @@ nodejs:install:
         npm ci --prefer-offline --no-audit --no-optional;
       fi;
   rules:
-    - !reference [.auto-devops:rules:skip_if_makefile, rules]
+    - !reference [.auto-devops:rules:skip_builder_default_disabled, rules]
     - !reference [.auto-devops:rules:skip_if_nodejs_disabled, rules]
     - !reference [.auto-devops:rules:nodejs_present_rule, rules]
 
@@ -75,9 +75,9 @@ nodejs:build:
     - job: nodejs:install
       artifacts: true
   rules:
-    - !reference [.auto-devops:rules:skip_build_disabled, rules]
-    - !reference [.auto-devops:rules:skip_if_makefile, rules]
+    - !reference [.auto-devops:rules:skip_builder_default_disabled, rules]
     - !reference [.auto-devops:rules:skip_if_nodejs_disabled, rules]
+    - !reference [.auto-devops:rules:skip_build_disabled, rules]
     - !reference [.auto-devops:rules:nodejs_present_rule, rules]
 
 nodejs:lint:
@@ -93,9 +93,9 @@ nodejs:lint:
     - job: nodejs:install
       artifacts: true
   rules:
-    - !reference [.auto-devops:rules:skip_code_quality_disabled, rules]
-    - !reference [.auto-devops:rules:skip_if_makefile, rules]
+    - !reference [.auto-devops:rules:skip_builder_default_disabled, rules]
     - !reference [.auto-devops:rules:skip_if_nodejs_disabled, rules]
+    - !reference [.auto-devops:rules:skip_code_quality_disabled, rules]
     - !reference [.auto-devops:rules:nodejs_present_rule, rules]
 
 nodejs:test:
@@ -119,9 +119,9 @@ nodejs:test:
     - job: nodejs:build
       artifacts: true
   rules:
-    - !reference [.auto-devops:rules:skip_test_disabled, rules]
-    - !reference [.auto-devops:rules:skip_if_makefile, rules]
+    - !reference [.auto-devops:rules:skip_builder_default_disabled, rules]
     - !reference [.auto-devops:rules:skip_if_nodejs_disabled, rules]
+    - !reference [.auto-devops:rules:skip_test_disabled, rules]
     - !reference [.auto-devops:rules:nodejs_present_rule, rules]
 
 nodejs:test:e2e:
@@ -138,7 +138,7 @@ nodejs:test:e2e:
     - job: nodejs:build
       artifacts: true
   rules:
-    - !reference [.auto-devops:rules:skip_test_system_disabled, rules]
-    - !reference [.auto-devops:rules:skip_if_makefile, rules]
+    - !reference [.auto-devops:rules:skip_builder_default_disabled, rules]
     - !reference [.auto-devops:rules:skip_if_nodejs_disabled, rules]
+    - !reference [.auto-devops:rules:skip_test_system_disabled, rules]
     - !reference [.auto-devops:rules:nodejs_present_rule, rules]

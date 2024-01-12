@@ -10,10 +10,6 @@
 .if_deploy_freeze: &if_deploy_freeze
   if: $CI_DEPLOY_FREEZE && $CI_DEPLOY_FREEZE != 'false'
 
-.if_makefile: &if_makefile
-  exists:
-    - Makefile
-
 .auto-devops:rules:skip_kubernetes:
   rules:
     - <<: *if_kubernetes
@@ -37,6 +33,21 @@
 .auto-devops:rules:skip_build_disabled:
   rules:
     - if: $BUILD_ENABLED == null || $BUILD_ENABLED == '' || $BUILD_ENABLED == 'false'
+      when: never
+
+.auto-devops:rules:skip_builder_default_disabled:
+  rules:
+    - if: $BUILDER_INCLUDE !~ /default/
+      when: never
+
+.auto-devops:rules:skip_builder_makefile_legacy_disabled:
+  rules:
+    - if: $BUILDER_INCLUDE !~ /makefile-legacy/
+      when: never
+
+.auto-devops:rules:skip_builder_makefile_disabled:
+  rules:
+    - if: $BUILDER_INCLUDE !~ /makefile/
       when: never
 
 .auto-devops:rules:skip_code_quality_disabled:
@@ -68,15 +79,6 @@
   rules:
     - if: $STAGING_ENABLED != null && $STAGING_ENABLED != '' && $STAGING_ENABLED != 'false'
       when: never
-
-.auto-devops:rules:skip_if_makefile:
-  rules:
-    - <<: *if_makefile
-      when: never
-
-.auto-devops:rules:only_makefile:
-  rules:
-    - <<: *if_makefile
 
 .auto-devops:rules:filter_platform_target:
   rules:

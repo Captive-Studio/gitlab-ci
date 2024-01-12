@@ -1,0 +1,3 @@
+include:
+  - local: /Auto-Devops/Ruby.gitlab-ci.yml
+  - local: /Auto-Devops/NodeJS.gitlab-ci.yml

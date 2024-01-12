@@ -1,3 +1,5 @@
+# eslint-disable prettier/prettier
+# 🟠 DEPRECATED
 # Makefile deployment based
 #
 # Used to have complete control over task steps
@@ -8,11 +10,16 @@
 # ✓ Makefile script should be compatible with https://docs.gitlab.com/ee/ci/variables/predefined_variables.html
 # ✓ Simple 1:1 correspondence between gitlab job <> Makefile target
 # ✓ Convention :
-#     gitlab job: 'makefile:${job_name}'
+#     gitlab job: 'makefile-legacy:${job_name}'
 #     makefile target : 'make ci-${job_name}'
 
+.auto-devops:rules:only_makefile:
+  rules:
+    - exists:
+        - Makefile
+
 # TODO: use $CI_COMMIT_REF_NAME in makefile
-.makefile_base:
+.makefile_legacy_base:
   variables:
     GIT_STRATEGY: fetch
     GIT_CHECKOUT_REF_NAME: 'true'
@@ -26,9 +33,9 @@
     - !reference [.autodevops:script:git-checkout-branch, script]
     - export TEST_IMAGE=$REGISTRY_PROJECT_URL/$BUILD_SUBPATH:${BUILD_ID}-test
 
-# makefile:check-changelog:
+# makefile-legacy:check-changelog:
 #   extends:
-#     - .makefile_base
+#     - .makefile_legacy_base
 #     - .docker_maker_image
 #   stage: prepare
 #   script:
@@ -41,25 +48,27 @@
 #       when: never
 #     - !reference [.auto-devops:rules:only_makefile, rules]
 
-makefile:lint:
+makefile-legacy:lint:
   extends:
-    - .makefile_base
+    - .makefile_legacy_base
   stage: test
   script:
     - make ci-lint
   rules:
+    - !reference [.auto-devops:rules:skip_builder_makefile_legacy_disabled, rules]
     - !reference [.auto-devops:rules:skip_code_quality_disabled, rules]
     - !reference [.auto-devops:rules:only_makefile, rules]
   tags:
     - docker-dind
 
-makefile:build:
+makefile-legacy:build:
   extends:
-    - .makefile_base
+    - .makefile_legacy_base
   stage: build
   script:
     - make ci-build
   rules:
+    - !reference [.auto-devops:rules:skip_builder_makefile_legacy_disabled, rules]
     - !reference [.auto-devops:rules:skip_build_disabled, rules]
     - !reference [.auto-devops:rules:only_makefile, rules]
   # FIXME: except:
@@ -69,48 +78,51 @@ makefile:build:
     - docker-dind
     - heavy-job
 
-makefile:test:
+makefile-legacy:test:
   extends:
-    - .makefile_base
+    - .makefile_legacy_base
   stage: test
   script:
     - make ci-test
   # FIXME: except:
   #   - /^backup\//
   needs:
-    - job: makefile:build
+    - job: makefile-legacy:build
       artifacts: true
   tags:
     - docker-dind
     - heavy-job
   rules:
+    - !reference [.auto-devops:rules:skip_builder_makefile_legacy_disabled, rules]
     - !reference [.auto-devops:rules:skip_test_disabled, rules]
     - !reference [.auto-devops:rules:only_makefile, rules]
 
-makefile:test-system:
+makefile-legacy:test-system:
   extends:
-    - .makefile_base
+    - .makefile_legacy_base
   stage: test
   script:
     - make ci-test-system
   # FIXME: except:
   #   - /^backup\//
   needs:
-    - job: makefile:build
+    - job: makefile-legacy:build
       artifacts: true
   rules:
+    - !reference [.auto-devops:rules:skip_builder_makefile_legacy_disabled, rules]
     - !reference [.auto-devops:rules:skip_test_system_disabled, rules]
     - !reference [.auto-devops:rules:only_makefile, rules]
   tags:
     - docker-dind
     - heavy-job
 
-makefile:release-images:
+makefile-legacy:release-images:
   extends:
-    - .makefile_base
+    - .makefile_legacy_base
   stage: release
   script:
     - make ci-release-images
   rules:
+    - !reference [.auto-devops:rules:skip_builder_makefile_legacy_disabled, rules]
     - !reference [.auto-devops:rules:skip_non_default_branch, rules]
     - !reference [.auto-devops:rules:only_makefile, rules]

@@ -58,27 +58,27 @@ gitlab-ci:prepare:
 
 gitlab-ci:test_makefile_build:
   extends:
-    - makefile:build
+    - makefile-legacy:build
     - .gitlab-test
 
 gitlab-ci:test_makefile_lint:
   extends:
-    - makefile:lint
+    - makefile-legacy:lint
     - .gitlab-test
 
 gitlab-ci:test_makefile_test:
   extends:
-    - makefile:test
+    - makefile-legacy:test
     - .gitlab-test
 
 gitlab-ci:test_makefile_test_system:
   extends:
-    - makefile:test-system
+    - makefile-legacy:test-system
     - .gitlab-test
 
 gitlab-ci:test_makefile_release_image:
   extends:
-    - makefile:release-images
+    - makefile-legacy:release-images
     - .gitlab-test
 
 gitlab-ci:test_docker_dind:
