@@ -1,3 +1,14 @@
+# [2.22.0](https://git.captive.fr/captive/gitlab-ci/compare/2.21.0...2.22.0) (2024-01-12)
+
+
+
+
+
+# 2.22.0 (2024-01-12)
+
+## ✨ New Features
+- [`ac9f20c`](https://gitlab.com/captive/gitlab-ci/-/commit/ac9f20c)  Enable submodules
+
 # [2.21.0](https://git.captive.fr/captive/gitlab-ci/compare/2.20.8...2.21.0) (2024-01-12)
 
 
