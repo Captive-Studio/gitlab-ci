@@ -51,7 +51,7 @@
 .docker_dind:
   image: docker:24-git@sha256:7ec1baa754541c69feb978440705649e32a5d249a6b4c0fb173641054eb5ec96
   services:
-    - name: docker:24-dind@sha256:ca9a56ffc0339a72cbf2beb7650f4423258f405520dcc7ac9af4858cfdc09fce
+    - name: docker:24-dind@sha256:b42e6e3883fc20a6a98eda330b6a2b0a5efb3ca4c121bf7be154447904d199e8
       entrypoint: [sh, -c, dockerd-entrypoint.sh $DOCKER_DAEMON_OPTIONS]
   variables:
     DOCKER_DAEMON_OPTIONS: '--registry-mirror=${CI_REGISTRY_MIRROR} --tls=false'
