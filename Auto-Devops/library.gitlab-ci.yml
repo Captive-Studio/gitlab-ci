@@ -70,7 +70,7 @@
 #   stage: ...
 #
 .docker_maker_image:
-  image: registry.git.captive.fr/captive/systeme/docker-maker:20.10.22-0@sha256:2db4870ef95c7905ad791527104be160f8dbc009b6c24c07912c77a5df6b81fa
+  image: registry.git.captive.fr/captive/systeme/docker-maker:24.0.7
 
 # Use controle-qualite image and a lightweight machine
 # By default use `prepare` step to fail early and fast
