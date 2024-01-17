@@ -1,3 +1,14 @@
+## [2.22.2](https://git.captive.fr/captive/gitlab-ci/compare/2.22.1...2.22.2) (2024-01-17)
+
+
+
+
+
+# 2.22.2 (2024-01-17)
+
+## 🐛 Bug Fixes
+- [`606a18f`](https://gitlab.com/captive/gitlab-ci/-/commit/606a18f)   Downgrade docker version
+
 ## [2.22.1](https://git.captive.fr/captive/gitlab-ci/compare/2.22.0...2.22.1) (2024-01-17)
 
 
