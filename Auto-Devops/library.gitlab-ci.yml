@@ -70,7 +70,7 @@
 #   stage: ...
 #
 .docker_maker_image:
-  image: registry.git.captive.fr/captive/systeme/docker-maker:24.0.7
+  image: registry.git.captive.fr/captive/systeme/docker-maker:23.0.6-0
 
 # Use controle-qualite image and a lightweight machine
 # By default use `prepare` step to fail early and fast
