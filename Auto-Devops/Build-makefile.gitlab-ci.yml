@@ -17,15 +17,22 @@
         - Makefile
 
 .makefile_base:
-  image: ${CONTAINER_CI_IMAGE}:${CONTAINER_CI_TAG}
-  extends:
-    - .autodevops_retry
-
-makefile:build:
   extends:
     - .autodevops_retry
     - .docker_dind
-    - .docker_maker_image
+  before_script:
+    - !reference [.autodevops:script:before, script]
+    - !reference [.autodevops:script:ci-registry-login, script]
+    - |
+      # [APK] ⏬ Install dependencies
+      apk add --no-cache --quiet \
+        git \
+        make \
+        bash
+
+makefile:build:
+  extends:
+    - .makefile_base
   stage: build
   script:
     - |
