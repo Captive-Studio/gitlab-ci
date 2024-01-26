@@ -35,12 +35,10 @@ makefile:build:
     - .makefile_base
   stage: build
   script:
+    - export DOCKER_BUILD_PUSH=${DOCKER_BUILD_PUSH:-1}
     - |
-      # [Docker] 📦 Build docker image used by runners ($CONTAINER_CI_IMAGE) and Release candidate
+      # [Docker] 📦 Build docker image used by runners ($CONTAINER_BUILDER_IMAGE) and ($CONTAINER_RUNNER_IMAGE)
     - make docker-build
-    - |
-      # [Docker] ⏫ Push docker image used by runners ($CONTAINER_CI_IMAGE)
-    - docker push ${CONTAINER_CI_IMAGE} --all-tags
   rules:
     - !reference [.auto-devops:rules:skip_builder_makefile_disabled, rules]
     - !reference [.auto-devops:rules:skip_build_disabled, rules]
