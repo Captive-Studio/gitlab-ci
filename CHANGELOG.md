@@ -1,3 +1,14 @@
+## [2.22.3](https://git.captive.fr/captive/gitlab-ci/compare/2.22.2...2.22.3) (2024-01-27)
+
+
+
+
+
+# 2.22.3 (2024-01-27)
+
+## 🐛 Bug Fixes
+- [`99202cb`](https://gitlab.com/captive/gitlab-ci/-/commit/99202cb)  Use latest Terraform version
+
 ## [2.22.2](https://git.captive.fr/captive/gitlab-ci/compare/2.22.1...2.22.2) (2024-01-17)
 
 
