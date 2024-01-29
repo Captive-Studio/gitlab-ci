@@ -1,3 +1,14 @@
+## [3.0.1](https://git.captive.fr/captive/gitlab-ci/compare/3.0.0...3.0.1) (2024-01-29)
+
+
+
+
+
+# 3.0.1 (2024-01-29)
+
+## 🐛 Bug Fixes
+- [`562ac94`](https://gitlab.com/captive/gitlab-ci/-/commit/562ac94)  Fix BUILDER_WORKFLOW naming
+
 # [3.0.0](https://git.captive.fr/captive/gitlab-ci/compare/2.22.3...3.0.0) (2024-01-29)
 
 * ✨ Add new build system workflow ([62f36ce](https://git.captive.fr/captive/gitlab-ci/commit/62f36ce6c2debd861c8a4d93b4d28fdf371628d3))
