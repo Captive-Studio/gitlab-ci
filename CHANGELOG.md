@@ -1,3 +1,14 @@
+## [3.0.3](https://git.captive.fr/captive/gitlab-ci/compare/3.0.2...3.0.3) (2024-01-29)
+
+
+
+
+
+# 3.0.3 (2024-01-29)
+
+## 🐛 Bug Fixes
+- [`926383b`](https://gitlab.com/captive/gitlab-ci/-/commit/926383b)  Move FF_DISABLE_UMASK_FOR_DOCKER_EXECUTOR to docker jobs
+
 ## [3.0.2](https://git.captive.fr/captive/gitlab-ci/compare/3.0.1...3.0.2) (2024-01-29)
 
 
