@@ -241,10 +241,6 @@ variables:
   ARTIFACT_COMPRESSION_LEVEL: fast
   CACHE_COMPRESSION_LEVEL: fast
 
-  # @see https://gitlab.com/gitlab-org/gitlab-runner/-/issues/37304
-  # ⚠️ Important for Docker builds
-  FF_DISABLE_UMASK_FOR_DOCKER_EXECUTOR: 'true'
-
   # Danger enabled
   #
   # @type {'true'|''}
