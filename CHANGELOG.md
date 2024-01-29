@@ -1,3 +1,16 @@
+## [3.0.2](https://git.captive.fr/captive/gitlab-ci/compare/3.0.1...3.0.2) (2024-01-29)
+
+
+
+
+
+# 3.0.2 (2024-01-29)
+
+## 🐛 Bug Fixes
+- [`f037e43`](https://gitlab.com/captive/gitlab-ci/-/commit/f037e43)  Fix Docker cache bug
+
+- [`95e8ad9`](https://gitlab.com/captive/gitlab-ci/-/commit/95e8ad9)  Fix Docker cache bug
+
 ## [3.0.1](https://git.captive.fr/captive/gitlab-ci/compare/3.0.0...3.0.1) (2024-01-29)
 
 
