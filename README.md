@@ -43,7 +43,7 @@ This project aims to make GitlabCI configuration easier for each project. One in
 include:
   - project: captive/gitlab-ci
     file: /Auto-Devops.gitlab-ci.yml
-    ref: 2.23.0
+    ref: 3.0.0
     # OR Unstable / latest version
     # ref: main
 
@@ -56,11 +56,11 @@ include:
 ### 2. Configure workflow
 
 <details>
-<summary>Automatic workflow</summary>
+<summary>Default workflow</summary>
 
 **Configuration**
 
-This is the default behavior if no `Makefile` does not exist.
+This is the default behavior if variable `BUILDER_WORKFLOW: default` of not set.
 Easy to use : the CI detects configuration files for each language and tools and runs the corresponding tool.
 
 Example 1 : if `package.json` file exists then all `nodejs:*` jobs will be run
@@ -84,7 +84,7 @@ Example 2 : if `.rubycritic.yml` file exists then the `ruby:ruby-critic` job wil
 
 **Configuration**
 
-This is the behavior if a `Makefile` exists.
+This is the default behavior if variable `BUILDER_WORKFLOW: makefile` of not set.
 
 The CI does not trigger any job based on detection. Every CI job is simply forwarded to the equivalent make target.
 
