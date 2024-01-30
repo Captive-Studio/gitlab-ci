@@ -37,17 +37,17 @@
 
 .auto-devops:rules:skip_builder_default_disabled:
   rules:
-    - if: $BUILDER_WORKFLOW !~ /default/
+    - if: ',${BUILDER_WORKFLOW}, !~ /,default,/'
       when: never
 
 .auto-devops:rules:skip_builder_makefile_legacy_disabled:
   rules:
-    - if: $BUILDER_WORKFLOW !~ /makefile-legacy/
+    - if: ',${BUILDER_WORKFLOW}, !~ /,makefile-legacy,/'
       when: never
 
 .auto-devops:rules:skip_builder_makefile_disabled:
   rules:
-    - if: $BUILDER_WORKFLOW !~ /makefile/
+    - if: ',${BUILDER_WORKFLOW}, !~ /,makefile,/'
       when: never
 
 .auto-devops:rules:skip_code_quality_disabled:
