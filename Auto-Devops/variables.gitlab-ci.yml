@@ -242,7 +242,7 @@ variables:
   CACHE_COMPRESSION_LEVEL: fast
 
   # Enabled only for docker build jobs
-  FF_DISABLE_UMASK_FOR_DOCKER_EXECUTOR: 'false'
+  # FF_DISABLE_UMASK_FOR_DOCKER_EXECUTOR: 'false'
 
   # Danger enabled
   #
