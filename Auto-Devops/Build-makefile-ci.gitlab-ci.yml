@@ -40,7 +40,7 @@ makefile:build:
       # [Docker] 📦 Build docker image used by runners ($CONTAINER_BUILDER_IMAGE) and ($CONTAINER_RUNNER_IMAGE)
     - make docker-build
   rules:
-    - !reference [.auto-devops:rules:skip_builder_makefile_disabled, rules]
+    - !reference [.auto-devops:rules:skip_builder_makefile-ci_disabled, rules]
     - !reference [.auto-devops:rules:skip_build_disabled, rules]
     - !reference [.auto-devops:rules:only_makefile, rules]
   needs: []
@@ -55,7 +55,7 @@ makefile:lint:
   script:
     - make lint
   rules:
-    - !reference [.auto-devops:rules:skip_builder_makefile_disabled, rules]
+    - !reference [.auto-devops:rules:skip_builder_makefile-ci_disabled, rules]
     - !reference [.auto-devops:rules:skip_code_quality_disabled, rules]
     - !reference [.auto-devops:rules:only_makefile, rules]
 
@@ -71,7 +71,7 @@ makefile:test:
   tags:
     - heavy-job
   rules:
-    - !reference [.auto-devops:rules:skip_builder_makefile_disabled, rules]
+    - !reference [.auto-devops:rules:skip_builder_makefile-ci_disabled, rules]
     - !reference [.auto-devops:rules:skip_test_disabled, rules]
     - !reference [.auto-devops:rules:only_makefile, rules]
 
@@ -85,7 +85,7 @@ makefile:test-system:
     - job: makefile:build
       artifacts: true
   rules:
-    - !reference [.auto-devops:rules:skip_builder_makefile_disabled, rules]
+    - !reference [.auto-devops:rules:skip_builder_makefile-ci_disabled, rules]
     - !reference [.auto-devops:rules:skip_test_system_disabled, rules]
     - !reference [.auto-devops:rules:only_makefile, rules]
   tags:
@@ -98,6 +98,6 @@ makefile:release-images:
   script:
     - make release-images
   rules:
-    - !reference [.auto-devops:rules:skip_builder_makefile_disabled, rules]
+    - !reference [.auto-devops:rules:skip_builder_makefile-ci_disabled, rules]
     - !reference [.auto-devops:rules:skip_non_default_branch, rules]
     - !reference [.auto-devops:rules:only_makefile, rules]

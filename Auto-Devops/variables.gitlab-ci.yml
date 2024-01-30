@@ -37,7 +37,7 @@ variables:
   BUILD_ENABLED: 'true'
 
   # Select auto devops system
-  # @type {'default'|'makefile-legacy'|'makefile'}
+  # @type {'default'|'makefile-legacy'|'makefile-ci'}
   BUILDER_WORKFLOW: default
 
   # Enable Code quality (lint, rubocop, audit, etc)

@@ -45,9 +45,9 @@
     - if: $BUILDER_WORKFLOW !~ /makefile-legacy/
       when: never
 
-.auto-devops:rules:skip_builder_makefile_disabled:
+.auto-devops:rules:skip_builder_makefile-ci_disabled:
   rules:
-    - if: $BUILDER_WORKFLOW !~ /makefile/
+    - if: $BUILDER_WORKFLOW !~ /makefile-ci/
       when: never
 
 .auto-devops:rules:skip_code_quality_disabled:

@@ -84,7 +84,7 @@ Example 2 : if `.rubycritic.yml` file exists then the `ruby:ruby-critic` job wil
 
 **Configuration**
 
-This is the default behavior if variable `BUILDER_WORKFLOW: makefile` of not set.
+This is the default behavior if variable `BUILDER_WORKFLOW: makefile-ci`
 
 The CI does not trigger any job based on detection. Every CI job is simply forwarded to the equivalent make target.
 
