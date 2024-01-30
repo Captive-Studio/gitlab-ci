@@ -1,3 +1,16 @@
+## [3.0.4](https://git.captive.fr/captive/gitlab-ci/compare/3.0.3...3.0.4) (2024-01-30)
+
+
+
+
+
+# 3.0.4 (2024-01-30)
+
+## 🐛 Bug Fixes
+- [`e99a2f0`](https://gitlab.com/captive/gitlab-ci/-/commit/e99a2f0)  Fix matcher
+
+- [`fd283c5`](https://gitlab.com/captive/gitlab-ci/-/commit/fd283c5)  Disable FF_DISABLE_UMASK_FOR_DOCKER_EXECUTOR because of permission denied errors
+
 ## [3.0.3](https://git.captive.fr/captive/gitlab-ci/compare/3.0.2...3.0.3) (2024-01-29)
 
 
