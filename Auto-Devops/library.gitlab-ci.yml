@@ -55,10 +55,6 @@
       entrypoint: [sh, -c, dockerd-entrypoint.sh $DOCKER_DAEMON_OPTIONS]
   variables:
     DOCKER_DAEMON_OPTIONS: '--registry-mirror=${CI_REGISTRY_MIRROR} --tls=false'
-
-    # @see https://gitlab.com/gitlab-org/gitlab-runner/-/issues/37304
-    # ⚠️ Important for Docker builds
-    FF_DISABLE_UMASK_FOR_DOCKER_EXECUTOR: 'true'
   tags:
     - docker-dind
   before_script:
