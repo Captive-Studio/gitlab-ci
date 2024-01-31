@@ -1,3 +1,14 @@
+## [3.0.5](https://git.captive.fr/captive/gitlab-ci/compare/3.0.4...3.0.5) (2024-01-31)
+
+
+
+
+
+# 3.0.5 (2024-01-31)
+
+## 🐛 Bug Fixes
+- [`137d4e4`](https://gitlab.com/captive/gitlab-ci/-/commit/137d4e4)  Fix matcher
+
 ## [3.0.4](https://git.captive.fr/captive/gitlab-ci/compare/3.0.3...3.0.4) (2024-01-30)
 
 
