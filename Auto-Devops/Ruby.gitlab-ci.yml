@@ -59,7 +59,7 @@ variables:
   stage: test
   services:
     - postgres:latest@sha256:db2d3c872d97299dfbb777d004264ed010aa577f62be581ab71624c88252fc5c
-    - redis:latest@sha256:b5ddcd52d425a8e354696c022f392fe45fca928f68d6289e6bb4a709c3a74668
+    - redis:latest@sha256:247eb5195017046ac6b95f7e4f7b3cda156296f2048ad5354f63f8dbd74ed15b
   variables:
     RAILS_ENV: test
   before_script:
