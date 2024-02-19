@@ -1,3 +1,14 @@
+# [3.1.0](https://git.captive.fr/captive/gitlab-ci/compare/3.0.5...3.1.0) (2024-02-19)
+
+
+
+
+
+# 3.1.0 (2024-02-19)
+
+## ✨ New Features
+- [`e2c259d`](https://gitlab.com/captive/gitlab-ci/-/commit/e2c259d)  Use hashicorp/terraform image
+
 ## [3.0.5](https://git.captive.fr/captive/gitlab-ci/compare/3.0.4...3.0.5) (2024-01-31)
 
 
