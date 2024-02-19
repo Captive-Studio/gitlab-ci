@@ -273,16 +273,3 @@
 #     - .ruby_image_browsers
 .ruby_image_browsers:
   image: cimg/ruby:${RUBY_VERSION}-browsers
-
-# Mixin to use Terraform
-#
-# @example
-#
-# my_step:
-#   extends
-#     - .terraform_image
-.terraform_image:
-  image:
-    name: '$CI_TEMPLATE_REGISTRY_HOST/gitlab-org/terraform-images/stable:latest'
-    # ⚠️ Warning: terraform 1.4 is too old and has some serious problems if the terraform state was built with a higher version (1.5+)
-    # name: '$CI_TEMPLATE_REGISTRY_HOST/gitlab-org/terraform-images/releases/1.4:v1.0.0'
