@@ -210,6 +210,11 @@ variables:
   # Terraform
   #
 
+  # Terraform version
+  #
+  # @type {string}
+  TF_VERSION: 1.7.1
+
   # Enable all terraform related jobs
   #
   # @type {'true'|''}
