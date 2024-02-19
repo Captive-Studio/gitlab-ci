@@ -71,6 +71,10 @@
       # to calling the wrapper `terraform` commands.
       TF_IMPLICIT_INIT=${TF_IMPLICIT_INIT:-true}
 
+.autodevops:script:terraform-init:
+  script:
+    - terraform "${TF_CHDIR_OPT}" init -input=false ${TF_INIT_FLAGS}
+
 .terraform_cache:
   cache:
     key: '${TF_ROOT}'
@@ -96,6 +100,10 @@
     - .terraform_image
     - .terraform_cache
     - .autodevops_retry
+  before_script:
+    - !reference [.autodevops:script:before, script]
+    - !reference [.autodevops:script:env-terraform, script]
+    - !reference [.autodevops:script:terraform-init, script]
 
 .terraform:fmt:
   extends:
