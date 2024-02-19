@@ -131,6 +131,9 @@
   stage: build
   script:
     - terraform "${TF_CHDIR_OPT}" plan -input=false -out="${TF_PLAN_CACHE}"
+    # TODO: backport report generation
+    # - terraform "${TF_CHDIR_OPT}" show -json "${TF_PLAN_CACHE}" | jq -r "${JQ_PLAN}" > "${TF_PLAN_JSON}"
+
     # - gitlab-terraform plan-json
   resource_group: ${TF_STATE_NAME}
   artifacts:
@@ -139,8 +142,10 @@
     public: false
     paths:
       - ${TF_ROOT}/plan.cache
-    reports:
-      terraform: ${TF_ROOT}/plan.json
+
+    # TODO: make this work !
+    # reports:
+    #   terraform: ${TF_ROOT}/plan.json
 
 .terraform:apply:
   extends:
