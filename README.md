@@ -65,7 +65,7 @@ Easy to use : the CI detects configuration files for each language and tools and
 
 Example 1 : if `package.json` file exists then all `nodejs:*` jobs will be run
 
-Example 2 : if `.rubycritic.yml` file exists then the `ruby:ruby-critic` job will be run
+Example 2 : if `.rubycritic.yml` file exists then the `ruby:rubycritic` job will be run
 
 **Reference**
 
@@ -75,7 +75,7 @@ Example 2 : if `.rubycritic.yml` file exists then the `ruby:ruby-critic` job wil
 | `ruby:*`                | `Gemfile`            |
 | `ruby:{build,test,e2e}` | `Rakefile`           |
 | `ruby:bundle-rubocop`   | `.rubocop.yml`       |
-| `ruby:ruby-critic`      | `.ruby-critic.yml`   |
+| `ruby:rubycritic`       | `.rubycritic.yml`   |
 
 </details>
 

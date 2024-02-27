@@ -115,7 +115,7 @@ ruby:bundle-rubocop:
     - !reference [.auto-devops:rules:only_rubocop_conf, rules]
     - !reference [.auto-devops:rules:only_rubycritic, rules]
 
-ruby:ruby-critic:
+ruby:rubycritic:
   extends:
     - .ruby_base
     - .ruby_cache
