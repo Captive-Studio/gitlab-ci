@@ -65,9 +65,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@captive/eslint-config@npm:2.0.13":
-  version: 2.0.13
-  resolution: "@captive/eslint-config@npm:2.0.13"
+"@captive/eslint-config@npm:2.0.14":
+  version: 2.0.14
+  resolution: "@captive/eslint-config@npm:2.0.14"
   dependencies:
     "@captive/prettier-config": "npm:^2.0.5"
     "@w5s/dev": "npm:^2.0.0"
@@ -84,7 +84,7 @@ __metadata:
       optional: true
     typescript:
       optional: true
-  checksum: 10c0/d725e6acfa62bd1233611c814a39ce84601166a76be17f93dca0c0754c55cdabbc4a848b7ac912435a5dc72df3976cbc3da9cf9d679e92d82516521bbc20b9de
+  checksum: 10c0/3d0eefb38f7bd233ff490a349a8d2e5a0acb8be14a1c2bcd950c3fd903525487465efdb0e3a9cea614e09c69f138e8e567d7cd0ab331606c303ce56128c21463
   languageName: node
   linkType: hard
 
@@ -93,7 +93,7 @@ __metadata:
   resolution: "@captive/gitlab-ci@workspace:."
   dependencies:
     "@captive/cspell-config": "npm:2.4.7"
-    "@captive/eslint-config": "npm:2.0.13"
+    "@captive/eslint-config": "npm:2.0.14"
     "@semantic-release/changelog": "npm:6.0.3"
     "@semantic-release/exec": "npm:6.0.3"
     "@semantic-release/release-notes-generator": "npm:12.1.0"
