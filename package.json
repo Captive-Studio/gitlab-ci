@@ -28,7 +28,7 @@
     "@captive/eslint-config": "2.0.14",
     "@semantic-release/changelog": "6.0.3",
     "@semantic-release/exec": "6.0.3",
-    "@semantic-release/release-notes-generator": "12.1.0",
+    "@semantic-release/release-notes-generator": "13.0.0",
     "@wavevision/semantic-release": "2.0.2",
     "danger": "11.3.1",
     "envhandlebars": "1.4.8",
