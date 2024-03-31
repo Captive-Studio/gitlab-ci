@@ -1947,8 +1947,8 @@ __metadata:
   linkType: hard
 
 "@w5s/cspell-config@npm:^2.2.2":
-  version: 2.2.13
-  resolution: "@w5s/cspell-config@npm:2.2.13"
+  version: 2.2.14
+  resolution: "@w5s/cspell-config@npm:2.2.14"
   dependencies:
     "@cspell/cspell-bundled-dicts": "npm:^8.0.0"
   peerDependencies:
@@ -1956,16 +1956,16 @@ __metadata:
   peerDependenciesMeta:
     cspell:
       optional: true
-  checksum: 10c0/014d1700d0621aae65286fb19cd02683f81de46640708fc5d600fd2367cbf7ed756c7668db7974350cc9811dfeddcba6efa40d089459fc7feaef11c830f177ff
+  checksum: 10c0/5f1d3f02f6ffb3aa682a8361a9dd40de8618dd787096cb077df4d99c3b52c7128363361b4895dff0439ee5acfb206e8d69ab36672b4621c7306a98a962d313a4
   languageName: node
   linkType: hard
 
 "@w5s/dev@npm:^2.0.0, @w5s/dev@npm:^2.1.1":
-  version: 2.1.5
-  resolution: "@w5s/dev@npm:2.1.5"
+  version: 2.1.6
+  resolution: "@w5s/dev@npm:2.1.6"
   dependencies:
     "@types/eslint": "npm:^8.44.0"
-  checksum: 10c0/5440143a8b5f2984df3bc96b109d7eae0e5429c8181a8b084aaef663376f00f3a55c7dfd04a07344bb12feac330d2c979199a02e3226a6cdd254182d480129eb
+  checksum: 10c0/2efbcc96d633dde722d305007cb519a8bb51cc50d1d257f116a2e93c45032fce255b1fbf89a8da620f2eb65540f501ad0662313e4c09cff821d4a355f4abda54
   languageName: node
   linkType: hard
 
@@ -2004,14 +2004,14 @@ __metadata:
   linkType: hard
 
 "@w5s/prettier-config@npm:^2.0.0, @w5s/prettier-config@npm:^2.0.7":
-  version: 2.0.11
-  resolution: "@w5s/prettier-config@npm:2.0.11"
+  version: 2.0.12
+  resolution: "@w5s/prettier-config@npm:2.0.12"
   peerDependencies:
     prettier: 2.x || 3.x
   peerDependenciesMeta:
     prettier:
       optional: true
-  checksum: 10c0/f0c89ff67ebfdc88c895f4afef4ce5d88f23e9cd2045952579aef41e31be4e0c28b44f528c624bef03777b69e1b916a31afcdc3fa6c9957b2614ab9b08aeab3f
+  checksum: 10c0/dedaad9f7b5013baf3b2394cab1330e644454f47377aaea4b3fe60d21110e20a7fa6212756347207ebe1e91e071dd75bf4095fce142456828939465cbc6159c8
   languageName: node
   linkType: hard
 
