@@ -50,9 +50,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@captive/cspell-config@npm:2.4.8":
-  version: 2.4.8
-  resolution: "@captive/cspell-config@npm:2.4.8"
+"@captive/cspell-config@npm:2.4.11":
+  version: 2.4.11
+  resolution: "@captive/cspell-config@npm:2.4.11"
   dependencies:
     "@cspell/dict-bash": "npm:^4.1.2"
     "@cspell/dict-fr-fr": "npm:^2.2.0"
@@ -62,7 +62,7 @@ __metadata:
   peerDependenciesMeta:
     cspell:
       optional: true
-  checksum: 10c0/e0cc30c91f966bf75410891406c44b33a96ed530bd0e006319664ce880de644a761f30d984dd4b49bb5961ab75f691cc7a41a3f851b5280a6f1c753c98d6ce3f
+  checksum: 10c0/33b757013cadcaff13973ecfeb03e5b3461035f96486d05b4b38d866ed17e5a2a229a86f3d8111dcdb823dad06edb512b9b581b2b174db38643500207705b840
   languageName: node
   linkType: hard
 
@@ -93,7 +93,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@captive/gitlab-ci@workspace:."
   dependencies:
-    "@captive/cspell-config": "npm:2.4.8"
+    "@captive/cspell-config": "npm:2.4.11"
     "@captive/eslint-config": "npm:2.0.16"
     "@semantic-release/changelog": "npm:6.0.3"
     "@semantic-release/exec": "npm:6.0.3"
