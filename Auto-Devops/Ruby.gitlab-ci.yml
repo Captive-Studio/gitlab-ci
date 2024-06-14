@@ -58,7 +58,7 @@ variables:
     - .install_cache
   stage: test
   services:
-    - postgres:latest@sha256:6b841c8f6a819884207402f1209a8116844365df15fca8cf556fc54a24c70800
+    - postgres:latest@sha256:46aa2ee5d664b275f05d1a963b30fff60fb422b4b594d509765c42db46d48881
     - redis:latest@sha256:1d38c52e8d34c0471350c545d7a9066c95f5a6b9f24c74209331c03c496e2290
   variables:
     RAILS_ENV: test
