@@ -49,7 +49,7 @@
 #   stage: ...
 #
 .docker_dind:
-  image: docker:23-git@sha256:7b4f4c16f42bbd3f850e25745b50c85c7f570d2b8a7190356954909526fbab52
+  image: docker:25-git@sha256:b41d0183012e2334aacd4e0b8e339b89246c4fdb7eada6cc86b0355f41328549
   services:
     - name: docker:23-dind@sha256:afa5d51349001a4293bab02d2988290db5eae393a83405b1f458c0dd44e2f3ca
       entrypoint: [sh, -c, dockerd-entrypoint.sh $DOCKER_DAEMON_OPTIONS]
