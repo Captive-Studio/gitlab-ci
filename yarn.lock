@@ -50,19 +50,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@captive/cspell-config@npm:2.4.8":
-  version: 2.4.8
-  resolution: "@captive/cspell-config@npm:2.4.8"
+"@captive/cspell-config@npm:2.4.16":
+  version: 2.4.16
+  resolution: "@captive/cspell-config@npm:2.4.16"
   dependencies:
     "@cspell/dict-bash": "npm:^4.1.2"
     "@cspell/dict-fr-fr": "npm:^2.2.0"
-    "@w5s/cspell-config": "npm:^2.2.2"
+    "@w5s/cspell-config": "npm:^2.3.10"
   peerDependencies:
     cspell: ^6.0.0 || ^7.0.0 || ^8.0.0
   peerDependenciesMeta:
     cspell:
       optional: true
-  checksum: 10c0/e0cc30c91f966bf75410891406c44b33a96ed530bd0e006319664ce880de644a761f30d984dd4b49bb5961ab75f691cc7a41a3f851b5280a6f1c753c98d6ce3f
+  checksum: 10c0/bb2153d31487d14fba19301303264c53284095f186e7b262dd83401da2b0c32b3761e369e4e6542756063ee50dc71adea7bbff2419fc2e2f79cdaefdbdef62a3
   languageName: node
   linkType: hard
 
@@ -93,7 +93,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@captive/gitlab-ci@workspace:."
   dependencies:
-    "@captive/cspell-config": "npm:2.4.8"
+    "@captive/cspell-config": "npm:2.4.16"
     "@captive/eslint-config": "npm:2.0.16"
     "@semantic-release/changelog": "npm:6.0.3"
     "@semantic-release/exec": "npm:6.0.3"
@@ -1985,9 +1985,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@w5s/cspell-config@npm:^2.2.2":
-  version: 2.2.14
-  resolution: "@w5s/cspell-config@npm:2.2.14"
+"@w5s/cspell-config@npm:^2.3.10":
+  version: 2.3.14
+  resolution: "@w5s/cspell-config@npm:2.3.14"
   dependencies:
     "@cspell/cspell-bundled-dicts": "npm:^8.0.0"
   peerDependencies:
@@ -1995,7 +1995,7 @@ __metadata:
   peerDependenciesMeta:
     cspell:
       optional: true
-  checksum: 10c0/5f1d3f02f6ffb3aa682a8361a9dd40de8618dd787096cb077df4d99c3b52c7128363361b4895dff0439ee5acfb206e8d69ab36672b4621c7306a98a962d313a4
+  checksum: 10c0/1c784927907bad08f5b51e7b21fb54d7dd3fffbe92f1fe11bf0089fcc01422cefdc5cccea9305ea3c4e43f4eca3ab80bcd79d4d4ab8871677f383337eac7dd86
   languageName: node
   linkType: hard
 
