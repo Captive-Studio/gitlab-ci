@@ -18,7 +18,7 @@ variables:
 
 .semantic_release_stage:
   stage: release
-  image: cimg/node:lts@sha256:e74b73c161b970dda4502af78957e31e551a29c94ea37eeac53d24dad27f9902
+  image: cimg/node:lts@sha256:dd75a8e98b54cbb37b262a9c31abc09212fd0a2bd47b2087758a5771e8167b2d
   dependencies: [] # Do not download artifacts
   extends:
     - .nodejs_image
